@@ -1,3 +1,4 @@
+package scoresheet;
 public class Scoresheet {
 	
 	private class Frame {
