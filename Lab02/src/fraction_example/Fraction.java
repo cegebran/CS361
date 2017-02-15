@@ -1,7 +1,7 @@
 package fraction_example;
 public class Fraction {
 
-	private int numerator; //test
+	private int numerator;
 	private int denominator;
 
 	public Fraction(int numerator, int denominator) {
