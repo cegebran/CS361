@@ -1,50 +1,27 @@
 import java.util.ArrayList;
 import java.util.Collection;
 
+import com.google.gson.*;
+import com.google.gson.reflect.TypeToken;
 
 public class MainDirectory {
 	
-	private String _name;
-	private String _lname;
-	private int _BIB;
-	
-	public MainDirectory(String name, String lastName, int BIB) {
-		_name = name;
-		_lname = lastName;
-		_BIB = BIB;
+	public MainDirectory() {
+		ArrayList<Employee> p = new ArrayList<Employee>();
 	}
 	
-	public void setName(String name) {
-		_name = name;
+	// ADD - listens for END command, adds employee
+	public void add() {
+		// just add to ArrayList
 	}
 	
-	public void setLastName(String lastName) {
-		_lname = lastName;
+	// PRINT - listens for PRINT, sends collection of employees via GSON
+	public void print() {
+		// for every entry, toString every employee
 	}
 	
-	public void setBib(int BIB) {
-		_BIB = BIB;
-	}
-	
-	@Override
-	public String toString() {
-		return _name + " " + _lname + " " + _BIB;
-	}
-	
-	public static void main(String[] args) {
-		Gson g = new Gson();
-		ArrayList<Participants> p = new ArrayList<Participants>();
-		p.add( new Participants("TT", "KK", 1));
-		p.add(new Participants("T", "K", 2));
-		p.add(new Participants("A", "A", 3));
-		p.add(new Participants("B", "B", 4));
+	// CLR - listens for CLR, empties the collection of employees
+	public void clear() {
 		
-		String out = g.toJson(p);
-		System.out.println(out);
-		ArrayList<Participants> ep = (g.fromJson(out, new TypeToken<Collection<Participants>>(){}.getType()));
-		for (Participants pp: ep) {
-			System.out.println(pp);
-		}
 	}
-
 }
