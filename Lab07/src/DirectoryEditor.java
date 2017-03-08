@@ -6,6 +6,9 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.io.Writer;
+import java.util.ArrayList;
+
+import com.google.gson.Gson;
 
 public class DirectoryEditor {
 	public static void main(String[] args){
@@ -14,6 +17,7 @@ public class DirectoryEditor {
 		FileReader input = null;
 		BufferedReader buffRead = null;
 		String myLine = "";	 //Buffer string
+		ArrayList<Employee> employees = new ArrayList<Employee>();
 		
 		try {
 			input = new FileReader(file);				//Initialize the FileReader and Buffered Reader for input
@@ -28,55 +32,28 @@ public class DirectoryEditor {
 				String[] array = myLine.split(" ");	
 				
 				if(array[0].equals("CLR")){
-					Writer fileWriter = null;
-					try {
-						fileWriter = new FileWriter("output.txt", false);
-					} catch (IOException e) {
-						System.out.println("File not found");
-					}
-					fileWriter.close();
+					
 				}else if(array[0].equals("ADD")){
-					Writer fileWriter = null;
-					try {
-						fileWriter = new FileWriter("output.txt", true);
-					} catch (IOException e) {
-						System.out.println("File not found");
-					}
 					try{
 						boolean first = true;
-						fileWriter.write("[");
 						while ( !((myLine = buffRead.readLine()).equals("END"))) {
 							String[] EmployeeArray = myLine.split(" ");	
-							if(first != true){
-								fileWriter.write(",");
-							}
-							fileWriter.write("{");
-							fileWriter.write("\"lname\"");
-							fileWriter.write(EmployeeArray[1]);
-							fileWriter.write(":");
-							fileWriter.write("\"fname\"");
-							fileWriter.write(EmployeeArray[0]);
-							fileWriter.write(":");
-							fileWriter.write("\"phone\"");
-							fileWriter.write(EmployeeArray[3]);
-							fileWriter.write(":");
-							fileWriter.write("\"dept\"");
-							fileWriter.write(EmployeeArray[2]);
-							fileWriter.write("}");
-							first = false;
+							Employee tmp = new Employee(EmployeeArray[1], EmployeeArray[0], EmployeeArray[3], EmployeeArray[2]);
+							employees.add(tmp);
 						}
-						fileWriter.write("]");
 					} catch(IOException e){
 						System.out.println("I/O Exception");
 					}
-					fileWriter.close();
+					Gson g = new Gson();
+					String out = g.toJson(employees);
+					System.out.print(out);
+					FileWriter fw = new FileWriter("output.txt", false);
+					fw.write(out);
+					
+					
 				}else if(array[0].equals("PRINT")){
 					
-				}else{
-					
-				}
-				
-				
+				}				
 			}
 		} catch (IOException e) {
 			System.out.println("I/O Exception");
