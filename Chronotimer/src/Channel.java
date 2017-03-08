@@ -1,4 +1,4 @@
-public class Channel {//test
+public class Channel {//testing
 	private boolean start;
 	private boolean on;
 	
