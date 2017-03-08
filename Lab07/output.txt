@@ -1,0 +1,1 @@
+[{"lname"Smith:"fname"Bob:"phone"4142024000:"dept"ACCT},{"lname"Atkinson:"fname"Bill:"phone"4149909899:"dept"ENG},{"lname"Smith:"fname"Mary:"phone"4147665644:"dept"ACCT}][{"lname"Howell:"fname"Thurston:"phone"4135567877:"dept"EXEC}]
