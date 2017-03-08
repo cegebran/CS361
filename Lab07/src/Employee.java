@@ -1,10 +1,10 @@
 public class Employee {
 	private String lname;
 	private String fname;
-	private int phone;
+	private String phone;
 	private String department;
 
-	public Employee(String lname, String fname, int phone, String department){
+	public Employee(String lname, String fname, String phone, String department){
 		this.lname = lname;
 		this.fname = fname;
 		this.phone = phone;
