@@ -1,4 +1,4 @@
-public class Employee {
+public class Employee implements Comparable<Employee> {
 	private String lname;
 	private String fname;
 	private String phone;
@@ -12,6 +12,14 @@ public class Employee {
 	}
 	
 	public String toString(){
-		return lname + "," + fname + phone + " " + department;
+		return lname + "," + fname + " " + phone + " " + department;
 	}
+
+	@Override
+	public int compareTo(Employee o) {
+		return this.lname.compareTo(o.lname);
+	}
+
+
+
 }

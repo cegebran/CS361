@@ -18,6 +18,7 @@ public class DirectoryEditor {
 		BufferedReader buffRead = null;
 		String myLine = "";	 //Buffer string
 		ArrayList<Employee> employees = new ArrayList<Employee>();
+		DirectoryProxy dp = new DirectoryProxy();
 		
 		try {
 			input = new FileReader(file);				//Initialize the FileReader and Buffered Reader for input
@@ -32,27 +33,22 @@ public class DirectoryEditor {
 				String[] array = myLine.split(" ");	
 				
 				if(array[0].equals("CLR")){
-					
-				}else if(array[0].equals("ADD")){
+					dp.clear();
+				}
+				else if(array[0].equals("ADD")){
 					try{
-						boolean first = true;
 						while ( !((myLine = buffRead.readLine()).equals("END"))) {
 							String[] EmployeeArray = myLine.split(" ");	
 							Employee tmp = new Employee(EmployeeArray[1], EmployeeArray[0], EmployeeArray[3], EmployeeArray[2]);
 							employees.add(tmp);
 						}
-					} catch(IOException e){
+					}catch(IOException e){
 						System.out.println("I/O Exception");
 					}
-					Gson g = new Gson();
-					String out = g.toJson(employees);
-					System.out.print(out);
-					FileWriter fw = new FileWriter("output.txt", false);
-					fw.write(out);
-					
-					
+					dp.add(employees);
+					employees.clear();
 				}else if(array[0].equals("PRINT")){
-					
+					dp.print();
 				}				
 			}
 		} catch (IOException e) {
