@@ -35,7 +35,7 @@ public class Driver {
 				System.out.println("num <NUM>: Add a racer to the current run at the end of the queue");
 				System.out.println("print: Print the data to the screen");
 				System.out.println("event <Event Type>: Determine the event that the runs will consist of until changed");
-				System.out.println("export <run number>: export the data from the runs to a text file");
+				System.out.println("export <run number>: export the data from the runs to a text file (Enter file extension also)");
 				System.out.println(" ");
 				System.out.print("User Input: ");
 				
@@ -233,6 +233,15 @@ public class Driver {
 						}else{
 							System.out.println("The event type has NOT been changed");
 						}
+					}
+				}
+				
+				// export command
+				if(userInputParse[0].equals("EXPORT")){
+					if(chronotimer.getPower() == false){
+						System.out.println("The chronotimer is off");
+					}else{
+						chronotimer.export(userInputParse[1]);
 					}
 				}
 				
