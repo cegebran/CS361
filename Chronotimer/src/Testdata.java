@@ -75,6 +75,10 @@ public class Testdata {
 						chronotimer.endRun();
 						System.out.println("The current run has been ended");
 					}
+					else if(array[1].equals("EXPORT")){
+						chronotimer.export(array[2]);
+						System.out.println("The current runs have been exported to the specified file");
+					}
 					System.out.println();
 			}
 		} catch (IOException e) {

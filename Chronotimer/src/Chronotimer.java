@@ -1,5 +1,9 @@
+import java.io.FileWriter;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Iterator;
+
+import com.google.gson.Gson;
 
 public class Chronotimer {
 	private boolean power;
@@ -534,6 +538,30 @@ public class Chronotimer {
 		}
 	}
 	
+	public void export(String filename){
+		Gson g = new Gson();
+		String out = g.toJson(runs);
+		FileWriter fw = null;
+		try {
+			fw = new FileWriter(filename, false);
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		try {
+			fw.write(out);
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		try {
+			fw.close();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+	
 	/**
 	 * Prints the list of available commands, as well as prompts user for input.
 	 */
@@ -568,5 +596,7 @@ public class Chronotimer {
 				System.out.println();
 			}
 		}
+		
+		
 	}
 }
