@@ -81,6 +81,54 @@ public class Chronotimer {
 	}
 	
 	/**
+	 * 
+	 * @return	channel 3
+	 */
+	public Channel getChannelThree(){
+		return this.three;
+	}
+	
+	/**
+	 * 
+	 * @return	channel 4
+	 */
+	public Channel getChannelFour(){
+		return this.four;
+	}
+	
+	/**
+	 * 
+	 * @return	channel 5
+	 */
+	public Channel getChannelFive(){
+		return this.five;
+	}
+	
+	/**
+	 * 
+	 * @return	channel 6
+	 */
+	public Channel getChannelSix(){
+		return this.six;
+	}
+	
+	/**
+	 * 
+	 * @return	channel 7
+	 */
+	public Channel getChannelSeven(){
+		return this.seven;
+	}
+	
+	/**
+	 * 
+	 * @return	channel 8
+	 */
+	public Channel getChannelEight(){
+		return this.eight;
+	}
+	
+	/**
 	 * Gets information on the IND run that is currently underway.
 	 * 
 	 * @return	Run that Chronotimer is currently tracking.
