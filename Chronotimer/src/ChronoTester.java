@@ -197,7 +197,7 @@ public class ChronoTester {
 		assertEquals(true, c7.finish());
 	}
 	
-	// Concurrent Modification error with 3 racers starting in a row and then error on the first finish command
+	// ConcurrentModificationException with 3 racers starting in a row and then error on the first finish command
 	
 	// continue additional run tests with greater complexity
 
