@@ -34,6 +34,8 @@ public class Driver {
 				System.out.println("endrun: Done with a run");
 				System.out.println("num <NUM>: Add a racer to the current run at the end of the queue");
 				System.out.println("print: Print the data to the screen");
+				System.out.println("event <Event Type>: Determine the event that the runs will consist of until changed");
+				System.out.println("export <run number>: export the data from the runs to a text file");
 				System.out.println(" ");
 				System.out.print("User Input: ");
 				
@@ -217,6 +219,15 @@ public class Driver {
 						System.out.println("The chronotimer is off");
 					}else{
 						chronotimer.print();
+					}
+				}
+				
+				// event command
+				if(userInputParse[0].equals("EVENT")){
+					if(chronotimer.getPower() == false){
+						System.out.println("The chronotimer is off");
+					}else{
+						
 					}
 				}
 				
