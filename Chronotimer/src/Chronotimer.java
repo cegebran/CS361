@@ -328,6 +328,7 @@ public class Chronotimer {
 		
 		// Create a new run based on two variables: IND/GRP, PAR/SER
 		Run current = new Run(individual, parallel);
+		current.setEvent(individual,parallel);	// set the event
 		runs.add(current);
 		currentRun = current;
 	}
@@ -383,10 +384,18 @@ public class Chronotimer {
 	 * @param individual	Set True if race will be individual, False if group
 	 * @param parallel	Set True if race will be parallel, False if in series
 	 */
-	public void setEvent(boolean individual, boolean parallel){
+	public boolean setEvent(String userInput){
 		// As long as there is not a run underway, set details for a new one
-		if(currentRun != null){
-			currentRun.setEvent(individual, parallel);
+		if(userInput.equals("IND")){
+			individual = true;
+			parallel = false;
+			return true;
+		}else if(userInput.equals("PARIND")){
+			individual = false;
+			parallel = true;
+			return true;
+		}else{
+			return false;
 		}
 	}
 	

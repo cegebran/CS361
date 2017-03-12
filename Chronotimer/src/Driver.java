@@ -227,7 +227,12 @@ public class Driver {
 					if(chronotimer.getPower() == false){
 						System.out.println("The chronotimer is off");
 					}else{
-						
+						boolean returnValue = chronotimer.setEvent(userInputParse[1]);
+						if(returnValue == true){
+							System.out.println("The event type has been changed");
+						}else{
+							System.out.println("The event type has NOT been changed");
+						}
 					}
 				}
 				

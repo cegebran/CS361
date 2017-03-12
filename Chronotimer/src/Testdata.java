@@ -56,7 +56,7 @@ public class Testdata {
 					}
 					else if(array[1].equals("EVENT")){
 						if(array[2].equals("IND")){
-							chronotimer.setEvent(true, false);
+							chronotimer.setEvent("IND");
 							System.out.println("IND has been set");
 						}
 					}
