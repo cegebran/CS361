@@ -59,10 +59,12 @@ public class Stats {
 	
 	public void setEnd(Racer racer, long time){
 		Iterator<Node> it = end.iterator();
-		while(it.hasNext()){
+		boolean removed = false;	// new to not get a concurrent modification exception when all racers in the run are running
+		while(it.hasNext() && removed == false){	// new 2nd condition to prevent concurrent modification exception
 			Node tmp = it.next();
 			if(racer == tmp.racer){
 				end.remove(tmp);
+				removed = true;	// new	to prevent concurrent modification exception
 			}
 		}
 		end.add(new Node(racer, time));

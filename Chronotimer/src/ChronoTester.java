@@ -197,8 +197,257 @@ public class ChronoTester {
 		assertEquals(true, c7.finish());
 	}
 	
-	// ConcurrentModificationException with 3 racers starting in a row and then error on the first finish command
+	@Test
+	public void DNF_Test(){
+		Chronotimer c8 = new Chronotimer();
+		c8.power();
+		c8.toggleChannel("1");
+		c8.toggleChannel("2");
+		c8.newRun(c8.getIndividual(), c8.getParallel());
+		c8.num("111");
+		assertEquals(true, c8.start());
+		assertEquals(true, c8.dnf());
+		c8.endRun();
+		c8.power();
+	}
 	
-	// continue additional run tests with greater complexity
+	@Test
+	public void DNF_2_Racers_Start_Finish_Test(){
+		Chronotimer c9 = new Chronotimer();
+		c9.power();
+		c9.toggleChannel("1");
+		c9.toggleChannel("2");
+		c9.newRun(c9.getIndividual(), c9.getParallel());
+		c9.num("11");
+		c9.num("22");
+		assertEquals(true, c9.start());
+		assertEquals(true, c9.start());
+		assertEquals(true, c9.dnf());
+		assertEquals(true, c9.dnf());
+		c9.endRun();
+		
+		c9.newRun(c9.getIndividual(), c9.getParallel());
+		c9.num("33");
+		c9.num("44");
+		assertEquals(true, c9.start());
+		assertEquals(true, c9.dnf());
+		assertEquals(true, c9.start());
+		assertEquals(true, c9.dnf());
+		c9.endRun();
+		
+		c9.newRun(c9.getIndividual(), c9.getParallel());
+		c9.num("55");
+		c9.num("66");
+		assertEquals(true, c9.start());
+		assertEquals(true, c9.finish());
+		assertEquals(true, c9.start());
+		assertEquals(true, c9.dnf());
+		c9.endRun();
+		
+		c9.newRun(c9.getIndividual(), c9.getParallel());
+		c9.num("77");
+		c9.num("88");
+		assertEquals(true, c9.start());
+		assertEquals(true, c9.finish());
+		assertEquals(true, c9.start());
+		assertEquals(true, c9.dnf());
+		c9.endRun();
+		
+		c9.newRun(c9.getIndividual(), c9.getParallel());
+		c9.num("99");
+		c9.num("00");
+		assertEquals(true, c9.start());
+		assertEquals(true, c9.dnf());
+		assertEquals(true, c9.start());
+		assertEquals(true, c9.finish());
+		c9.endRun();
+	}
+	
+	@Test
+	public void DNF_2_Racers_Trig_Test(){
+		Chronotimer c9 = new Chronotimer();
+		c9.power();
+		c9.toggleChannel("1");
+		c9.toggleChannel("2");
+		c9.newRun(c9.getIndividual(), c9.getParallel());
+		c9.num("11");
+		c9.num("22");
+		assertEquals(true, c9.trigger("1"));
+		assertEquals(true, c9.trigger("1"));
+		assertEquals(true, c9.dnf());
+		assertEquals(true, c9.dnf());
+		c9.endRun();
+		
+		c9.newRun(c9.getIndividual(), c9.getParallel());
+		c9.num("33");
+		c9.num("44");
+		assertEquals(true, c9.trigger("1"));
+		assertEquals(true, c9.dnf());
+		assertEquals(true, c9.trigger("1"));
+		assertEquals(true, c9.dnf());
+		c9.endRun();
+		
+		c9.newRun(c9.getIndividual(), c9.getParallel());
+		c9.num("55");
+		c9.num("66");
+		assertEquals(true, c9.trigger("1"));
+		assertEquals(true, c9.trigger("2"));
+		assertEquals(true, c9.trigger("1"));
+		assertEquals(true, c9.dnf());
+		c9.endRun();
+		
+		c9.newRun(c9.getIndividual(), c9.getParallel());
+		c9.num("77");
+		c9.num("88");
+		assertEquals(true, c9.trigger("1"));
+		assertEquals(true, c9.trigger("2"));
+		assertEquals(true, c9.trigger("1"));
+		assertEquals(true, c9.dnf());
+		c9.endRun();
+		
+		c9.newRun(c9.getIndividual(), c9.getParallel());
+		c9.num("99");
+		c9.num("00");
+		assertEquals(true, c9.trigger("1"));
+		assertEquals(true, c9.dnf());
+		assertEquals(true, c9.trigger("1"));
+		assertEquals(true, c9.trigger("2"));
+		c9.endRun();
+	}
+	
+	@Test
+	public void DNF_3_InRow_Test(){
+		Chronotimer c0 = new Chronotimer();
+		c0.power();
+		c0.toggleChannel("1");
+		c0.toggleChannel("2");
+		c0.newRun(c0.getIndividual(), c0.getParallel());
+		c0.num("12");
+		c0.num("13");
+		c0.num("14");
+		assertEquals(true, c0.start());
+		assertEquals(true, c0.start());
+		assertEquals(true, c0.start());
+		assertEquals(3, c0.getCurrentRun().getEndQueue().size());
+		assertEquals(true, c0.dnf());
+		assertEquals(true, c0.dnf());
+		assertEquals(true, c0.dnf());
+	}
+	
+	
+	@Test
+	public void Finish_3_InRow_Test(){
+		Chronotimer c0 = new Chronotimer();
+		c0.power();
+		c0.toggleChannel("1");
+		c0.toggleChannel("2");
+		c0.newRun(c0.getIndividual(), c0.getParallel());
+		c0.num("12");
+		c0.num("13");
+		c0.num("14");
+		assertEquals(true, c0.start());
+		assertEquals(true, c0.start());
+		assertEquals(true, c0.start());
+		assertEquals(3, c0.getCurrentRun().getEndQueue().size());
+		assertEquals(true, c0.finish());
+		assertEquals(true, c0.finish());
+		assertEquals(true, c0.finish());
+		assertEquals(0, c0.getCurrentRun().getEndQueue().size());
+	}
+	
+	@Test
+	public void Start_Finish_2_Start_Finish_Test(){
+		Chronotimer c0 = new Chronotimer();
+		c0.power();
+		c0.toggleChannel("1");
+		c0.toggleChannel("2");
+		c0.newRun(c0.getIndividual(), c0.getParallel());
+		c0.num("12");
+		c0.num("13");
+		c0.num("14");
+		assertEquals(true, c0.start());
+		assertEquals(true, c0.start());
+		assertEquals(2, c0.getCurrentRun().getEndQueue().size());
+		assertEquals(true, c0.finish());
+		assertEquals(1, c0.getCurrentRun().getEndQueue().size());
+		assertEquals(true, c0.finish());
+		assertEquals(0, c0.getCurrentRun().getEndQueue().size());
+		assertEquals(true, c0.start());
+		assertEquals(1, c0.getCurrentRun().getEndQueue().size());
+		assertEquals(true, c0.finish());
+		assertEquals(0, c0.getCurrentRun().getEndQueue().size());
+	}
+	
+	@Test
+	public void Start_Finish_1_Start_DNF_2_Test(){
+		Chronotimer c0 = new Chronotimer();
+		c0.power();
+		c0.toggleChannel("1");
+		c0.toggleChannel("2");
+		c0.newRun(c0.getIndividual(), c0.getParallel());
+		c0.num("12");
+		c0.num("13");
+		c0.num("14");
+		assertEquals(true, c0.start());
+		assertEquals(1, c0.getCurrentRun().getEndQueue().size());
+		assertEquals(true, c0.finish());
+		assertEquals(0, c0.getCurrentRun().getEndQueue().size());
+		assertEquals(true, c0.start());
+		assertEquals(1, c0.getCurrentRun().getEndQueue().size());
+		assertEquals(true, c0.start());
+		assertEquals(2, c0.getCurrentRun().getEndQueue().size());
+		assertEquals(true, c0.dnf());
+		assertEquals(1, c0.getCurrentRun().getEndQueue().size());
+		assertEquals(true, c0.dnf());
+		assertEquals(0, c0.getCurrentRun().getEndQueue().size());
+	}
+	
+	@Test
+	public void trig1_trig2_2_trig1_trig2_Test(){
+		Chronotimer c0 = new Chronotimer();
+		c0.power();
+		c0.toggleChannel("1");
+		c0.toggleChannel("2");
+		c0.newRun(c0.getIndividual(), c0.getParallel());
+		c0.num("12");
+		c0.num("13");
+		c0.num("14");
+		assertEquals(true, c0.trigger("1"));
+		assertEquals(1, c0.getCurrentRun().getEndQueue().size());
+		assertEquals(true, c0.trigger("1"));
+		assertEquals(2, c0.getCurrentRun().getEndQueue().size());
+		assertEquals(true, c0.trigger("2"));
+		assertEquals(1, c0.getCurrentRun().getEndQueue().size());
+		assertEquals(true, c0.trigger("2"));
+		assertEquals(0, c0.getCurrentRun().getEndQueue().size());
+		assertEquals(true, c0.trigger("1"));
+		assertEquals(1, c0.getCurrentRun().getEndQueue().size());
+		assertEquals(true, c0.trigger("2"));
+		assertEquals(0, c0.getCurrentRun().getEndQueue().size());
+	}
+	
+	@Test
+	public void trig1_trig2_2_trig1_dnf_Test(){
+		Chronotimer c0 = new Chronotimer();
+		c0.power();
+		c0.toggleChannel("1");
+		c0.toggleChannel("2");
+		c0.newRun(c0.getIndividual(), c0.getParallel());
+		c0.num("12");
+		c0.num("13");
+		c0.num("14");
+		assertEquals(true, c0.trigger("1"));
+		assertEquals(1, c0.getCurrentRun().getEndQueue().size());
+		assertEquals(true, c0.trigger("1"));
+		assertEquals(2, c0.getCurrentRun().getEndQueue().size());
+		assertEquals(true, c0.trigger("2"));
+		assertEquals(1, c0.getCurrentRun().getEndQueue().size());
+		assertEquals(true, c0.trigger("2"));
+		assertEquals(0, c0.getCurrentRun().getEndQueue().size());
+		assertEquals(true, c0.trigger("1"));
+		assertEquals(1, c0.getCurrentRun().getEndQueue().size());
+		assertEquals(true, c0.dnf());
+		assertEquals(0, c0.getCurrentRun().getEndQueue().size());
+	}
 
 }
