@@ -6,22 +6,17 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.Scanner;
+
+import javax.swing.ButtonGroup;
+
 import java.swing.*;
+import java.awt.*;
 
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 
-public class Client {
-//test
-	private JTextField firstName("First name");
-	private JTextField lastName("Last Name");
-	private JTextField department("Department");
-	private JTextField phone("Phone");
-	private JRadioButton gender("Gender");
-	private JList title("Title");
-	private JButton submit("Submit (send)");
-	private JButton exit("Exit");
-	
+public class Client{
+//test	
 	public static void main(String[] args) {
 		try {
 			makeFrame();
@@ -80,6 +75,15 @@ public class Client {
 	}
 
 	private void makeFrame(){
+		JTextField firstName = new JTextField("First Name");
+		JTextField lastName = new JTextField("Last Name");
+		JTextField department = new JTextField("Department");
+		JTextField phone = new JTextField("Phone");
+		JRadioButton genderMale = new JRadioButton("Male");
+		JRadioButton genderFemale = new JRadioButton("Female");
+		JList title = new JList();
+		JButton submit = new JButton();
+		JButton exit = new JButton();
 		
 		myFrame = new JFrame("Lab 08");
 		myFrame.setSize(1000, 800);
@@ -92,21 +96,36 @@ public class Client {
 			}
 		});
 		
+		
+		.addActionListener(new MyActionListener());
+		.addActionListener(new MyActionListener());
+		.addActionListener(new MyActionListener());
+		.addActionListener(new MyActionListener());
+		.addActionListener(new MyActionListener());
+		.addActionListener(new MyActionListener());
+		.addActionListener(new MyActionListener());
+		
 		myPanel = new JPanel();
 		myPanel.setLayout(new FlowLayout());
-		
 		myPanel.add(firstName);
 		myPanel.add(lastName);
 		myPanel.add(department);
 		myPanel.add(phone);
-		myPanel.add(gender);
+		ButtonGroup group1 = new ButtonGroup();
+		group1.add(genderMale);
+		group1.add(genderFemale);
+		myPanel.add(gendeMale);
+		myPanel.add(genderFemale);
 		myPanel.add(title);
 		myPanel.add(submit);
 		myPanel.add(exit);
 		myPanel.setVisible(true);
-		
-		myFrame.getContentPane()clone().add(myPanel);
+		myFrame.getContentPane().add(myPanel);	
+	}
+	
+	class MyActionListener implements ActionListener{
+		public void actionPerformed(ActionEvent e){
 			
-			
+		}
 	}
 }
