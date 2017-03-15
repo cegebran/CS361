@@ -1,4 +1,7 @@
+import java.util.Iterator;
 import java.util.LinkedList;
+
+import javax.xml.soap.Node;
 
 public class Run {
 	private LinkedList<Racer> beginQueue;
@@ -114,5 +117,43 @@ public class Run {
 	public void setEvent(boolean individual, boolean parallel) {
 		this.individual = individual;
 		this.parallel = parallel;
+	}
+	
+	/**
+	 * *
+	 * @param testNum
+	 * @return True if bib number not already in the run or false if otherwise
+	 */
+	public boolean numExistsInRun(String testNum){
+		boolean dne = true;
+		int testNumInt = Integer.parseInt(testNum);
+		Iterator<Racer> it = beginQueue.iterator();
+		while(it.hasNext()){
+			Racer temp = it.next();
+			int tempBib = temp.getBib();
+			if(tempBib == testNumInt){
+				dne = false;
+				break;
+			}
+		}
+		
+		if(dne == true){
+			Iterator<Racer> it2 = beginQueue.iterator();
+			while(it2.hasNext()){
+				Racer temp = it2.next();
+				int tempBib = temp.getBib();
+				if(tempBib == testNumInt){
+					dne = false;
+					break;
+				}
+			}
+		}
+		
+		if(dne == true){
+			return true;
+		}else{
+			return false;
+		}
+		
 	}
 }

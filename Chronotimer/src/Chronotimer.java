@@ -434,6 +434,9 @@ public class Chronotimer {
 	 */
 	public boolean setEvent(String userInput){
 		// As long as there is not a run underway, set details for a new one
+		if(power == false){
+			return false;
+		}
 		if(userInput.equals("IND")){
 			individual = true;
 			parallel = false;
@@ -516,6 +519,11 @@ public class Chronotimer {
 			if(number == null){
 				return false;
 			}else{
+				// Check if bib number already exists in the current run before adding it to the run
+				boolean checkBibNumValue = currentRun.numExistsInRun(number);
+				if(checkBibNumValue == false){
+					return false;
+				}
 				// Only add if there is a run underway
 				if(currentRun == null){
 					return false;
@@ -596,26 +604,28 @@ public class Chronotimer {
 	}
 	
 	public void export(String filename){
-		Gson g = new Gson();
-		String out = g.toJson(runs);
-		FileWriter fw = null;
-		try {
-			fw = new FileWriter(filename, false);
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		try {
-			fw.write(out);
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		try {
-			fw.close();
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+		if(power != false){
+			Gson g = new Gson();
+			String out = g.toJson(runs);
+			FileWriter fw = null;
+			try {
+				fw = new FileWriter(filename, false);
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			try {
+				fw.write(out);
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			try {
+				fw.close();
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 		}
 	}
 	
@@ -623,37 +633,37 @@ public class Chronotimer {
 	 * Prints the list of available commands, as well as prompts user for input.
 	 */
 	public void print(){
-		System.out.println();
-		Iterator<Run> it = runs.iterator();
-		int runs = 0;
-		while(it.hasNext()){
-			// Increment the run number
-			runs++;
-			System.out.println("Run number: " + runs);
-			System.out.println("---------------------");
+		if(power == false){
+			System.out.println();
+			Iterator<Run> it = runs.iterator();
+			int runs = 0;
+			while(it.hasNext()){
+				// Increment the run number
+				runs++;
+				System.out.println("Run number: " + runs);
+				System.out.println("---------------------");
 			
-			// Iterate through racers and retrieve stats to print (Start time, End time, Total time)
-			Run run = it.next();
-			Stats stats = run.getStats();
-			ArrayList<Racer> racers = stats.getRacers();
-			Iterator<Racer> it2 = racers.iterator();
-			while(it2.hasNext()){
-				Racer racer = it2.next();
-				System.out.println("Racer BIB number: " + racer.getBib());
-				System.out.println("Start: " + Time.convertTime(stats.getStart(racer)) + "	End: " + Time.convertTime(stats.getEnd(racer)));
-				if(stats.getEnd(racer) == -1){
-					System.out.print("Total time: Did not finish");
+				// Iterate through racers and retrieve stats to print (Start time, End time, Total time)
+				Run run = it.next();
+				Stats stats = run.getStats();
+				ArrayList<Racer> racers = stats.getRacers();
+				Iterator<Racer> it2 = racers.iterator();
+				while(it2.hasNext()){
+					Racer racer = it2.next();
+					System.out.println("Racer BIB number: " + racer.getBib());
+					System.out.println("Start: " + Time.convertTime(stats.getStart(racer)) + "	End: " + Time.convertTime(stats.getEnd(racer)));
+					if(stats.getEnd(racer) == -1){
+						System.out.print("Total time: Did not finish");
+					}
+					else if(stats.getRaceTime(racer) < 0){
+						System.out.print("Total time: Still In Progress");
+					}
+					else{
+						System.out.println("Total time: " + Time.convertTime(stats.getRaceTime(racer)));	
+					}
+					System.out.println();
 				}
-				else if(stats.getRaceTime(racer) < 0){
-					System.out.print("Total time: Still In Progress");
-				}
-				else{
-					System.out.println("Total time: " + Time.convertTime(stats.getRaceTime(racer)));	
-				}
-				System.out.println();
 			}
 		}
-		
-		
 	}
 }

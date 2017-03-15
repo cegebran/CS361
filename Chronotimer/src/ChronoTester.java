@@ -449,5 +449,27 @@ public class ChronoTester {
 		assertEquals(true, c0.dnf());
 		assertEquals(0, c0.getCurrentRun().getEndQueue().size());
 	}
+	
+	@Test
+	public void add_same_num_Test(){
+		Chronotimer c0 = new Chronotimer();
+		c0.power();
+		c0.newRun(c0.getIndividual(), c0.getParallel());
+		assertEquals(true, c0.num("12"));
+		assertEquals(false, c0.num("12"));
+	}
+	
+	@Test
+	public void functions_with_power_off_Test(){
+		// all functionalities 
+		Chronotimer c0 = new Chronotimer();
+		assertEquals(false, c0.setEvent("IND"));
+		assertEquals(false, c0.dnf());
+		assertEquals(false, c0.toggleChannel("1"));
+		assertEquals(false, c0.trigger("1"));
+		assertEquals(false, c0.start());
+		assertEquals(false, c0.finish());
+		
+	}
 
 }
