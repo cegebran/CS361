@@ -7,19 +7,20 @@ import java.util.Collection;
 import java.util.Collections;
 import java.util.Scanner;
 
-import javax.swing.ButtonGroup;
-
-import java.swing.*;
+import javax.swing.*;
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 
-public class Client{
+public class Client extends JFrame implements ActionListener{
 //test	
 	public static void main(String[] args) {
 		try {
-			makeFrame();
+			Client myGUI = new Client();
+			myGUI.setVisible(true);
 			
 			System.out.println("in the client");
 
@@ -74,58 +75,73 @@ public class Client{
 		return json;
 	}
 
-	private void makeFrame(){
-		JTextField firstName = new JTextField("First Name");
-		JTextField lastName = new JTextField("Last Name");
-		JTextField department = new JTextField("Department");
-		JTextField phone = new JTextField("Phone");
+	public Client(){//Making a GUI out of a constructor
+		JTextField firstName = new JTextField("", 15);
+		JTextField lastName = new JTextField("", 15);
+		JTextField department = new JTextField("", 15);
+		JTextField phone = new JTextField("", 15);
 		JRadioButton genderMale = new JRadioButton("Male");
 		JRadioButton genderFemale = new JRadioButton("Female");
-		JList title = new JList();
-		JButton submit = new JButton();
-		JButton exit = new JButton();
+		JRadioButton genderOther = new JRadioButton("Other");
+		String[] listOfTitle = {"Mr.", "Ms", "Mrs.", "Dr.", "Col.", "Prof.", };
+		JList title = new JList(listOfTitle);
+		title.setSelectionMode(ListSelectionModel.SINGLE_INTERVAL_SELECTION);
+		title.setLayoutOrientation(JList.HORIZONTAL_WRAP);
+		title.setVisibleRowCount(-1);  
+//		JScrollPane listScroller = new JScrollPane(listOfTitle);
+//		listScroller.setPreferredSize(new Dimension(250, 80));
+		JButton submit = new JButton("Submit");
+		JButton exit = new JButton("Exit");
 		
-		myFrame = new JFrame("Lab 08");
-		myFrame.setSize(1000, 800);
-		myFrame.setLocation(10, 200);
-		myFrame.setLayout(new FlowLayout());
+		setTitle("Lab08");
+		setSize(400, 400);
+		setLocation(10, 200);
+		setLayout(new FlowLayout());
 		
-		myFrame.addWindowListener(new WindowAdapter(){
-			public void windowClosing(WindowEvent e){
-				System.exit(0);
-			}
-		});
+	//		myFrame.addWindowListener(new WindowAdapter(){
+	//			public void windowClosing(WindowEvent e){
+	//				System.exit(0);
+	//			}
+	//		});
+				
+	//		submit.addActionListener(new MyActionListener());
+	//		exit.addActionListener(new MyActionListener());
 		
+		JPanel myPanel1 = new JPanel();
+		myPanel1.setLayout(new GridLayout(0, 2));
+		myPanel1.add(new JLabel("First Name"));
+		myPanel1.add(firstName);
+		myPanel1.add(new JLabel("Last Name"));
+		myPanel1.add(lastName);
+		myPanel1.add(new JLabel("Department"));
+		myPanel1.add(department);
+		myPanel1.add(new JLabel("Phone"));
+		myPanel1.add(phone);
+		myPanel1.add(new JLabel("Title"));
+		myPanel1.add(title);
+		myPanel1.setVisible(true);
 		
-		.addActionListener(new MyActionListener());
-		.addActionListener(new MyActionListener());
-		.addActionListener(new MyActionListener());
-		.addActionListener(new MyActionListener());
-		.addActionListener(new MyActionListener());
-		.addActionListener(new MyActionListener());
-		.addActionListener(new MyActionListener());
+		JPanel myPanel2 = new JPanel();
+		myPanel2.setLayout(new GridLayout(0, 3));
+		myPanel2.add(genderMale);
+		myPanel2.add(genderFemale);
+		myPanel2.add(genderOther);
+		myPanel2.setVisible(true);
 		
-		myPanel = new JPanel();
-		myPanel.setLayout(new FlowLayout());
-		myPanel.add(firstName);
-		myPanel.add(lastName);
-		myPanel.add(department);
-		myPanel.add(phone);
-		ButtonGroup group1 = new ButtonGroup();
-		group1.add(genderMale);
-		group1.add(genderFemale);
-		myPanel.add(gendeMale);
-		myPanel.add(genderFemale);
-		myPanel.add(title);
-		myPanel.add(submit);
-		myPanel.add(exit);
-		myPanel.setVisible(true);
-		myFrame.getContentPane().add(myPanel);	
+		JPanel myPanel3 = new JPanel();
+		myPanel3.setLayout(new GridLayout(0, 2));
+		myPanel3.add(submit);
+		myPanel3.add(exit);
+		myPanel3.setVisible(true);
+		
+		getContentPane().add(myPanel1);	
+		getContentPane().add(myPanel2);	
+		getContentPane().add(myPanel3);	
 	}
-	
-	class MyActionListener implements ActionListener{
-		public void actionPerformed(ActionEvent e){
-			
-		}
+
+	@Override
+	public void actionPerformed(ActionEvent e) {
+		// TODO Auto-generated method stub
+		
 	}
 }
