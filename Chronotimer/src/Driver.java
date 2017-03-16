@@ -145,7 +145,7 @@ public class Driver {
 						if(dnfOutput == true){
 							System.out.println("The current run has been marked as a DNF");
 						}else{
-							System.out.println("The current run has been marked as a DNF");
+							System.out.println("The current run has not been marked as a DNF");
 						}
 					}
 				}

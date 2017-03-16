@@ -10,12 +10,31 @@ public class Run {
 	private boolean individual;
 	private boolean parallel;
 	
+	// Added fields for parallel races
+	private LinkedList<Racer> pendingQueue12;
+	private LinkedList<Racer> pendingQueue34;
+	private LinkedList<Racer> pendingQueue56;
+	private LinkedList<Racer> pendingQueue78;
+	private boolean[] usedLanes;
+	
+	
 	public Run(boolean individual, boolean parallel){
 		beginQueue = new LinkedList<Racer>();
 		endQueue = new LinkedList<Racer>();
 		stats = new Stats();
 		this.individual = individual;
 		this.parallel = parallel;
+		
+		if(parallel == true && individual == false){
+			pendingQueue12 = new LinkedList<Racer>();
+			pendingQueue34 = new LinkedList<Racer>();
+			pendingQueue56 = new LinkedList<Racer>();
+			pendingQueue78 = new LinkedList<Racer>();
+			usedLanes = new boolean[4];
+			for(int i = 0; i < 4; i++){
+				usedLanes[i] = false;
+			}
+		}
 	}
 	
 	/**
@@ -34,6 +53,20 @@ public class Run {
 	 */
 	public LinkedList<Racer> getEndQueue(){
 		return this.endQueue;
+	}
+	
+	/**
+	 * 
+	 * @return event type abbreviation of the event the run is
+	 */
+	public String getEventType(){
+		if(individual == true){
+			return "IND";
+		}else if(parallel == true){
+			return "PARIND";
+		}else{
+			return null;
+		}
 	}
 	
 	/**
@@ -60,16 +93,105 @@ public class Run {
 	 * @param time	Current time used to mark racer's 'Start time'
 	 * @return	True if successful, False otherwise
 	 */
-	public boolean startRacer(long time){
+	public boolean startRacer(long time, int sensorNum){
 		if(beginQueue.isEmpty()){
 			return false;
 		}
-		// Remove racer from begin queue, add to end queue, set end to pending and start to current time
-		Racer racer = beginQueue.removeFirst();
-		endQueue.addLast(racer);
-		stats.setEnd(racer, 0);
-		stats.setStart(racer, time);
-		return true;
+		
+		if(individual == true){
+			// Remove racer from begin queue, add to end queue, set end to pending and start to current time
+			Racer racer = beginQueue.removeFirst();
+			endQueue.addLast(racer);
+			stats.setEnd(racer, 0);
+			stats.setStart(racer, time);
+			return true;
+		}else if(parallel == true){
+			Racer racer = beginQueue.removeFirst();
+			
+			if(sensorNum == 1){
+				int counter = 0;
+				if(usedLanes[0] == false){
+					for(int i = 0; i < 4; i++){
+						if(usedLanes[i] == true){
+							if(usedLanes[i] == true){
+								counter++;
+							}
+						}
+					}
+				}
+				if(usedLanes[0] == true || counter < 2){
+					pendingQueue12.addLast(racer);
+					endQueue.addLast(racer);
+					stats.setEnd(racer, 0);
+					stats.setStart(racer, time);
+					usedLanes[0] = true;
+					return true;
+				}else{
+					return false;
+				}
+			}else if(sensorNum == 3){
+				int counter = 0;
+				if(usedLanes[1] == false){
+					for(int i = 0; i < 4; i++){
+						if(usedLanes[i] == true){
+							counter++;
+						}
+					}
+				}
+				if(usedLanes[1] == true || counter < 2){
+					pendingQueue34.addLast(racer);
+					endQueue.addLast(racer);
+					stats.setEnd(racer, 0);
+					stats.setStart(racer, time);
+					usedLanes[1] = true;
+					return true;
+				}else{
+					return false;
+				}
+			}else if(sensorNum == 5){
+				int counter = 0;
+				if(usedLanes[2] == false){
+					for(int i = 0; i < 4; i++){
+						if(usedLanes[i] == true){
+							counter++;
+						}
+					}
+				}
+				if(usedLanes[2] == true || counter < 2){
+					pendingQueue56.addLast(racer);
+					endQueue.addLast(racer);
+					stats.setEnd(racer, 0);
+					stats.setStart(racer, time);
+					usedLanes[2] = true;
+					return true;
+				}else{
+					return false;
+				}
+			}else if(sensorNum == 7){
+				int counter = 0;
+				if(usedLanes[3] == false){
+					for(int i = 0; i < 4; i++){
+						if(usedLanes[i] == true){
+							counter++;
+						}
+					}
+				}
+				if(usedLanes[3] == true || counter < 2){
+					pendingQueue78.addLast(racer);
+					endQueue.addLast(racer);
+					stats.setEnd(racer, 0);
+					stats.setStart(racer, time);
+					usedLanes[3] = true;
+					return true;
+				}else{
+					return false;
+				}
+			}else{
+				return false;
+			}
+		}else{	// expand when implement new race types
+			return false;
+		}
 	}
 	
 	/**
@@ -78,14 +200,71 @@ public class Run {
 	 * @param time	Current time to mark the racer's 'End time'
 	 * @return	True if successful, False otherwise
 	 */
-	public boolean endRacer(long time){
+	public boolean endRacer(long time, int sensorNum){
 		// If no one is currently racing, return false
-		if(endQueue.isEmpty()){
+		
+		if(individual == true){
+			if(endQueue.isEmpty()){
+				return false;
+			}
+			Racer racer = endQueue.removeFirst();
+			stats.setEnd(racer, time);
+			return true;
+		}else if(parallel == true){
+			if(sensorNum == 2){
+				if(usedLanes[0] == true){
+					if(pendingQueue12.isEmpty() != true){
+						Racer racer = pendingQueue12.removeFirst();
+						stats.setEnd(racer, time);
+						return true;
+					}else{
+						return false;
+					}
+				}else{
+					return false;
+				}
+			}else if(sensorNum == 4){
+				if(usedLanes[1] == true){
+					if(pendingQueue34.isEmpty() != true){
+						Racer racer = pendingQueue34.removeFirst();
+						stats.setEnd(racer, time);
+						return true;
+					}else{
+						return false;
+					}
+				}else{
+					return false;
+				}
+			}else if(sensorNum == 6){
+				if(usedLanes[2] == true){
+					if(pendingQueue56.isEmpty() != true){
+						Racer racer = pendingQueue56.removeFirst();
+						stats.setEnd(racer, time);
+						return true;
+					}else{
+						return false;
+					}
+				}else{
+					return false;
+				}
+			}else if(sensorNum == 8){
+				if(usedLanes[3] == true){
+					if(pendingQueue78.isEmpty() != true){
+						Racer racer = pendingQueue78.removeFirst();
+						stats.setEnd(racer, time);
+						return true;
+					}else{
+						return false;
+					}
+				}else{
+					return false;
+				}
+			}else{
+				return false;
+			}
+		}else{
 			return false;
 		}
-		Racer racer = endQueue.removeFirst();
-		stats.setEnd(racer, time);
-		return true;
 	}
 	
 	/**
@@ -102,10 +281,41 @@ public class Run {
 	/**
 	 * Marks the current racer with a 'Did Not Finish' status and removes them from the run.
 	 */
-	public void didNotFinish(){
-		Racer tmp = endQueue.remove();
-		// Denotes 'Did Not Finish' within racer's stats in the run
-		stats.setEnd(tmp, -1);
+	public boolean didNotFinish(){
+		if(individual == true){
+			if(endQueue.isEmpty() == false){
+				Racer tmp = endQueue.remove();
+				// Denotes 'Did Not Finish' within racer's stats in the run
+				stats.setEnd(tmp, -1);
+				return true;
+			}else{
+				return false;
+			}
+		}else if(parallel == true){
+			// No Active Racers
+			if(endQueue.isEmpty() == false){
+				Racer tmp = endQueue.remove();
+				if(pendingQueue12.contains(tmp) == true){
+					pendingQueue12.removeFirst();
+					return true;
+				}else if(pendingQueue34.contains(tmp) == true){
+					pendingQueue34.removeFirst();
+					return true;
+				}else if(pendingQueue56.contains(tmp) == true){
+					pendingQueue56.removeFirst();
+					return true;
+				}else if(pendingQueue78.contains(tmp) == true){
+					pendingQueue78.removeFirst();
+					return true;
+				}else{
+					return false;
+				}
+			}else{
+				return false;
+			}
+		}else{
+			return false;
+		}
 	}
 
 	/**

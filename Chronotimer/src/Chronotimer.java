@@ -177,66 +177,66 @@ public class Chronotimer {
 		// If the channel is # and is 'On'... if 'Start' channel: start racer. else: end current race
 		if(number == 1 && one.getOn() == true){
 			if(one.getStart() == true){
-				return currentRun.startRacer(timer.getCurrentTime());
+				return currentRun.startRacer(timer.getCurrentTime(),1);
 			}
 			else{
-				return currentRun.endRacer(timer.getCurrentTime());
+				return currentRun.endRacer(timer.getCurrentTime(),1);
 			}	
 		}
 		else if(number == 2 && two.getOn() == true){
 			if(two.getStart() == true){
-				return currentRun.startRacer(timer.getCurrentTime());
+				return currentRun.startRacer(timer.getCurrentTime(),2);
 			}
 			else{
-				return currentRun.endRacer(timer.getCurrentTime());
+				return currentRun.endRacer(timer.getCurrentTime(),2);
 			}	
 		}
 		else if(number == 3 && three.getOn() == true){
 			if(three.getStart() == true){
-				return currentRun.startRacer(timer.getCurrentTime());
+				return currentRun.startRacer(timer.getCurrentTime(),3);
 			}
 			else{
-				return currentRun.endRacer(timer.getCurrentTime());
+				return currentRun.endRacer(timer.getCurrentTime(),3);
 			}	
 		}
 		else if(number == 4 && four.getOn() == true){
 			if(four.getStart() == true){
-				return currentRun.startRacer(timer.getCurrentTime());
+				return currentRun.startRacer(timer.getCurrentTime(),4);
 			}
 			else{
-				return currentRun.endRacer(timer.getCurrentTime());
+				return currentRun.endRacer(timer.getCurrentTime(),4);
 			}	
 		}
 		else if(number == 5 && five.getOn() == true){
 			if(five.getStart() == true){
-				return currentRun.startRacer(timer.getCurrentTime());
+				return currentRun.startRacer(timer.getCurrentTime(),5);
 			}
 			else{
-				return currentRun.endRacer(timer.getCurrentTime());
+				return currentRun.endRacer(timer.getCurrentTime(),5);
 			}	
 		}
 		else if(number == 6 && six.getOn() == true){
 			if(six.getStart() == true){
-				return currentRun.startRacer(timer.getCurrentTime());
+				return currentRun.startRacer(timer.getCurrentTime(),6);
 			}
 			else{
-				return currentRun.endRacer(timer.getCurrentTime());
+				return currentRun.endRacer(timer.getCurrentTime(),6);
 			}	
 		}
 		else if(number == 7 && seven.getOn() == true){
 			if(seven.getStart() == true){
-				return currentRun.startRacer(timer.getCurrentTime());
+				return currentRun.startRacer(timer.getCurrentTime(),7);
 			}
 			else{
-				return currentRun.endRacer(timer.getCurrentTime());
+				return currentRun.endRacer(timer.getCurrentTime(),7);
 			}	
 		}
 		else if(number == 8 && eight.getOn() == true){
 			if(eight.getStart() == true){
-				return currentRun.startRacer(timer.getCurrentTime());
+				return currentRun.startRacer(timer.getCurrentTime(),8);
 			}
 			else{
-				return currentRun.endRacer(timer.getCurrentTime());
+				return currentRun.endRacer(timer.getCurrentTime(),8);
 			}	
 		}
 		return false;
@@ -274,66 +274,66 @@ public class Chronotimer {
 		// If the channel is # and is 'On'... if 'Start' channel: start racer. else: end current race
 		if(number == 1 && one.getOn() == true){
 			if(one.getStart() == true){
-				return currentRun.startRacer(currentTime);
+				return currentRun.startRacer(currentTime,1);
 			}
 			else{
-				return currentRun.endRacer(currentTime);
+				return currentRun.endRacer(currentTime,1);
 			}	
 		}
 		else if(number == 2 && two.getOn() == true){
 			if(two.getStart() == true){
-				return currentRun.startRacer(currentTime);
+				return currentRun.startRacer(currentTime,2);
 			}
 			else{
-				return currentRun.endRacer(currentTime);
+				return currentRun.endRacer(currentTime,2);
 			}	
 		}
 		else if(number == 3 && three.getOn() == true){
 			if(three.getStart() == true){
-				return currentRun.startRacer(currentTime);
+				return currentRun.startRacer(currentTime,3);
 			}
 			else{
-				return currentRun.endRacer(currentTime);
+				return currentRun.endRacer(currentTime,3);
 			}	
 		}
 		else if(number == 4 && four.getOn() == true){
 			if(four.getStart() == true){
-				return currentRun.startRacer(currentTime);
+				return currentRun.startRacer(currentTime,4);
 			}
 			else{
-				return currentRun.endRacer(currentTime);
+				return currentRun.endRacer(currentTime,4);
 			}	
 		}
 		else if(number == 5 && five.getOn() == true){
 			if(five.getStart() == true){
-				return currentRun.startRacer(currentTime);
+				return currentRun.startRacer(currentTime,5);
 			}
 			else{
-				return currentRun.endRacer(currentTime);
+				return currentRun.endRacer(currentTime,5);
 			}	
 		}
 		else if(number == 6 && six.getOn() == true){
 			if(six.getStart() == true){
-				return currentRun.startRacer(currentTime);
+				return currentRun.startRacer(currentTime,6);
 			}
 			else{
-				return currentRun.endRacer(currentTime);
+				return currentRun.endRacer(currentTime,6);
 			}	
 		}
 		else if(number == 7 && seven.getOn() == true){
 			if(seven.getStart() == true){
-				return currentRun.startRacer(currentTime);
+				return currentRun.startRacer(currentTime,7);
 			}
 			else{
-				return currentRun.endRacer(currentTime);
+				return currentRun.endRacer(currentTime,7);
 			}	
 		}
 		else if(number == 8 && eight.getOn() == true){
 			if(eight.getStart() == true){
-				return currentRun.startRacer(currentTime);
+				return currentRun.startRacer(currentTime,8);
 			}
 			else{
-				return currentRun.endRacer(currentTime);
+				return currentRun.endRacer(currentTime,8);
 			}	
 		}
 		return false;
@@ -560,8 +560,12 @@ public class Chronotimer {
 				return false;
 			}else{
 				// Utilize Run object's 'Did Not Finish' method for marking
-				currentRun.didNotFinish();
-				return true;
+				boolean dnfResult = currentRun.didNotFinish();
+				if(dnfResult == true){
+					return true;
+				}else{
+					return false;
+				}
 			}
 		}
 	}
@@ -633,18 +637,26 @@ public class Chronotimer {
 	 * Prints the list of available commands, as well as prompts user for input.
 	 */
 	public void print(){
-		if(power == false){
+		if(power != false){
 			System.out.println();
 			Iterator<Run> it = runs.iterator();
 			int runs = 0;
 			while(it.hasNext()){
 				// Increment the run number
 				runs++;
-				System.out.println("Run number: " + runs);
+				Run run = it.next();
+				
+				if(run.getEventType().equals("IND")){
+					System.out.println("Run number: " + runs + "     Event Type: " + "Individual");
+				}else if(run.getEventType().equals("PARIND")){
+					System.out.println("Run number: " + runs + "     Event Type: " + "Individual Parallel");
+				}else{
+					System.out.println("Run number: " + runs + "     Event Type: " + "-");
+				}
 				System.out.println("---------------------");
 			
 				// Iterate through racers and retrieve stats to print (Start time, End time, Total time)
-				Run run = it.next();
+				//Run run = it.next();
 				Stats stats = run.getStats();
 				ArrayList<Racer> racers = stats.getRacers();
 				Iterator<Racer> it2 = racers.iterator();

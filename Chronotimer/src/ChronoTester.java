@@ -469,7 +469,141 @@ public class ChronoTester {
 		assertEquals(false, c0.trigger("1"));
 		assertEquals(false, c0.start());
 		assertEquals(false, c0.finish());
-		
+	}
+	
+	@Test
+	public void parallel_two_racers_Test(){
+		Chronotimer c0 = new Chronotimer();
+		c0.power();
+		c0.setEvent("PARIND");
+		c0.toggleChannel("1");
+		c0.toggleChannel("2");
+		c0.toggleChannel("3");
+		c0.toggleChannel("4");
+		c0.newRun(false, true);	// set to parallel
+		c0.num("111");
+		c0.num("222");
+		assertEquals(true, c0.trigger("1"));
+		assertEquals(true, c0.trigger("3"));
+		assertEquals(true, c0.trigger("2"));
+		assertEquals(true, c0.trigger("4"));
+	}
+	
+	@Test
+	public void parallel_faulty_trigger_operations_Test(){
+		Chronotimer c0 = new Chronotimer();
+		c0.power();
+		c0.setEvent("PARIND");
+		c0.toggleChannel("1");
+		c0.toggleChannel("2");
+		c0.toggleChannel("3");
+		c0.toggleChannel("4");
+		c0.newRun(false, true);	// set to parallel
+		c0.num("111");
+		c0.num("222");
+		c0.num("333");
+		assertEquals(false, c0.trigger("4"));
+		assertEquals(true, c0.trigger("1"));
+		assertEquals(true, c0.trigger("3"));
+		assertEquals(true, c0.trigger("3"));
+		assertEquals(false, c0.trigger("3"));
+		assertEquals(true, c0.trigger("4"));
+		assertEquals(true, c0.trigger("4"));
+		assertEquals(false, c0.trigger("4"));
+		assertEquals(true, c0.trigger("2"));
+		assertEquals(false, c0.trigger("2"));
+		assertEquals(false, c0.trigger("4"));
+		assertEquals(false, c0.trigger("1"));
+		assertEquals(false, c0.trigger("3"));
+	}
+	
+	@Test
+	public void parallel_faulty_trigger_high_channel_numbers_operations_Test(){
+		Chronotimer c0 = new Chronotimer();
+		c0.power();
+		c0.setEvent("PARIND");
+		c0.toggleChannel("5");
+		c0.toggleChannel("6");
+		c0.toggleChannel("7");
+		c0.toggleChannel("8");
+		c0.newRun(false, true);	// set to parallel
+		c0.num("111");
+		c0.num("222");
+		c0.num("333");
+		assertEquals(false, c0.trigger("8"));
+		assertEquals(true, c0.trigger("5"));
+		assertEquals(true, c0.trigger("7"));
+		assertEquals(true, c0.trigger("7"));
+		assertEquals(false, c0.trigger("7"));
+		assertEquals(true, c0.trigger("8"));
+		assertEquals(true, c0.trigger("8"));
+		assertEquals(false, c0.trigger("8"));
+		assertEquals(true, c0.trigger("6"));
+		assertEquals(false, c0.trigger("6"));
+		assertEquals(false, c0.trigger("8"));
+		assertEquals(false, c0.trigger("5"));
+		assertEquals(false, c0.trigger("7"));
+	}
+	
+	@Test
+	public void parallel_faulty_trigger_middle_channel_numbers_operations_Test(){
+		Chronotimer c0 = new Chronotimer();
+		c0.power();
+		c0.setEvent("PARIND");
+		c0.toggleChannel("3");
+		c0.toggleChannel("4");
+		c0.toggleChannel("5");
+		c0.toggleChannel("6");
+		c0.newRun(false, true);	// set to parallel
+		c0.num("111");
+		c0.num("222");
+		c0.num("333");
+		assertEquals(false, c0.trigger("6"));
+		assertEquals(true, c0.trigger("3"));
+		assertEquals(true, c0.trigger("5"));
+		assertEquals(true, c0.trigger("5"));
+		assertEquals(false, c0.trigger("5"));
+		assertEquals(true, c0.trigger("6"));
+		assertEquals(true, c0.trigger("6"));
+		assertEquals(false, c0.trigger("6"));
+		assertEquals(true, c0.trigger("4"));
+		assertEquals(false, c0.trigger("4"));
+		assertEquals(false, c0.trigger("6"));
+		assertEquals(false, c0.trigger("3"));
+		assertEquals(false, c0.trigger("5"));
+	}
+	
+	@Test
+	public void dnf_on_empty_run_Test(){
+		Chronotimer c0 = new Chronotimer();
+		c0.power();
+		c0.toggleChannel("1");
+		c0.toggleChannel("2");
+		c0.newRun(true, false);
+		c0.num("111");
+		assertEquals(false, c0.dnf());
+	}
+	
+	@Test
+	public void parallel_run_dnf_Test(){
+		Chronotimer c0 = new Chronotimer();
+		c0.power();
+		c0.setEvent("PARIND");
+		c0.toggleChannel("1");
+		c0.toggleChannel("2");
+		c0.toggleChannel("3");
+		c0.toggleChannel("4");
+		c0.newRun(false, true);	// set to parallel
+		c0.num("111");
+		c0.num("222");
+		c0.num("333");
+		assertEquals(false, c0.dnf());
+		assertEquals(true, c0.trigger("1"));
+		assertEquals(true, c0.trigger("3"));
+		assertEquals(true, c0.dnf());
+		assertEquals(true, c0.trigger("1"));
+		assertEquals(true, c0.trigger("4"));
+		assertEquals(true, c0.trigger("2"));
 	}
 
 }
