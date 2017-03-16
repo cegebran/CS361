@@ -665,10 +665,10 @@ public class Chronotimer {
 					System.out.println("Racer BIB number: " + racer.getBib());
 					System.out.println("Start: " + Time.convertTime(stats.getStart(racer)) + "	End: " + Time.convertTime(stats.getEnd(racer)));
 					if(stats.getEnd(racer) == -1){
-						System.out.print("Total time: Did not finish");
+						System.out.println("Total time: Did not finish");
 					}
 					else if(stats.getRaceTime(racer) < 0){
-						System.out.print("Total time: Still In Progress");
+						System.out.println("Total time: Still In Progress");
 					}
 					else{
 						System.out.println("Total time: " + Time.convertTime(stats.getRaceTime(racer)));	

@@ -297,15 +297,19 @@ public class Run {
 				Racer tmp = endQueue.remove();
 				if(pendingQueue12.contains(tmp) == true){
 					pendingQueue12.removeFirst();
+					stats.setEnd(tmp, -1);
 					return true;
 				}else if(pendingQueue34.contains(tmp) == true){
 					pendingQueue34.removeFirst();
+					stats.setEnd(tmp, -1);
 					return true;
 				}else if(pendingQueue56.contains(tmp) == true){
 					pendingQueue56.removeFirst();
+					stats.setEnd(tmp, -1);
 					return true;
 				}else if(pendingQueue78.contains(tmp) == true){
 					pendingQueue78.removeFirst();
+					stats.setEnd(tmp, -1);
 					return true;
 				}else{
 					return false;
