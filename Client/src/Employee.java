@@ -19,7 +19,7 @@ public class Employee implements Comparable<Object>{
 	
 	@Override
 	public String toString() {
-		return firstName + " " + lastName + " in " + department + " has phone number of " + phoneNumber;
+		return title + " " + firstName + " " + lastName + " in " + department + " has phone number of " + phoneNumber + " is " + gender;
 	}
 
 	@Override
