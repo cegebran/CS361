@@ -374,8 +374,9 @@ public class Chronotimer {
 			return;
 		}
 		
+		int newRunNumber = runs.size() + 1;
 		// Create a new run based on two variables: IND/GRP, PAR/SER
-		Run current = new Run(individual, parallel);
+		Run current = new Run(individual, parallel, newRunNumber);
 		current.setEvent(individual,parallel);	// set the event
 		runs.add(current);
 		currentRun = current;
@@ -396,6 +397,12 @@ public class Chronotimer {
 		if(currentRun == null){
 			return;
 		}
+		
+		// currentRun to end on command
+		int runNumber = currentRun.getRunNumber();
+		String runNumberString = Integer.toString(runNumber);
+		String exportInput = "RUN" + runNumberString + ".txt";
+		export(exportInput);
 		currentRun = null;
 	}
 	
@@ -640,18 +647,16 @@ public class Chronotimer {
 		if(power != false){
 			System.out.println();
 			Iterator<Run> it = runs.iterator();
-			int runs = 0;
 			while(it.hasNext()){
 				// Increment the run number
-				runs++;
 				Run run = it.next();
 				
 				if(run.getEventType().equals("IND")){
-					System.out.println("Run number: " + runs + "     Event Type: " + "Individual");
+					System.out.println("Run number: " + run.getRunNumber() + "     Event Type: " + "Individual");
 				}else if(run.getEventType().equals("PARIND")){
-					System.out.println("Run number: " + runs + "     Event Type: " + "Individual Parallel");
+					System.out.println("Run number: " + run.getRunNumber() + "     Event Type: " + "Individual Parallel");
 				}else{
-					System.out.println("Run number: " + runs + "     Event Type: " + "-");
+					System.out.println("Run number: " + run.getRunNumber() + "     Event Type: " + "-");
 				}
 				System.out.println("---------------------");
 			

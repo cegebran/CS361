@@ -17,13 +17,18 @@ public class Run {
 	private LinkedList<Racer> pendingQueue78;
 	private boolean[] usedLanes;
 	
+	// added for export functionality
+	private int runNumber;
 	
-	public Run(boolean individual, boolean parallel){
+	
+	public Run(boolean individual, boolean parallel, int runNumInput){
 		beginQueue = new LinkedList<Racer>();
 		endQueue = new LinkedList<Racer>();
 		stats = new Stats();
 		this.individual = individual;
 		this.parallel = parallel;
+		
+		runNumber = runNumInput;
 		
 		if(parallel == true && individual == false){
 			pendingQueue12 = new LinkedList<Racer>();
@@ -35,6 +40,14 @@ public class Run {
 				usedLanes[i] = false;
 			}
 		}
+	}
+	
+	/**
+	 * 
+	 * @return the run Number associated with the run
+	 */
+	public int getRunNumber(){
+		return runNumber;
 	}
 	
 	/**

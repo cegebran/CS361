@@ -605,5 +605,26 @@ public class ChronoTester {
 		assertEquals(true, c0.trigger("4"));
 		assertEquals(true, c0.trigger("2"));
 	}
+	
+	@Test
+	public void run_Number_Test(){
+		Chronotimer c0 = new Chronotimer();
+		c0.power();
+		c0.setEvent("IND");
+		c0.toggleChannel("1");
+		c0.toggleChannel("2");
+		c0.newRun(true, false);
+		c0.num("111");
+		assertEquals(1,c0.getRuns().get(0).getRunNumber());
+		c0.start();
+		c0.finish();
+		c0.endRun();
+		c0.newRun(true, false);
+		c0.num("222");
+		assertEquals(2,c0.getRuns().get(1).getRunNumber());
+		c0.start();
+		c0.finish();
+		c0.endRun();
+	}
 
 }
