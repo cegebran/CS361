@@ -68,6 +68,7 @@ public class Test {
             // respond to the POST with ROGER
             String postResponse = "ROGER JSON RECEIVED";
 
+            System.out.println("Begin of response\n");
             System.out.println("response: " + sharedResponse);
 
             // assume that stuff works all the time
@@ -78,21 +79,18 @@ public class Test {
 
             outputStream.close();
             
-            String response = "Begin of response\n";
 			Gson g = new Gson();
 			// set up the header
-            System.out.println(response);
-            String[] tokens = response.split(";");
+			String response = "";
+            String[] tokens = sharedResponse.split(";");
             if(tokens[0].equals("ADD")){
             	try {
     				if (!sharedResponse.isEmpty()) {
-    					System.out.println(response);
-    					ArrayList<Employee> fromJson = g.fromJson(sharedResponse,
+    					ArrayList<Employee> fromJson = g.fromJson(tokens[1],
     							new TypeToken<Collection<Employee>>() {
     							}.getType());
     					employees.addAll(fromJson);
-
-    					System.out.println(response);
+    					
     					response += "Before sort\n";
     					for (Employee e : employees) {
     						response += e + "\n";
@@ -106,7 +104,7 @@ public class Test {
     			} catch (JsonSyntaxException e) {
     				e.printStackTrace();
     			}
-                response += "End of response\n";
+                response += "\nEnd of response\n";
                 System.out.println(response);
             }
             else if(tokens[0].equals("PRINT")){
@@ -114,9 +112,11 @@ public class Test {
             	while(it.hasNext()){
             		System.out.println(it.next().toString());
             	}
+            	System.out.println("\nEnd of response");
             }
             else if(tokens[0].equals("CLEAR")){
             	employees.clear();
+            	System.out.println("\nEnd of response");
             }
 			
             // write out the response
