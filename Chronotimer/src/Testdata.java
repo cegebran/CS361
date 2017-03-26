@@ -6,7 +6,7 @@ import java.io.IOException;
 
 public class Testdata {
 	public static void main(String[] args){
-		File file = new File("Test2");		//Declare file for input
+		File file = new File("Test3");		//Declare file for input
 		FileReader input = null;
 		BufferedReader buffRead = null;
 		String myLine = "";								//Buffer string
@@ -58,6 +58,10 @@ public class Testdata {
 						if(array[2].equals("IND")){
 							chronotimer.setEvent("IND");
 							System.out.println("IND has been set");
+						}
+						else if(array[2].equals("PARIND")){
+							chronotimer.setEvent("PARIND");
+							System.out.println("PARIND has been set");
 						}
 					}
 					else if(array[1].equals("NEWRUN")){

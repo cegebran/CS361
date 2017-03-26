@@ -281,7 +281,7 @@ public class Run {
 	}
 	
 	/**
-	 * Cancels the current racer's attempt (due to fault, miscue, etc.) and puts him or her back in line to start.
+	 * Cancels the current racer's attempt (due to fault, mis-queue, etc.) and puts him or her back in line to start.
 	 */
 	public void cancel(){
 		if(endQueue.isEmpty()){
@@ -338,7 +338,7 @@ public class Run {
 	/**
 	 * Sets the type of the next event to be held.
 	 * 
-	 * @param individual	True if inidividual type race, False if group
+	 * @param individual	True if individual type race, False if group
 	 * @param parallel	True if parallel races, False if in series
 	 */
 	public void setEvent(boolean individual, boolean parallel) {
