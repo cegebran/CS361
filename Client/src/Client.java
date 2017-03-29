@@ -217,7 +217,7 @@ static String genderString = "";
 	    });
 				
 		setTitle("Lab08");
-		setSize(700, 500);
+		setSize(700, 240);
 		setLocation(10, 200);
 		setLayout(new FlowLayout());
 		JPanel myPanel1 = new JPanel();
