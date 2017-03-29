@@ -3,10 +3,12 @@ Table, tr, td{
     border: 1px solid black;
 }
 tr.odd{
-    background-color: white;
+	background-color: white;
+	text-align: center;
 }
 tr.even{
-	background-color: blue;
+	background-color: lightblue;
+	text-align: center;
 }
 
 p {
