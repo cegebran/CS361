@@ -3,6 +3,8 @@
  */
 package com.example;
 
+import java.io.BufferedReader;
+import java.io.FileReader;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
@@ -33,6 +35,10 @@ public class Test {
 
         // create a context to get the request for the POST
         server.createContext("/sendresults",new PostHandler());
+        server.setExecutor(null); // creates a default executor
+        
+     // create a context to get the request for the POST
+        server.createContext("/displayresults",new HtmlHandler());
         server.setExecutor(null); // creates a default executor
 
         // get it going
@@ -118,6 +124,92 @@ public class Test {
             	employees.clear();
             	System.out.println("\nEnd of response");
             }
+			
+            // write out the response
+            transmission.sendResponseHeaders(200, response.length());
+            OutputStream os = transmission.getResponseBody();
+            os.write(response.getBytes());
+            os.close();
+        }
+    }
+    
+    static class HtmlHandler implements HttpHandler {
+        public void handle(HttpExchange transmission) throws IOException {
+
+            //  shared data that is used with other handlers
+            sharedResponse = "";
+
+            // set up a stream to read the body of the request
+            InputStream inputStr = transmission.getRequestBody();
+
+            // set up a stream to write out the body of the response
+            OutputStream outputStream = transmission.getResponseBody();
+
+            // string to hold the result of reading in the request
+            StringBuilder sb = new StringBuilder();
+
+            // read the characters from the request byte by byte and build up the sharedResponse
+            int nextChar = inputStr.read();
+            while (nextChar > -1) {
+                sb=sb.append((char)nextChar);
+                nextChar=inputStr.read();
+            }
+
+            // create our response String to use in other handler
+            sharedResponse = sb.toString();
+
+            // respond to the POST with ROGER
+            String postResponse = "ROGER JSON RECEIVED";
+
+            System.out.println("Begin of response\n");
+            System.out.println("response: " + sharedResponse);
+
+            // assume that stuff works all the time
+            transmission.sendResponseHeaders(300, postResponse.length());
+
+            // write it and return it
+            outputStream.write(postResponse.getBytes());
+
+            outputStream.close();
+            
+            // response text
+			String response = "";
+			
+			// import CSS
+			BufferedReader reader = new BufferedReader(new FileReader("test.css"));
+		    String line = null;
+		    StringBuilder stringBuilder = new StringBuilder();
+		    String ls = System.getProperty("line.separator");
+
+		    try {
+		        while((line = reader.readLine()) != null) {
+		            stringBuilder.append(line);
+		            stringBuilder.append(ls);
+		        }
+		    } finally {
+		        reader.close();
+		    }
+			
+            // use StringBuilder to construct HTML table
+			StringBuilder result = new StringBuilder();
+			result.append("<!DOCTYPE html>").append("<html>").append("<head>");
+			result.append(stringBuilder);
+			result.append("</head>");
+			result.append("<body>");
+			result.append("<table>");
+			result.append("<th>").append("Company Directory").append("</th>");
+			result.append("<tr><td>").append("Title").append("</td><td>").append("First Name").append("</td><td>").append("Last Name").append("</td><td>").append("Department").append("</td><td>").append("Phone Number").append("</td><td>").append("Gender").append("</td></tr>");
+			int counter = 1;
+			for (Employee e : employees) {
+				if (counter % 2 == 1) {
+					result.append("<tr class=\"odd\"><td>").append(e.getTitle()).append("</td><td>").append(e.getFirstName()).append("</td><td>").append(e.getLastName()).append("</td><td>").append(e.getDepartment()).append("</td><td>").append(e.getPhoneNumber()).append("</td><td>").append(e.getGender()).append("</td></tr>");
+				} else {
+					result.append("<tr class=\"even\"><td>").append(e.getTitle()).append("</td><td>").append(e.getFirstName()).append("</td><td>").append(e.getLastName()).append("</td><td>").append(e.getDepartment()).append("</td><td>").append(e.getPhoneNumber()).append("</td><td>").append(e.getGender()).append("</td></tr>");
+				}
+				counter += 1;
+			}
+			result.append("</table>");
+			result.append("</body>").append("</html>");
 			
             // write out the response
             transmission.sendResponseHeaders(200, response.length());
