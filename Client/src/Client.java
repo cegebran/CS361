@@ -61,19 +61,13 @@ static String genderString = "";
 		group.add(genderFemale);
 		group.add(genderOther);
 		String[] listOfTitle = {"Mr.", "Ms", "Mrs.", "Dr.", "Col.", "Prof.", };
-		final JList title = new JList(listOfTitle);
-		title.addListSelectionListener(new ListSelectionListener() {
-
-            @Override
-            public void valueChanged(ListSelectionEvent arg0) {
-                if (!arg0.getValueIsAdjusting()) {
-                	titleString = title.getSelectedValue().toString();
-                }
-            }
+		final JComboBox title = new JComboBox(listOfTitle);
+		title.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e){
+				titleString = title.getSelectedItem().toString();
+			}
+            
         });
-		title.setSelectionMode(ListSelectionModel.SINGLE_INTERVAL_SELECTION);
-		title.setLayoutOrientation(JList.HORIZONTAL_WRAP);
-		title.setVisibleRowCount(-1);  
 //		JScrollPane listScroller = new JScrollPane(listOfTitle);
 //		listScroller.setPreferredSize(new Dimension(250, 80));
 		final JButton add = new JButton("Add");
