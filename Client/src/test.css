@@ -1,0 +1,16 @@
+<style>
+Table, tr, td{
+    border: 1px solid black;
+}
+tr.odd{
+    background-color: white;
+}
+tr.even{
+	background-color: blue;
+}
+
+p {
+    font-family: verdana;
+    font-size: 20px;
+}
+</style>
