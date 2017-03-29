@@ -26,6 +26,7 @@ static String genderString = "";
 		
 		Client myGUI = new Client();
 		myGUI.setVisible(true);
+		myGUI.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		System.out.println("in the client");
 	
 	}
