@@ -3,12 +3,15 @@
  */
 package com.example;
 
+import java.awt.Desktop;
 import java.io.BufferedReader;
+import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
 import java.net.InetSocketAddress;
+import java.nio.file.Files;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
@@ -136,7 +139,7 @@ public class Test {
     static class HtmlHandler implements HttpHandler {
         public void handle(HttpExchange transmission) throws IOException {
 
-            //  shared data that is used with other handlers
+        //  shared data that is used with other handlers
             sharedResponse = "";
 
             // set up a stream to read the body of the request
@@ -172,10 +175,7 @@ public class Test {
 
             outputStream.close();
             
-            // response text
-			String response = "";
-			
-			// import CSS
+            // import CSS
 			BufferedReader reader = new BufferedReader(new FileReader("test.css"));
 		    String line = null;
 		    StringBuilder stringBuilder = new StringBuilder();
@@ -212,10 +212,14 @@ public class Test {
 			result.append("</body>").append("</html>");
 			
             // write out the response
-            transmission.sendResponseHeaders(200, response.length());
-            OutputStream os = transmission.getResponseBody();
-            os.write(response.getBytes());
-            os.close();
+            File file = new File("directory.html");
+            try {
+            	Files.write(file.toPath(), result.toString().getBytes());
+            	Desktop.getDesktop().browse(file.toURI());
+            } catch (IOException e) {
+            	// do something
+            }
+            
         }
     }
 
