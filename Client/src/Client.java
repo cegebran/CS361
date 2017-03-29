@@ -142,13 +142,6 @@ static String genderString = "";
 	    		} catch (Exception e2) {
 	    			e2.printStackTrace();
 	    		}
-	        	
-	        	
-	            Container frame = add.getParent();
-	            do 
-	                frame = frame.getParent(); 
-	            while (!(frame instanceof JFrame));                                      
-	            ((JFrame) frame).dispose();
 	        }
 	    });
 		JButton print = new JButton("Print");
@@ -191,13 +184,6 @@ static String genderString = "";
 	    		} catch (Exception e2) {
 	    			e2.printStackTrace();
 	    		}
-	        	
-	        	
-	            Container frame = add.getParent();
-	            do 
-	                frame = frame.getParent(); 
-	            while (!(frame instanceof JFrame));                                      
-	            ((JFrame) frame).dispose();
 	        }
 	    });
 		JButton clear = new JButton("Clear");
@@ -240,13 +226,18 @@ static String genderString = "";
 	    		} catch (Exception e2) {
 	    			e2.printStackTrace();
 	    		}
-	        	
-	        	
-	            Container frame = add.getParent();
+	        }
+	    });
+		
+		JButton exit = new JButton("Exit");
+		exit.addActionListener(new ActionListener() {
+	        public void actionPerformed(ActionEvent e){
+	        	Container frame = add.getParent();
 	            do 
 	                frame = frame.getParent(); 
 	            while (!(frame instanceof JFrame));                                      
 	            ((JFrame) frame).dispose();
+	            System.exit(0);
 	        }
 	    });
 				
@@ -282,6 +273,7 @@ static String genderString = "";
 		myPanel3.add(add);
 		myPanel3.add(print);
 		myPanel3.add(clear);
+		myPanel3.add(exit);
 		myPanel1.add(myPanel3);
 		myPanel3.setVisible(true);		
 		
