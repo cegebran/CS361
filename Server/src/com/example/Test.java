@@ -165,19 +165,35 @@ public class Test {
             System.out.println("response: " + sharedResponse);
             
             // import CSS
- 			BufferedReader reader = new BufferedReader(new FileReader("test.css"));
+ 			//BufferedReader reader = new BufferedReader(new FileReader("test.css"));
  		    String line = null;
  		    StringBuilder stringBuilder = new StringBuilder();
  		    String ls = System.getProperty("line.separator");
 
- 		    try {
- 		        while((line = reader.readLine()) != null) {
- 		            stringBuilder.append(line);
- 		            stringBuilder.append(ls);
- 		        }
- 		    } finally {
- 		        reader.close();
- 		    }
+ 		    //try {
+ 		      //  while((line = reader.readLine()) != null) {
+ 		        //    stringBuilder.append(line);
+ 		          //  stringBuilder.append(ls);
+ 		        //}
+ 		    //} finally {
+ 		      //  reader.close();
+ 		   // }
+ 		    
+ 		    stringBuilder.append("<style>").append("Table, tr, td{");
+ 		    stringBuilder.append("border: 1px solid black;");
+ 		    stringBuilder.append("}");
+ 		    stringBuilder.append("tr.odd{");
+ 		    stringBuilder.append("background-color: white;");
+ 		    stringBuilder.append("text-align: center;");
+ 		    stringBuilder.append("}");
+ 		    stringBuilder.append("tr.even{");
+ 		    stringBuilder.append("background-color: lightblue;");
+ 		    stringBuilder.append("text-align: center;");
+ 		    stringBuilder.append("p {");
+ 		    stringBuilder.append("font-family: verdana;");
+ 		    stringBuilder.append("font-size: 20px;");
+ 		    stringBuilder.append("}");
+ 		    stringBuilder.append("</style>");
          		  
  		    System.out.println("Start");
  		    String htmlString = "";

@@ -5,10 +5,12 @@ Table, tr, td{
 
 tr.odd{
 	background-color: white;
+	text-align: center;
 }
 
 tr.even{
-	background-color: blue;
+	background-color: lightblue;
+	text-align: center;
 }
 
 p {
