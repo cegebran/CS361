@@ -163,43 +163,14 @@ public class Test {
 
             System.out.println("Begin of response\n");
             System.out.println("response: " + sharedResponse);
-            
-            // import CSS
- 			//BufferedReader reader = new BufferedReader(new FileReader("test.css"));
- 		    String line = null;
- 		    StringBuilder stringBuilder = new StringBuilder();
- 		    String ls = System.getProperty("line.separator");
-
- 		    //try {
- 		      //  while((line = reader.readLine()) != null) {
- 		        //    stringBuilder.append(line);
- 		          //  stringBuilder.append(ls);
- 		        //}
- 		    //} finally {
- 		      //  reader.close();
- 		   // }
  		    
- 		    stringBuilder.append("<style>").append("Table, tr, td{");
- 		    stringBuilder.append("border: 1px solid black;");
- 		    stringBuilder.append("}");
- 		    stringBuilder.append("tr.odd{");
- 		    stringBuilder.append("background-color: white;");
- 		    stringBuilder.append("text-align: center;");
- 		    stringBuilder.append("}");
- 		    stringBuilder.append("tr.even{");
- 		    stringBuilder.append("background-color: lightblue;");
- 		    stringBuilder.append("text-align: center;");
- 		    stringBuilder.append("p {");
- 		    stringBuilder.append("font-family: verdana;");
- 		    stringBuilder.append("font-size: 20px;");
- 		    stringBuilder.append("}");
- 		    stringBuilder.append("</style>");
+ 		    
          		  
  		    System.out.println("Start");
  		    String htmlString = "";
             StringBuilder result = new StringBuilder();
 			result.append("<!DOCTYPE html>").append("<html>").append("<head>");
-			result.append("<style rel=\"stylesheet\" type=\"text.css\" href=\"http://localhost:8000/displayresults/style.css\"");
+			result.append("<link rel=\"stylesheet\" type=\"text.css\" href=\"http://localhost:8000/displayresults/style.css\" />");
 			result.append("</head>");
 			result.append("<body>");
 			result.append("<table>");
@@ -235,7 +206,7 @@ public class Test {
     static class CssHandler implements HttpHandler {
         public void handle(HttpExchange transmission) throws IOException {
 
-        //  shared data that is used with other handlers
+        	//  shared data that is used with other handlers
             sharedResponse = "";
 
             System.out.println(transmission.getRequestURI().getPath());
@@ -258,52 +229,27 @@ public class Test {
             // create our response String to use in other handler
             sharedResponse = sb.toString();
 
-            // respond to the POST with ROGER
-            String postResponse = "ROGER JSON RECEIVED";
+            //hard code CSS
+            StringBuilder stringBuilder = new StringBuilder();
 
-            System.out.println("Begin of response\n");
-            System.out.println("response: " + sharedResponse);
-            
-            // import CSS
- 			BufferedReader reader = new BufferedReader(new FileReader("test.css"));
- 		    String line = null;
- 		    StringBuilder stringBuilder = new StringBuilder();
- 		    String ls = System.getProperty("line.separator");
-
- 		    try {
- 		        while((line = reader.readLine()) != null) {
- 		            stringBuilder.append(line);
- 		            stringBuilder.append(ls);
- 		        }
- 		    } finally {
- 		        reader.close();
- 		    }
-         		  
- 		    System.out.println("Start");
- 		    String htmlString = "";
-            StringBuilder result = new StringBuilder();
-			result.append("<!DOCTYPE html>").append("<html>").append("<head>");
-			result.append("<style rel=\"stylesheet\" type=\"text.css\" href=\"http://localhost:8000/displayresults/style.css\"");
-			result.append("</head>");
-			result.append("<body>");
-			result.append("<table>");
-			result.append("<th>").append("Company Directory").append("</th>");
-			result.append("<tr><td>").append("Title").append("</td><td>").append("First Name").append("</td><td>").append("Last Name").append("</td><td>").append("Department").append("</td><td>").append("Phone Number").append("</td><td>").append("Gender").append("</td></tr>");
-			int counter = 1;
-			for (Employee e : employees) {
-				if (counter % 2 == 1) {
-					result.append("<tr class=\"odd\"><td>").append(e.getTitle()).append("</td><td>").append(e.getFirstName()).append("</td><td>").append(e.getLastName()).append("</td><td>").append(e.getDepartment()).append("</td><td>").append(e.getPhoneNumber()).append("</td><td>").append(e.getGender()).append("</td></tr>");
-				} else {
-					result.append("<tr class=\"even\"><td>").append(e.getTitle()).append("</td><td>").append(e.getFirstName()).append("</td><td>").append(e.getLastName()).append("</td><td>").append(e.getDepartment()).append("</td><td>").append(e.getPhoneNumber()).append("</td><td>").append(e.getGender()).append("</td></tr>");
-				}
-				counter += 1;
-			}
-			result.append("</table>");
-			result.append("</body>").append("</html>");
+ 		    stringBuilder.append("table, tr, td{");
+		    stringBuilder.append("border: 1px solid black;");
+		    stringBuilder.append("}");
+		    stringBuilder.append("tr.odd{");
+		    stringBuilder.append("background-color: white;");
+		    stringBuilder.append("text-align: center;");
+		    stringBuilder.append("}");
+		    stringBuilder.append("tr.even{");
+		    stringBuilder.append("background-color: lightblue;");
+		    stringBuilder.append("text-align: center;");
+		    stringBuilder.append("}");
+		    stringBuilder.append("p {");
+		    stringBuilder.append("font-family: verdana;");
+		    stringBuilder.append("font-size: 20px;");
+		    stringBuilder.append("}");
 
 			// convert to String
-			htmlString = result.toString();
-			System.out.println("End" + htmlString);
+			String htmlString = stringBuilder.toString();
 			
             // assume that stuff works all the time
             transmission.sendResponseHeaders(300, htmlString.length());
@@ -315,5 +261,4 @@ public class Test {
             
         }
     }
-
 }
