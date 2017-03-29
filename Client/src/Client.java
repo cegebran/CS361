@@ -3,17 +3,14 @@ import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.util.ArrayList;
-import java.util.Collection;
-import java.util.Collections;
-import java.util.Scanner;
-
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
-
+import javax.swing.event.ListSelectionEvent;
+import javax.swing.event.ListSelectionListener;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 
@@ -34,51 +31,28 @@ static String genderString = "";
 	}
 	public Client(){//Making a GUI out of a constructor
 		final JTextField firstName = new JTextField("", 15);
-		firstName.addActionListener(new ActionListener() {
-		      public void actionPerformed(ActionEvent e) {
-		        System.out.println("First Name=" + firstName.getText());
-		        fname = firstName.getText();
-		      }
-		});
+		
 		final JTextField lastName = new JTextField("", 15);
-		lastName.addActionListener(new ActionListener() {
-		      public void actionPerformed(ActionEvent e) {
-		        System.out.println("Last Name=" + lastName.getText());
-		        lname = lastName.getText();
-		      }
-		});
+		
 		final JTextField department = new JTextField("", 15);
-		department.addActionListener(new ActionListener() {
-		      public void actionPerformed(ActionEvent e) {
-		        System.out.println("Department=" + department.getText());
-		        departmentString = department.getText();
-		      }
-		});
+		
 		final JTextField phone = new JTextField("", 15);
-		phone.addActionListener(new ActionListener() {
-		      public void actionPerformed(ActionEvent e) {
-		        System.out.println("Phone=" + phone.getText());
-		        phoneString = phone.getText();
-		      }
-		});
+		
 		JRadioButton genderMale = new JRadioButton("Male");
 		genderMale.addActionListener(new ActionListener() {
 		      public void actionPerformed(ActionEvent e) {
-		    	  System.out.println("Gender = male");
 		    	  genderString = "male";
 		      }
 		});
 		JRadioButton genderFemale = new JRadioButton("Female");
 		genderFemale.addActionListener(new ActionListener() {
 		      public void actionPerformed(ActionEvent e) {
-		    	  System.out.println("Gender = female");
 		    	  genderString = "female";
 		      }
 		});
 		JRadioButton genderOther = new JRadioButton("Other");
 		genderOther.addActionListener(new ActionListener() {
 		      public void actionPerformed(ActionEvent e) {
-		    	  System.out.println("Gender = other");
 		    	  genderString = "other";
 		      }
 		});
@@ -88,14 +62,15 @@ static String genderString = "";
 		group.add(genderOther);
 		String[] listOfTitle = {"Mr.", "Ms", "Mrs.", "Dr.", "Col.", "Prof.", };
 		final JList title = new JList(listOfTitle);
-		title.addKeyListener(new KeyAdapter(){
-			public void keyPressed(KeyEvent e){
-			    if (e.getKeyCode() == KeyEvent.VK_ENTER){
-			           titleString = (String) title.getSelectedValue();	
-			           System.out.print("Title = " + titleString);
-			    }
-			}
-			});
+		title.addListSelectionListener(new ListSelectionListener() {
+
+            @Override
+            public void valueChanged(ListSelectionEvent arg0) {
+                if (!arg0.getValueIsAdjusting()) {
+                	titleString = title.getSelectedValue().toString();
+                }
+            }
+        });
 		title.setSelectionMode(ListSelectionModel.SINGLE_INTERVAL_SELECTION);
 		title.setLayoutOrientation(JList.HORIZONTAL_WRAP);
 		title.setVisibleRowCount(-1);  
@@ -116,6 +91,12 @@ static String genderString = "";
 	    			DataOutputStream out = new DataOutputStream(conn.getOutputStream());
 
 	    			// build a string that contains JSON from console
+	    			
+	    			fname = firstName.getText();
+	    			lname = lastName.getText();
+	    			departmentString = department.getText();
+	    			phoneString = phone.getText();
+	    			
 	    			String content = "";
 	    			content = "ADD;" + getJSON();
 
