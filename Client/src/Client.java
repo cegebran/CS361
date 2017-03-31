@@ -217,7 +217,7 @@ static String genderString = "";
 	        }
 	    });
 				
-		setTitle("Lab08");
+		setTitle("Lab09");
 		setSize(700, 240);
 		setLocation(10, 200);
 		setLayout(new FlowLayout());

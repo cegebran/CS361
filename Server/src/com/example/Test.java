@@ -170,12 +170,13 @@ public class Test {
  		    String htmlString = "";
             StringBuilder result = new StringBuilder();
 			result.append("<!DOCTYPE html>").append("<html>").append("<head>");
-			result.append("<link rel=\"stylesheet\" type=\"text.css\" href=\"http://localhost:8000/displayresults/style.css\" />");
+			result.append("<link href=\"http://localhost:8000/displayresults/style.css\" rel=\"stylesheet\" type=\"text/css\" />");
+			result.append("<title> Company Directory </title>");
 			result.append("</head>");
 			result.append("<body>");
-			result.append("<table>");
-			result.append("<th>").append("Company Directory").append("</th>");
-			result.append("<tr><td>").append("Title").append("</td><td>").append("First Name").append("</td><td>").append("Last Name").append("</td><td>").append("Department").append("</td><td>").append("Phone Number").append("</td><td>").append("Gender").append("</td></tr>");
+			result.append("<table width=\"100%\">"); // style=\"width:100%\"
+			result.append("<h1 align=\"center\">Company Directory</h1>");
+			result.append("<tr><th>").append("Title").append("</td><th>").append("First Name").append("</td><th>").append("Last Name").append("</td><th>").append("Department").append("</td><th>").append("Phone Number").append("</td><th>").append("Gender").append("</th></tr>");
 			int counter = 1;
 			for (Employee e : employees) {
 				if (counter % 2 == 1) {
@@ -234,17 +235,21 @@ public class Test {
             StringBuilder stringBuilder = new StringBuilder();
 
  		    stringBuilder.append("table, tr, td{");
-		    stringBuilder.append("border: 1px solid black;");
+ 		    stringBuilder.append("text-align: center;");
+		    stringBuilder.append("}");
+		    stringBuilder.append("th {");
+		    stringBuilder.append("font-size: 25px;");
 		    stringBuilder.append("}");
 		    stringBuilder.append("tr.odd{");
 		    stringBuilder.append("background-color: white;");
-		    stringBuilder.append("text-align: center;");
+		    stringBuilder.append("font-size: 20px;");
 		    stringBuilder.append("}");
 		    stringBuilder.append("tr.even{");
 		    stringBuilder.append("background-color: lightblue;");
-		    stringBuilder.append("text-align: center;");
+		    stringBuilder.append("font-size: 20px;");
 		    stringBuilder.append("}");
 		    stringBuilder.append("p {");
+		    stringBuilder.append("text-align: center;");
 		    stringBuilder.append("font-family: verdana;");
 		    stringBuilder.append("font-size: 20px;");
 		    stringBuilder.append("}");
