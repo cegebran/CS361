@@ -21,6 +21,7 @@ public class Driver_GUI extends JFrame{
 		Chronotimer chronotimer = new Chronotimer();
 		
 		final JButton powerBtn = new JButton("Power");
+	    powerBtn.setFont(new Font("Serif", Font.PLAIN, 15));
 		final JButton functionBtn = new JButton("Function");
 		
 		final JButton leftArrowBtn = new JButton("");
@@ -47,6 +48,7 @@ public class Driver_GUI extends JFrame{
 		final JButton enaDis8Btn = new JButton(" ");
 		
 		final JButton printerPwrBtn = new JButton("Printer Pwr");
+		printerPwrBtn.setFont(new Font("Serif", Font.PLAIN, 15));
 		
 		final JButton numPad0Btn = new JButton("0");
 		numPad0Btn.setFont(new Font("Serif", Font.PLAIN, 20));
@@ -135,14 +137,34 @@ public class Driver_GUI extends JFrame{
 		startPanel.add(enaDisEvenPanel);
 		
 		
-		JPanel printerPanel = new JPanel();
-		printerPanel.setVisible(true);
+		JPanel printerPanel = new JPanel(new BorderLayout());
+		JPanel printerPowerPanel = new JPanel(new BorderLayout());
+		JLabel printerPowerBufferLabel1 = new JLabel("                          ");
+		printerPowerBufferLabel1.setFont(new Font("Serif", Font.PLAIN, 21));
+		printerPowerPanel.add(printerPowerBufferLabel1, BorderLayout.PAGE_START);
+		JLabel printerPowerBufferLabel2 = new JLabel("                                  ");
+		printerPowerPanel.add(printerPowerBufferLabel2, BorderLayout.LINE_START);
+		JLabel printerPowerBufferLabel3 = new JLabel("                                  ");
+		printerPowerPanel.add(printerPowerBufferLabel3, BorderLayout.LINE_END);
+		printerPowerPanel.add(printerPwrBtn, BorderLayout.CENTER);
+		printerPanel.add(printerPowerPanel, BorderLayout.PAGE_START);
+		
+		
 		
 		JPanel funcSwapPanel = new JPanel();
 		funcSwapPanel.setVisible(true);
 		
-		JPanel displayPanel = new JPanel();
-		displayPanel.setVisible(true);
+		JPanel displayPanel = new JPanel(new BorderLayout());
+		JLabel displayPanelBufferLabelLeft = new JLabel("    ");
+		JLabel displayPanelBufferLabelRight = new JLabel("    ");
+		displayPanel.add(displayPanelBufferLabelLeft, BorderLayout.LINE_START);
+		displayPanel.add(displayPanelBufferLabelRight, BorderLayout.LINE_END);
+		JPanel displayTextPanel = new JPanel(new BorderLayout());
+		JLabel displayTextPanelBufferBottom = new JLabel("   ");
+		displayTextPanel.add(displayTextPanelBufferBottom, BorderLayout.PAGE_END);
+		JLabel queueTextLabel = new JLabel("                             Queue / Running / Final Time");
+		displayTextPanel.add(queueTextLabel, BorderLayout.CENTER);
+		displayPanel.add(displayTextPanel, BorderLayout.PAGE_END);
 		
 		JPanel numPadPanel = new JPanel(new BorderLayout());
 		JLabel bufferRight = new JLabel("                     ");
@@ -170,6 +192,8 @@ public class Driver_GUI extends JFrame{
 		numPadCenterPanel.add(numPad0Btn);
 		numPadCenterPanel.add(numPadPoundBtn);
 		numPadPanel.add(numPadCenterPanel, BorderLayout.CENTER);
+		
+		
 		
 		// need the separate panels to be added in this order to be correct
 		getContentPane().add(pwrPanel);
