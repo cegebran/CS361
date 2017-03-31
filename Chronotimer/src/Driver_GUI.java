@@ -13,6 +13,7 @@ public class Driver_GUI extends JFrame{
 	public static void main(String[] args){
 		Driver_GUI myGUI = new Driver_GUI();
 		myGUI.setVisible(true);
+		myGUI.setResizable(false);
 		myGUI.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 	}	// end of main
 	
@@ -48,17 +49,29 @@ public class Driver_GUI extends JFrame{
 		final JButton printerPwrBtn = new JButton("Printer Pwr");
 		
 		final JButton numPad0Btn = new JButton("0");
+		numPad0Btn.setFont(new Font("Serif", Font.PLAIN, 20));
 		final JButton numPad1Btn = new JButton("1");
+		numPad1Btn.setFont(new Font("Serif", Font.PLAIN, 20));
 		final JButton numPad2Btn = new JButton("2");
+		numPad2Btn.setFont(new Font("Serif", Font.PLAIN, 20));
 		final JButton numPad3Btn = new JButton("3");
+		numPad3Btn.setFont(new Font("Serif", Font.PLAIN, 20));
 		final JButton numPad4Btn = new JButton("4");
+		numPad4Btn.setFont(new Font("Serif", Font.PLAIN, 20));
 		final JButton numPad5Btn = new JButton("5");
+		numPad5Btn.setFont(new Font("Serif", Font.PLAIN, 20));
 		final JButton numPad6Btn = new JButton("6");
+		numPad6Btn.setFont(new Font("Serif", Font.PLAIN, 20));
 		final JButton numPad7Btn = new JButton("7");
+		numPad7Btn.setFont(new Font("Serif", Font.PLAIN, 20));
 		final JButton numPad8Btn = new JButton("8");
+		numPad8Btn.setFont(new Font("Serif", Font.PLAIN, 20));
 		final JButton numPad9Btn = new JButton("9");
+		numPad9Btn.setFont(new Font("Serif", Font.PLAIN, 20));
 		final JButton numPadAstBtn = new JButton("*");
+		numPadAstBtn.setFont(new Font("Serif", Font.PLAIN, 20));
 		final JButton numPadPoundBtn = new JButton("#");
+		numPadPoundBtn.setFont(new Font("Serif", Font.PLAIN, 20));
 		
 		setTitle("ChronoTimer 1009");
 		setSize(950, 550);
@@ -75,7 +88,7 @@ public class Driver_GUI extends JFrame{
 
 		
 		JPanel startPanel = new JPanel(new GridLayout(7,1));
-		JLabel chronoLabel = new JLabel("          CHRONOTIMER 1009");
+		JLabel chronoLabel = new JLabel("       CHRONOTIMER 1009");
 		chronoLabel.setFont(new Font("Serif", Font.BOLD, 23));
 		startPanel.add(chronoLabel);
 		JLabel label1357 = new JLabel("                                      1        3       5       7");
@@ -131,8 +144,32 @@ public class Driver_GUI extends JFrame{
 		JPanel displayPanel = new JPanel();
 		displayPanel.setVisible(true);
 		
-		JPanel numPadPanel = new JPanel();
+		JPanel numPadPanel = new JPanel(new BorderLayout());
+		JLabel bufferRight = new JLabel("                     ");
+		numPadPanel.add(bufferRight, BorderLayout.LINE_END);
+		JLabel bufferBottom = new JLabel(" ");
+		bufferBottom.setFont(new Font("Serif", Font.PLAIN, 32));
+		numPadPanel.add(bufferBottom, BorderLayout.PAGE_END);
+		JLabel bufferTop = new JLabel(" ");
+		bufferTop.setFont(new Font("Serif", Font.PLAIN, 18));
+		numPadPanel.add(bufferTop, BorderLayout.PAGE_START);
+		JLabel bufferLeft = new JLabel("                      ");
+		numPadPanel.add(bufferLeft, BorderLayout.LINE_START);
 		numPadPanel.setVisible(true);
+		JPanel numPadCenterPanel = new JPanel(new GridLayout(4,3));
+		numPadCenterPanel.add(numPad1Btn);
+		numPadCenterPanel.add(numPad2Btn);
+		numPadCenterPanel.add(numPad3Btn);
+		numPadCenterPanel.add(numPad4Btn);
+		numPadCenterPanel.add(numPad5Btn);
+		numPadCenterPanel.add(numPad6Btn);
+		numPadCenterPanel.add(numPad7Btn);
+		numPadCenterPanel.add(numPad8Btn);
+		numPadCenterPanel.add(numPad9Btn);
+		numPadCenterPanel.add(numPadAstBtn);
+		numPadCenterPanel.add(numPad0Btn);
+		numPadCenterPanel.add(numPadPoundBtn);
+		numPadPanel.add(numPadCenterPanel, BorderLayout.CENTER);
 		
 		// need the separate panels to be added in this order to be correct
 		getContentPane().add(pwrPanel);
