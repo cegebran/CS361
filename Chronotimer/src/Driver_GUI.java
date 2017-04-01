@@ -146,6 +146,10 @@ public class Driver_GUI extends JFrame{
 		
 		
 		JPanel printerPanel = new JPanel(new BorderLayout());
+		JLabel printerBufferLeftLabel = new JLabel("              ");
+		JLabel printerBufferRightLabel = new JLabel("              ");
+		printerPanel.add(printerBufferLeftLabel, BorderLayout.LINE_START);
+		printerPanel.add(printerBufferRightLabel, BorderLayout.LINE_END);
 		JPanel printerPowerPanel = new JPanel(new BorderLayout());
 		JLabel printerPowerBufferLabel1 = new JLabel("                          ");
 		printerPowerBufferLabel1.setFont(new Font("Serif", Font.PLAIN, 21));
@@ -154,9 +158,14 @@ public class Driver_GUI extends JFrame{
 		printerPowerPanel.add(printerPowerBufferLabel2, BorderLayout.LINE_START);
 		JLabel printerPowerBufferLabel3 = new JLabel("                                  ");
 		printerPowerPanel.add(printerPowerBufferLabel3, BorderLayout.LINE_END);
+		JLabel printerPowerBufferLabel4 = new JLabel("                                  ");
+		printerPowerPanel.add(printerPowerBufferLabel4, BorderLayout.PAGE_END);
 		printerPowerPanel.add(printerPwrBtn, BorderLayout.CENTER);
 		printerPanel.add(printerPowerPanel, BorderLayout.PAGE_START);
-		
+		JPanel printerTapePanel = new JPanel(new GridLayout(5,1));
+		printerTapePanel.setBackground(Color.WHITE);
+		printerTapePanel.setBorder(BorderFactory.createLineBorder(Color.BLACK));
+		printerPanel.add(printerTapePanel, BorderLayout.CENTER);
 		
 		
 		JPanel funcSwapPanel = new JPanel(new BorderLayout());
