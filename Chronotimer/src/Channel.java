@@ -2,9 +2,30 @@ public class Channel {//testing
 	private boolean start;
 	private boolean on;
 	
+	private boolean connectedSensor;
+	
 	public Channel(boolean start, boolean on){
 		this.start = start;
 		this.on = on;
+		this.connectedSensor = false;
+	}
+	
+	public boolean getConnectedSensor(){
+		if(connectedSensor == false){
+			return false;
+		}else{
+			return true;
+		}
+	}
+	
+	public boolean connectSensor(){
+		if(connectedSensor == false){
+			connectedSensor = true;
+			return true;
+		}else{
+			connectedSensor = false;
+			return false;
+		}
 	}
 	
 	/**

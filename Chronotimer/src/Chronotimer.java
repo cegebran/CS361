@@ -545,6 +545,56 @@ public class Chronotimer {
 	}
 	
 	/**
+	 * Changes the status of the connected sensor to the channel
+	 * 
+	 * @param channelNum	The number of the channel being toggled
+	 * @return	True if successful, otherwise False
+	 */
+	public boolean connectChannelSensor(String channelNum){
+		// One can plug/connect a sensor to the chronotimer while it is off so do not check if chronotimer is on or not
+		// If the channel number is not valid, ignore the command
+		if(channelNum == null){
+			return false;
+		}else{
+			// Grab the channel number from the string input
+			int number = Integer.parseInt(channelNum);
+					
+			// If the number is out of range (1-8), ignore the command
+			if(number < 1 || number > 8){
+				return false;
+			}else{
+				if(number == 1){
+					one.connectSensor();
+					return true;
+				}else if(number == 2){
+					two.connectSensor();
+					return true;
+				}else if(number == 3){
+					three.connectSensor();
+					return true;
+				}else if(number == 4){
+					four.connectSensor();
+					return true;
+				}else if(number == 5){
+					five.connectSensor();
+					return true;
+				}else if(number == 6){
+					six.connectSensor();
+					return true;
+				}else if(number == 7){
+					seven.connectSensor();
+					return true;
+				}else if(number == 8){
+					eight.connectSensor();
+					return true;
+				}else{
+					return false;
+				}
+			}
+		}
+	}
+	
+	/**
 	 * Creates a racer with the given bib number in the current run.
 	 * 
 	 * @param number	The bib number of the racer being entered into the race.

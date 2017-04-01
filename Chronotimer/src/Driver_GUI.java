@@ -43,7 +43,6 @@ public class Driver_GUI extends JFrame{
 	final JLabel printerLine10Label = new JLabel(" ");
 	
 	public void printerAddLine(String lineToPrint){
-		int counter = 0;
 		String[] lineArray = new String[10];
 		lineArray[0] = printerLine1Label.getText();
 		lineArray[1] = printerLine2Label.getText();
@@ -55,12 +54,6 @@ public class Driver_GUI extends JFrame{
 		lineArray[7] = printerLine8Label.getText();
 		lineArray[8] = printerLine9Label.getText();
 		lineArray[9] = printerLine10Label.getText();
-		
-		for(int i = 0; i < 10; i++){
-			if(!(lineArray[i].equals(" "))){
-				counter++;
-			}
-		}
 		
 		for(int j = 1; j < 10; j++){
 			lineArray[j-1] = lineArray[j];
@@ -147,13 +140,26 @@ public class Driver_GUI extends JFrame{
 		numPadPoundBtn.setFont(new Font("Serif", Font.PLAIN, 20));
 		
 		final JButton channel1Button = new JButton(" ");
+		channel1Button.setBackground(Color.RED);
 		final JButton channel2Button = new JButton(" ");
+		channel2Button.setBackground(Color.RED);
 		final JButton channel3Button = new JButton(" ");
+		channel3Button.setBackground(Color.RED);
 		final JButton channel4Button = new JButton(" ");
+		channel4Button.setBackground(Color.RED);
 		final JButton channel5Button = new JButton(" ");
+		channel5Button.setBackground(Color.RED);
 		final JButton channel6Button = new JButton(" ");
+		channel6Button.setBackground(Color.RED);
 		final JButton channel7Button = new JButton(" ");
+		channel7Button.setBackground(Color.RED);
 		final JButton channel8Button = new JButton(" ");
+		channel8Button.setBackground(Color.RED);
+		
+		final JPopupMenu channelInputMenu = new JPopupMenu("Menu");
+		channelInputMenu.add("Eye");
+		channelInputMenu.add("Gate");
+		channelInputMenu.add("Pad");
 		
 		setTitle("ChronoTimer 1009");
 		setSize(950, 750);
@@ -602,5 +608,150 @@ public class Driver_GUI extends JFrame{
 	    		}
 	        }
 	    });
+		
+		channel1Button.addActionListener(new ActionListener() {
+	        public void actionPerformed(ActionEvent e){
+	        	try {
+	        		boolean sensorConnected = chronotimer.getChannelOne().getConnectedSensor();
+	        		if(sensorConnected == false){
+	        			chronotimer.connectChannelSensor("1");
+	        			channelInputMenu.show(channel1Button, channel1Button.getWidth()/2, channel1Button.getHeight()/2);
+	        			channel1Button.setBackground(Color.GREEN);
+	        		}else{
+	        			chronotimer.connectChannelSensor("1");
+	        			channel1Button.setBackground(Color.RED);
+	        		}
+	    		} catch (Exception e2) {
+	    			e2.printStackTrace();
+	    		}
+	        }
+	    });
+		
+		channel2Button.addActionListener(new ActionListener() {
+	        public void actionPerformed(ActionEvent e){
+	        	try {
+	        		boolean sensorConnected = chronotimer.getChannelTwo().getConnectedSensor();
+	        		if(sensorConnected == false){
+	        			chronotimer.connectChannelSensor("2");
+	        			channelInputMenu.show(channel2Button, channel2Button.getWidth()/2, channel2Button.getHeight()/2);
+	        			channel2Button.setBackground(Color.GREEN);
+	        		}else{
+	        			chronotimer.connectChannelSensor("2");
+	        			channel2Button.setBackground(Color.RED);
+	        		}
+	    		} catch (Exception e2) {
+	    			e2.printStackTrace();
+	    		}
+	        }
+	    });
+		
+		channel3Button.addActionListener(new ActionListener() {
+	        public void actionPerformed(ActionEvent e){
+	        	try {
+	        		boolean sensorConnected = chronotimer.getChannelThree().getConnectedSensor();
+	        		if(sensorConnected == false){
+	        			chronotimer.connectChannelSensor("3");
+	        			channelInputMenu.show(channel3Button, channel3Button.getWidth()/2, channel3Button.getHeight()/2);
+	        			channel3Button.setBackground(Color.GREEN);
+	        		}else{
+	        			chronotimer.connectChannelSensor("3");
+	        			channel3Button.setBackground(Color.RED);
+	        		}
+	    		} catch (Exception e2) {
+	    			e2.printStackTrace();
+	    		}
+	        }
+	    });
+		
+		channel4Button.addActionListener(new ActionListener() {
+	        public void actionPerformed(ActionEvent e){
+	        	try {
+	        		boolean sensorConnected = chronotimer.getChannelFour().getConnectedSensor();
+	        		if(sensorConnected == false){
+	        			chronotimer.connectChannelSensor("4");
+	        			channelInputMenu.show(channel4Button, channel4Button.getWidth()/2, channel4Button.getHeight()/2);
+	        			channel4Button.setBackground(Color.GREEN);
+	        		}else{
+	        			chronotimer.connectChannelSensor("4");
+	        			channel4Button.setBackground(Color.RED);
+	        		}
+	    		} catch (Exception e2) {
+	    			e2.printStackTrace();
+	    		}
+	        }
+	    });
+		
+		channel5Button.addActionListener(new ActionListener() {
+	        public void actionPerformed(ActionEvent e){
+	        	try {
+	        		boolean sensorConnected = chronotimer.getChannelFive().getConnectedSensor();
+	        		if(sensorConnected == false){
+	        			chronotimer.connectChannelSensor("5");
+	        			channelInputMenu.show(channel5Button, channel5Button.getWidth()/2, channel5Button.getHeight()/2);
+	        			channel5Button.setBackground(Color.GREEN);
+	        		}else{
+	        			chronotimer.connectChannelSensor("5");
+	        			channel5Button.setBackground(Color.RED);
+	        		}
+	    		} catch (Exception e2) {
+	    			e2.printStackTrace();
+	    		}
+	        }
+	    });
+		
+		channel6Button.addActionListener(new ActionListener() {
+	        public void actionPerformed(ActionEvent e){
+	        	try {
+	        		boolean sensorConnected = chronotimer.getChannelSix().getConnectedSensor();
+	        		if(sensorConnected == false){
+	        			chronotimer.connectChannelSensor("6");
+	        			channelInputMenu.show(channel6Button, channel6Button.getWidth()/2, channel6Button.getHeight()/2);
+	        			channel6Button.setBackground(Color.GREEN);
+	        		}else{
+	        			chronotimer.connectChannelSensor("6");
+	        			channel6Button.setBackground(Color.RED);
+	        		}
+	    		} catch (Exception e2) {
+	    			e2.printStackTrace();
+	    		}
+	        }
+	    });
+		
+		channel7Button.addActionListener(new ActionListener() {
+	        public void actionPerformed(ActionEvent e){
+	        	try {
+	        		boolean sensorConnected = chronotimer.getChannelSeven().getConnectedSensor();
+	        		if(sensorConnected == false){
+	        			chronotimer.connectChannelSensor("7");
+	        			channelInputMenu.show(channel7Button, channel7Button.getWidth()/2, channel7Button.getHeight()/2);
+	        			channel7Button.setBackground(Color.GREEN);
+	        		}else{
+	        			chronotimer.connectChannelSensor("7");
+	        			channel7Button.setBackground(Color.RED);
+	        		}
+	    		} catch (Exception e2) {
+	    			e2.printStackTrace();
+	    		}
+	        }
+	    });
+		
+		channel8Button.addActionListener(new ActionListener() {
+	        public void actionPerformed(ActionEvent e){
+	        	try {
+	        		boolean sensorConnected = chronotimer.getChannelEight().getConnectedSensor();
+	        		if(sensorConnected == false){
+	        			chronotimer.connectChannelSensor("8");
+	        			channelInputMenu.show(channel8Button, channel8Button.getWidth()/2, channel8Button.getHeight()/2);
+	        			channel8Button.setBackground(Color.GREEN);
+	        		}else{
+	        			chronotimer.connectChannelSensor("8");
+	        			channel8Button.setBackground(Color.RED);
+	        		}
+	    		} catch (Exception e2) {
+	    			e2.printStackTrace();
+	    		}
+	        }
+	    });
+		
 	}
 }
