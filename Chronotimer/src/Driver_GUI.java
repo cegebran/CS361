@@ -23,11 +23,19 @@ public class Driver_GUI extends JFrame{
 		final JButton powerBtn = new JButton("Power");
 	    powerBtn.setFont(new Font("Serif", Font.PLAIN, 15));
 		final JButton functionBtn = new JButton("Function");
+		functionBtn.setFont(new Font("Serif", Font.PLAIN, 15));
 		
-		final JButton leftArrowBtn = new JButton("");
-		final JButton rightArrowBtn = new JButton("");
-		final JButton downArrowBtn = new JButton("");
-		final JButton upArrowBtn = new JButton("");
+		final JButton leftArrowBtn = new JButton("L");
+		leftArrowBtn.setFont(new Font("Serif", Font.PLAIN, 15));
+		final JButton rightArrowBtn = new JButton("R");
+		rightArrowBtn.setFont(new Font("Serif", Font.PLAIN, 15));
+		final JButton downArrowBtn = new JButton("D");
+		downArrowBtn.setFont(new Font("Serif", Font.PLAIN, 15));
+		final JButton upArrowBtn = new JButton("U");
+		upArrowBtn.setFont(new Font("Serif", Font.PLAIN, 15));
+		
+		final JButton swapBtn = new JButton("Swap");
+		swapBtn.setFont(new Font("Serif", Font.PLAIN, 15));
 		
 		final JButton start1Btn = new JButton(" ");
 		final JButton finish2Btn = new JButton(" ");
@@ -151,12 +159,39 @@ public class Driver_GUI extends JFrame{
 		
 		
 		
-		JPanel funcSwapPanel = new JPanel();
-		funcSwapPanel.setVisible(true);
+		JPanel funcSwapPanel = new JPanel(new BorderLayout());
+		JLabel bufferLeftFuncLabel = new JLabel("                ");
+		JLabel bufferRightFuncLabel = new JLabel("                ");
+		JLabel bufferBottomFuncLabel = new JLabel("   ");
+		bufferBottomFuncLabel.setFont(new Font("Serif", Font.PLAIN, 25));
+		JLabel bufferTopFuncLabel = new JLabel("   ");
+		bufferTopFuncLabel.setFont(new Font("Serif", Font.PLAIN, 20));
+		funcSwapPanel.add(bufferLeftFuncLabel, BorderLayout.LINE_START);
+		funcSwapPanel.add(bufferRightFuncLabel, BorderLayout.LINE_END);
+		funcSwapPanel.add(bufferBottomFuncLabel, BorderLayout.PAGE_END);
+		funcSwapPanel.add(bufferTopFuncLabel, BorderLayout.PAGE_START);
+		JPanel funcSwapCentPanel = new JPanel(new GridLayout(5,1));
+		JPanel funcPanel = new JPanel(new FlowLayout());
+		funcPanel.add(functionBtn);
+		funcSwapCentPanel.add(funcPanel);
+		JPanel arrowFuncPanel = new JPanel(new FlowLayout());
+		arrowFuncPanel.add(leftArrowBtn);
+		arrowFuncPanel.add(rightArrowBtn);
+		arrowFuncPanel.add(downArrowBtn);
+		arrowFuncPanel.add(upArrowBtn);
+		funcSwapCentPanel.add(arrowFuncPanel);
+		JLabel bufferCenterSwapLabel = new JLabel(" ");
+		funcSwapCentPanel.add(bufferCenterSwapLabel);
+		JPanel swapPanel = new JPanel(new FlowLayout());
+		swapPanel.add(swapBtn);
+		funcSwapCentPanel.add(swapPanel);
+		funcSwapPanel.add(funcSwapCentPanel, BorderLayout.CENTER);
 		
 		JPanel displayPanel = new JPanel(new BorderLayout());
-		JLabel displayPanelBufferLabelLeft = new JLabel("    ");
-		JLabel displayPanelBufferLabelRight = new JLabel("    ");
+		JLabel displayPanelBufferLabelLeft = new JLabel("          ");
+		JLabel displayPanelBufferLabelRight = new JLabel("        ");
+		JLabel displayPanelBufferLabelTop = new JLabel(" ");
+		displayPanel.add(displayPanelBufferLabelTop, BorderLayout.PAGE_START);
 		displayPanel.add(displayPanelBufferLabelLeft, BorderLayout.LINE_START);
 		displayPanel.add(displayPanelBufferLabelRight, BorderLayout.LINE_END);
 		JPanel displayTextPanel = new JPanel(new BorderLayout());
@@ -165,6 +200,11 @@ public class Driver_GUI extends JFrame{
 		JLabel queueTextLabel = new JLabel("                             Queue / Running / Final Time");
 		displayTextPanel.add(queueTextLabel, BorderLayout.CENTER);
 		displayPanel.add(displayTextPanel, BorderLayout.PAGE_END);
+		JPanel displayCenterPanel = new JPanel(new GridLayout(6,1));
+		displayCenterPanel.setBackground(Color.WHITE);
+		displayCenterPanel.setBorder(BorderFactory.createLineBorder(Color.BLACK));
+		
+		displayPanel.add(displayCenterPanel, BorderLayout.CENTER);
 		
 		JPanel numPadPanel = new JPanel(new BorderLayout());
 		JLabel bufferRight = new JLabel("                     ");
