@@ -7,6 +7,7 @@ import com.google.gson.Gson;
 
 public class Chronotimer {
 	private boolean power;
+	private boolean printerPower;
 	private ArrayList<Run> runs;
 	private Channel one, two, three, four, five, six, seven, eight;
 	private Run currentRun;
@@ -37,6 +38,7 @@ public class Chronotimer {
 		this.power = false;
 		this.currentRun = null;
 		this.timer = new Time();
+		this.printerPower = false;
 		
 		// Default race type set to IND (individual non-parallel).
 		this.individual = true;
@@ -51,6 +53,19 @@ public class Chronotimer {
 	 */
 	public Time getTimer(){
 		return this.timer;
+	}
+	
+	/**
+	 * Gets the state of the printer power
+	 * 
+	 * @return	True if the printer is on or false if the printer is off
+	 */
+	public boolean getPrinterPower(){
+		if(printerPower == true){
+			return true;
+		}else{
+			return false;
+		}
 	}
 	
 	/**
@@ -155,6 +170,24 @@ public class Chronotimer {
 		}
 		else{
 			power = false;
+			printerPower = false;
+		}
+	}
+	
+	/**
+	 * Switches the printer power for the simulated Chronotimer printer (off->on, on->off).
+	 */
+	public boolean printerPower(){
+		if(power == true){
+			if(printerPower == false){
+				printerPower = true;
+				return true;
+			}else{
+				printerPower = false;
+				return false;
+			}
+		}else{
+			return false;
 		}
 	}
 	

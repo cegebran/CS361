@@ -5,6 +5,11 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
+import java.io.DataOutputStream;
+import java.io.InputStreamReader;
+import java.net.HttpURLConnection;
+import java.net.URL;
+
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
 
@@ -16,6 +21,64 @@ public class Driver_GUI extends JFrame{
 		myGUI.setResizable(false);
 		myGUI.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 	}	// end of main
+	
+	final JLabel displayLine1Label = new JLabel(" ");
+	final JLabel displayLine2Label = new JLabel(" ");
+	final JLabel displayLine3Label = new JLabel(" ");
+	final JLabel displayLine4Label = new JLabel(" ");
+	final JLabel displayLine5Label = new JLabel(" ");
+	final JLabel displayLine6Label = new JLabel(" ");
+	final JLabel displayLine7Label = new JLabel(" ");
+	final JLabel displayLine8Label = new JLabel(" ");
+	
+	final JLabel printerLine1Label = new JLabel(" ");
+	final JLabel printerLine2Label = new JLabel(" ");
+	final JLabel printerLine3Label = new JLabel(" ");
+	final JLabel printerLine4Label = new JLabel(" ");
+	final JLabel printerLine5Label = new JLabel(" ");
+	final JLabel printerLine6Label = new JLabel(" ");
+	final JLabel printerLine7Label = new JLabel(" ");
+	final JLabel printerLine8Label = new JLabel(" ");
+	final JLabel printerLine9Label = new JLabel(" ");
+	final JLabel printerLine10Label = new JLabel(" ");
+	
+	public void printerAddLine(String lineToPrint){
+		int counter = 0;
+		String[] lineArray = new String[10];
+		lineArray[0] = printerLine1Label.getText();
+		lineArray[1] = printerLine2Label.getText();
+		lineArray[2] = printerLine3Label.getText();
+		lineArray[3] = printerLine4Label.getText();
+		lineArray[4] = printerLine5Label.getText();
+		lineArray[5] = printerLine6Label.getText();
+		lineArray[6] = printerLine7Label.getText();
+		lineArray[7] = printerLine8Label.getText();
+		lineArray[8] = printerLine9Label.getText();
+		lineArray[9] = printerLine10Label.getText();
+		
+		for(int i = 0; i < 10; i++){
+			if(!(lineArray[i].equals(" "))){
+				counter++;
+			}
+		}
+		
+		for(int j = 1; j < 10; j++){
+			lineArray[j-1] = lineArray[j];
+		}
+		
+		lineArray[9] = lineToPrint;
+		
+		printerLine1Label.setText(lineArray[0]);
+		printerLine2Label.setText(lineArray[1]);
+		printerLine3Label.setText(lineArray[2]);
+		printerLine4Label.setText(lineArray[3]);
+		printerLine5Label.setText(lineArray[4]);
+		printerLine6Label.setText(lineArray[5]);
+		printerLine7Label.setText(lineArray[6]);
+		printerLine8Label.setText(lineArray[7]);
+		printerLine9Label.setText(lineArray[8]);
+		printerLine10Label.setText(lineArray[9]);
+	}
 	
 	public Driver_GUI(){
 		Chronotimer chronotimer = new Chronotimer();
@@ -83,10 +146,19 @@ public class Driver_GUI extends JFrame{
 		final JButton numPadPoundBtn = new JButton("#");
 		numPadPoundBtn.setFont(new Font("Serif", Font.PLAIN, 20));
 		
-		setTitle("ChronoTimer 1009");
-		setSize(950, 550);
+		final JButton channel1Button = new JButton(" ");
+		final JButton channel2Button = new JButton(" ");
+		final JButton channel3Button = new JButton(" ");
+		final JButton channel4Button = new JButton(" ");
+		final JButton channel5Button = new JButton(" ");
+		final JButton channel6Button = new JButton(" ");
+		final JButton channel7Button = new JButton(" ");
+		final JButton channel8Button = new JButton(" ");
 		
-		setLayout(new GridLayout(2, 3));
+		setTitle("ChronoTimer 1009");
+		setSize(950, 750);
+		
+		setLayout(new GridLayout(3, 3));
 		
 		JPanel pwrPanel = new JPanel();
 		pwrPanel.setLayout(new BorderLayout());
@@ -162,9 +234,19 @@ public class Driver_GUI extends JFrame{
 		printerPowerPanel.add(printerPowerBufferLabel4, BorderLayout.PAGE_END);
 		printerPowerPanel.add(printerPwrBtn, BorderLayout.CENTER);
 		printerPanel.add(printerPowerPanel, BorderLayout.PAGE_START);
-		JPanel printerTapePanel = new JPanel(new GridLayout(5,1));
+		JPanel printerTapePanel = new JPanel(new GridLayout(10,1));
 		printerTapePanel.setBackground(Color.WHITE);
 		printerTapePanel.setBorder(BorderFactory.createLineBorder(Color.BLACK));
+		printerTapePanel.add(printerLine1Label);
+		printerTapePanel.add(printerLine2Label);
+		printerTapePanel.add(printerLine3Label);
+		printerTapePanel.add(printerLine4Label);
+		printerTapePanel.add(printerLine5Label);
+		printerTapePanel.add(printerLine6Label);
+		printerTapePanel.add(printerLine7Label);
+		printerTapePanel.add(printerLine8Label);
+		printerTapePanel.add(printerLine9Label);
+		printerTapePanel.add(printerLine10Label);
 		printerPanel.add(printerTapePanel, BorderLayout.CENTER);
 		
 		
@@ -209,9 +291,17 @@ public class Driver_GUI extends JFrame{
 		JLabel queueTextLabel = new JLabel("                             Queue / Running / Final Time");
 		displayTextPanel.add(queueTextLabel, BorderLayout.CENTER);
 		displayPanel.add(displayTextPanel, BorderLayout.PAGE_END);
-		JPanel displayCenterPanel = new JPanel(new GridLayout(6,1));
-		displayCenterPanel.setBackground(Color.WHITE);
-		displayCenterPanel.setBorder(BorderFactory.createLineBorder(Color.BLACK));
+		JPanel displayCenterPanel = new JPanel(new GridLayout(8,1));
+		displayCenterPanel.setBackground(Color.DARK_GRAY);
+		displayCenterPanel.setBorder(BorderFactory.createStrokeBorder(new BasicStroke(5.0f)));
+		displayCenterPanel.add(displayLine1Label);
+		displayCenterPanel.add(displayLine2Label);
+		displayCenterPanel.add(displayLine3Label);
+		displayCenterPanel.add(displayLine4Label);
+		displayCenterPanel.add(displayLine5Label);
+		displayCenterPanel.add(displayLine6Label);
+		displayCenterPanel.add(displayLine7Label);
+		displayCenterPanel.add(displayLine8Label);
 		
 		displayPanel.add(displayCenterPanel, BorderLayout.CENTER);
 		
@@ -242,7 +332,43 @@ public class Driver_GUI extends JFrame{
 		numPadCenterPanel.add(numPadPoundBtn);
 		numPadPanel.add(numPadCenterPanel, BorderLayout.CENTER);
 		
+		JPanel channelPanel = new JPanel(new BorderLayout());
+		channelPanel.setBorder(BorderFactory.createMatteBorder(1, 0, 0, 0, Color.BLACK));
+		JLabel channelBufferTop = new JLabel(" ");
+		JLabel channelBufferBottom = new JLabel(" ");
+		JLabel chanLabel = new JLabel("CHAN");
+		chanLabel.setFont(new Font("Serif", Font.PLAIN, 17));
+		channelPanel.add(channelBufferTop, BorderLayout.PAGE_START);
+		channelPanel.add(channelBufferBottom, BorderLayout.PAGE_END);
+		JPanel chanLabelPanel = new JPanel(new FlowLayout());
+		chanLabelPanel.add(chanLabel);
+		channelPanel.add(chanLabelPanel, BorderLayout.LINE_START);
+		JPanel channelButtonPanel = new JPanel(new GridLayout(5,1));
+		JLabel channel1357Label = new JLabel("                1        3        5        7");
+		channel1357Label.setFont(new Font("Serif", Font.PLAIN, 17));
+		channelButtonPanel.add(channel1357Label);
+		JPanel channel1357ButtonPanel = new JPanel(new FlowLayout());
+		channel1357ButtonPanel.add(channel1Button);
+		channel1357ButtonPanel.add(channel3Button);
+		channel1357ButtonPanel.add(channel5Button);
+		channel1357ButtonPanel.add(channel7Button);
+		channelButtonPanel.add(channel1357ButtonPanel);
+		JLabel channel2468Label = new JLabel("                2        4        6        8");
+		channel2468Label.setFont(new Font("Serif", Font.PLAIN, 17));
+		channelButtonPanel.add(channel2468Label);
+		JPanel channel2468ButtonPanel = new JPanel(new FlowLayout());
+		channel2468ButtonPanel.add(channel2Button);
+		channel2468ButtonPanel.add(channel4Button);
+		channel2468ButtonPanel.add(channel6Button);
+		channel2468ButtonPanel.add(channel8Button);
+		channelButtonPanel.add(channel2468ButtonPanel);
+		channelPanel.add(channelButtonPanel, BorderLayout.CENTER);
 		
+		JPanel usbPanel = new JPanel();
+		usbPanel.setBorder(BorderFactory.createMatteBorder(1, 0, 0, 0, Color.BLACK));
+		
+		JPanel blankPanel = new JPanel();
+		blankPanel.setBorder(BorderFactory.createMatteBorder(1, 0, 0, 0, Color.BLACK));
 		
 		// need the separate panels to be added in this order to be correct
 		getContentPane().add(pwrPanel);
@@ -251,6 +377,230 @@ public class Driver_GUI extends JFrame{
 		getContentPane().add(funcSwapPanel);
 		getContentPane().add(displayPanel);
 		getContentPane().add(numPadPanel);
+		getContentPane().add(channelPanel);
+		getContentPane().add(usbPanel);
+		getContentPane().add(blankPanel);
 		
+		
+		// Action Listeners
+		powerBtn.addActionListener(new ActionListener() {
+	        public void actionPerformed(ActionEvent e){
+	        	try {
+	        		chronotimer.power();
+					if(chronotimer.getPower() == true){
+						displayCenterPanel.setBackground(Color.WHITE);
+						displayLine1Label.setText(" ");
+						displayLine2Label.setText(" ");
+						displayLine3Label.setText(" ");
+						displayLine4Label.setText(" ");
+						displayLine5Label.setText(" ");
+						displayLine6Label.setText(" ");
+						displayLine7Label.setText(" ");
+						displayLine8Label.setText(" ");
+					}else{
+						displayCenterPanel.setBackground(Color.DARK_GRAY);
+						displayLine1Label.setText(" ");
+						displayLine2Label.setText(" ");
+						displayLine3Label.setText(" ");
+						displayLine4Label.setText(" ");
+						displayLine5Label.setText(" ");
+						displayLine6Label.setText(" ");
+						displayLine7Label.setText(" ");
+						displayLine8Label.setText(" ");
+					}
+	    		} catch (Exception e2) {
+	    			e2.printStackTrace();
+	    		}
+	        }
+	    });
+		
+		printerPwrBtn.addActionListener(new ActionListener() {
+	        public void actionPerformed(ActionEvent e){
+	        	try {
+	        		boolean printerTurnedOn = chronotimer.printerPower();
+	        		if(printerTurnedOn == true){
+	        			printerAddLine("Printer Turned On");
+	        		}
+	    		} catch (Exception e2) {
+	    			e2.printStackTrace();
+	    		}
+	        }
+	    });
+		
+		enaDis1Btn.addActionListener(new ActionListener() {
+	        public void actionPerformed(ActionEvent e){
+	        	try {
+	        		boolean channelState = chronotimer.toggleChannel("1");
+	        		if(channelState == true){
+	        			Channel channel1 = chronotimer.getChannelOne();
+	        			if(channel1.getOn() == true){
+	        				if(chronotimer.getPrinterPower() == true){
+	        					printerAddLine("Channel 1 Toggled On");
+	        				}
+	        			}else{
+	        				if(chronotimer.getPrinterPower() == true){
+	        					printerAddLine("Channel 1 Toggled Off");
+	        				}
+	        			}
+	        		}
+	    		} catch (Exception e2) {
+	    			e2.printStackTrace();
+	    		}
+	        }
+	    });
+		
+		enaDis2Btn.addActionListener(new ActionListener() {
+	        public void actionPerformed(ActionEvent e){
+	        	try {
+	        		boolean channelState = chronotimer.toggleChannel("2");
+	        		if(channelState == true){
+	        			Channel channel2 = chronotimer.getChannelTwo();
+	        			if(channel2.getOn() == true){
+	        				if(chronotimer.getPrinterPower() == true){
+	        					printerAddLine("Channel 2 Toggled On");
+	        				}
+	        			}else{
+	        				if(chronotimer.getPrinterPower() == true){
+	        					printerAddLine("Channel 2 Toggled Off");
+	        				}
+	        			}
+	        		}
+	    		} catch (Exception e2) {
+	    			e2.printStackTrace();
+	    		}
+	        }
+	    });
+		
+		enaDis3Btn.addActionListener(new ActionListener() {
+	        public void actionPerformed(ActionEvent e){
+	        	try {
+	        		boolean channelState = chronotimer.toggleChannel("3");
+	        		if(channelState == true){
+	        			Channel channel3 = chronotimer.getChannelThree();
+	        			if(channel3.getOn() == true){
+	        				if(chronotimer.getPrinterPower() == true){
+	        					printerAddLine("Channel 3 Toggled On");
+	        				}
+	        			}else{
+	        				if(chronotimer.getPrinterPower() == true){
+	        					printerAddLine("Channel 3 Toggled Off");
+	        				}
+	        			}
+	        		}
+	    		} catch (Exception e2) {
+	    			e2.printStackTrace();
+	    		}
+	        }
+	    });
+		
+		enaDis4Btn.addActionListener(new ActionListener() {
+	        public void actionPerformed(ActionEvent e){
+	        	try {
+	        		boolean channelState = chronotimer.toggleChannel("4");
+	        		if(channelState == true){
+	        			Channel channel4 = chronotimer.getChannelFour();
+	        			if(channel4.getOn() == true){
+	        				if(chronotimer.getPrinterPower() == true){
+	        					printerAddLine("Channel 4 Toggled On");
+	        				}
+	        			}else{
+	        				if(chronotimer.getPrinterPower() == true){
+	        					printerAddLine("Channel 4 Toggled Off");
+	        				}
+	        			}
+	        		}
+	    		} catch (Exception e2) {
+	    			e2.printStackTrace();
+	    		}
+	        }
+	    });
+		
+		enaDis5Btn.addActionListener(new ActionListener() {
+	        public void actionPerformed(ActionEvent e){
+	        	try {
+	        		boolean channelState = chronotimer.toggleChannel("5");
+	        		if(channelState == true){
+	        			Channel channel5 = chronotimer.getChannelFive();
+	        			if(channel5.getOn() == true){
+	        				if(chronotimer.getPrinterPower() == true){
+	        					printerAddLine("Channel 5 Toggled On");
+	        				}
+	        			}else{
+	        				if(chronotimer.getPrinterPower() == true){
+	        					printerAddLine("Channel 5 Toggled Off");
+	        				}
+	        			}
+	        		}
+	    		} catch (Exception e2) {
+	    			e2.printStackTrace();
+	    		}
+	        }
+	    });
+		
+		enaDis6Btn.addActionListener(new ActionListener() {
+	        public void actionPerformed(ActionEvent e){
+	        	try {
+	        		boolean channelState = chronotimer.toggleChannel("6");
+	        		if(channelState == true){
+	        			Channel channel6 = chronotimer.getChannelSix();
+	        			if(channel6.getOn() == true){
+	        				if(chronotimer.getPrinterPower() == true){
+	        					printerAddLine("Channel 6 Toggled On");
+	        				}
+	        			}else{
+	        				if(chronotimer.getPrinterPower() == true){
+	        					printerAddLine("Channel 6 Toggled Off");
+	        				}
+	        			}
+	        		}
+	    		} catch (Exception e2) {
+	    			e2.printStackTrace();
+	    		}
+	        }
+	    });
+		
+		enaDis7Btn.addActionListener(new ActionListener() {
+	        public void actionPerformed(ActionEvent e){
+	        	try {
+	        		boolean channelState = chronotimer.toggleChannel("7");
+	        		if(channelState == true){
+	        			Channel channel7 = chronotimer.getChannelSeven();
+	        			if(channel7.getOn() == true){
+	        				if(chronotimer.getPrinterPower() == true){
+	        					printerAddLine("Channel 7 Toggled On");
+	        				}
+	        			}else{
+	        				if(chronotimer.getPrinterPower() == true){
+	        					printerAddLine("Channel 7 Toggled Off");
+	        				}
+	        			}
+	        		}
+	    		} catch (Exception e2) {
+	    			e2.printStackTrace();
+	    		}
+	        }
+	    });
+		
+		enaDis8Btn.addActionListener(new ActionListener() {
+	        public void actionPerformed(ActionEvent e){
+	        	try {
+	        		boolean channelState = chronotimer.toggleChannel("8");
+	        		if(channelState == true){
+	        			Channel channel8 = chronotimer.getChannelEight();
+	        			if(channel8.getOn() == true){
+	        				if(chronotimer.getPrinterPower() == true){
+	        					printerAddLine("Channel 8 Toggled On");
+	        				}
+	        			}else{
+	        				if(chronotimer.getPrinterPower() == true){
+	        					printerAddLine("Channel 8 Toggled Off");
+	        				}
+	        			}
+	        		}
+	    		} catch (Exception e2) {
+	    			e2.printStackTrace();
+	    		}
+	        }
+	    });
 	}
 }
