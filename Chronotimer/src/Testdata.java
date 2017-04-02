@@ -63,6 +63,10 @@ public class Testdata {
 							chronotimer.setEvent("PARIND");
 							System.out.println("PARIND has been set");
 						}
+						else if(array[3].equals("GRP")){
+							chronotimer.setEvent("GRP");
+							System.out.println("GRP has been set");
+						}
 					}
 					else if(array[1].equals("NEWRUN")){
 						chronotimer.newRun(chronotimer.getIndividual(), chronotimer.getParallel());

@@ -1,6 +1,6 @@
 public class Time {
-	private long startTime;
-	private long setTime;
+	private static long startTime;
+	private static long setTime;
 	
 	public Time(){
 		this.startTime = System.currentTimeMillis();
@@ -36,7 +36,7 @@ public class Time {
 	 * 
 	 * @return	Current time in milliseconds
 	 */
-	public long getCurrentTime(){
+	public static long getCurrentTime(){
 		long currentTime = System.currentTimeMillis();
 		long elapsedTime = currentTime - startTime;
 		return setTime + elapsedTime;

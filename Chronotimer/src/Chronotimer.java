@@ -211,6 +211,7 @@ public class Chronotimer {
 		if(number == 1 && one.getOn() == true){
 			if(one.getStart() == true){
 				return currentRun.startRacer(timer.getCurrentTime(),1);
+				
 			}
 			else{
 				return currentRun.endRacer(timer.getCurrentTime(),1);
@@ -306,68 +307,68 @@ public class Chronotimer {
 		
 		// If the channel is # and is 'On'... if 'Start' channel: start racer. else: end current race
 		if(number == 1 && one.getOn() == true){
-			if(one.getStart() == true){
+			if(!individual && !parallel){
 				return currentRun.startRacer(currentTime,1);
 			}
 			else{
-				return currentRun.endRacer(currentTime,1);
-			}	
+				return currentRun.startGroup(currentTime);
+			}
 		}
 		else if(number == 2 && two.getOn() == true){
-			if(two.getStart() == true){
-				return currentRun.startRacer(currentTime,2);
+			if(!individual && !parallel){
+				return currentRun.endRacer(currentTime,2);
 			}
 			else{
-				return currentRun.endRacer(currentTime,2);
-			}	
+				return currentRun.endGroup(currentTime);
+			}
 		}
 		else if(number == 3 && three.getOn() == true){
-			if(three.getStart() == true){
-				return currentRun.startRacer(currentTime,3);
+			if(!individual && !parallel){
+				return currentRun.startRacer(currentTime,1);
 			}
 			else{
-				return currentRun.endRacer(currentTime,3);
-			}	
+				return currentRun.startGroup(currentTime);
+			}
 		}
 		else if(number == 4 && four.getOn() == true){
-			if(four.getStart() == true){
-				return currentRun.startRacer(currentTime,4);
+			if(!individual && !parallel){
+				return currentRun.endRacer(currentTime,2);
 			}
 			else{
-				return currentRun.endRacer(currentTime,4);
-			}	
+				return currentRun.endGroup(currentTime);
+			}
 		}
 		else if(number == 5 && five.getOn() == true){
-			if(five.getStart() == true){
-				return currentRun.startRacer(currentTime,5);
+			if(!individual && !parallel){
+				return currentRun.startRacer(currentTime,1);
 			}
 			else{
-				return currentRun.endRacer(currentTime,5);
-			}	
+				return currentRun.startGroup(currentTime);
+			}
 		}
 		else if(number == 6 && six.getOn() == true){
-			if(six.getStart() == true){
-				return currentRun.startRacer(currentTime,6);
+			if(!individual && !parallel){
+				return currentRun.endRacer(currentTime,2);
 			}
 			else{
-				return currentRun.endRacer(currentTime,6);
-			}	
+				return currentRun.endGroup(currentTime);
+			}
 		}
 		else if(number == 7 && seven.getOn() == true){
-			if(seven.getStart() == true){
-				return currentRun.startRacer(currentTime,7);
+			if(!individual && !parallel){
+				return currentRun.startRacer(currentTime,1);
 			}
 			else{
-				return currentRun.endRacer(currentTime,7);
-			}	
+				return currentRun.startGroup(currentTime);
+			}
 		}
 		else if(number == 8 && eight.getOn() == true){
-			if(eight.getStart() == true){
-				return currentRun.startRacer(currentTime,8);
+			if(!individual && !parallel){
+				return currentRun.endRacer(currentTime,2);
 			}
 			else{
-				return currentRun.endRacer(currentTime,8);
-			}	
+				return currentRun.endGroup(currentTime);
+			}
 		}
 		return false;
 	}
@@ -484,6 +485,10 @@ public class Chronotimer {
 		}else if(userInput.equals("PARIND")){
 			individual = false;
 			parallel = true;
+			return true;
+		}else if(userInput.equals("GRP")){
+			individual = false;
+			parallel = false;
 			return true;
 		}else{
 			return false;
@@ -738,6 +743,8 @@ public class Chronotimer {
 					System.out.println("Run number: " + run.getRunNumber() + "     Event Type: " + "Individual");
 				}else if(run.getEventType().equals("PARIND")){
 					System.out.println("Run number: " + run.getRunNumber() + "     Event Type: " + "Individual Parallel");
+				}else if(run.getEventType().equals("GRP")){
+					System.out.println("Run number: " + run.getRunNumber() + "	   Event Type: " + "Group");
 				}else{
 					System.out.println("Run number: " + run.getRunNumber() + "     Event Type: " + "-");
 				}

@@ -20,6 +20,9 @@ public class Run {
 	// added for export functionality
 	private int runNumber;
 	
+	// added for group functionality
+	private long groupStartTime;
+	private int racerNum;
 	
 	public Run(boolean individual, boolean parallel, int runNumInput){
 		beginQueue = new LinkedList<Racer>();
@@ -27,6 +30,7 @@ public class Run {
 		stats = new Stats();
 		this.individual = individual;
 		this.parallel = parallel;
+		racerNum = 1;
 		
 		runNumber = runNumInput;
 		
@@ -73,10 +77,12 @@ public class Run {
 	 * @return event type abbreviation of the event the run is
 	 */
 	public String getEventType(){
-		if(individual == true){
+		if(individual && !parallel){
 			return "IND";
-		}else if(parallel == true){
+		}else if(individual && parallel){
 			return "PARIND";
+		}else if(!individual && !parallel){
+			return "GRP";
 		}else{
 			return null;
 		}
@@ -205,6 +211,19 @@ public class Run {
 		}else{	// expand when implement new race types
 			return false;
 		}
+	}
+	
+	public boolean startGroup(long startTime){
+		groupStartTime = startTime;
+		return true;
+	}
+	
+	public boolean endGroup(long endTime){
+		Racer tmp = new Racer(racerNum);
+		stats.setStart(tmp, groupStartTime);
+		racerNum++;
+		stats.setEnd(tmp, endTime);
+		return true;
 	}
 	
 	/**
