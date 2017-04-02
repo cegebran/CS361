@@ -12,6 +12,7 @@ public class Chronotimer {
 	private Channel one, two, three, four, five, six, seven, eight;
 	private Run currentRun;
 	private Time timer;
+	private String bibNumberString;
 	
 	// IND = individual && !parallel
 	// PARIND = individual && parallel
@@ -32,6 +33,7 @@ public class Chronotimer {
 		this.seven = new Channel(true, false);	
 		this.eight = new Channel(false, false);
 		this.runs = new ArrayList<Run>();
+		this.bibNumberString = "";
 		
 		// Chronotimer is initially powered off within the simulator.
 		// Default settings include no races made, no racers stored.
@@ -614,20 +616,57 @@ public class Chronotimer {
 			if(number == null){
 				return false;
 			}else{
-				// Check if bib number already exists in the current run before adding it to the run
-				boolean checkBibNumValue = currentRun.numExistsInRun(number);
-				if(checkBibNumValue == false){
-					return false;
-				}
 				// Only add if there is a run underway
 				if(currentRun == null){
 					return false;
 				}else{
+					// Check if bib number already exists in the current run before adding it to the run
+					boolean checkBibNumValue = currentRun.numExistsInRun(number);
+					if(checkBibNumValue == false){
+						return false;
+					}
 					// Parse the bib number, then add the racer with their number
 					int racerBibNumber = Integer.parseInt(number);
 					Racer toAdd = new Racer(racerBibNumber);
 					currentRun.addRacer(toAdd);
 					return true;
+				}
+			}
+		}
+	}
+	
+	/**
+	 * Creates a racer with the given bib number in the current run and clears the number string created by inputs from the keypad.
+	 * 
+	 * @return	0 if unsuccessful/printer off and bib Number entered on success
+	 */
+	public int numFromKeypad(){
+		if(power == false){
+			return 0;
+		}else{
+			// Ignore the command if the input is invalid
+			if(bibNumberString == null || bibNumberString.length() == 0){
+				return 0;
+			}else{
+				// Only add if there is a run underway
+				if(currentRun == null){
+					return 0;
+				}else{
+					// Check if bib number already exists in the current run before adding it to the run
+					boolean checkBibNumValue = currentRun.numExistsInRun(bibNumberString);
+					if(checkBibNumValue == false){
+						return 0;
+					}
+					// Parse the bib number, then add the racer with their number
+					int racerBibNumber = Integer.parseInt(bibNumberString);
+					Racer toAdd = new Racer(racerBibNumber);
+					currentRun.addRacer(toAdd);
+					bibNumberString = "";
+					if(printerPower == true){
+						return racerBibNumber;
+					}else{
+						return 0;
+					}
 				}
 			}
 		}
@@ -724,6 +763,66 @@ public class Chronotimer {
 			} catch (IOException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
+			}
+		}
+	}
+	
+	/**
+	 * Adds a number from the keypad to the bib number to add to the queue of racers
+	 * 
+	 * @return	True if successful, False if there was an error/printer off.
+	 */
+	public boolean addToBibNumberString(String numToAdd){
+		if(power == false){
+			return false;
+		}else{
+			// Ignore the command if the input is invalid
+			if(numToAdd == null){
+				return false;
+			}else{
+				if(numToAdd.equals("0")){
+					// Do not allow first number of bib number to be a 0 character
+					if(bibNumberString.length() == 0){
+						return false;
+					}else{
+						bibNumberString = bibNumberString + numToAdd;
+						if(printerPower == true){
+							return true;
+						}else{
+							return false;
+						}
+					}
+				}else{
+					bibNumberString = bibNumberString + numToAdd;
+					if(printerPower == true){
+						return true;
+					}else{
+						return false;
+					}
+				}
+			}
+		}
+	}
+	
+	/**
+	 * Clears the string of the next bib number to add to the queue of racers
+	 * 
+	 * @return	True if successful, False if there was an error/printer off.
+	 */
+	public boolean clearBibNumberString(){
+		if(power == false){
+			return false;
+		}else{
+			if(bibNumberString.length() == 0){
+				return false;
+			}else{
+				if(printerPower == true){
+					bibNumberString = "";
+					return true;
+				}else{
+					bibNumberString = "";
+					return false;
+				}
 			}
 		}
 	}
