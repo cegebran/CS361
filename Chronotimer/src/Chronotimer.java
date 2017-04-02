@@ -197,13 +197,13 @@ public class Chronotimer {
 	 * Depending on the channel, this either marks the start of a race or end to one.
 	 * 
 	 * @param inputChannel	Channel that is being triggered
-	 * @return	True if trigger is valid (queue is not empty for start, racer has started if there
-	 * is an end mark), False otherwise.
+	 * @return	0 if trigger is valid (queue is not empty for start, racer has started if there
+	 * is an end mark), Racer number otherwise.
 	 */
-	public boolean trigger(String inputChannel){
+	public int trigger(String inputChannel){
 		// If there is not race underway, return false (invalid input - ignore)
 		if(currentRun == null){
-			return false;
+			return 0;
 		}
 		
 		// Parse the number from the input channel, check to see if it's a 'Start' or 'Finish' one
@@ -212,70 +212,149 @@ public class Chronotimer {
 		// If the channel is # and is 'On'... if 'Start' channel: start racer. else: end current race
 		if(number == 1 && one.getOn() == true){
 			if(one.getStart() == true){
-				return currentRun.startRacer(timer.getCurrentTime(),1);
-				
+				Racer racer = currentRun.startRacer(timer.getCurrentTime(),1);
+				if(racer == null){
+					return 0;
+				}else{
+					return racer.getBib();
+				}
 			}
 			else{
-				return currentRun.endRacer(timer.getCurrentTime(),1);
+				Racer racer = currentRun.endRacer(timer.getCurrentTime(),1);
+				if(racer == null){
+					return 0;
+				}else{
+					return racer.getBib();
+				}
 			}	
 		}
 		else if(number == 2 && two.getOn() == true){
 			if(two.getStart() == true){
-				return currentRun.startRacer(timer.getCurrentTime(),2);
+				Racer racer = currentRun.startRacer(timer.getCurrentTime(),2);
+				if(racer == null){
+					return 0;
+				}else{
+					return racer.getBib();
+				}
 			}
 			else{
-				return currentRun.endRacer(timer.getCurrentTime(),2);
+				Racer racer = currentRun.endRacer(timer.getCurrentTime(),2);
+				if(racer == null){
+					return 0;
+				}else{
+					return racer.getBib();
+				}
 			}	
 		}
 		else if(number == 3 && three.getOn() == true){
 			if(three.getStart() == true){
-				return currentRun.startRacer(timer.getCurrentTime(),3);
+				Racer racer = currentRun.startRacer(timer.getCurrentTime(),3);
+				if(racer == null){
+					return 0;
+				}else{
+					return racer.getBib();
+				}
 			}
 			else{
-				return currentRun.endRacer(timer.getCurrentTime(),3);
+				Racer racer = currentRun.endRacer(timer.getCurrentTime(),3);
+				if(racer == null){
+					return 0;
+				}else{
+					return racer.getBib();
+				}
 			}	
 		}
 		else if(number == 4 && four.getOn() == true){
 			if(four.getStart() == true){
-				return currentRun.startRacer(timer.getCurrentTime(),4);
+				Racer racer =  currentRun.startRacer(timer.getCurrentTime(),4);
+				if(racer == null){
+					return 0;
+				}else{
+					return racer.getBib();
+				}
 			}
 			else{
-				return currentRun.endRacer(timer.getCurrentTime(),4);
+				Racer racer = currentRun.endRacer(timer.getCurrentTime(),4);
+				if(racer == null){
+					return 0;
+				}else{
+					return racer.getBib();
+				}
 			}	
 		}
 		else if(number == 5 && five.getOn() == true){
 			if(five.getStart() == true){
-				return currentRun.startRacer(timer.getCurrentTime(),5);
+				Racer racer = currentRun.startRacer(timer.getCurrentTime(),5);
+				if(racer == null){
+					return 0;
+				}else{
+					return racer.getBib();
+				}
 			}
 			else{
-				return currentRun.endRacer(timer.getCurrentTime(),5);
+				Racer racer = currentRun.endRacer(timer.getCurrentTime(),5);
+				if(racer == null){
+					return 0;
+				}else{
+					return racer.getBib();
+				}
 			}	
 		}
 		else if(number == 6 && six.getOn() == true){
 			if(six.getStart() == true){
-				return currentRun.startRacer(timer.getCurrentTime(),6);
+				Racer racer = currentRun.startRacer(timer.getCurrentTime(),6);
+				if(racer == null){
+					return 0;
+				}else{
+					return racer.getBib();
+				}
 			}
 			else{
-				return currentRun.endRacer(timer.getCurrentTime(),6);
+				Racer racer = currentRun.endRacer(timer.getCurrentTime(),6);
+				if(racer == null){
+					return 0;
+				}else{
+					return racer.getBib();
+				}
 			}	
 		}
 		else if(number == 7 && seven.getOn() == true){
 			if(seven.getStart() == true){
-				return currentRun.startRacer(timer.getCurrentTime(),7);
+				Racer racer = currentRun.startRacer(timer.getCurrentTime(),7);
+				if(racer == null){
+					return 0;
+				}else{
+					return racer.getBib();
+				}
 			}
 			else{
-				return currentRun.endRacer(timer.getCurrentTime(),7);
+				Racer racer = currentRun.endRacer(timer.getCurrentTime(),7);
+				if(racer == null){
+					return 0;
+				}else{
+					return racer.getBib();
+				}
 			}	
 		}
 		else if(number == 8 && eight.getOn() == true){
 			if(eight.getStart() == true){
-				return currentRun.startRacer(timer.getCurrentTime(),8);
+				Racer racer = currentRun.startRacer(timer.getCurrentTime(),8);
+				if(racer == null){
+					return 0;
+				}else{
+					return racer.getBib();
+				}
 			}
 			else{
-				return currentRun.endRacer(timer.getCurrentTime(),8);
+				Racer racer = currentRun.endRacer(timer.getCurrentTime(),8);
+				if(racer == null){
+					return 0;
+				}else{
+					return racer.getBib();
+				}
 			}	
 		}
-		return false;
+		return 0;
 	}
 	
 	/**
@@ -283,13 +362,13 @@ public class Chronotimer {
 	 * 
 	 * @param inputChannel	Channel that is being triggered
 	 * @param time	Time at which channel was/is to be triggered
-	 * @return	True if trigger is valid (queue is not empty for start, racer has started if there
-	 * is an end mark), False otherwise.
+	 * @return	Bib Number if trigger is valid (queue is not empty for start, racer has started if there
+	 * is an end mark) or if a group event the num 11111 will be returned , 0 otherwise.
 	 */
-	public boolean triggerTime(String inputChannel, String time){
+	public int triggerTime(String inputChannel, String time){
 		// If there is not race underway, return false (invalid input - ignore)
 		if(currentRun == null){
-			return false;
+			return 0;
 		}
 		
 		// Parse time (string) into doubles for easier conversion into a long (hours, minutes, seconds)
@@ -310,69 +389,149 @@ public class Chronotimer {
 		// If the channel is # and is 'On'... if 'Start' channel: start racer. else: end current race
 		if(number == 1 && one.getOn() == true){
 			if(!individual && !parallel){
-				return currentRun.startRacer(currentTime,1);
+				Racer racer = currentRun.startRacer(currentTime,1);
+				if(racer == null){
+					return 0;
+				}else{
+					return racer.getBib();
+				}
 			}
 			else{
-				return currentRun.startGroup(currentTime);
+				Boolean returnValue = currentRun.startGroup(currentTime);
+				if(returnValue == true){
+					return 11111;
+				}else{
+					return 0;
+				}
 			}
 		}
 		else if(number == 2 && two.getOn() == true){
 			if(!individual && !parallel){
-				return currentRun.endRacer(currentTime,2);
+				Racer racer = currentRun.endRacer(currentTime,2);
+				if(racer == null){
+					return 0;
+				}else{
+					return racer.getBib();
+				}
 			}
 			else{
-				return currentRun.endGroup(currentTime);
+				Boolean returnValue = currentRun.endGroup(currentTime);
+				if(returnValue == true){
+					return 11111;
+				}else{
+					return 0;
+				}
 			}
 		}
 		else if(number == 3 && three.getOn() == true){
 			if(!individual && !parallel){
-				return currentRun.startRacer(currentTime,1);
+				Racer racer = currentRun.startRacer(currentTime,1);
+				if(racer == null){
+					return 0;
+				}else{
+					return racer.getBib();
+				}
 			}
 			else{
-				return currentRun.startGroup(currentTime);
+				Boolean returnValue = currentRun.startGroup(currentTime);
+				if(returnValue == true){
+					return 11111;
+				}else{
+					return 0;
+				}
 			}
 		}
 		else if(number == 4 && four.getOn() == true){
 			if(!individual && !parallel){
-				return currentRun.endRacer(currentTime,2);
+				Racer racer = currentRun.endRacer(currentTime,2);
+				if(racer == null){
+					return 0;
+				}else{
+					return racer.getBib();
+				}
 			}
 			else{
-				return currentRun.endGroup(currentTime);
+				Boolean returnValue = currentRun.endGroup(currentTime);
+				if(returnValue == true){
+					return 11111;
+				}else{
+					return 0;
+				}
 			}
 		}
 		else if(number == 5 && five.getOn() == true){
 			if(!individual && !parallel){
-				return currentRun.startRacer(currentTime,1);
+				Racer racer = currentRun.startRacer(currentTime,1);
+				if(racer == null){
+					return 0;
+				}else{
+					return racer.getBib();
+				}
 			}
 			else{
-				return currentRun.startGroup(currentTime);
+				Boolean returnValue = currentRun.startGroup(currentTime);
+				if(returnValue == true){
+					return 11111;
+				}else{
+					return 0;
+				}
 			}
 		}
 		else if(number == 6 && six.getOn() == true){
 			if(!individual && !parallel){
-				return currentRun.endRacer(currentTime,2);
+				Racer racer = currentRun.endRacer(currentTime,2);
+				if(racer == null){
+					return 0;
+				}else{
+					return racer.getBib();
+				}
 			}
 			else{
-				return currentRun.endGroup(currentTime);
+				Boolean returnValue = currentRun.endGroup(currentTime);
+				if(returnValue == true){
+					return 11111;
+				}else{
+					return 0;
+				}
 			}
 		}
 		else if(number == 7 && seven.getOn() == true){
 			if(!individual && !parallel){
-				return currentRun.startRacer(currentTime,1);
+				Racer racer = currentRun.startRacer(currentTime,1);
+				if(racer == null){
+					return 0;
+				}else{
+					return racer.getBib();
+				}
 			}
 			else{
-				return currentRun.startGroup(currentTime);
+				Boolean returnValue = currentRun.startGroup(currentTime);
+				if(returnValue == true){
+					return 11111;
+				}else{
+					return 0;
+				}
 			}
 		}
 		else if(number == 8 && eight.getOn() == true){
 			if(!individual && !parallel){
-				return currentRun.endRacer(currentTime,2);
+				Racer racer = currentRun.endRacer(currentTime,2);
+				if(racer == null){
+					return 0;
+				}else{
+					return racer.getBib();
+				}
 			}
 			else{
-				return currentRun.endGroup(currentTime);
+				Boolean returnValue = currentRun.endGroup(currentTime);
+				if(returnValue == true){
+					return 11111;
+				}else{
+					return 0;
+				}
 			}
 		}
-		return false;
+		return 0;
 	}
 	
 	/**
@@ -662,11 +821,7 @@ public class Chronotimer {
 					Racer toAdd = new Racer(racerBibNumber);
 					currentRun.addRacer(toAdd);
 					bibNumberString = "";
-					if(printerPower == true){
-						return racerBibNumber;
-					}else{
-						return 0;
-					}
+					return racerBibNumber;
 				}
 			}
 		}
@@ -714,8 +869,8 @@ public class Chronotimer {
 		if(power == false){
 			return false;
 		}else{
-			boolean triggered1 = trigger("1");
-			if(triggered1 == false){
+			int triggered1 = trigger("1");
+			if(triggered1 == 0){
 				return false;
 			}else{
 				return true;
@@ -732,8 +887,8 @@ public class Chronotimer {
 		if(power == false){
 			return false;
 		}else{
-			boolean triggered2 = trigger("2");
-			if(triggered2 == false){
+			int triggered2 = trigger("2");
+			if(triggered2 == 0){
 				return false;
 			}else{
 				return true;
@@ -770,14 +925,14 @@ public class Chronotimer {
 	/**
 	 * Adds a number from the keypad to the bib number to add to the queue of racers
 	 * 
-	 * @return	True if successful, False if there was an error/printer off.
+	 * @return	True if successful, False if there was an error
 	 */
 	public boolean addToBibNumberString(String numToAdd){
 		if(power == false){
 			return false;
 		}else{
 			// Ignore the command if the input is invalid
-			if(numToAdd == null){
+			if(numToAdd == null || bibNumberString == null){
 				return false;
 			}else{
 				if(numToAdd.equals("0")){
@@ -786,19 +941,11 @@ public class Chronotimer {
 						return false;
 					}else{
 						bibNumberString = bibNumberString + numToAdd;
-						if(printerPower == true){
-							return true;
-						}else{
-							return false;
-						}
+						return true;
 					}
 				}else{
 					bibNumberString = bibNumberString + numToAdd;
-					if(printerPower == true){
-						return true;
-					}else{
-						return false;
-					}
+					return true;
 				}
 			}
 		}
@@ -807,7 +954,7 @@ public class Chronotimer {
 	/**
 	 * Clears the string of the next bib number to add to the queue of racers
 	 * 
-	 * @return	True if successful, False if there was an error/printer off.
+	 * @return	True if successful, False if there was an error
 	 */
 	public boolean clearBibNumberString(){
 		if(power == false){
@@ -816,13 +963,8 @@ public class Chronotimer {
 			if(bibNumberString.length() == 0){
 				return false;
 			}else{
-				if(printerPower == true){
-					bibNumberString = "";
-					return true;
-				}else{
-					bibNumberString = "";
-					return false;
-				}
+				bibNumberString = "";
+				return true;
 			}
 		}
 	}

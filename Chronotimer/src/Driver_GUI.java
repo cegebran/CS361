@@ -758,7 +758,10 @@ public class Driver_GUI extends JFrame{
 	        	try {
 	        		boolean bibNumEnter = chronotimer.addToBibNumberString("0");
 	        		if(bibNumEnter == true){
-	        			printerAddLine("0 added to Bib Number to Queue");
+	        			boolean printerPower = chronotimer.getPrinterPower();
+	        			if(printerPower == true){
+	        				printerAddLine("0 added to Bib Number to Queue");
+	        			}
 	        		}
 	    		} catch (Exception e2) {
 	    			e2.printStackTrace();
@@ -771,7 +774,10 @@ public class Driver_GUI extends JFrame{
 	        	try {
 	        		boolean bibNumEnter = chronotimer.addToBibNumberString("1");
 	        		if(bibNumEnter == true){
-	        			printerAddLine("1 added to Bib Number to Queue");
+	        			boolean printerPower = chronotimer.getPrinterPower();
+	        			if(printerPower == true){
+	        				printerAddLine("1 added to Bib Number to Queue");
+	        			}
 	        		}
 	    		} catch (Exception e2) {
 	    			e2.printStackTrace();
@@ -784,7 +790,10 @@ public class Driver_GUI extends JFrame{
 	        	try {
 	        		boolean bibNumEnter = chronotimer.addToBibNumberString("2");
 	        		if(bibNumEnter == true){
-	        			printerAddLine("2 added to Bib Number to Queue");
+	        			boolean printerPower = chronotimer.getPrinterPower();
+	        			if(printerPower == true){
+	        				printerAddLine("2 added to Bib Number to Queue");
+	        			}
 	        		}
 	    		} catch (Exception e2) {
 	    			e2.printStackTrace();
@@ -797,7 +806,10 @@ public class Driver_GUI extends JFrame{
 	        	try {
 	        		boolean bibNumEnter = chronotimer.addToBibNumberString("3");
 	        		if(bibNumEnter == true){
-	        			printerAddLine("3 added to Bib Number to Queue");
+	        			boolean printerPower = chronotimer.getPrinterPower();
+	        			if(printerPower == true){
+	        				printerAddLine("3 added to Bib Number to Queue");
+	        			}
 	        		}
 	    		} catch (Exception e2) {
 	    			e2.printStackTrace();
@@ -810,7 +822,10 @@ public class Driver_GUI extends JFrame{
 	        	try {
 	        		boolean bibNumEnter = chronotimer.addToBibNumberString("4");
 	        		if(bibNumEnter == true){
-	        			printerAddLine("4 added to Bib Number to Queue");
+	        			boolean printerPower = chronotimer.getPrinterPower();
+	        			if(printerPower == true){
+	        				printerAddLine("4 added to Bib Number to Queue");
+	        			}
 	        		}
 	    		} catch (Exception e2) {
 	    			e2.printStackTrace();
@@ -823,7 +838,10 @@ public class Driver_GUI extends JFrame{
 	        	try {
 	        		boolean bibNumEnter = chronotimer.addToBibNumberString("5");
 	        		if(bibNumEnter == true){
-	        			printerAddLine("5 added to Bib Number to Queue");
+	        			boolean printerPower = chronotimer.getPrinterPower();
+	        			if(printerPower == true){
+	        				printerAddLine("5 added to Bib Number to Queue");
+	        			}
 	        		}
 	    		} catch (Exception e2) {
 	    			e2.printStackTrace();
@@ -836,7 +854,10 @@ public class Driver_GUI extends JFrame{
 	        	try {
 	        		boolean bibNumEnter = chronotimer.addToBibNumberString("6");
 	        		if(bibNumEnter == true){
-	        			printerAddLine("6 added to Bib Number to Queue");
+	        			boolean printerPower = chronotimer.getPrinterPower();
+	        			if(printerPower == true){
+	        				printerAddLine("6 added to Bib Number to Queue");
+	        			}
 	        		}
 	    		} catch (Exception e2) {
 	    			e2.printStackTrace();
@@ -849,7 +870,10 @@ public class Driver_GUI extends JFrame{
 	        	try {
 	        		boolean bibNumEnter = chronotimer.addToBibNumberString("7");
 	        		if(bibNumEnter == true){
-	        			printerAddLine("7 added to Bib Number to Queue");
+	        			boolean printerPower = chronotimer.getPrinterPower();
+	        			if(printerPower == true){
+	        				printerAddLine("7 added to Bib Number to Queue");
+	        			}
 	        		}
 	    		} catch (Exception e2) {
 	    			e2.printStackTrace();
@@ -862,7 +886,10 @@ public class Driver_GUI extends JFrame{
 	        	try {
 	        		boolean bibNumEnter = chronotimer.addToBibNumberString("8");
 	        		if(bibNumEnter == true){
-	        			printerAddLine("8 added to Bib Number to Queue");
+	        			boolean printerPower = chronotimer.getPrinterPower();
+	        			if(printerPower == true){
+	        				printerAddLine("8 added to Bib Number to Queue");
+	        			}
 	        		}
 	    		} catch (Exception e2) {
 	    			e2.printStackTrace();
@@ -875,7 +902,10 @@ public class Driver_GUI extends JFrame{
 	        	try {
 	        		boolean bibNumEnter = chronotimer.addToBibNumberString("9");
 	        		if(bibNumEnter == true){
-	        			printerAddLine("9 added to Bib Number to Queue");
+	        			boolean printerPower = chronotimer.getPrinterPower();
+	        			if(printerPower == true){
+	        				printerAddLine("9 added to Bib Number to Queue");
+	        			}
 	        		}
 	    		} catch (Exception e2) {
 	    			e2.printStackTrace();
@@ -888,7 +918,10 @@ public class Driver_GUI extends JFrame{
 	        	try {
 	        		boolean clearedString = chronotimer.clearBibNumberString();
 	        		if(clearedString == true){
-	        			printerAddLine("Bib # to Queue Cleared");
+	        			boolean printerPower = chronotimer.getPrinterPower();
+	        			if(printerPower == true){
+	        				printerAddLine("Bib # to Queue Cleared");
+	        			}
 	        		}
 	    		} catch (Exception e2) {
 	    			e2.printStackTrace();
@@ -902,8 +935,21 @@ public class Driver_GUI extends JFrame{
 		        		int bibNumbAdded = chronotimer.numFromKeypad();
 		        		if(bibNumbAdded != 0){
 		        			String toPrintString = "Bib Num: " + bibNumbAdded + " Added to Run";
-		        			printerAddLine(toPrintString);
+		        			boolean printerPower = chronotimer.getPrinterPower();
+		        			if(printerPower == true){
+		        				printerAddLine(toPrintString);
+		        			}
 		        		}
+		    		} catch (Exception e2) {
+		    			e2.printStackTrace();
+		    		}
+		        }
+		});
+		
+		start1Btn.addActionListener(new ActionListener() {
+			 public void actionPerformed(ActionEvent e){
+		        	try {
+		        		
 		    		} catch (Exception e2) {
 		    			e2.printStackTrace();
 		    		}

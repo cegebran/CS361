@@ -169,8 +169,8 @@ public class Driver {
 					if(chronotimer.getPower() == false){
 						System.out.println("The Chronotimer is off");
 					}else{
-						boolean triggered = chronotimer.trigger(userInputParse[1]);
-						if(triggered == true){
+						int triggered = chronotimer.trigger(userInputParse[1]);
+						if(triggered != 0){
 							System.out.println("The channel has been triggered");
 						}else{
 							System.out.println("The channel has not been triggered");

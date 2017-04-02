@@ -112,9 +112,9 @@ public class Run {
 	 * @param time	Current time used to mark racer's 'Start time'
 	 * @return	True if successful, False otherwise
 	 */
-	public boolean startRacer(long time, int sensorNum){
+	public Racer startRacer(long time, int sensorNum){
 		if(beginQueue.isEmpty()){
-			return false;
+			return null;
 		}
 		
 		if(individual == true){
@@ -123,7 +123,7 @@ public class Run {
 			endQueue.addLast(racer);
 			stats.setEnd(racer, 0);
 			stats.setStart(racer, time);
-			return true;
+			return racer;
 		}else if(parallel == true){
 			Racer racer = beginQueue.removeFirst();
 			
@@ -144,9 +144,9 @@ public class Run {
 					stats.setEnd(racer, 0);
 					stats.setStart(racer, time);
 					usedLanes[0] = true;
-					return true;
+					return racer;
 				}else{
-					return false;
+					return null;
 				}
 			}else if(sensorNum == 3){
 				int counter = 0;
@@ -163,9 +163,9 @@ public class Run {
 					stats.setEnd(racer, 0);
 					stats.setStart(racer, time);
 					usedLanes[1] = true;
-					return true;
+					return racer;
 				}else{
-					return false;
+					return null;
 				}
 			}else if(sensorNum == 5){
 				int counter = 0;
@@ -182,9 +182,9 @@ public class Run {
 					stats.setEnd(racer, 0);
 					stats.setStart(racer, time);
 					usedLanes[2] = true;
-					return true;
+					return racer;
 				}else{
-					return false;
+					return null;
 				}
 			}else if(sensorNum == 7){
 				int counter = 0;
@@ -201,15 +201,15 @@ public class Run {
 					stats.setEnd(racer, 0);
 					stats.setStart(racer, time);
 					usedLanes[3] = true;
-					return true;
+					return racer;
 				}else{
-					return false;
+					return null;
 				}
 			}else{
-				return false;
+				return null;
 			}
 		}else{	// expand when implement new race types
-			return false;
+			return null;
 		}
 	}
 	
@@ -232,70 +232,70 @@ public class Run {
 	 * @param time	Current time to mark the racer's 'End time'
 	 * @return	True if successful, False otherwise
 	 */
-	public boolean endRacer(long time, int sensorNum){
+	public Racer endRacer(long time, int sensorNum){
 		// If no one is currently racing, return false
 		
 		if(individual == true){
 			if(endQueue.isEmpty()){
-				return false;
+				return null;
 			}
 			Racer racer = endQueue.removeFirst();
 			stats.setEnd(racer, time);
-			return true;
+			return racer;
 		}else if(parallel == true){
 			if(sensorNum == 2){
 				if(usedLanes[0] == true){
 					if(pendingQueue12.isEmpty() != true){
 						Racer racer = pendingQueue12.removeFirst();
 						stats.setEnd(racer, time);
-						return true;
+						return racer;
 					}else{
-						return false;
+						return null;
 					}
 				}else{
-					return false;
+					return null;
 				}
 			}else if(sensorNum == 4){
 				if(usedLanes[1] == true){
 					if(pendingQueue34.isEmpty() != true){
 						Racer racer = pendingQueue34.removeFirst();
 						stats.setEnd(racer, time);
-						return true;
+						return racer;
 					}else{
-						return false;
+						return null;
 					}
 				}else{
-					return false;
+					return null;
 				}
 			}else if(sensorNum == 6){
 				if(usedLanes[2] == true){
 					if(pendingQueue56.isEmpty() != true){
 						Racer racer = pendingQueue56.removeFirst();
 						stats.setEnd(racer, time);
-						return true;
+						return racer;
 					}else{
-						return false;
+						return null;
 					}
 				}else{
-					return false;
+					return null;
 				}
 			}else if(sensorNum == 8){
 				if(usedLanes[3] == true){
 					if(pendingQueue78.isEmpty() != true){
 						Racer racer = pendingQueue78.removeFirst();
 						stats.setEnd(racer, time);
-						return true;
+						return racer;
 					}else{
-						return false;
+						return null;
 					}
 				}else{
-					return false;
+					return null;
 				}
 			}else{
-				return false;
+				return null;
 			}
 		}else{
-			return false;
+			return null;
 		}
 	}
 	

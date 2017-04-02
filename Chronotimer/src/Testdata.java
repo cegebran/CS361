@@ -42,8 +42,8 @@ public class Testdata {
 						System.out.println("The channel has been toggled");
 					}
 					else if(array[1].equals("TRIG")){
-						boolean test = chronotimer.triggerTime(array[2], array[0]);
-						if(test == true){
+						int test = chronotimer.triggerTime(array[2], array[0]);
+						if(test != 0){
 							System.out.println("Channel has been triggered");
 						}
 						else{
