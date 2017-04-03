@@ -7,20 +7,19 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.awt.event.KeyAdapter;
-import java.awt.event.KeyEvent;
-import javax.swing.event.ListSelectionEvent;
-import javax.swing.event.ListSelectionListener;
 import com.google.gson.Gson;
-import com.google.gson.reflect.TypeToken;
 
-public class Client extends JFrame{
-static String fname = "";
-static String lname = "";
-static String departmentString = "";
-static String phoneString = "";
-static String titleString = "";
-static String genderString = "";
+public class Client extends JFrame {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+	static String fname = "";
+	static String lname = "";
+	static String departmentString = "";
+	static String phoneString = "";
+	static String titleString = "";
+	static String genderString = "";
 
 	public static void main(String[] args) {
 		
@@ -28,9 +27,11 @@ static String genderString = "";
 		myGUI.setVisible(true);
 		myGUI.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		System.out.println("in the client");
-	
+
 	}
-	public Client(){//Making a GUI out of a constructor
+	
+	public Client(){
+		
 		final JTextField firstName = new JTextField("", 15);
 		
 		final JTextField lastName = new JTextField("", 15);
@@ -45,18 +46,21 @@ static String genderString = "";
 		    	  genderString = "male";
 		      }
 		});
+		
 		JRadioButton genderFemale = new JRadioButton("Female");
 		genderFemale.addActionListener(new ActionListener() {
 		      public void actionPerformed(ActionEvent e) {
 		    	  genderString = "female";
 		      }
 		});
+		
 		JRadioButton genderOther = new JRadioButton("Other");
 		genderOther.addActionListener(new ActionListener() {
 		      public void actionPerformed(ActionEvent e) {
 		    	  genderString = "other";
 		      }
 		});
+		
 		ButtonGroup group = new ButtonGroup();
 		group.add(genderMale);
 		group.add(genderFemale);
@@ -69,12 +73,13 @@ static String genderString = "";
 			}
             
         });
-//		JScrollPane listScroller = new JScrollPane(listOfTitle);
-//		listScroller.setPreferredSize(new Dimension(250, 80));
+		
 		final JButton add = new JButton("Add");
 		add.addActionListener(new ActionListener() {
-	        public void actionPerformed(ActionEvent e){
-	        	try {
+	        
+			public void actionPerformed(ActionEvent e){
+	        	
+				try {
 	    			// Client will connect to this location
 	    			URL site = new URL("http://localhost:8000/sendresults");
 	    			HttpURLConnection conn = (HttpURLConnection) site.openConnection();
@@ -86,7 +91,6 @@ static String genderString = "";
 	    			DataOutputStream out = new DataOutputStream(conn.getOutputStream());
 
 	    			// build a string that contains JSON from console
-	    			
 	    			fname = firstName.getText();
 	    			lname = lastName.getText();
 	    			departmentString = department.getText();
@@ -99,16 +103,12 @@ static String genderString = "";
 	    			out.writeBytes(content);
 	    			out.flush();
 	    			out.close();
-
-	    			System.out.println("Done sent to server");
-
 	    			InputStreamReader inputStr = new InputStreamReader(conn.getInputStream());
 
 	    			// string to hold the result of reading in the response
 	    			StringBuilder sb = new StringBuilder();
 
-	    			// read the characters from the request byte by byte and build up
-	    			// the Response
+	    			// read the characters from the request byte by byte and build up the response
 	    			int nextChar;
 	    			while ((nextChar = inputStr.read()) > -1) {
 	    				sb = sb.append((char) nextChar);
@@ -120,10 +120,13 @@ static String genderString = "";
 	    		}
 	        }
 	    });
+		
 		JButton print = new JButton("Print");
 		print.addActionListener(new ActionListener() {
-	        public void actionPerformed(ActionEvent e){
-	        	try {
+	        
+			public void actionPerformed(ActionEvent e){
+	        	
+				try {
 	    			// Client will connect to this location
 	    			URL site = new URL("http://localhost:8000/sendresults");
 	    			HttpURLConnection conn = (HttpURLConnection) site.openConnection();
@@ -141,16 +144,12 @@ static String genderString = "";
 	    			out.writeBytes(content);
 	    			out.flush();
 	    			out.close();
-
-	    			System.out.println("Done sent to server");
-
 	    			InputStreamReader inputStr = new InputStreamReader(conn.getInputStream());
 
 	    			// string to hold the result of reading in the response
 	    			StringBuilder sb = new StringBuilder();
 
-	    			// read the characters from the request byte by byte and build up
-	    			// the Response
+	    			// read the characters from the request byte by byte and build up the response
 	    			int nextChar;
 	    			while ((nextChar = inputStr.read()) > -1) {
 	    				sb = sb.append((char) nextChar);
@@ -162,10 +161,13 @@ static String genderString = "";
 	    		}
 	        }
 	    });
+		
 		JButton clear = new JButton("Clear");
 		clear.addActionListener(new ActionListener() {
-	        public void actionPerformed(ActionEvent e){
-	        	try {
+	        
+			public void actionPerformed(ActionEvent e){
+	        	
+				try {
 	    			// Client will connect to this location
 	    			URL site = new URL("http://localhost:8000/sendresults");
 	    			HttpURLConnection conn = (HttpURLConnection) site.openConnection();
@@ -183,16 +185,12 @@ static String genderString = "";
 	    			out.writeBytes(content);
 	    			out.flush();
 	    			out.close();
-
-	    			System.out.println("Done sent to server");
-
 	    			InputStreamReader inputStr = new InputStreamReader(conn.getInputStream());
 
 	    			// string to hold the result of reading in the response
 	    			StringBuilder sb = new StringBuilder();
 
-	    			// read the characters from the request byte by byte and build up
-	    			// the Response
+	    			// read the characters from the request byte by byte and build up the response
 	    			int nextChar;
 	    			while ((nextChar = inputStr.read()) > -1) {
 	    				sb = sb.append((char) nextChar);
@@ -207,8 +205,10 @@ static String genderString = "";
 		
 		JButton exit = new JButton("Exit");
 		exit.addActionListener(new ActionListener() {
-	        public void actionPerformed(ActionEvent e){
-	        	Container frame = add.getParent();
+	        
+			public void actionPerformed(ActionEvent e) {
+	        	
+				Container frame = add.getParent();
 	            do 
 	                frame = frame.getParent(); 
 	            while (!(frame instanceof JFrame));                                      
@@ -243,7 +243,6 @@ static String genderString = "";
 		myPanel1.add(myPanel2);
 		myPanel2.setVisible(true);
 		
-		
 		JPanel myPanel3 = new JPanel();
 		myPanel3.setLayout(new GridLayout(0, 4));
 		myPanel3.add(add);
@@ -254,6 +253,7 @@ static String genderString = "";
 		myPanel3.setVisible(true);		
 		
 		getContentPane().add(myPanel1);	
+		
 	}
 
 	private static String getJSON() {
@@ -263,7 +263,7 @@ static String genderString = "";
 		Gson g = new Gson();
 		String json = g.toJson(em);
 		return json;
+		
 	}
 
-	
 }

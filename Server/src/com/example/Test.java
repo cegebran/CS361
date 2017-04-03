@@ -46,6 +46,7 @@ public class Test {
     }
 
     static class PostHandler implements HttpHandler {
+    	
         public void handle(HttpExchange transmission) throws IOException {
 
             //  shared data that is used with other handlers
@@ -88,7 +89,7 @@ public class Test {
 			// set up the header
 			String response = "";
             String[] tokens = sharedResponse.split(";");
-            if(tokens[0].equals("ADD")){
+            if(tokens[0].equals("ADD")) {
             	try {
     				if (!sharedResponse.isEmpty()) {
     					ArrayList<Employee> fromJson = g.fromJson(tokens[1],
@@ -111,15 +112,13 @@ public class Test {
     			}
                 response += "\nEnd of response\n";
                 System.out.println(response);
-            }
-            else if(tokens[0].equals("PRINT")){
+            } else if(tokens[0].equals("PRINT")) {
             	Iterator<Employee> it = employees.iterator();
             	while(it.hasNext()){
             		System.out.println(it.next().toString());
             	}
             	System.out.println("\nEnd of response");
-            }
-            else if(tokens[0].equals("CLEAR")){
+            } else if(tokens[0].equals("CLEAR")) {
             	employees.clear();
             	System.out.println("\nEnd of response");
             }
@@ -130,44 +129,17 @@ public class Test {
             os.write(response.getBytes());
             os.close();
         }
+        
     }
     
     static class HtmlHandler implements HttpHandler {
+    	
         public void handle(HttpExchange transmission) throws IOException {
-
-        //  shared data that is used with other handlers
-            sharedResponse = "";
-
-            System.out.println(transmission.getRequestURI().getPath());
-            // set up a stream to read the body of the request
-            InputStream inputStr = transmission.getRequestBody();
 
             // set up a stream to write out the body of the response
             OutputStream outputStream = transmission.getResponseBody();
 
-            // string to hold the result of reading in the request
-            StringBuilder sb = new StringBuilder();
-
-            // read the characters from the request byte by byte and build up the sharedResponse
-            int nextChar = inputStr.read();
-            while (nextChar > -1) {
-                sb=sb.append((char)nextChar);
-                nextChar=inputStr.read();
-            }
-
-            // create our response String to use in other handler
-            sharedResponse = sb.toString();
-
-            // respond to the POST with ROGER
-            String postResponse = "ROGER JSON RECEIVED";
-
-            System.out.println("Begin of response\n");
-            System.out.println("response: " + sharedResponse);
- 		    
- 		    
-         		  
- 		    System.out.println("Start");
- 		    String htmlString = "";
+            String htmlString = "";
             StringBuilder result = new StringBuilder();
 			result.append("<!DOCTYPE html>").append("<html>").append("<head>");
 			result.append("<link href=\"http://localhost:8000/displayresults/style.css\" rel=\"stylesheet\" type=\"text/css\" />");
@@ -191,7 +163,6 @@ public class Test {
 
 			// convert to String
 			htmlString = result.toString();
-			System.out.println("End" + htmlString);
 			
             // assume that stuff works all the time
             transmission.sendResponseHeaders(300, htmlString.length());
@@ -202,35 +173,16 @@ public class Test {
             outputStream.close();
             
         }
+        
     }
     
     static class CssHandler implements HttpHandler {
+    	
         public void handle(HttpExchange transmission) throws IOException {
 
-        	//  shared data that is used with other handlers
-            sharedResponse = "";
-
-            System.out.println(transmission.getRequestURI().getPath());
-            // set up a stream to read the body of the request
-            InputStream inputStr = transmission.getRequestBody();
-
-            // set up a stream to write out the body of the response
+        	// set up a stream to write out the body of the response
             OutputStream outputStream = transmission.getResponseBody();
 
-            // string to hold the result of reading in the request
-            StringBuilder sb = new StringBuilder();
-
-            // read the characters from the request byte by byte and build up the sharedResponse
-            int nextChar = inputStr.read();
-            while (nextChar > -1) {
-                sb=sb.append((char)nextChar);
-                nextChar=inputStr.read();
-            }
-
-            // create our response String to use in other handler
-            sharedResponse = sb.toString();
-
-            
             //hard code CSS
             StringBuilder stringBuilder = new StringBuilder();
 
@@ -266,5 +218,7 @@ public class Test {
             outputStream.close();
             
         }
+        
     }
+    
 }
