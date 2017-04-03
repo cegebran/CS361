@@ -13,4 +13,8 @@ public class Racer {
 	public int getBib(){
 		return this.bib;
 	}
+	
+	public void setBib(int bib){
+		this.bib = bib;
+	}
 }

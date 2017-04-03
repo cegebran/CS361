@@ -388,7 +388,7 @@ public class Chronotimer {
 		
 		// If the channel is # and is 'On'... if 'Start' channel: start racer. else: end current race
 		if(number == 1 && one.getOn() == true){
-			if(!individual && !parallel){
+			if(individual){
 				Racer racer = currentRun.startRacer(currentTime,1);
 				if(racer == null){
 					return 0;
@@ -406,7 +406,7 @@ public class Chronotimer {
 			}
 		}
 		else if(number == 2 && two.getOn() == true){
-			if(!individual && !parallel){
+			if(individual){
 				Racer racer = currentRun.endRacer(currentTime,2);
 				if(racer == null){
 					return 0;
@@ -424,7 +424,7 @@ public class Chronotimer {
 			}
 		}
 		else if(number == 3 && three.getOn() == true){
-			if(!individual && !parallel){
+			if(individual){
 				Racer racer = currentRun.startRacer(currentTime,1);
 				if(racer == null){
 					return 0;
@@ -442,7 +442,7 @@ public class Chronotimer {
 			}
 		}
 		else if(number == 4 && four.getOn() == true){
-			if(!individual && !parallel){
+			if(individual){
 				Racer racer = currentRun.endRacer(currentTime,2);
 				if(racer == null){
 					return 0;
@@ -460,7 +460,7 @@ public class Chronotimer {
 			}
 		}
 		else if(number == 5 && five.getOn() == true){
-			if(!individual && !parallel){
+			if(individual){
 				Racer racer = currentRun.startRacer(currentTime,1);
 				if(racer == null){
 					return 0;
@@ -478,7 +478,7 @@ public class Chronotimer {
 			}
 		}
 		else if(number == 6 && six.getOn() == true){
-			if(!individual && !parallel){
+			if(individual){
 				Racer racer = currentRun.endRacer(currentTime,2);
 				if(racer == null){
 					return 0;
@@ -496,7 +496,7 @@ public class Chronotimer {
 			}
 		}
 		else if(number == 7 && seven.getOn() == true){
-			if(!individual && !parallel){
+			if(individual){
 				Racer racer = currentRun.startRacer(currentTime,1);
 				if(racer == null){
 					return 0;
@@ -514,7 +514,7 @@ public class Chronotimer {
 			}
 		}
 		else if(number == 8 && eight.getOn() == true){
-			if(!individual && !parallel){
+			if(individual){
 				Racer racer = currentRun.endRacer(currentTime,2);
 				if(racer == null){
 					return 0;
@@ -770,7 +770,14 @@ public class Chronotimer {
 		// Only add racer if power is on
 		if(power == false){
 			return false;
-		}else{
+		}
+		else if(!individual){
+			if(currentRun != null){
+				return currentRun.setRacerNum(Integer.parseInt(number));
+			}
+			return false;
+		}
+		else{
 			// Ignore the command if the input is invalid
 			if(number == null){
 				return false;
@@ -1010,6 +1017,7 @@ public class Chronotimer {
 						System.out.println("Total time: " + Time.convertTime(stats.getRaceTime(racer)));	
 					}
 					System.out.println();
+					
 				}
 			}
 		}

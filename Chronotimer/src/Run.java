@@ -23,6 +23,7 @@ public class Run {
 	// added for group functionality
 	private long groupStartTime;
 	private int racerNum;
+	private int setRacerNum;
 	
 	public Run(boolean individual, boolean parallel, int runNumInput){
 		beginQueue = new LinkedList<Racer>();
@@ -30,8 +31,8 @@ public class Run {
 		stats = new Stats();
 		this.individual = individual;
 		this.parallel = parallel;
-		racerNum = 1;
-		
+		racerNum = 0;
+		setRacerNum = 1;
 		runNumber = runNumInput;
 		
 		if(parallel == true && individual == false){
@@ -44,6 +45,20 @@ public class Run {
 				usedLanes[i] = false;
 			}
 		}
+	}
+	
+	public boolean setRacerNum(int bib){
+		if(setRacerNum > racerNum){
+			return false;
+		}
+		Iterator<Racer> it = stats.getRacers().iterator();
+		Racer tmp = null;
+		for(int i = 0; i < setRacerNum; i++){
+			tmp = it.next();
+		}
+		tmp.setBib(bib);
+		setRacerNum++;
+		return true;
 	}
 	
 	/**
@@ -219,7 +234,7 @@ public class Run {
 	}
 	
 	public boolean endGroup(long endTime){
-		Racer tmp = new Racer(racerNum);
+		Racer tmp = new Racer(racerNum + 1);
 		stats.setStart(tmp, groupStartTime);
 		racerNum++;
 		stats.setEnd(tmp, endTime);

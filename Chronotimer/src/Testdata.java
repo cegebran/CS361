@@ -6,7 +6,7 @@ import java.io.IOException;
 
 public class Testdata {
 	public static void main(String[] args){
-		File file = new File("Test3");		//Declare file for input
+		File file = new File("Test4");		//Declare file for input
 		FileReader input = null;
 		BufferedReader buffRead = null;
 		String myLine = "";								//Buffer string
@@ -63,7 +63,7 @@ public class Testdata {
 							chronotimer.setEvent("PARIND");
 							System.out.println("PARIND has been set");
 						}
-						else if(array[3].equals("GRP")){
+						else if(array[2].equals("GRP")){
 							chronotimer.setEvent("GRP");
 							System.out.println("GRP has been set");
 						}
@@ -73,8 +73,14 @@ public class Testdata {
 						System.out.println("A new run has been created");
 					}
 					else if(array[1].equals("NUM")){
-						chronotimer.getCurrentRun().addRacer(new Racer(Integer.parseInt(array[2])));
-						System.out.println("Racer has been added to the start queue");
+						boolean tmp = chronotimer.num(array[2]);
+						//chronotimer.getCurrentRun().addRacer(new Racer(Integer.parseInt(array[2])));
+						if(tmp){
+							System.out.println("Number has been set");
+						}
+						else{
+							System.out.println("Number has not been set");
+						}
 					}
 					else if(array[1].equals("PRINT")){
 						chronotimer.print();
