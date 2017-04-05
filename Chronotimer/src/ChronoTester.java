@@ -255,7 +255,7 @@ public class ChronoTester {
 		
 		c9.newRun(c9.getIndividual(), c9.getParallel());
 		c9.num("99");
-		c9.num("11");
+		c9.num("11");//changed from "00"
 		assertEquals(true, c9.start());
 		assertEquals(true, c9.dnf());
 		assertEquals(true, c9.start());
