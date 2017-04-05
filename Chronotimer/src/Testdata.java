@@ -93,6 +93,13 @@ public class Testdata {
 						chronotimer.export(array[2]);
 						System.out.println("The current runs have been exported to the specified file");
 					}
+					else if(array[1].equals("DNF")){
+						chronotimer.dnf();
+						System.out.println("The current racer did not finish");
+					}
+					else if(array[1].equals("CANCEL")){
+						chronotimer.cancel();
+					}
 					System.out.println();
 			}
 		} catch (IOException e) {

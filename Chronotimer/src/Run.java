@@ -35,7 +35,7 @@ public class Run {
 		setRacerNum = 1;
 		runNumber = runNumInput;
 		
-		if(parallel == true && individual == false){
+		if(parallel == true && individual == true){
 			pendingQueue12 = new LinkedList<Racer>();
 			pendingQueue34 = new LinkedList<Racer>();
 			pendingQueue56 = new LinkedList<Racer>();
@@ -132,7 +132,7 @@ public class Run {
 			return null;
 		}
 		
-		if(individual == true){
+		if(!parallel){
 			// Remove racer from begin queue, add to end queue, set end to pending and start to current time
 			Racer racer = beginQueue.removeFirst();
 			endQueue.addLast(racer);
@@ -250,14 +250,14 @@ public class Run {
 	public Racer endRacer(long time, int sensorNum){
 		// If no one is currently racing, return false
 		
-		if(individual == true){
+		if(!parallel){
 			if(endQueue.isEmpty()){
 				return null;
 			}
 			Racer racer = endQueue.removeFirst();
 			stats.setEnd(racer, time);
 			return racer;
-		}else if(parallel == true){
+		}else if(parallel){
 			if(sensorNum == 2){
 				if(usedLanes[0] == true){
 					if(pendingQueue12.isEmpty() != true){
@@ -329,7 +329,7 @@ public class Run {
 	 * Marks the current racer with a 'Did Not Finish' status and removes them from the run.
 	 */
 	public boolean didNotFinish(){
-		if(individual == true){
+		if(!parallel){
 			if(endQueue.isEmpty() == false){
 				Racer tmp = endQueue.remove();
 				// Denotes 'Did Not Finish' within racer's stats in the run
@@ -338,7 +338,7 @@ public class Run {
 			}else{
 				return false;
 			}
-		}else if(parallel == true){
+		}else if(parallel){
 			// No Active Racers
 			if(endQueue.isEmpty() == false){
 				Racer tmp = endQueue.remove();

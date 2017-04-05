@@ -644,7 +644,7 @@ public class Chronotimer {
 			parallel = false;
 			return true;
 		}else if(userInput.equals("PARIND")){
-			individual = false;
+			individual = true;
 			parallel = true;
 			return true;
 		}else if(userInput.equals("GRP")){
@@ -839,6 +839,10 @@ public class Chronotimer {
 	 */
 	public void exit(){
 		System.exit(0);
+	}
+	
+	public void cancel(){
+		currentRun.cancel();
 	}
 	
 	/**

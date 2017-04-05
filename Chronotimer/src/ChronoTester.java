@@ -269,25 +269,25 @@ public class ChronoTester {
 		c9.power();
 		c9.toggleChannel("1");
 		c9.toggleChannel("2");
-		c9.newRun(c9.getIndividual(), c9.getParallel());
+		c9.newRun(true, false);
 		c9.num("11");
 		c9.num("22");
-		assertEquals(true, c9.trigger("1"));
-		assertEquals(true, c9.trigger("1"));
+		assertEquals(11, c9.trigger("1"));
+		assertEquals(22, c9.trigger("1"));
 		assertEquals(true, c9.dnf());
 		assertEquals(true, c9.dnf());
 		c9.endRun();
 		
-		c9.newRun(c9.getIndividual(), c9.getParallel());
+		c9.newRun(true, false);
 		c9.num("33");
 		c9.num("44");
-		assertEquals(true, c9.trigger("1"));
+		assertEquals(33, c9.trigger("1"));
 		assertEquals(true, c9.dnf());
-		assertEquals(true, c9.trigger("1"));
+		assertEquals(44, c9.trigger("1"));
 		assertEquals(true, c9.dnf());
 		c9.endRun();
 		
-		c9.newRun(c9.getIndividual(), c9.getParallel());
+		c9.newRun(true, false);
 		c9.num("55");
 		c9.num("66");
 		assertEquals(true, c9.trigger("1"));
@@ -554,23 +554,23 @@ public class ChronoTester {
 		c0.toggleChannel("4");
 		c0.toggleChannel("5");
 		c0.toggleChannel("6");
-		c0.newRun(false, true);	// set to parallel
+		c0.newRun(true, true);	// set to parallel
 		c0.num("111");
 		c0.num("222");
 		c0.num("333");
-		assertEquals(false, c0.trigger("6"));
-		assertEquals(true, c0.trigger("3"));
-		assertEquals(true, c0.trigger("5"));
-		assertEquals(true, c0.trigger("5"));
-		assertEquals(false, c0.trigger("5"));
-		assertEquals(true, c0.trigger("6"));
-		assertEquals(true, c0.trigger("6"));
-		assertEquals(false, c0.trigger("6"));
-		assertEquals(true, c0.trigger("4"));
-		assertEquals(false, c0.trigger("4"));
-		assertEquals(false, c0.trigger("6"));
-		assertEquals(false, c0.trigger("3"));
-		assertEquals(false, c0.trigger("5"));
+		assertEquals(0, c0.trigger("6"));
+		assertEquals(111, c0.trigger("3"));
+		assertEquals(222, c0.trigger("5"));
+		assertEquals(333, c0.trigger("5"));
+		assertEquals(0, c0.trigger("5"));
+		assertEquals(222, c0.trigger("6"));
+		assertEquals(333, c0.trigger("6"));
+		assertEquals(0, c0.trigger("6"));
+		assertEquals(111, c0.trigger("4"));
+		assertEquals(0, c0.trigger("4"));
+		assertEquals(0, c0.trigger("6"));
+		assertEquals(0, c0.trigger("3"));
+		assertEquals(0, c0.trigger("5"));
 	}
 	
 	@Test
