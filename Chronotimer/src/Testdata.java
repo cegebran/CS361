@@ -99,6 +99,7 @@ public class Testdata {
 					}
 					else if(array[1].equals("CANCEL")){
 						chronotimer.cancel();
+						System.out.println("The current racer has been canceled");
 					}
 					System.out.println();
 			}
