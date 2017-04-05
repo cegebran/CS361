@@ -20,7 +20,7 @@ public class ChronoTester {
 		assertEquals(true, c2.getIndividual());
 		assertEquals(false, c2.getParallel());
 		c2.setEvent("PARIND");
-		assertEquals(false, c2.getIndividual());
+		assertEquals(true, c2.getIndividual());
 		assertEquals(true, c2.getParallel());
 		c2.setEvent("IND");
 		assertEquals(true, c2.getIndividual());
@@ -255,7 +255,7 @@ public class ChronoTester {
 		
 		c9.newRun(c9.getIndividual(), c9.getParallel());
 		c9.num("99");
-		c9.num("00");
+		c9.num("11");
 		assertEquals(true, c9.start());
 		assertEquals(true, c9.dnf());
 		assertEquals(true, c9.start());
@@ -290,28 +290,28 @@ public class ChronoTester {
 		c9.newRun(true, false);
 		c9.num("55");
 		c9.num("66");
-		assertEquals(true, c9.trigger("1"));
-		assertEquals(true, c9.trigger("2"));
-		assertEquals(true, c9.trigger("1"));
+		assertEquals(55, c9.trigger("1"));
+		assertEquals(55, c9.trigger("2"));
+		assertEquals(66, c9.trigger("1"));
 		assertEquals(true, c9.dnf());
 		c9.endRun();
 		
-		c9.newRun(c9.getIndividual(), c9.getParallel());
+		c9.newRun(true, false);
 		c9.num("77");
 		c9.num("88");
-		assertEquals(true, c9.trigger("1"));
-		assertEquals(true, c9.trigger("2"));
-		assertEquals(true, c9.trigger("1"));
+		assertEquals(77, c9.trigger("1"));
+		assertEquals(77, c9.trigger("2"));
+		assertEquals(88, c9.trigger("1"));
 		assertEquals(true, c9.dnf());
 		c9.endRun();
 		
-		c9.newRun(c9.getIndividual(), c9.getParallel());
+		c9.newRun(true, true);
 		c9.num("99");
 		c9.num("00");
-		assertEquals(true, c9.trigger("1"));
+		assertEquals(99, c9.trigger("1"));
 		assertEquals(true, c9.dnf());
-		assertEquals(true, c9.trigger("1"));
-		assertEquals(true, c9.trigger("2"));
+		assertEquals(00, c9.trigger("1"));
+		assertEquals(00, c9.trigger("2"));
 		c9.endRun();
 	}
 	
@@ -408,21 +408,21 @@ public class ChronoTester {
 		c0.power();
 		c0.toggleChannel("1");
 		c0.toggleChannel("2");
-		c0.newRun(c0.getIndividual(), c0.getParallel());
+		c0.newRun(true, false);
 		c0.num("12");
 		c0.num("13");
 		c0.num("14");
-		assertEquals(true, c0.trigger("1"));
+		assertEquals(12, c0.trigger("1"));
 		assertEquals(1, c0.getCurrentRun().getEndQueue().size());
-		assertEquals(true, c0.trigger("1"));
+		assertEquals(13, c0.trigger("1"));
 		assertEquals(2, c0.getCurrentRun().getEndQueue().size());
-		assertEquals(true, c0.trigger("2"));
+		assertEquals(12, c0.trigger("2"));
 		assertEquals(1, c0.getCurrentRun().getEndQueue().size());
-		assertEquals(true, c0.trigger("2"));
+		assertEquals(13, c0.trigger("2"));
 		assertEquals(0, c0.getCurrentRun().getEndQueue().size());
-		assertEquals(true, c0.trigger("1"));
+		assertEquals(14, c0.trigger("1"));
 		assertEquals(1, c0.getCurrentRun().getEndQueue().size());
-		assertEquals(true, c0.trigger("2"));
+		assertEquals(14, c0.trigger("2"));
 		assertEquals(0, c0.getCurrentRun().getEndQueue().size());
 	}
 	
@@ -432,19 +432,19 @@ public class ChronoTester {
 		c0.power();
 		c0.toggleChannel("1");
 		c0.toggleChannel("2");
-		c0.newRun(c0.getIndividual(), c0.getParallel());
+		c0.newRun(true, false);
 		c0.num("12");
 		c0.num("13");
 		c0.num("14");
-		assertEquals(true, c0.trigger("1"));
+		assertEquals(12, c0.trigger("1"));
 		assertEquals(1, c0.getCurrentRun().getEndQueue().size());
-		assertEquals(true, c0.trigger("1"));
+		assertEquals(13, c0.trigger("1"));
 		assertEquals(2, c0.getCurrentRun().getEndQueue().size());
-		assertEquals(true, c0.trigger("2"));
+		assertEquals(12, c0.trigger("2"));
 		assertEquals(1, c0.getCurrentRun().getEndQueue().size());
-		assertEquals(true, c0.trigger("2"));
+		assertEquals(13, c0.trigger("2"));
 		assertEquals(0, c0.getCurrentRun().getEndQueue().size());
-		assertEquals(true, c0.trigger("1"));
+		assertEquals(14, c0.trigger("1"));
 		assertEquals(1, c0.getCurrentRun().getEndQueue().size());
 		assertEquals(true, c0.dnf());
 		assertEquals(0, c0.getCurrentRun().getEndQueue().size());
@@ -466,7 +466,7 @@ public class ChronoTester {
 		assertEquals(false, c0.setEvent("IND"));
 		assertEquals(false, c0.dnf());
 		assertEquals(false, c0.toggleChannel("1"));
-		assertEquals(false, c0.trigger("1"));
+		assertEquals(0, c0.trigger("1"));
 		assertEquals(false, c0.start());
 		assertEquals(false, c0.finish());
 	}
@@ -480,13 +480,13 @@ public class ChronoTester {
 		c0.toggleChannel("2");
 		c0.toggleChannel("3");
 		c0.toggleChannel("4");
-		c0.newRun(false, true);	// set to parallel
+		c0.newRun(true, true);	// set to parallel
 		c0.num("111");
 		c0.num("222");
-		assertEquals(true, c0.trigger("1"));
-		assertEquals(true, c0.trigger("3"));
-		assertEquals(true, c0.trigger("2"));
-		assertEquals(true, c0.trigger("4"));
+		assertEquals(111, c0.trigger("1"));
+		assertEquals(222, c0.trigger("3"));
+		assertEquals(111, c0.trigger("2"));
+		assertEquals(222, c0.trigger("4"));
 	}
 	
 	@Test
@@ -498,23 +498,23 @@ public class ChronoTester {
 		c0.toggleChannel("2");
 		c0.toggleChannel("3");
 		c0.toggleChannel("4");
-		c0.newRun(false, true);	// set to parallel
+		c0.newRun(true, true);	// set to parallel
 		c0.num("111");
 		c0.num("222");
 		c0.num("333");
-		assertEquals(false, c0.trigger("4"));
-		assertEquals(true, c0.trigger("1"));
-		assertEquals(true, c0.trigger("3"));
-		assertEquals(true, c0.trigger("3"));
-		assertEquals(false, c0.trigger("3"));
-		assertEquals(true, c0.trigger("4"));
-		assertEquals(true, c0.trigger("4"));
-		assertEquals(false, c0.trigger("4"));
-		assertEquals(true, c0.trigger("2"));
-		assertEquals(false, c0.trigger("2"));
-		assertEquals(false, c0.trigger("4"));
-		assertEquals(false, c0.trigger("1"));
-		assertEquals(false, c0.trigger("3"));
+		assertEquals(0, c0.trigger("4"));
+		assertEquals(111, c0.trigger("1"));
+		assertEquals(222, c0.trigger("3"));
+		assertEquals(333, c0.trigger("3"));
+		assertEquals(0, c0.trigger("3"));
+		assertEquals(222, c0.trigger("4"));
+		assertEquals(333, c0.trigger("4"));
+		assertEquals(0, c0.trigger("4"));
+		assertEquals(111, c0.trigger("2"));
+		assertEquals(0, c0.trigger("2"));
+		assertEquals(0, c0.trigger("4"));
+		assertEquals(0, c0.trigger("1"));
+		assertEquals(0, c0.trigger("3"));
 	}
 	
 	@Test
@@ -526,23 +526,23 @@ public class ChronoTester {
 		c0.toggleChannel("6");
 		c0.toggleChannel("7");
 		c0.toggleChannel("8");
-		c0.newRun(false, true);	// set to parallel
+		c0.newRun(true, true);	// set to parallel
 		c0.num("111");
 		c0.num("222");
 		c0.num("333");
-		assertEquals(false, c0.trigger("8"));
-		assertEquals(true, c0.trigger("5"));
-		assertEquals(true, c0.trigger("7"));
-		assertEquals(true, c0.trigger("7"));
-		assertEquals(false, c0.trigger("7"));
-		assertEquals(true, c0.trigger("8"));
-		assertEquals(true, c0.trigger("8"));
-		assertEquals(false, c0.trigger("8"));
-		assertEquals(true, c0.trigger("6"));
-		assertEquals(false, c0.trigger("6"));
-		assertEquals(false, c0.trigger("8"));
-		assertEquals(false, c0.trigger("5"));
-		assertEquals(false, c0.trigger("7"));
+		assertEquals(0, c0.trigger("8"));
+		assertEquals(111, c0.trigger("5"));
+		assertEquals(222, c0.trigger("7"));
+		assertEquals(333, c0.trigger("7"));
+		assertEquals(0, c0.trigger("7"));
+		assertEquals(222, c0.trigger("8"));
+		assertEquals(333, c0.trigger("8"));
+		assertEquals(0, c0.trigger("8"));
+		assertEquals(111, c0.trigger("6"));
+		assertEquals(0, c0.trigger("6"));
+		assertEquals(0, c0.trigger("8"));
+		assertEquals(0, c0.trigger("5"));
+		assertEquals(0, c0.trigger("7"));
 	}
 	
 	@Test
@@ -593,17 +593,17 @@ public class ChronoTester {
 		c0.toggleChannel("2");
 		c0.toggleChannel("3");
 		c0.toggleChannel("4");
-		c0.newRun(false, true);	// set to parallel
+		c0.newRun(true, true);	// set to parallel
 		c0.num("111");
 		c0.num("222");
 		c0.num("333");
 		assertEquals(false, c0.dnf());
-		assertEquals(true, c0.trigger("1"));
-		assertEquals(true, c0.trigger("3"));
+		assertEquals(111, c0.trigger("1"));
+		assertEquals(222, c0.trigger("3"));
 		assertEquals(true, c0.dnf());
-		assertEquals(true, c0.trigger("1"));
-		assertEquals(true, c0.trigger("4"));
-		assertEquals(true, c0.trigger("2"));
+		assertEquals(333, c0.trigger("1"));
+		assertEquals(222, c0.trigger("4"));
+		assertEquals(333, c0.trigger("2"));
 	}
 	
 	@Test
