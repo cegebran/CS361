@@ -949,7 +949,15 @@ public class Driver_GUI extends JFrame{
 		start1Btn.addActionListener(new ActionListener() {
 			 public void actionPerformed(ActionEvent e){
 		        	try {
-		        		
+		        		int bibNum = chronotimer.trigger("1");
+		        		if(bibNum == 0){
+		        			// Not valid start
+		        		}else{
+		        			boolean printerPower = chronotimer.getPrinterPower();
+		        			if(printerPower == true){
+		        				String toPrint = bibNum + " start";
+		        			}
+		        		}
 		    		} catch (Exception e2) {
 		    			e2.printStackTrace();
 		    		}
@@ -959,7 +967,15 @@ public class Driver_GUI extends JFrame{
 		start3Btn.addActionListener(new ActionListener() {
 			 public void actionPerformed(ActionEvent e){
 		        	try {
-		        		
+		        		int bibNum = chronotimer.trigger("3");
+		        		if(bibNum == 0){
+		        			// Not valid start
+		        		}else{
+		        			boolean printerPower = chronotimer.getPrinterPower();
+		        			if(printerPower == true){
+		        				String toPrint = bibNum + " start";
+		        			}
+		        		}
 		    		} catch (Exception e2) {
 		    			e2.printStackTrace();
 		    		}
@@ -969,7 +985,15 @@ public class Driver_GUI extends JFrame{
 		start5Btn.addActionListener(new ActionListener() {
 			 public void actionPerformed(ActionEvent e){
 		        	try {
-		        		
+		        		int bibNum = chronotimer.trigger("5");
+		        		if(bibNum == 0){
+		        			// Not valid start
+		        		}else{
+		        			boolean printerPower = chronotimer.getPrinterPower();
+		        			if(printerPower == true){
+		        				String toPrint = bibNum + " start";
+		        			}
+		        		}
 		    		} catch (Exception e2) {
 		    			e2.printStackTrace();
 		    		}
@@ -979,7 +1003,15 @@ public class Driver_GUI extends JFrame{
 		start7Btn.addActionListener(new ActionListener() {
 			 public void actionPerformed(ActionEvent e){
 		        	try {
-		        		
+		        		int bibNum = chronotimer.trigger("7");
+		        		if(bibNum == 0){
+		        			// Not valid start
+		        		}else{
+		        			boolean printerPower = chronotimer.getPrinterPower();
+		        			if(printerPower == true){
+		        				String toPrint = bibNum + " start";
+		        			}
+		        		}
 		    		} catch (Exception e2) {
 		    			e2.printStackTrace();
 		    		}
@@ -989,7 +1021,15 @@ public class Driver_GUI extends JFrame{
 		finish2Btn.addActionListener(new ActionListener() {
 			 public void actionPerformed(ActionEvent e){
 		        	try {
-		        		
+		        		int bibNum = chronotimer.trigger("2");
+		        		if(bibNum == 0){
+		        			// Not valid start
+		        		}else{
+		        			boolean printerPower = chronotimer.getPrinterPower();
+		        			if(printerPower == true){
+		        				String toPrint = bibNum + " finish";
+		        			}
+		        		}
 		    		} catch (Exception e2) {
 		    			e2.printStackTrace();
 		    		}
@@ -999,7 +1039,15 @@ public class Driver_GUI extends JFrame{
 		finish4Btn.addActionListener(new ActionListener() {
 			 public void actionPerformed(ActionEvent e){
 		        	try {
-		        		
+		        		int bibNum = chronotimer.trigger("4");
+		        		if(bibNum == 0){
+		        			// Not valid start
+		        		}else{
+		        			boolean printerPower = chronotimer.getPrinterPower();
+		        			if(printerPower == true){
+		        				String toPrint = bibNum + " finish";
+		        			}
+		        		}
 		    		} catch (Exception e2) {
 		    			e2.printStackTrace();
 		    		}
@@ -1009,7 +1057,15 @@ public class Driver_GUI extends JFrame{
 		finish6Btn.addActionListener(new ActionListener() {
 			 public void actionPerformed(ActionEvent e){
 		        	try {
-		        		
+		        		int bibNum = chronotimer.trigger("6");
+		        		if(bibNum == 0){
+		        			// Not valid start
+		        		}else{
+		        			boolean printerPower = chronotimer.getPrinterPower();
+		        			if(printerPower == true){
+		        				String toPrint = bibNum + " finish";
+		        			}
+		        		}
 		    		} catch (Exception e2) {
 		    			e2.printStackTrace();
 		    		}
@@ -1019,7 +1075,15 @@ public class Driver_GUI extends JFrame{
 		finish8Btn.addActionListener(new ActionListener() {
 			 public void actionPerformed(ActionEvent e){
 		        	try {
-		        		
+		        		int bibNum = chronotimer.trigger("8");
+		        		if(bibNum == 0){
+		        			// Not valid start
+		        		}else{
+		        			boolean printerPower = chronotimer.getPrinterPower();
+		        			if(printerPower == true){
+		        				String toPrint = bibNum + " finish";
+		        			}
+		        		}
 		    		} catch (Exception e2) {
 		    			e2.printStackTrace();
 		    		}
