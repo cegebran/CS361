@@ -72,9 +72,13 @@ public class Driver_GUI extends JFrame{
 		printerLine9Label.setText(lineArray[8]);
 		printerLine10Label.setText(lineArray[9]);
 	}
+	boolean function = false;
+	int functionNum = 0;
+	int selectedFunction = 0;
 	
 	public Driver_GUI(){
 		Chronotimer chronotimer = new Chronotimer();
+		
 		
 		final JButton powerBtn = new JButton("Power");
 	    powerBtn.setFont(new Font("Serif", Font.PLAIN, 15));
@@ -387,38 +391,121 @@ public class Driver_GUI extends JFrame{
 		getContentPane().add(usbPanel);
 		getContentPane().add(blankPanel);
 		
+		Timer timer = new Timer(1000/60,new ActionListener() {
+		    public void actionPerformed(ActionEvent event) 
+		    {
+		      updateModel();
+		    }
+		    
+		    public void updateModel(){
+		    	if(chronotimer.getPower() == false){
+		    		displayCenterPanel.setBackground(Color.DARK_GRAY);
+		    		displayLine1Label.setText("");
+		    		displayLine2Label.setText("");
+		    		displayLine3Label.setText("");
+		    		displayLine4Label.setText("");
+		    		displayLine5Label.setText("");
+		    		displayLine6Label.setText("");
+		    		displayLine7Label.setText("");
+		    		displayLine8Label.setText("");
+				}
+		    	else if(function){
+		    		String[] functions = new String[11];
+		    		functions[0] = "RESET";
+		    		functions[1] = "TIME";
+		    		functions[2] = "EVENT";
+		    		functions[3] = "NEWRUN";
+		    		functions[4] = "ENDRUN";
+		    		functions[5] = "PRINT";
+		    		functions[6] = "EXPORT";
+		    		functions[7] = "NUM";
+		    		functions[8] = "CANCEL";
+		    		functions[9] = "SWAP";
+		    		functions[10] = "DNF";
+		    		displayCenterPanel.setBackground(Color.WHITE);
+		    		displayLine1Label.setText(functions[functionNum]);
+		    		displayLine2Label.setText(functions[functionNum+1]);
+		    		displayLine3Label.setText(functions[functionNum+2]);
+		    		displayLine4Label.setText(functions[functionNum+3]);
+		    		displayLine5Label.setText(functions[functionNum+4]);
+		    		displayLine6Label.setText(functions[functionNum+5]);
+		    		displayLine7Label.setText(functions[functionNum+6]);
+		    		displayLine8Label.setText(functions[functionNum+7]);
+		    		if(displayLine1Label.getText().equals(functions[selectedFunction])){
+		    			displayLine1Label.setText(displayLine1Label.getText() + "  <--Selected");
+		    		}
+		    		if(displayLine2Label.getText().equals(functions[selectedFunction])){
+		    			displayLine2Label.setText(displayLine2Label.getText() + "  <--Selected");
+		    		}
+		    		if(displayLine3Label.getText().equals(functions[selectedFunction])){
+		    			displayLine3Label.setText(displayLine3Label.getText() + "  <--Selected");
+		    		}
+		    		if(displayLine4Label.getText().equals(functions[selectedFunction])){
+		    			displayLine4Label.setText(displayLine4Label.getText() + "  <--Selected");
+		    		}
+		    		if(displayLine5Label.getText().equals(functions[selectedFunction])){
+		    			displayLine5Label.setText(displayLine5Label.getText() + "  <--Selected");
+		    		}
+		    		if(displayLine6Label.getText().equals(functions[selectedFunction])){
+		    			displayLine6Label.setText(displayLine6Label.getText() + "  <--Selected");
+		    		}
+		    		if(displayLine7Label.getText().equals(functions[selectedFunction])){
+		    			displayLine7Label.setText(displayLine7Label.getText() + "  <--Selected");
+		    		}
+		    		if(displayLine8Label.getText().equals(functions[selectedFunction])){
+		    			displayLine8Label.setText(displayLine8Label.getText() + "  <--Selected");
+		    		}
+		    	}
+		    	else{
+					displayCenterPanel.setBackground(Color.WHITE);
+		    		displayLine1Label.setText("");
+		    		displayLine2Label.setText("");
+		    		displayLine3Label.setText("");
+		    		displayLine4Label.setText("");
+		    		displayLine5Label.setText("");
+		    		displayLine6Label.setText("");
+		    		displayLine7Label.setText("");
+		    		displayLine8Label.setText("");
+				}
+			}
+		});
+		
+		timer.setRepeats(true);
+		timer.start();
 		
 		// Action Listeners
 		powerBtn.addActionListener(new ActionListener() {
 	        public void actionPerformed(ActionEvent e){
-	        	try {
-	        		chronotimer.power();
-					if(chronotimer.getPower() == true){
-						displayCenterPanel.setBackground(Color.WHITE);
-						displayLine1Label.setText(" ");
-						displayLine2Label.setText(" ");
-						displayLine3Label.setText(" ");
-						displayLine4Label.setText(" ");
-						displayLine5Label.setText(" ");
-						displayLine6Label.setText(" ");
-						displayLine7Label.setText(" ");
-						displayLine8Label.setText(" ");
-					}else{
-						displayCenterPanel.setBackground(Color.DARK_GRAY);
-						displayLine1Label.setText(" ");
-						displayLine2Label.setText(" ");
-						displayLine3Label.setText(" ");
-						displayLine4Label.setText(" ");
-						displayLine5Label.setText(" ");
-						displayLine6Label.setText(" ");
-						displayLine7Label.setText(" ");
-						displayLine8Label.setText(" ");
-					}
-	    		} catch (Exception e2) {
-	    			e2.printStackTrace();
-	    		}
+	        	chronotimer.power();
 	        }
 	    });
+		functionBtn.addActionListener(new ActionListener(){
+			public void actionPerformed(ActionEvent e){
+				function = !function;
+			}
+		});
+		
+		upArrowBtn.addActionListener(new ActionListener(){
+			public void actionPerformed(ActionEvent e){
+				if(functionNum != 0){
+					functionNum--;
+				}
+				if(selectedFunction != 0){
+					selectedFunction--;
+				}
+			}
+		});
+		
+		downArrowBtn.addActionListener(new ActionListener(){
+			public void actionPerformed(ActionEvent e){
+				if(functionNum < 3){
+					functionNum++;
+				}
+				if(selectedFunction < 10){
+					selectedFunction++;
+				}
+			}
+		});
 		
 		printerPwrBtn.addActionListener(new ActionListener() {
 	        public void actionPerformed(ActionEvent e){
