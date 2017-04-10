@@ -72,9 +72,18 @@ public class Driver_GUI extends JFrame{
 		printerLine9Label.setText(lineArray[8]);
 		printerLine10Label.setText(lineArray[9]);
 	}
-	boolean function = false;
+	boolean displayFunction = false;
 	int functionNum = 0;
 	int selectedFunction = 0;
+	String currentNumPad = "";
+	boolean enterNum = false;
+	boolean finishedEnteringNum = false;
+	boolean functionIsSelected = false;
+	boolean displayHours = false;
+	boolean displayMinutes = false;
+	boolean displaySeconds = false;
+	String enteredTime = "";
+	int selectedEvent = 0;
 	
 	public Driver_GUI(){
 		Chronotimer chronotimer = new Chronotimer();
@@ -409,7 +418,7 @@ public class Driver_GUI extends JFrame{
 		    		displayLine7Label.setText("");
 		    		displayLine8Label.setText("");
 				}
-		    	else if(function){
+		    	else if(displayFunction){
 		    		String[] functions = new String[11];
 		    		functions[0] = "RESET";
 		    		functions[1] = "TIME";
@@ -456,9 +465,67 @@ public class Driver_GUI extends JFrame{
 		    			displayLine8Label.setText(displayLine8Label.getText() + "  <--Selected");
 		    		}
 		    	}
+		    	else if(functionIsSelected && selectedFunction == 0){
+		    		enterNum = false;
+		    		finishedEnteringNum = false;
+		    		functionIsSelected = false;
+		    		currentNumPad = "";
+		    		chronotimer.reset();
+		    		printerAddLine("Chronotimer has been reset");
+		    	}
+		    	else if(functionIsSelected && selectedFunction == 1){
+		    		if(displayHours){
+			    		displayLine1Label.setText(("Enter hour: "));
+			    		displayLine2Label.setText(currentNumPad);
+			    		displayLine3Label.setText("");
+			    		displayLine4Label.setText("");
+			    		displayLine5Label.setText("");
+			    		displayLine6Label.setText("");
+			    		displayLine7Label.setText("");
+			    		displayLine8Label.setText("");
+		    		}
+		    		else if(displayMinutes){
+		    			displayLine1Label.setText("Enter minute: ");
+		    			displayLine2Label.setText(currentNumPad);
+		    		}
+		    		else if(displaySeconds){
+		    			displayLine1Label.setText("Enter seconds: ");
+		    			displayLine2Label.setText(currentNumPad);
+		    		}		    		
+		    	}
+		    	else if(functionIsSelected && selectedFunction == 3){
+		    		if(selectedEvent == 0){
+		    			displayLine1Label.setText("IND  <--Selected");
+		    		}
+		    		else{
+			    		displayLine1Label.setText("IND");
+		    		}
+		    		if(selectedEvent == 1){
+		    			displayLine2Label.setText("PARIND  <--Selected");
+		    		}
+		    		else{
+			    		displayLine2Label.setText("PARIND");
+		    		}
+		    		if(selectedEvent == 2){
+		    			displayLine3Label.setText("GRP  <--Selected");
+		    		}
+		    		else{
+			    		displayLine3Label.setText("GRP");
+		    		}
+		    		if(selectedEvent == 3){
+		    			displayLine4Label.setText("PARGRP  <--Selected");
+		    		}
+		    		else{
+			    		displayLine4Label.setText("PARGRP");
+		    		}
+		    		displayLine5Label.setText("");
+		    		displayLine6Label.setText("");
+		    		displayLine7Label.setText("");
+		    		displayLine8Label.setText("");
+		    	}
 		    	else{
 					displayCenterPanel.setBackground(Color.WHITE);
-		    		displayLine1Label.setText("");
+		    		displayLine1Label.setText("Display Ongoing Race Here");
 		    		displayLine2Label.setText("");
 		    		displayLine3Label.setText("");
 		    		displayLine4Label.setText("");
@@ -481,12 +548,23 @@ public class Driver_GUI extends JFrame{
 	    });
 		functionBtn.addActionListener(new ActionListener(){
 			public void actionPerformed(ActionEvent e){
-				function = !function;
+				if(!displayFunction){
+					functionNum = 0;
+					selectedFunction = 0;
+				}
+				displayFunction = !displayFunction;
 			}
 		});
 		
 		upArrowBtn.addActionListener(new ActionListener(){
 			public void actionPerformed(ActionEvent e){
+				if(functionIsSelected && selectedFunction == 2 && selectedEvent == 0){
+					return;
+				}
+				if(functionIsSelected && selectedFunction == 2 && selectedEvent != 0){
+					selectedEvent--;
+					return;
+				}
 				if(functionNum != 0){
 					functionNum--;
 				}
@@ -498,6 +576,13 @@ public class Driver_GUI extends JFrame{
 		
 		downArrowBtn.addActionListener(new ActionListener(){
 			public void actionPerformed(ActionEvent e){
+				if(functionIsSelected && selectedFunction == 2 && selectedEvent == 3){
+					return;
+				}
+				if(functionIsSelected && selectedFunction == 2 && selectedEvent != 3){
+					selectedEvent++;
+					return;
+				}
 				if(functionNum < 3){
 					functionNum++;
 				}
@@ -842,194 +927,144 @@ public class Driver_GUI extends JFrame{
 		
 		numPad0Btn.addActionListener(new ActionListener() {
 	        public void actionPerformed(ActionEvent e){
-	        	try {
-	        		boolean bibNumEnter = chronotimer.addToBibNumberString("0");
-	        		if(bibNumEnter == true){
-	        			boolean printerPower = chronotimer.getPrinterPower();
-	        			if(printerPower == true){
-	        				printerAddLine("0 added to Bib Number to Queue");
-	        			}
-	        		}
-	    		} catch (Exception e2) {
-	    			e2.printStackTrace();
-	    		}
+	        	if(enterNum){
+	        		currentNumPad += "0";
+	        	}
 	        }
 	    });
 		
 		numPad1Btn.addActionListener(new ActionListener() {
 	        public void actionPerformed(ActionEvent e){
-	        	try {
-	        		boolean bibNumEnter = chronotimer.addToBibNumberString("1");
-	        		if(bibNumEnter == true){
-	        			boolean printerPower = chronotimer.getPrinterPower();
-	        			if(printerPower == true){
-	        				printerAddLine("1 added to Bib Number to Queue");
-	        			}
-	        		}
-	    		} catch (Exception e2) {
-	    			e2.printStackTrace();
-	    		}
+	        	if(enterNum){
+	        		currentNumPad += "1";
+	        	}
 	        }
 	    });
 		
 		numPad2Btn.addActionListener(new ActionListener() {
 	        public void actionPerformed(ActionEvent e){
-	        	try {
-	        		boolean bibNumEnter = chronotimer.addToBibNumberString("2");
-	        		if(bibNumEnter == true){
-	        			boolean printerPower = chronotimer.getPrinterPower();
-	        			if(printerPower == true){
-	        				printerAddLine("2 added to Bib Number to Queue");
-	        			}
-	        		}
-	    		} catch (Exception e2) {
-	    			e2.printStackTrace();
-	    		}
+	        	if(enterNum){
+	        		currentNumPad += "2";
+	        	}
 	        }
 	    });
 		
 		numPad3Btn.addActionListener(new ActionListener() {
 	        public void actionPerformed(ActionEvent e){
-	        	try {
-	        		boolean bibNumEnter = chronotimer.addToBibNumberString("3");
-	        		if(bibNumEnter == true){
-	        			boolean printerPower = chronotimer.getPrinterPower();
-	        			if(printerPower == true){
-	        				printerAddLine("3 added to Bib Number to Queue");
-	        			}
-	        		}
-	    		} catch (Exception e2) {
-	    			e2.printStackTrace();
-	    		}
+	        	if(enterNum){
+	        		currentNumPad += "3";
+	        	}
 	        }
 	    });
 		
 		numPad4Btn.addActionListener(new ActionListener() {
 	        public void actionPerformed(ActionEvent e){
-	        	try {
-	        		boolean bibNumEnter = chronotimer.addToBibNumberString("4");
-	        		if(bibNumEnter == true){
-	        			boolean printerPower = chronotimer.getPrinterPower();
-	        			if(printerPower == true){
-	        				printerAddLine("4 added to Bib Number to Queue");
-	        			}
-	        		}
-	    		} catch (Exception e2) {
-	    			e2.printStackTrace();
-	    		}
+	        	if(enterNum){
+	        		currentNumPad += "4";
+	        	}
 	        }
 	    });
 		
 		numPad5Btn.addActionListener(new ActionListener() {
 	        public void actionPerformed(ActionEvent e){
-	        	try {
-	        		boolean bibNumEnter = chronotimer.addToBibNumberString("5");
-	        		if(bibNumEnter == true){
-	        			boolean printerPower = chronotimer.getPrinterPower();
-	        			if(printerPower == true){
-	        				printerAddLine("5 added to Bib Number to Queue");
-	        			}
-	        		}
-	    		} catch (Exception e2) {
-	    			e2.printStackTrace();
-	    		}
+	        	if(enterNum){
+	        		currentNumPad += "5";
+	        	}
 	        }
 	    });
 		
 		numPad6Btn.addActionListener(new ActionListener() {
 	        public void actionPerformed(ActionEvent e){
-	        	try {
-	        		boolean bibNumEnter = chronotimer.addToBibNumberString("6");
-	        		if(bibNumEnter == true){
-	        			boolean printerPower = chronotimer.getPrinterPower();
-	        			if(printerPower == true){
-	        				printerAddLine("6 added to Bib Number to Queue");
-	        			}
-	        		}
-	    		} catch (Exception e2) {
-	    			e2.printStackTrace();
-	    		}
+	        	if(enterNum){
+	        		currentNumPad += "6";
+	        	}
 	        }
 	    });
 		
 		numPad7Btn.addActionListener(new ActionListener() {
 	        public void actionPerformed(ActionEvent e){
-	        	try {
-	        		boolean bibNumEnter = chronotimer.addToBibNumberString("7");
-	        		if(bibNumEnter == true){
-	        			boolean printerPower = chronotimer.getPrinterPower();
-	        			if(printerPower == true){
-	        				printerAddLine("7 added to Bib Number to Queue");
-	        			}
-	        		}
-	    		} catch (Exception e2) {
-	    			e2.printStackTrace();
-	    		}
+	        	if(enterNum){
+	        		currentNumPad += "7";
+	        	}
 	        }
 	    });
 		
 		numPad8Btn.addActionListener(new ActionListener() {
 	        public void actionPerformed(ActionEvent e){
-	        	try {
-	        		boolean bibNumEnter = chronotimer.addToBibNumberString("8");
-	        		if(bibNumEnter == true){
-	        			boolean printerPower = chronotimer.getPrinterPower();
-	        			if(printerPower == true){
-	        				printerAddLine("8 added to Bib Number to Queue");
-	        			}
-	        		}
-	    		} catch (Exception e2) {
-	    			e2.printStackTrace();
-	    		}
+	        	if(enterNum){
+	        		currentNumPad += "8";
+	        	}
 	        }
 	    });
 		
 		numPad9Btn.addActionListener(new ActionListener() {
 	        public void actionPerformed(ActionEvent e){
-	        	try {
-	        		boolean bibNumEnter = chronotimer.addToBibNumberString("9");
-	        		if(bibNumEnter == true){
-	        			boolean printerPower = chronotimer.getPrinterPower();
-	        			if(printerPower == true){
-	        				printerAddLine("9 added to Bib Number to Queue");
-	        			}
-	        		}
-	    		} catch (Exception e2) {
-	    			e2.printStackTrace();
-	    		}
+	        	if(enterNum){
+	        		currentNumPad += "9";
+	        	}
 	        }
 	    });
 		
 		numPadAstBtn.addActionListener(new ActionListener() {
 	        public void actionPerformed(ActionEvent e){
-	        	try {
-	        		boolean clearedString = chronotimer.clearBibNumberString();
-	        		if(clearedString == true){
-	        			boolean printerPower = chronotimer.getPrinterPower();
-	        			if(printerPower == true){
-	        				printerAddLine("Bib # to Queue Cleared");
-	        			}
-	        		}
-	    		} catch (Exception e2) {
-	    			e2.printStackTrace();
-	    		}
+	        	if(enterNum){
+	        		currentNumPad = "";
+	        	}
 	        }
 	    });
 		
 		numPadPoundBtn.addActionListener(new ActionListener() {
 			 public void actionPerformed(ActionEvent e){
-		        	try {
-		        		int bibNumbAdded = chronotimer.numFromKeypad();
-		        		if(bibNumbAdded != 0){
-		        			String toPrintString = "Bib Num: " + bibNumbAdded + " Added to Run";
-		        			boolean printerPower = chronotimer.getPrinterPower();
-		        			if(printerPower == true){
-		        				printerAddLine(toPrintString);
-		        			}
+		        	if(displayFunction){
+		        		functionIsSelected = true;
+		        		displayFunction = false;
+		        		if(functionIsSelected && selectedFunction == 1){
+		        			displayHours = true;
+		        			enterNum = true;
 		        		}
-		    		} catch (Exception e2) {
-		    			e2.printStackTrace();
-		    		}
+		        	}
+		        	else if(functionIsSelected && selectedFunction == 1){
+		        		if(displayHours){
+		        			displayHours = false;
+		        			displayMinutes = true;
+		        			enteredTime = currentNumPad;
+		        			currentNumPad = "";
+		        		}
+		        		else if(displayMinutes){
+		        			displayMinutes = false;
+		        			displaySeconds = true;
+		        			enteredTime += ":" + currentNumPad;
+		        			currentNumPad = "";
+		        		}
+		        		else if(displaySeconds){
+		        			functionIsSelected = false;
+		        			enteredTime += ":" + currentNumPad;
+		        			printerAddLine("Entered time: " + enteredTime);
+		        			chronotimer.getTimer().setTime(enteredTime);
+		        			enteredTime = "";
+		        			currentNumPad = "";
+		        			enterNum = false;
+		        		}	        		
+		        	}
+		        	else if(functionIsSelected && selectedFunction == 3){
+		        		if(selectedEvent == 0){
+		        			chronotimer.newRun(true,false);
+		        			printerAddLine("IND Event Has Been Added");
+		        		}
+		        		else if(selectedEvent == 1){
+		        			chronotimer.newRun(true,true);
+		        			printerAddLine("PARIND Event Has Been Added");
+		        		}
+		        		else if(selectedEvent == 2){
+		        			chronotimer.newRun(false,false);
+		        			printerAddLine("GRP Event Has Been Added");
+		        		}
+		        		else if(selectedEvent == 3){
+		        			chronotimer.newRun(false,true);
+		        			printerAddLine("PARGRP Event Has Been Added");
+		        		}
+		        		functionIsSelected = false;
+		        	}
 		        }
 		});
 		
