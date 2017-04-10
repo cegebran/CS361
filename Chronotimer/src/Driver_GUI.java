@@ -553,6 +553,40 @@ public class Driver_GUI extends JFrame{
 		    		displayLine7Label.setText("");
 		    		displayLine8Label.setText("");
 		    	}
+		    	else if(functionIsSelected && selectedFunction == 4){
+		    		enterNum = false;
+		    		finishedEnteringNum = false;
+		    		functionIsSelected = false;
+		    		currentNumPad = "";
+		    		chronotimer.endRun();
+		    		printerAddLine("Current Run Has Ended");
+		    	}
+		    	else if(functionIsSelected && selectedFunction == 5){
+		    		enterNum = false;
+		    		finishedEnteringNum = false;
+		    		functionIsSelected = false;
+		    		currentNumPad = "";
+		    		chronotimer.print();
+		    		printerAddLine("Results Have Been Printed");
+		    	}
+		    	else if(functionIsSelected && selectedFunction == 6){
+		    		enterNum = false;
+		    		finishedEnteringNum = false;
+		    		functionIsSelected = false;
+		    		currentNumPad = "";
+		    		chronotimer.export("results.txt");
+		    		printerAddLine("Results Have Been Exported to results.txt");
+		    	}
+		    	else if(functionIsSelected && selectedFunction == 7){
+		    		displayLine1Label.setText("Enter BIB Number:");
+		    		displayLine2Label.setText(currentNumPad);
+		    		displayLine3Label.setText("");
+		    		displayLine4Label.setText("");
+		    		displayLine5Label.setText("");
+		    		displayLine6Label.setText("");
+		    		displayLine7Label.setText("");
+		    		displayLine8Label.setText("");
+		    	}
 		    	else{
 					displayCenterPanel.setBackground(Color.WHITE);
 		    		displayLine1Label.setText("Display Ongoing Race Here");
@@ -1052,6 +1086,9 @@ public class Driver_GUI extends JFrame{
 		        			displayHours = true;
 		        			enterNum = true;
 		        		}
+		        		if(functionIsSelected && selectedFunction == 7){
+		        			enterNum = true;
+		        		}
 		        	}
 		        	else if(functionIsSelected && selectedFunction == 1){
 		        		if(displayHours){
@@ -1113,6 +1150,11 @@ public class Driver_GUI extends JFrame{
 		        			printerAddLine("PARGRP Event Has Been Added");
 		        		}
 		        		functionIsSelected = false;
+		        	}
+		        	else if(functionIsSelected && selectedFunction == 7){
+		        		chronotimer.num(currentNumPad);
+		        		printerAddLine("BIB #" + currentNumPad + " Has Been Entered");
+		        		currentNumPad = "";
 		        	}
 		        }
 		});
