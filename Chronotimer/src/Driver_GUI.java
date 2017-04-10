@@ -493,6 +493,36 @@ public class Driver_GUI extends JFrame{
 		    			displayLine2Label.setText(currentNumPad);
 		    		}		    		
 		    	}
+		    	else if(functionIsSelected && selectedFunction == 2){
+		    		if(selectedEvent == 0){
+		    			displayLine1Label.setText("IND  <--Selected");
+		    		}
+		    		else{
+			    		displayLine1Label.setText("IND");
+		    		}
+		    		if(selectedEvent == 1){
+		    			displayLine2Label.setText("PARIND  <--Selected");
+		    		}
+		    		else{
+			    		displayLine2Label.setText("PARIND");
+		    		}
+		    		if(selectedEvent == 2){
+		    			displayLine3Label.setText("GRP  <--Selected");
+		    		}
+		    		else{
+			    		displayLine3Label.setText("GRP");
+		    		}
+		    		if(selectedEvent == 3){
+		    			displayLine4Label.setText("PARGRP  <--Selected");
+		    		}
+		    		else{
+			    		displayLine4Label.setText("PARGRP");
+		    		}
+		    		displayLine5Label.setText("");
+		    		displayLine6Label.setText("");
+		    		displayLine7Label.setText("");
+		    		displayLine8Label.setText("");
+		    	}
 		    	else if(functionIsSelected && selectedFunction == 3){
 		    		if(selectedEvent == 0){
 		    			displayLine1Label.setText("IND  <--Selected");
@@ -558,10 +588,10 @@ public class Driver_GUI extends JFrame{
 		
 		upArrowBtn.addActionListener(new ActionListener(){
 			public void actionPerformed(ActionEvent e){
-				if(functionIsSelected && selectedFunction == 2 && selectedEvent == 0){
+				if(functionIsSelected && (selectedFunction == 2 || selectedFunction == 3) && selectedEvent == 0){
 					return;
 				}
-				if(functionIsSelected && selectedFunction == 2 && selectedEvent != 0){
+				if(functionIsSelected && (selectedFunction == 2 || selectedFunction == 3) && selectedEvent != 0){
 					selectedEvent--;
 					return;
 				}
@@ -576,10 +606,10 @@ public class Driver_GUI extends JFrame{
 		
 		downArrowBtn.addActionListener(new ActionListener(){
 			public void actionPerformed(ActionEvent e){
-				if(functionIsSelected && selectedFunction == 2 && selectedEvent == 3){
+				if(functionIsSelected && (selectedFunction == 2 || selectedFunction == 3) && selectedEvent == 3){
 					return;
 				}
-				if(functionIsSelected && selectedFunction == 2 && selectedEvent != 3){
+				if(functionIsSelected && (selectedFunction == 2 || selectedFunction == 3) && selectedEvent != 3){
 					selectedEvent++;
 					return;
 				}
@@ -1045,6 +1075,25 @@ public class Driver_GUI extends JFrame{
 		        			currentNumPad = "";
 		        			enterNum = false;
 		        		}	        		
+		        	}
+		        	else if(functionIsSelected && selectedFunction == 2){
+		        		if(selectedEvent == 0){
+		        			chronotimer.setEvent("IND");
+		        			printerAddLine("Event set to IND");
+		        		}
+		        		else if(selectedEvent == 1){
+		        			chronotimer.setEvent("PARIND");
+		        			printerAddLine("Event set to PARIND");
+		        		}
+		        		else if(selectedEvent == 2){
+		        			chronotimer.setEvent("GRP");
+		        			printerAddLine("Event set to GRP");
+		        		}
+		        		else if(selectedEvent == 3){
+		        			chronotimer.setEvent("PARGRP");
+		        			printerAddLine("Event set to PARGRP");
+		        		}
+		        		functionIsSelected = false;
 		        	}
 		        	else if(functionIsSelected && selectedFunction == 3){
 		        		if(selectedEvent == 0){
