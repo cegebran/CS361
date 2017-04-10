@@ -419,7 +419,7 @@ public class Driver_GUI extends JFrame{
 		    		displayLine8Label.setText("");
 				}
 		    	else if(displayFunction){
-		    		String[] functions = new String[11];
+		    		String[] functions = new String[10];
 		    		functions[0] = "RESET";
 		    		functions[1] = "TIME";
 		    		functions[2] = "EVENT";
@@ -429,8 +429,7 @@ public class Driver_GUI extends JFrame{
 		    		functions[6] = "EXPORT";
 		    		functions[7] = "NUM";
 		    		functions[8] = "CANCEL";
-		    		functions[9] = "SWAP";
-		    		functions[10] = "DNF";
+		    		functions[9] = "DNF";
 		    		displayCenterPanel.setBackground(Color.WHITE);
 		    		displayLine1Label.setText(functions[functionNum]);
 		    		displayLine2Label.setText(functions[functionNum+1]);
@@ -471,7 +470,10 @@ public class Driver_GUI extends JFrame{
 		    		functionIsSelected = false;
 		    		currentNumPad = "";
 		    		chronotimer.reset();
-		    		printerAddLine("Chronotimer has been reset");
+		    		boolean printerPower = chronotimer.getPrinterPower();
+        			if(printerPower == true){
+    		    		printerAddLine("Chronotimer has been reset");
+        			}
 		    	}
 		    	else if(functionIsSelected && selectedFunction == 1){
 		    		if(displayHours){
@@ -559,7 +561,10 @@ public class Driver_GUI extends JFrame{
 		    		functionIsSelected = false;
 		    		currentNumPad = "";
 		    		chronotimer.endRun();
-		    		printerAddLine("Current Run Has Ended");
+		    		boolean printerPower = chronotimer.getPrinterPower();
+        			if(printerPower == true){
+    		    		printerAddLine("Current Run Has Ended");
+        			}
 		    	}
 		    	else if(functionIsSelected && selectedFunction == 5){
 		    		enterNum = false;
@@ -567,7 +572,10 @@ public class Driver_GUI extends JFrame{
 		    		functionIsSelected = false;
 		    		currentNumPad = "";
 		    		chronotimer.print();
-		    		printerAddLine("Results Have Been Printed");
+		    		boolean printerPower = chronotimer.getPrinterPower();
+        			if(printerPower == true){
+    		    		printerAddLine("Results Have Been Printed");
+        			}
 		    	}
 		    	else if(functionIsSelected && selectedFunction == 6){
 		    		enterNum = false;
@@ -575,7 +583,10 @@ public class Driver_GUI extends JFrame{
 		    		functionIsSelected = false;
 		    		currentNumPad = "";
 		    		chronotimer.export("results.txt");
-		    		printerAddLine("Results Have Been Exported to results.txt");
+		    		boolean printerPower = chronotimer.getPrinterPower();
+        			if(printerPower == true){
+    		    		printerAddLine("Results Have Been Exported to results.txt");
+        			}
 		    	}
 		    	else if(functionIsSelected && selectedFunction == 7){
 		    		displayLine1Label.setText("Enter BIB Number:");
@@ -586,6 +597,28 @@ public class Driver_GUI extends JFrame{
 		    		displayLine6Label.setText("");
 		    		displayLine7Label.setText("");
 		    		displayLine8Label.setText("");
+		    	}
+		    	else if(functionIsSelected && selectedFunction == 8){
+		    		enterNum = false;
+		    		finishedEnteringNum = false;
+		    		functionIsSelected = false;
+		    		currentNumPad = "";
+		    		chronotimer.cancel();
+		    		boolean printerPower = chronotimer.getPrinterPower();
+        			if(printerPower == true){
+    		    		printerAddLine("Canceled Racer");
+        			}
+		    	}
+		    	else if(functionIsSelected && selectedFunction == 9){
+		    		enterNum = false;
+		    		finishedEnteringNum = false;
+		    		functionIsSelected = false;
+		    		currentNumPad = "";
+		    		chronotimer.dnf();
+		    		boolean printerPower = chronotimer.getPrinterPower();
+        			if(printerPower == true){
+        				printerAddLine("Racer Marked as DNF");
+        			}
 		    	}
 		    	else{
 					displayCenterPanel.setBackground(Color.WHITE);
@@ -647,10 +680,10 @@ public class Driver_GUI extends JFrame{
 					selectedEvent++;
 					return;
 				}
-				if(functionNum < 3){
+				if(functionNum < 2){
 					functionNum++;
 				}
-				if(selectedFunction < 10){
+				if(selectedFunction < 9){
 					selectedFunction++;
 				}
 			}
@@ -1106,7 +1139,10 @@ public class Driver_GUI extends JFrame{
 		        		else if(displaySeconds){
 		        			functionIsSelected = false;
 		        			enteredTime += ":" + currentNumPad;
-		        			printerAddLine("Entered time: " + enteredTime);
+		        			boolean printerPower = chronotimer.getPrinterPower();
+		        			if(printerPower == true){
+			        			printerAddLine("Entered time: " + enteredTime);
+		        			}
 		        			chronotimer.getTimer().setTime(enteredTime);
 		        			enteredTime = "";
 		        			currentNumPad = "";
@@ -1116,45 +1152,69 @@ public class Driver_GUI extends JFrame{
 		        	else if(functionIsSelected && selectedFunction == 2){
 		        		if(selectedEvent == 0){
 		        			chronotimer.setEvent("IND");
-		        			printerAddLine("Event set to IND");
-		        		}
+		        			boolean printerPower = chronotimer.getPrinterPower();
+		        			if(printerPower == true){
+		        				printerAddLine("Event set to IND");		        			}
+		        			}
 		        		else if(selectedEvent == 1){
 		        			chronotimer.setEvent("PARIND");
-		        			printerAddLine("Event set to PARIND");
+		        			boolean printerPower = chronotimer.getPrinterPower();
+		        			if(printerPower == true){
+		        				printerAddLine("Event set to PARIND");	        			
+		        			}
 		        		}
 		        		else if(selectedEvent == 2){
 		        			chronotimer.setEvent("GRP");
-		        			printerAddLine("Event set to GRP");
+		        			boolean printerPower = chronotimer.getPrinterPower();
+		        			if(printerPower == true){
+		        				printerAddLine("Event set to GRP");	        			
+		        			}
 		        		}
 		        		else if(selectedEvent == 3){
 		        			chronotimer.setEvent("PARGRP");
-		        			printerAddLine("Event set to PARGRP");
+		        			boolean printerPower = chronotimer.getPrinterPower();
+		        			if(printerPower == true){
+		        				printerAddLine("Event set to PARGRP");	        			
+		        			}
 		        		}
 		        		functionIsSelected = false;
 		        	}
 		        	else if(functionIsSelected && selectedFunction == 3){
 		        		if(selectedEvent == 0){
 		        			chronotimer.newRun(true,false);
-		        			printerAddLine("IND Event Has Been Added");
+		        			boolean printerPower = chronotimer.getPrinterPower();
+		        			if(printerPower == true){
+			        			printerAddLine("IND Event Has Been Added");
+		        			}
 		        		}
 		        		else if(selectedEvent == 1){
 		        			chronotimer.newRun(true,true);
-		        			printerAddLine("PARIND Event Has Been Added");
-		        		}
+		        			boolean printerPower = chronotimer.getPrinterPower();
+		        			if(printerPower == true){
+			        			printerAddLine("PARIND Event Has Been Added");
+		        			}		        		}
 		        		else if(selectedEvent == 2){
 		        			chronotimer.newRun(false,false);
-		        			printerAddLine("GRP Event Has Been Added");
-		        		}
+		        			boolean printerPower = chronotimer.getPrinterPower();
+		        			if(printerPower == true){
+			        			printerAddLine("GRP Event Has Been Added");
+		        			}		        		}
 		        		else if(selectedEvent == 3){
 		        			chronotimer.newRun(false,true);
-		        			printerAddLine("PARGRP Event Has Been Added");
-		        		}
+		        			boolean printerPower = chronotimer.getPrinterPower();
+		        			if(printerPower == true){
+			        			printerAddLine("PARGRP Event Has Been Added");
+		        			}		        		}
 		        		functionIsSelected = false;
 		        	}
 		        	else if(functionIsSelected && selectedFunction == 7){
 		        		chronotimer.num(currentNumPad);
-		        		printerAddLine("BIB #" + currentNumPad + " Has Been Entered");
+		        		boolean printerPower = chronotimer.getPrinterPower();
+	        			if(printerPower == true){
+			        		printerAddLine("BIB #" + currentNumPad + " Has Been Entered");
+	        			}
 		        		currentNumPad = "";
+		        		functionIsSelected = false;
 		        	}
 		        }
 		});
