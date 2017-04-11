@@ -176,6 +176,15 @@ public class Chronotimer {
 		}
 	}
 	
+	public boolean swap(){
+		if(currentRun == null){
+			return false;
+		}
+		else{
+			return currentRun.swap();
+		}
+	}
+	
 	/**
 	 * Switches the printer power for the simulated Chronotimer printer (off->on, on->off).
 	 */

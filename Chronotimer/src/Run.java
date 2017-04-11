@@ -120,7 +120,19 @@ public class Run {
 	public void addRacer(Racer racer){
 		beginQueue.addLast(racer);
 	}
-	
+	public boolean swap(){
+		if(beginQueue.size() < 2){
+			return false;
+		}
+		if(!(individual && !parallel)){
+			return false;
+		}
+		Racer first = beginQueue.removeFirst();
+		Racer second = beginQueue.removeFirst();
+		endQueue.addFirst(first);
+		endQueue.addFirst(second);
+		return true;
+	}
 	/**
 	 * Starts the run for the next racer in line, removing them from the 'start' line to the 'finish' line.
 	 * 

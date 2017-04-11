@@ -643,6 +643,18 @@ public class Driver_GUI extends JFrame{
 	        	chronotimer.power();
 	        }
 	    });
+		swapBtn.addActionListener(new ActionListener() {
+	        public void actionPerformed(ActionEvent e){
+	        	if(chronotimer.getPrinterPower() == true){
+	        		if(chronotimer.swap()){
+						printerAddLine("First Two Racers Have Been Swapped");
+	        		}
+	        		else{
+						printerAddLine("Unable To Swap");
+	        		}
+				}
+	        }
+	    });
 		functionBtn.addActionListener(new ActionListener(){
 			public void actionPerformed(ActionEvent e){
 				if(!displayFunction){
