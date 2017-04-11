@@ -567,7 +567,7 @@ public class Chronotimer {
 	 * @param individual	Takes True if current run type is a parallel, False if group
 	 * @param parallel	Takes True if current run type is parallel, False if series
 	 */
-	public void newRun(boolean individual, boolean parallel){
+	public void newRun(){
 		// Ignore if power is off
 		if(power == false){
 			return;

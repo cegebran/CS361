@@ -183,7 +183,7 @@ public class Driver {
 					if(chronotimer.getPower() == false){
 						System.out.println("The Chronotimer is off");
 					}else{
-						chronotimer.newRun(chronotimer.getIndividual(), chronotimer.getParallel());
+						chronotimer.newRun();
 						System.out.println("A new run was added to the queue of runs");
 					}
 				}

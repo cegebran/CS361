@@ -8,7 +8,7 @@ public class testPower {
 	
 	@Test
 	public void chronotimerOffTestButtonPush(){
-		chronotimer.newRun(chronotimer.getIndividual(), chronotimer.getParallel());
+		chronotimer.newRun();
 		
 	}
 	

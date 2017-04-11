@@ -69,7 +69,7 @@ public class Testdata {
 						}
 					}
 					else if(array[1].equals("NEWRUN")){
-						chronotimer.newRun(chronotimer.getIndividual(), chronotimer.getParallel());
+						chronotimer.newRun();
 						System.out.println("A new run has been created");
 					}
 					else if(array[1].equals("NUM")){

@@ -526,34 +526,15 @@ public class Driver_GUI extends JFrame{
 		    		displayLine8Label.setText("");
 		    	}
 		    	else if(functionIsSelected && selectedFunction == 3){
-		    		if(selectedEvent == 0){
-		    			displayLine1Label.setText("IND  <--Selected");
-		    		}
-		    		else{
-			    		displayLine1Label.setText("IND");
-		    		}
-		    		if(selectedEvent == 1){
-		    			displayLine2Label.setText("PARIND  <--Selected");
-		    		}
-		    		else{
-			    		displayLine2Label.setText("PARIND");
-		    		}
-		    		if(selectedEvent == 2){
-		    			displayLine3Label.setText("GRP  <--Selected");
-		    		}
-		    		else{
-			    		displayLine3Label.setText("GRP");
-		    		}
-		    		if(selectedEvent == 3){
-		    			displayLine4Label.setText("PARGRP  <--Selected");
-		    		}
-		    		else{
-			    		displayLine4Label.setText("PARGRP");
-		    		}
-		    		displayLine5Label.setText("");
-		    		displayLine6Label.setText("");
-		    		displayLine7Label.setText("");
-		    		displayLine8Label.setText("");
+		    		enterNum = false;
+		    		finishedEnteringNum = false;
+		    		functionIsSelected = false;
+		    		currentNumPad = "";
+		    		chronotimer.newRun();
+		    		boolean printerPower = chronotimer.getPrinterPower();
+        			if(printerPower == true){
+    		    		printerAddLine("New Run Has Been Added");
+        			}
 		    	}
 		    	else if(functionIsSelected && selectedFunction == 4){
 		    		enterNum = false;
@@ -1191,34 +1172,6 @@ public class Driver_GUI extends JFrame{
 		        		}
 		        		functionIsSelected = false;
 		        	}
-		        	else if(functionIsSelected && selectedFunction == 3){
-		        		if(selectedEvent == 0){
-		        			chronotimer.newRun(true,false);
-		        			boolean printerPower = chronotimer.getPrinterPower();
-		        			if(printerPower == true){
-			        			printerAddLine("IND Event Has Been Added");
-		        			}
-		        		}
-		        		else if(selectedEvent == 1){
-		        			chronotimer.newRun(true,true);
-		        			boolean printerPower = chronotimer.getPrinterPower();
-		        			if(printerPower == true){
-			        			printerAddLine("PARIND Event Has Been Added");
-		        			}		        		}
-		        		else if(selectedEvent == 2){
-		        			chronotimer.newRun(false,false);
-		        			boolean printerPower = chronotimer.getPrinterPower();
-		        			if(printerPower == true){
-			        			printerAddLine("GRP Event Has Been Added");
-		        			}		        		}
-		        		else if(selectedEvent == 3){
-		        			chronotimer.newRun(false,true);
-		        			boolean printerPower = chronotimer.getPrinterPower();
-		        			if(printerPower == true){
-			        			printerAddLine("PARGRP Event Has Been Added");
-		        			}		        		}
-		        		functionIsSelected = false;
-		        	}
 		        	else if(functionIsSelected && selectedFunction == 7){
 		        		chronotimer.num(currentNumPad);
 		        		boolean printerPower = chronotimer.getPrinterPower();
@@ -1241,6 +1194,7 @@ public class Driver_GUI extends JFrame{
 		        			boolean printerPower = chronotimer.getPrinterPower();
 		        			if(printerPower == true){
 		        				String toPrint = bibNum + " start";
+				        		printerAddLine(toPrint);
 		        			}
 		        		}
 		    		} catch (Exception e2) {
@@ -1259,6 +1213,7 @@ public class Driver_GUI extends JFrame{
 		        			boolean printerPower = chronotimer.getPrinterPower();
 		        			if(printerPower == true){
 		        				String toPrint = bibNum + " start";
+				        		printerAddLine(toPrint);
 		        			}
 		        		}
 		    		} catch (Exception e2) {
@@ -1277,6 +1232,7 @@ public class Driver_GUI extends JFrame{
 		        			boolean printerPower = chronotimer.getPrinterPower();
 		        			if(printerPower == true){
 		        				String toPrint = bibNum + " start";
+				        		printerAddLine(toPrint);
 		        			}
 		        		}
 		    		} catch (Exception e2) {
@@ -1295,6 +1251,7 @@ public class Driver_GUI extends JFrame{
 		        			boolean printerPower = chronotimer.getPrinterPower();
 		        			if(printerPower == true){
 		        				String toPrint = bibNum + " start";
+				        		printerAddLine(toPrint);
 		        			}
 		        		}
 		    		} catch (Exception e2) {
@@ -1313,6 +1270,7 @@ public class Driver_GUI extends JFrame{
 		        			boolean printerPower = chronotimer.getPrinterPower();
 		        			if(printerPower == true){
 		        				String toPrint = bibNum + " finish";
+		        				printerAddLine(toPrint);
 		        			}
 		        		}
 		    		} catch (Exception e2) {
@@ -1331,6 +1289,7 @@ public class Driver_GUI extends JFrame{
 		        			boolean printerPower = chronotimer.getPrinterPower();
 		        			if(printerPower == true){
 		        				String toPrint = bibNum + " finish";
+		        				printerAddLine(toPrint);
 		        			}
 		        		}
 		    		} catch (Exception e2) {
@@ -1349,6 +1308,7 @@ public class Driver_GUI extends JFrame{
 		        			boolean printerPower = chronotimer.getPrinterPower();
 		        			if(printerPower == true){
 		        				String toPrint = bibNum + " finish";
+		        				printerAddLine(toPrint);
 		        			}
 		        		}
 		    		} catch (Exception e2) {
@@ -1367,6 +1327,7 @@ public class Driver_GUI extends JFrame{
 		        			boolean printerPower = chronotimer.getPrinterPower();
 		        			if(printerPower == true){
 		        				String toPrint = bibNum + " finish";
+		        				printerAddLine(toPrint);
 		        			}
 		        		}
 		    		} catch (Exception e2) {
