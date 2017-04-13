@@ -237,17 +237,17 @@ public class Driver_GUI extends JFrame{
 		
 		
 		JPanel printerPanel = new JPanel(new BorderLayout());
-		JLabel printerBufferLeftLabel = new JLabel("              ");
-		JLabel printerBufferRightLabel = new JLabel("              ");
+		JLabel printerBufferLeftLabel = new JLabel("      ");
+		JLabel printerBufferRightLabel = new JLabel("      ");
 		printerPanel.add(printerBufferLeftLabel, BorderLayout.LINE_START);
 		printerPanel.add(printerBufferRightLabel, BorderLayout.LINE_END);
 		JPanel printerPowerPanel = new JPanel(new BorderLayout());
 		JLabel printerPowerBufferLabel1 = new JLabel("                          ");
 		printerPowerBufferLabel1.setFont(new Font("Serif", Font.PLAIN, 21));
 		printerPowerPanel.add(printerPowerBufferLabel1, BorderLayout.PAGE_START);
-		JLabel printerPowerBufferLabel2 = new JLabel("                                  ");
+		JLabel printerPowerBufferLabel2 = new JLabel("                                ");
 		printerPowerPanel.add(printerPowerBufferLabel2, BorderLayout.LINE_START);
-		JLabel printerPowerBufferLabel3 = new JLabel("                                  ");
+		JLabel printerPowerBufferLabel3 = new JLabel("                                ");
 		printerPowerPanel.add(printerPowerBufferLabel3, BorderLayout.LINE_END);
 		JLabel printerPowerBufferLabel4 = new JLabel("                                  ");
 		printerPowerPanel.add(printerPowerBufferLabel4, BorderLayout.PAGE_END);
