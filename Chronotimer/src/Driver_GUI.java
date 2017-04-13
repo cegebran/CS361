@@ -1270,7 +1270,10 @@ public class Driver_GUI extends JFrame{
 		        	try {
 		        		int bibNum = chronotimer.trigger("1");
 		        		if(bibNum == 0){
-		        			// Not valid start
+		        			boolean printerPower = chronotimer.getPrinterPower();
+		        			if(printerPower == true){
+				        		printerAddLine("Could Not Trigger Channel 1");
+		        			}
 		        		}else{
 		        			boolean printerPower = chronotimer.getPrinterPower();
 		        			if(printerPower == true){
@@ -1289,7 +1292,10 @@ public class Driver_GUI extends JFrame{
 		        	try {
 		        		int bibNum = chronotimer.trigger("3");
 		        		if(bibNum == 0){
-		        			// Not valid start
+		        			boolean printerPower = chronotimer.getPrinterPower();
+		        			if(printerPower == true){
+				        		printerAddLine("Could Not Trigger Channel 3");
+		        			}
 		        		}else{
 		        			boolean printerPower = chronotimer.getPrinterPower();
 		        			if(printerPower == true){
@@ -1308,7 +1314,10 @@ public class Driver_GUI extends JFrame{
 		        	try {
 		        		int bibNum = chronotimer.trigger("5");
 		        		if(bibNum == 0){
-		        			// Not valid start
+		        			boolean printerPower = chronotimer.getPrinterPower();
+		        			if(printerPower == true){
+				        		printerAddLine("Could Not Trigger Channel 5");
+		        			}
 		        		}else{
 		        			boolean printerPower = chronotimer.getPrinterPower();
 		        			if(printerPower == true){
@@ -1327,7 +1336,10 @@ public class Driver_GUI extends JFrame{
 		        	try {
 		        		int bibNum = chronotimer.trigger("7");
 		        		if(bibNum == 0){
-		        			// Not valid start
+		        			boolean printerPower = chronotimer.getPrinterPower();
+		        			if(printerPower == true){
+				        		printerAddLine("Could Not Trigger Channel 7");
+		        			}
 		        		}else{
 		        			boolean printerPower = chronotimer.getPrinterPower();
 		        			if(printerPower == true){
@@ -1346,7 +1358,10 @@ public class Driver_GUI extends JFrame{
 		        	try {
 		        		int bibNum = chronotimer.trigger("2");
 		        		if(bibNum == 0){
-		        			// Not valid start
+		        			boolean printerPower = chronotimer.getPrinterPower();
+		        			if(printerPower == true){
+				        		printerAddLine("Could Not Trigger Channel 2");
+		        			}
 		        		}else{
 		        			boolean printerPower = chronotimer.getPrinterPower();
 		        			if(printerPower == true){
@@ -1365,7 +1380,10 @@ public class Driver_GUI extends JFrame{
 		        	try {
 		        		int bibNum = chronotimer.trigger("4");
 		        		if(bibNum == 0){
-		        			// Not valid start
+		        			boolean printerPower = chronotimer.getPrinterPower();
+		        			if(printerPower == true){
+				        		printerAddLine("Could Not Trigger Channel 4");
+		        			}
 		        		}else{
 		        			boolean printerPower = chronotimer.getPrinterPower();
 		        			if(printerPower == true){
@@ -1384,7 +1402,10 @@ public class Driver_GUI extends JFrame{
 		        	try {
 		        		int bibNum = chronotimer.trigger("6");
 		        		if(bibNum == 0){
-		        			// Not valid start
+		        			boolean printerPower = chronotimer.getPrinterPower();
+		        			if(printerPower == true){
+				        		printerAddLine("Could Not Trigger Channel 6");
+		        			}
 		        		}else{
 		        			boolean printerPower = chronotimer.getPrinterPower();
 		        			if(printerPower == true){
@@ -1403,7 +1424,10 @@ public class Driver_GUI extends JFrame{
 		        	try {
 		        		int bibNum = chronotimer.trigger("8");
 		        		if(bibNum == 0){
-		        			// Not valid start
+		        			boolean printerPower = chronotimer.getPrinterPower();
+		        			if(printerPower == true){
+				        		printerAddLine("Could Not Trigger Channel 8");
+		        			}
 		        		}else{
 		        			boolean printerPower = chronotimer.getPrinterPower();
 		        			if(printerPower == true){
