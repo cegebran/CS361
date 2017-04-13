@@ -82,18 +82,17 @@ public class Driver {
 				
 				// cancel command
 				if(userInputParse[0].equals("CANCEL")){
-					Run currentRun = chronotimer.getCurrentRun();
-					if(currentRun != null){
-						currentRun.cancel();
+					int result = chronotimer.cancel();
+					if(result > 0){
+						System.out.println("Racer #" + result + " has been canceled");
 					}else{
-						if(chronotimer.getPower() == true){
-							System.out.println("There is no current run to cancel");
+						if(result == 0){
+							System.out.println("There is no current run to cancel a racer from");
+						}else if(result == -1){
+							System.out.println("There is no current racer currently making their run to cancel");
+						}else if(result == -2){
+							System.out.println("The Chronotimer is turned off");
 						}
-					}
-					if(chronotimer.getPower() == true){
-						System.out.println("Cancelled");
-					}else{
-						System.out.println("The Chronotimer is turned off");
 					}
 				}
 				
@@ -183,8 +182,12 @@ public class Driver {
 					if(chronotimer.getPower() == false){
 						System.out.println("The Chronotimer is off");
 					}else{
-						chronotimer.newRun();
-						System.out.println("A new run was added to the queue of runs");
+						boolean result = chronotimer.newRun();
+						if(result == true){
+							System.out.println("A new run was added to the queue of runs");
+						}else{
+							System.out.println("A new run has not been created");
+						}
 					}
 				}
 				
@@ -193,8 +196,12 @@ public class Driver {
 					if(chronotimer.getPower() == false){
 						System.out.println("The Chronotimer is off");
 					}else{
-						chronotimer.endRun();
-						System.out.println("The current run has ended and the next in the queue (if any) has become the current run");
+						boolean result = chronotimer.endRun();
+						if(result == true){
+							System.out.println("The current run has ended and the next in the queue (if any) has become the current run");
+						}else{
+							System.out.println("There was no current run to end");
+						}
 					}
 				}
 				

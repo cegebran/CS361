@@ -566,16 +566,18 @@ public class Chronotimer {
 	 * 
 	 * @param individual	Takes True if current run type is a parallel, False if group
 	 * @param parallel	Takes True if current run type is parallel, False if series
+	 * 
+	 * @Return true if a run has been created and false otherwise
 	 */
-	public void newRun(){
+	public boolean newRun(){
 		// Ignore if power is off
 		if(power == false){
-			return;
+			return false;
 		}
 		
 		// Also ignore if there is a run already underway.
 		if(currentRun != null){
-			return;
+			return false;
 		}
 		
 		int newRunNumber = runs.size() + 1;
@@ -584,22 +586,25 @@ public class Chronotimer {
 		current.setEvent(individual,parallel);	// set the event
 		runs.add(current);
 		currentRun = current;
+		return true;
 	}
 	
 	/**
 	 * Ends the run that is currently underway.
 	 * 
 	 * Note: As it was not required, data is not saved or printed for any lingering racers in the queue for the ending run.
+	 * 
+	 * @Return true if there was actually a run to end and false if otherwise
 	 */
-	public void endRun(){
+	public boolean endRun(){
 		// Ignore if power if off
 		if(power == false){
-			return;
+			return false;
 		}
 		
 		// Also ignore if there is not a run underway
 		if(currentRun == null){
-			return;
+			return false;
 		}
 		
 		// currentRun to end on command
@@ -608,6 +613,7 @@ public class Chronotimer {
 		String exportInput = "RUN" + runNumberString + ".txt";
 		export(exportInput);
 		currentRun = null;
+		return true;
 	}
 	
 	/**
@@ -850,8 +856,26 @@ public class Chronotimer {
 		System.exit(0);
 	}
 	
-	public void cancel(){
-		currentRun.cancel();
+	/**
+	 * Cancels the last racer to start the race and the farthest back in the queue of racers currently making their runs
+	 * 
+	 * @Return the bib number of the race who has been canceled, -2 if the chronotimer is off, -1 if there is no racer in the race to cancel
+	 * and 0 if there is no current run to cancel a racer from
+	 */
+	public int cancel(){
+		if(power == false){
+			return -2;
+		}
+		if(currentRun == null){
+			return 0;
+		}else{
+			int returnBibNumber = currentRun.cancel();
+			if(returnBibNumber != 0){
+				return returnBibNumber;
+			}else{
+				return -1;
+			}
+		}
 	}
 	
 	/**
@@ -916,7 +940,12 @@ public class Chronotimer {
 		}
 	}
 	
-	public void export(String filename){
+	/**
+	 * Exports the data to the specified file name as a text file and saves the data for later use
+	 * 
+	 * @return	True if successful, False otherwise
+	 */
+	public boolean export(String filename){
 		if(power != false){
 			Gson g = new Gson();
 			String out = g.toJson(runs);
@@ -926,19 +955,25 @@ public class Chronotimer {
 			} catch (IOException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
+				return false;
 			}
 			try {
 				fw.write(out);
 			} catch (IOException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
+				return false;
 			}
 			try {
 				fw.close();
 			} catch (IOException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
+				return false;
 			}
+			return true;
+		}else{
+			return false;
 		}
 	}
 	

@@ -530,10 +530,14 @@ public class Driver_GUI extends JFrame{
 		    		finishedEnteringNum = false;
 		    		functionIsSelected = false;
 		    		currentNumPad = "";
-		    		chronotimer.newRun();
+		    		boolean result = chronotimer.newRun();
 		    		boolean printerPower = chronotimer.getPrinterPower();
         			if(printerPower == true){
-    		    		printerAddLine("New Run Has Been Added");
+        				if(result == true){
+        					printerAddLine("New Run Has Been Added");
+        				}else{
+        					printerAddLine("New Run Has Not Been Added");
+        				}
         			}
 		    	}
 		    	else if(functionIsSelected && selectedFunction == 4){
@@ -541,10 +545,14 @@ public class Driver_GUI extends JFrame{
 		    		finishedEnteringNum = false;
 		    		functionIsSelected = false;
 		    		currentNumPad = "";
-		    		chronotimer.endRun();
+		    		boolean result = chronotimer.endRun();
 		    		boolean printerPower = chronotimer.getPrinterPower();
         			if(printerPower == true){
-    		    		printerAddLine("Current Run Has Ended");
+        				if(result == true){
+        					printerAddLine("Current Run Has Ended");
+        				}else{
+        					printerAddLine("A Current Run Has Not Been Ended");
+        				}
         			}
 		    	}
 		    	else if(functionIsSelected && selectedFunction == 5){
@@ -563,10 +571,14 @@ public class Driver_GUI extends JFrame{
 		    		finishedEnteringNum = false;
 		    		functionIsSelected = false;
 		    		currentNumPad = "";
-		    		chronotimer.export("results.txt");
+		    		boolean result = chronotimer.export("results.txt");
 		    		boolean printerPower = chronotimer.getPrinterPower();
         			if(printerPower == true){
-    		    		printerAddLine("Results Have Been Exported to results.txt");
+        				if(result == true){
+        					printerAddLine("Results Have Been Exported to results.txt");
+        				}else{
+        					printerAddLine("The Results Have Not Been Exported");
+        				}
         			}
 		    	}
 		    	else if(functionIsSelected && selectedFunction == 7){
@@ -584,10 +596,16 @@ public class Driver_GUI extends JFrame{
 		    		finishedEnteringNum = false;
 		    		functionIsSelected = false;
 		    		currentNumPad = "";
-		    		chronotimer.cancel();
+		    		int resultBibNumber = chronotimer.cancel();
 		    		boolean printerPower = chronotimer.getPrinterPower();
         			if(printerPower == true){
-    		    		printerAddLine("Canceled Racer");
+        				if(resultBibNumber > 0){
+        					printerAddLine("Canceled Racer: # " + resultBibNumber);
+        				}else if(resultBibNumber == -1){
+        					printerAddLine("No Racer Running To Cancel");
+        				}else if(resultBibNumber == 0){
+        					printerAddLine("No Current Run To Cancel From");
+        				}
         			}
 		    	}
 		    	else if(functionIsSelected && selectedFunction == 9){

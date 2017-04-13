@@ -328,13 +328,17 @@ public class Run {
 	
 	/**
 	 * Cancels the current racer's attempt (due to fault, mis-queue, etc.) and puts him or her back in line to start.
+	 * 
+	 * @Return integer value of racer's bib number that has been canceled or 0 otherwise
 	 */
-	public void cancel(){
+	public int cancel(){
 		if(endQueue.isEmpty()){
-			return;
+			return 0;	// no racer has been cancelled
 		}
 		Racer tmp = endQueue.removeLast();
 		beginQueue.addFirst(tmp);
+		int tmpBibNum = tmp.getBib();
+		return tmpBibNum;	// a racer has been cancelled
 	}
 	
 	/**
