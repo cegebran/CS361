@@ -343,16 +343,18 @@ public class Run {
 	
 	/**
 	 * Marks the current racer with a 'Did Not Finish' status and removes them from the run.
+	 * 
+	 * @Return int racer bib number if dnf successful or 0 if no racer to dnf
 	 */
-	public boolean didNotFinish(){
+	public int didNotFinish(){
 		if(!parallel){
 			if(endQueue.isEmpty() == false){
 				Racer tmp = endQueue.remove();
 				// Denotes 'Did Not Finish' within racer's stats in the run
 				stats.setEnd(tmp, -1);
-				return true;
+				return tmp.getBib();
 			}else{
-				return false;
+				return 0;
 			}
 		}else if(parallel){
 			// No Active Racers
@@ -361,27 +363,27 @@ public class Run {
 				if(pendingQueue12.contains(tmp) == true){
 					pendingQueue12.removeFirst();
 					stats.setEnd(tmp, -1);
-					return true;
+					return tmp.getBib();
 				}else if(pendingQueue34.contains(tmp) == true){
 					pendingQueue34.removeFirst();
 					stats.setEnd(tmp, -1);
-					return true;
+					return tmp.getBib();
 				}else if(pendingQueue56.contains(tmp) == true){
 					pendingQueue56.removeFirst();
 					stats.setEnd(tmp, -1);
-					return true;
+					return tmp.getBib();
 				}else if(pendingQueue78.contains(tmp) == true){
 					pendingQueue78.removeFirst();
 					stats.setEnd(tmp, -1);
-					return true;
+					return tmp.getBib();
 				}else{
-					return false;
+					return 0;
 				}
 			}else{
-				return false;
+				return 0;
 			}
 		}else{
-			return false;
+			return 0;
 		}
 	}
 

@@ -73,9 +73,9 @@ public class Testdata {
 						System.out.println("A new run has been created");
 					}
 					else if(array[1].equals("NUM")){
-						boolean tmp = chronotimer.num(array[2]);
+						int tmp = chronotimer.num(array[2]);
 						//chronotimer.getCurrentRun().addRacer(new Racer(Integer.parseInt(array[2])));
-						if(tmp){
+						if(tmp == 1){
 							System.out.println("Number has been set");
 						}
 						else{

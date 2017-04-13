@@ -613,10 +613,16 @@ public class Driver_GUI extends JFrame{
 		    		finishedEnteringNum = false;
 		    		functionIsSelected = false;
 		    		currentNumPad = "";
-		    		chronotimer.dnf();
+		    		int result = chronotimer.dnf();
 		    		boolean printerPower = chronotimer.getPrinterPower();
         			if(printerPower == true){
-        				printerAddLine("Racer Marked as DNF");
+        				if(result == -2){
+        					printerAddLine("No Current Run In Progress");
+        				}else if(result == 0){
+        					printerAddLine("No Current Racer In Progress");
+        				}else if(result > 0){
+        					printerAddLine("Racer #"+ result + " Marked as DNF");
+        				}
         			}
 		    	}
 		    	else{
@@ -1136,28 +1142,75 @@ public class Driver_GUI extends JFrame{
 		        	}
 		        	else if(functionIsSelected && selectedFunction == 1){
 		        		if(displayHours){
-		        			displayHours = false;
-		        			displayMinutes = true;
-		        			enteredTime = currentNumPad;
-		        			currentNumPad = "";
+		        			if(!(currentNumPad.equals(""))){
+		        				int hours = Integer.parseInt(currentNumPad);
+		        				if(hours > 24){
+		        					displayHours = true;
+		        					displayMinutes = false;
+		        					displaySeconds = false;
+		        				}else{
+		        					if(hours < 10){
+		        						if(currentNumPad.length() == 1){
+		        							String tmp = currentNumPad;
+		        							currentNumPad = "0" + tmp;
+		        						}
+		        					}
+		        					displayMinutes = true;
+		        					displayHours = false;
+		        					displaySeconds = false;
+		        					enteredTime = currentNumPad;
+		        				}
+		        				currentNumPad = "";
+		        			}
 		        		}
 		        		else if(displayMinutes){
-		        			displayMinutes = false;
-		        			displaySeconds = true;
-		        			enteredTime += ":" + currentNumPad;
-		        			currentNumPad = "";
+		        			if(!(currentNumPad.equals(""))){
+		        				int minutes = Integer.parseInt(currentNumPad);
+		        				if(minutes > 60){
+		        					displayMinutes = true;
+		        					displayHours = false;
+		        					displaySeconds = false;
+		        				}else{
+		        					if(minutes< 10){
+		        						if(currentNumPad.length() == 1){
+		        							String tmp = currentNumPad;
+		        							currentNumPad = "0" + tmp;
+		        						}
+		        					}
+		        					displaySeconds = true;
+		        					displayMinutes = false;
+		        					displayHours = false;
+		        					enteredTime += ":" + currentNumPad;
+		        				}
+		        				currentNumPad = "";
+		        			}
 		        		}
 		        		else if(displaySeconds){
-		        			functionIsSelected = false;
-		        			enteredTime += ":" + currentNumPad;
-		        			boolean printerPower = chronotimer.getPrinterPower();
-		        			if(printerPower == true){
-			        			printerAddLine("Entered time: " + enteredTime);
+		        			if(!(currentNumPad.equalsIgnoreCase(""))){
+		        				int seconds = Integer.parseInt(currentNumPad);
+		        				if(seconds > 60){
+		        					displaySeconds = true;
+		        					displayMinutes = false;
+		        					displayHours = false;
+		        				}else{
+		        					if(seconds< 10){
+		        						if(currentNumPad.length() == 1){
+		        							String tmp = currentNumPad;
+		        							currentNumPad = "0" + tmp;
+		        						}
+		        					}
+		        					functionIsSelected = false;
+		        					enteredTime += ":" + currentNumPad;
+		        					boolean printerPower = chronotimer.getPrinterPower();
+		        					if(printerPower == true){
+		        						printerAddLine("Entered time: " + enteredTime);
+		        					}
+		        					chronotimer.getTimer().setTime(enteredTime);
+		        					enteredTime = "";
+		        					enterNum = false;
+		        				}
+		        				currentNumPad = "";
 		        			}
-		        			chronotimer.getTimer().setTime(enteredTime);
-		        			enteredTime = "";
-		        			currentNumPad = "";
-		        			enterNum = false;
 		        		}	        		
 		        	}
 		        	else if(functionIsSelected && selectedFunction == 2){
@@ -1191,10 +1244,20 @@ public class Driver_GUI extends JFrame{
 		        		functionIsSelected = false;
 		        	}
 		        	else if(functionIsSelected && selectedFunction == 7){
-		        		chronotimer.num(currentNumPad);
+		        		int result = chronotimer.num(currentNumPad);
 		        		boolean printerPower = chronotimer.getPrinterPower();
 	        			if(printerPower == true){
-			        		printerAddLine("BIB #" + currentNumPad + " Has Been Entered");
+	        				if(result == 1){
+	        					printerAddLine("BIB #" + currentNumPad + " Has Been Entered");
+	        				}else if(result == 0){
+	        					printerAddLine("Racer With BIB #"+ currentNumPad+ " Not Added");
+	        				}else if(result == -2){
+	        					printerAddLine("No Current Run To Add The Racer To");
+	        				}else if(result == -3){
+	        					printerAddLine("A Racer Already Has BIB #" + currentNumPad);
+	        				}else if(result == -4){
+	        					printerAddLine("No BIB Number Inputted");
+	        				}
 	        			}
 		        		currentNumPad = "";
 		        		functionIsSelected = false;

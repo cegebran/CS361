@@ -781,36 +781,44 @@ public class Chronotimer {
 	 * @param number	The bib number of the racer being entered into the race.
 	 * @return	True if successful, False otherwise
 	 */
-	public boolean num(String number){
+	public int num(String number){
 		// Only add racer if power is on
 		if(power == false){
-			return false;
+			return -1;
+		}
+		if(number.equals("")){
+			return -4;
 		}
 		else if(!individual){
 			if(currentRun != null){
-				return currentRun.setRacerNum(Integer.parseInt(number));
+				boolean result = currentRun.setRacerNum(Integer.parseInt(number));
+				if(result == true){
+					return 1;
+				}else{
+					return 0;
+				}
 			}
-			return false;
+			return -2;
 		}
 		else{
 			// Ignore the command if the input is invalid
 			if(number == null){
-				return false;
+				return 0;
 			}else{
 				// Only add if there is a run underway
 				if(currentRun == null){
-					return false;
+					return -2;
 				}else{
 					// Check if bib number already exists in the current run before adding it to the run
 					boolean checkBibNumValue = currentRun.numExistsInRun(number);
 					if(checkBibNumValue == false){
-						return false;
+						return -3;
 					}
 					// Parse the bib number, then add the racer with their number
 					int racerBibNumber = Integer.parseInt(number);
 					Racer toAdd = new Racer(racerBibNumber);
 					currentRun.addRacer(toAdd);
-					return true;
+					return 1;
 				}
 			}
 		}
@@ -883,21 +891,21 @@ public class Chronotimer {
 	 * 
 	 * @return	True if successfully marked, False otherwise.
 	 */
-	public boolean dnf(){
+	public int dnf(){
 		// Only act if Chronotimer is on
 		if(power == false){
-			return false;
+			return -1;
 		}else{
 			// Only perform if there is a run underway
 			if(currentRun == null){
-				return false;
+				return -2;
 			}else{
 				// Utilize Run object's 'Did Not Finish' method for marking
-				boolean dnfResult = currentRun.didNotFinish();
-				if(dnfResult == true){
-					return true;
+				int dnfResult = currentRun.didNotFinish();
+				if(dnfResult == 0){
+					return 0;
 				}else{
-					return false;
+					return dnfResult;
 				}
 			}
 		}

@@ -136,15 +136,15 @@ public class Driver {
 				
 				// dnf command
 				if(userInputParse[0].equals("DNF")){
-					if(chronotimer.getPower() == false){
-						System.out.println("The chronotimer is currently off");
-					}else{
-						boolean dnfOutput = chronotimer.dnf();
-						if(dnfOutput == true){
-							System.out.println("The current run has been marked as a DNF");
-						}else{
-							System.out.println("The current run has not been marked as a DNF");
-						}
+					int result = chronotimer.dnf();
+					if(result > 0){
+						System.out.println("Racer #" + result + " Marked As DNF");
+					}else if(result == 0){
+						System.out.println("No Racer Currently Running To Mark As DNF");
+					}else if(result == -2){
+						System.out.println("No Current Run To Mark A Racer As DNF");
+					}else if(result == -1){
+						System.out.println("The Chronotimer Power Is Currently Off");
 					}
 				}
 				
@@ -207,15 +207,19 @@ public class Driver {
 				
 				// num command
 				if(userInputParse[0].equals("NUM")){
-					if(chronotimer.getPower() == false){
-						System.out.println("The Chronotimer is off");
-					}else{
-						boolean numCorrect = chronotimer.num(userInputParse[1]);
-						if(numCorrect == false){
-							System.out.println("The racer was not added to the queue");
-						}else{
-							System.out.println("The racer was added to the queue");
-						}
+					int result = chronotimer.num(userInputParse[1]);
+					if(result == -1){
+						System.out.println("The Chronotimer Is Off");
+					}else if(result == 0){
+						System.out.println("Number Not Added");
+					}else if(result == 1){
+						System.out.println("Racer With BIB #" + userInputParse[1] + " Has Been Added");
+					}else if(result == -2){
+						System.out.println("No Current Run To Add The Racer To");
+					}else if(result == -3){
+						System.out.println("The BIB #" + userInputParse[1] + " Already Exists");
+					}else if(result == -4){
+						System.out.println("No Number Entered To Add");
 					}
 				}
 				
