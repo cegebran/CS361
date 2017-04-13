@@ -191,7 +191,7 @@ public class ChronoTester {
 		c7.toggleChannel("1");
 		c7.toggleChannel("2");
 		assertEquals(true, c7.newRun());
-		assertEquals(true, c7.num("111"));
+		assertEquals(1, c7.num("111"));
 		
 		assertEquals(true, c7.start());
 		assertEquals(true, c7.finish());
@@ -206,7 +206,7 @@ public class ChronoTester {
 		assertEquals(true, c8.newRun());
 		c8.num("111");
 		assertEquals(true, c8.start());
-		assertEquals(true, c8.dnf());
+		assertEquals(111, c8.dnf());
 		assertTrue(c8.endRun());
 		c8.power();
 	}
@@ -222,17 +222,17 @@ public class ChronoTester {
 		c9.num("22");
 		assertEquals(true, c9.start());
 		assertEquals(true, c9.start());
-		assertEquals(true, c9.dnf());
-		assertEquals(true, c9.dnf());
+		assertEquals(11, c9.dnf());
+		assertEquals(22, c9.dnf());
 		assertTrue(c9.endRun());
 		
 		assertEquals(true, c9.newRun());
 		c9.num("33");
 		c9.num("44");
 		assertEquals(true, c9.start());
-		assertEquals(true, c9.dnf());
+		assertEquals(33, c9.dnf());
 		assertEquals(true, c9.start());
-		assertEquals(true, c9.dnf());
+		assertEquals(44, c9.dnf());
 		assertTrue(c9.endRun());
 		
 		assertEquals(true, c9.newRun());
@@ -241,7 +241,7 @@ public class ChronoTester {
 		assertEquals(true, c9.start());
 		assertEquals(true, c9.finish());
 		assertEquals(true, c9.start());
-		assertEquals(true, c9.dnf());
+		assertEquals(66, c9.dnf());
 		assertTrue(c9.endRun());
 		
 		assertEquals(true, c9.newRun());
@@ -250,14 +250,14 @@ public class ChronoTester {
 		assertEquals(true, c9.start());
 		assertEquals(true, c9.finish());
 		assertEquals(true, c9.start());
-		assertEquals(true, c9.dnf());
+		assertEquals(88, c9.dnf());
 		assertTrue(c9.endRun());
 		
 		assertEquals(true, c9.newRun());
 		c9.num("99");
 		c9.num("11");//changed from "00"
 		assertEquals(true, c9.start());
-		assertEquals(true, c9.dnf());
+		assertEquals(99, c9.dnf());
 		assertEquals(true, c9.start());
 		assertEquals(true, c9.finish());
 		assertTrue(c9.endRun());
@@ -274,17 +274,17 @@ public class ChronoTester {
 		c9.num("22");
 		assertEquals(11, c9.trigger("1"));
 		assertEquals(22, c9.trigger("1"));
-		assertEquals(true, c9.dnf());
-		assertEquals(true, c9.dnf());
+		assertEquals(11, c9.dnf());
+		assertEquals(22, c9.dnf());
 		assertTrue(c9.endRun());
 		
 		assertEquals(true, c9.newRun());
 		c9.num("33");
 		c9.num("44");
 		assertEquals(33, c9.trigger("1"));
-		assertEquals(true, c9.dnf());
+		assertEquals(33, c9.dnf());
 		assertEquals(44, c9.trigger("1"));
-		assertEquals(true, c9.dnf());
+		assertEquals(44, c9.dnf());
 		assertTrue(c9.endRun());
 		
 		assertEquals(true, c9.newRun());
@@ -293,7 +293,7 @@ public class ChronoTester {
 		assertEquals(55, c9.trigger("1"));
 		assertEquals(55, c9.trigger("2"));
 		assertEquals(66, c9.trigger("1"));
-		assertEquals(true, c9.dnf());
+		assertEquals(66, c9.dnf());
 		assertTrue(c9.endRun());
 		
 		assertEquals(true, c9.newRun());
@@ -302,14 +302,14 @@ public class ChronoTester {
 		assertEquals(77, c9.trigger("1"));
 		assertEquals(77, c9.trigger("2"));
 		assertEquals(88, c9.trigger("1"));
-		assertEquals(true, c9.dnf());
+		assertEquals(88, c9.dnf());
 		assertTrue(c9.endRun());
 		
 		assertEquals(true, c9.newRun());
 		c9.num("99");
 		c9.num("00");
 		assertEquals(99, c9.trigger("1"));
-		assertEquals(true, c9.dnf());
+		assertEquals(99, c9.dnf());
 		assertEquals(00, c9.trigger("1"));
 		assertEquals(00, c9.trigger("2"));
 		assertTrue(c9.endRun());
@@ -329,9 +329,9 @@ public class ChronoTester {
 		assertEquals(true, c0.start());
 		assertEquals(true, c0.start());
 		assertEquals(3, c0.getCurrentRun().getEndQueue().size());
-		assertEquals(true, c0.dnf());
-		assertEquals(true, c0.dnf());
-		assertEquals(true, c0.dnf());
+		assertEquals(12, c0.dnf());
+		assertEquals(13, c0.dnf());
+		assertEquals(14, c0.dnf());
 	}
 	
 	
@@ -396,9 +396,9 @@ public class ChronoTester {
 		assertEquals(1, c0.getCurrentRun().getEndQueue().size());
 		assertEquals(true, c0.start());
 		assertEquals(2, c0.getCurrentRun().getEndQueue().size());
-		assertEquals(true, c0.dnf());
+		assertEquals(13, c0.dnf());
 		assertEquals(1, c0.getCurrentRun().getEndQueue().size());
-		assertEquals(true, c0.dnf());
+		assertEquals(14, c0.dnf());
 		assertEquals(0, c0.getCurrentRun().getEndQueue().size());
 	}
 	
@@ -446,7 +446,7 @@ public class ChronoTester {
 		assertEquals(0, c0.getCurrentRun().getEndQueue().size());
 		assertEquals(14, c0.trigger("1"));
 		assertEquals(1, c0.getCurrentRun().getEndQueue().size());
-		assertEquals(true, c0.dnf());
+		assertEquals(14, c0.dnf());
 		assertEquals(0, c0.getCurrentRun().getEndQueue().size());
 	}
 	
@@ -455,8 +455,8 @@ public class ChronoTester {
 		Chronotimer c0 = new Chronotimer();
 		c0.power();
 		assertEquals(true, c0.newRun());
-		assertEquals(true, c0.num("12"));
-		assertEquals(false, c0.num("12"));
+		assertEquals(1, c0.num("12"));
+		assertEquals(-3, c0.num("12"));
 	}
 	
 	@Test
@@ -464,7 +464,7 @@ public class ChronoTester {
 		// all functionalities 
 		Chronotimer c0 = new Chronotimer();
 		assertEquals(false, c0.setEvent("IND"));
-		assertEquals(false, c0.dnf());
+		assertEquals(-1, c0.dnf());
 		assertEquals(false, c0.toggleChannel("1"));
 		assertEquals(0, c0.trigger("1"));
 		assertEquals(false, c0.start());
@@ -581,7 +581,7 @@ public class ChronoTester {
 		c0.toggleChannel("2");
 		assertEquals(true, c0.newRun());
 		c0.num("111");
-		assertEquals(false, c0.dnf());
+		assertEquals(0, c0.dnf());
 	}
 	
 	@Test
@@ -597,10 +597,10 @@ public class ChronoTester {
 		c0.num("111");
 		c0.num("222");
 		c0.num("333");
-		assertEquals(false, c0.dnf());
+		assertEquals(0, c0.dnf());
 		assertEquals(111, c0.trigger("1"));
 		assertEquals(222, c0.trigger("3"));
-		assertEquals(true, c0.dnf());
+		assertEquals(111, c0.dnf());
 		assertEquals(333, c0.trigger("1"));
 		assertEquals(222, c0.trigger("4"));
 		assertEquals(333, c0.trigger("2"));
