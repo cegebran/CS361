@@ -779,7 +779,8 @@ public class Chronotimer {
 	 * Creates a racer with the given bib number in the current run.
 	 * 
 	 * @param number	The bib number of the racer being entered into the race.
-	 * @return	True if successful, False otherwise
+	 * @return	-1 = power off, 1 = added to racer queue success, 0 = not added, -2 = no current run to add to,
+	 * @return -3 = bib# already exists, -4 = no string added ""
 	 */
 	public int num(String number){
 		// Only add racer if power is on
@@ -889,7 +890,7 @@ public class Chronotimer {
 	/**
 	 * Marks the current racer with a 'Did Not Finish' status'.
 	 * 
-	 * @return	True if successfully marked, False otherwise.
+	 * @return	-1 = power off, -2 = no current run, 0 no racer in run to dnf, bib# if successful dnf
 	 */
 	public int dnf(){
 		// Only act if Chronotimer is on
