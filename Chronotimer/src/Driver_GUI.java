@@ -85,7 +85,7 @@ public class Driver_GUI extends JFrame{
 	boolean displayMinutes = false;
 	boolean displaySeconds = false;
 	String enteredTime = "";
-	int selectedEvent = 0;
+	int selectedEvent = -1;
 	
 	public Driver_GUI(){
 		Chronotimer chronotimer = new Chronotimer();
@@ -627,7 +627,7 @@ public class Driver_GUI extends JFrame{
         				}
         			}
 		    	}
-		    	else{//We need update this every 60 seconds
+		    	else{
 					displayCenterPanel.setBackground(Color.WHITE);
 		    		if(selectedEvent == 0){
 		    			//IND
