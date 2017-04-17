@@ -9,6 +9,8 @@ import java.io.DataOutputStream;
 import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
+import java.util.ArrayList;
+import java.util.Iterator;
 
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
@@ -625,16 +627,33 @@ public class Driver_GUI extends JFrame{
         				}
         			}
 		    	}
-		    	else{
+		    	else{//We need update this every 60 seconds
 					displayCenterPanel.setBackground(Color.WHITE);
-		    		displayLine1Label.setText("Display Ongoing Race Here");
-		    		displayLine2Label.setText("");
-		    		displayLine3Label.setText("");
-		    		displayLine4Label.setText("");
-		    		displayLine5Label.setText("");
-		    		displayLine6Label.setText("");
-		    		displayLine7Label.setText("");
-		    		displayLine8Label.setText("");
+		    		if(selectedEvent == 0){
+		    			//IND
+		    			//Show the next three to start, and current running racers, and the last racer to finish
+		    			
+			    		displayLine1Label.setText("");
+			    		displayLine2Label.setText("");
+			    		displayLine3Label.setText("");
+			    		displayLine4Label.setText("");
+			    		displayLine5Label.setText("");
+			    		displayLine6Label.setText("");
+			    		displayLine7Label.setText("");
+			    		displayLine8Label.setText("");
+		    		}
+		    		else if(selectedEvent == 1){
+		    			//PARIND
+		    			//Show the next pair to run, running time of the racers, and finish times of the last pair to finish
+		    		}
+					else if(selectedEvent == 2){
+						//GRP
+						//Since there are no starters only running time and last finish needs to be displayed.
+							    		}
+					else if(selectedEvent == 3){
+						//PARGRP
+						//Next Sprint
+					}
 				}
 			}
 		});
