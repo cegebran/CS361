@@ -11,6 +11,7 @@ import java.net.HttpURLConnection;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.Iterator;
+import java.util.LinkedList;
 
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
@@ -628,10 +629,25 @@ public class Driver_GUI extends JFrame{
         			}
 		    	}
 		    	else{
+		    		//TODO MAIN DISPLAY
 					displayCenterPanel.setBackground(Color.WHITE);
+	    			Stats currentStats = chronotimer.getCurrentRun().getStats();//TODO NUllPointerException
+	    			ArrayList<Racer> racerQueue = currentStats.getRacers();
 		    		if(selectedEvent == 0){
 		    			//IND
 		    			//Show the next three to start, and current running racers, and the last racer to finish
+			    		displayLine1Label.setText(Integer.toString(racerQueue.get(0).getBib()) + " " + currentStats.getRaceTime(racerQueue.get(0)));//Still neeed to get the time and the status as well
+			    		displayLine2Label.setText(Integer.toString(racerQueue.get(1).getBib()) + " " + currentStats.getRaceTime(racerQueue.get(1)));
+			    		displayLine3Label.setText(Integer.toString(racerQueue.get(2).getBib()) + " " + currentStats.getRaceTime(racerQueue.get(2)));
+			    		displayLine4Label.setText("");
+			    		displayLine5Label.setText("");
+			    		displayLine6Label.setText("");
+			    		displayLine7Label.setText("");
+			    		displayLine8Label.setText(""); 
+		    		}
+		    		else if(selectedEvent == 1){
+		    			//PARIND
+		    			//Show the next pair to run, running time of the racers, and finish times of the last pair to finish
 		    			
 			    		displayLine1Label.setText("");
 			    		displayLine2Label.setText("");
@@ -642,17 +658,22 @@ public class Driver_GUI extends JFrame{
 			    		displayLine7Label.setText("");
 			    		displayLine8Label.setText("");
 		    		}
-		    		else if(selectedEvent == 1){
-		    			//PARIND
-		    			//Show the next pair to run, running time of the racers, and finish times of the last pair to finish
-		    		}
 					else if(selectedEvent == 2){
 						//GRP
 						//Since there are no starters only running time and last finish needs to be displayed.
-							    		}
+					
+			    		displayLine1Label.setText("");
+			    		displayLine2Label.setText("");
+			    		displayLine3Label.setText("");
+			    		displayLine4Label.setText("");
+			    		displayLine5Label.setText("");
+			    		displayLine6Label.setText("");
+			    		displayLine7Label.setText("");
+			    		displayLine8Label.setText("");
+					}
 					else if(selectedEvent == 3){
+						//TODO Next Sprint
 						//PARGRP
-						//Next Sprint
 					}
 				}
 			}
