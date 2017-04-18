@@ -654,6 +654,9 @@ public class Chronotimer {
 		if(power == false){
 			return false;
 		}
+		if(currentRun != null){
+			return false;
+		}
 		if(userInput.equals("IND")){
 			individual = true;
 			parallel = false;

@@ -639,7 +639,7 @@ public class Driver_GUI extends JFrame{
 		    		displayLine6Label.setText("");
 		    		displayLine7Label.setText("");
 		    		displayLine8Label.setText("");
-		    		//Temporarilty commented out:
+		    		//Temporarily commented out:
 					/*
 	    			Stats currentStats = chronotimer.getCurrentRun().getStats();//TODO NUllPointerException
 	    			ArrayList<Racer> racerQueue = currentStats.getRacers();
@@ -1266,31 +1266,40 @@ public class Driver_GUI extends JFrame{
 		        	}
 		        	else if(functionIsSelected && selectedFunction == 2){
 		        		if(selectedEvent == 0){
-		        			chronotimer.setEvent("IND");
 		        			boolean printerPower = chronotimer.getPrinterPower();
-		        			if(printerPower == true){
-		        				printerAddLine("Event set to IND");		        			}
+		        			if(printerPower == true && chronotimer.setEvent("IND")){
+		        				printerAddLine("Event set to IND");		        			
 		        			}
+		        			else{
+		        				printerAddLine("Only Set Event Before Starting a Run");		        			
+		        			}
+		        		}
 		        		else if(selectedEvent == 1){
-		        			chronotimer.setEvent("PARIND");
 		        			boolean printerPower = chronotimer.getPrinterPower();
-		        			if(printerPower == true){
+		        			if(printerPower == true && chronotimer.setEvent("PARGRP")){
 		        				printerAddLine("Event set to PARIND");	        			
 		        			}
+			        		else{
+		        				printerAddLine("Only Set Event Before Starting a Run");		        			
+			        		}
 		        		}
 		        		else if(selectedEvent == 2){
-		        			chronotimer.setEvent("GRP");
 		        			boolean printerPower = chronotimer.getPrinterPower();
-		        			if(printerPower == true){
+		        			if(printerPower == true && chronotimer.setEvent("GRP")){
 		        				printerAddLine("Event set to GRP");	        			
 		        			}
+			        		else{
+		        				printerAddLine("Only Set Event Before Starting a Run");		        			
+			        		}
 		        		}
 		        		else if(selectedEvent == 3){
-		        			chronotimer.setEvent("PARGRP");
 		        			boolean printerPower = chronotimer.getPrinterPower();
-		        			if(printerPower == true){
+		        			if(printerPower == true && chronotimer.setEvent("PARGRP")){
 		        				printerAddLine("Event set to PARGRP");	        			
 		        			}
+			        		else{
+		        				printerAddLine("Only Set Event Before Starting a Run");		        			
+			        		}
 		        		}
 		        		functionIsSelected = false;
 		        	}
