@@ -86,7 +86,7 @@ public class Driver_GUI extends JFrame{
 	boolean displayMinutes = false;
 	boolean displaySeconds = false;
 	String enteredTime = "";
-	int selectedEvent = -1;
+	int selectedEvent = 0;
 	
 	public Driver_GUI(){
 		Chronotimer chronotimer = new Chronotimer();
@@ -631,6 +631,16 @@ public class Driver_GUI extends JFrame{
 		    	else{
 		    		//TODO MAIN DISPLAY
 					displayCenterPanel.setBackground(Color.WHITE);
+					displayLine1Label.setText("");
+		    		displayLine2Label.setText("");
+		    		displayLine3Label.setText("");
+		    		displayLine4Label.setText("");
+		    		displayLine5Label.setText("");
+		    		displayLine6Label.setText("");
+		    		displayLine7Label.setText("");
+		    		displayLine8Label.setText("");
+		    		//Temporarilty commented out:
+					/*
 	    			Stats currentStats = chronotimer.getCurrentRun().getStats();//TODO NUllPointerException
 	    			ArrayList<Racer> racerQueue = currentStats.getRacers();
 		    		if(selectedEvent == 0){
@@ -675,6 +685,7 @@ public class Driver_GUI extends JFrame{
 						//TODO Next Sprint
 						//PARGRP
 					}
+					*/
 				}
 			}
 		});

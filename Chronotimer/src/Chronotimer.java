@@ -220,7 +220,7 @@ public class Chronotimer {
 		
 		// If the channel is # and is 'On'... if 'Start' channel: start racer. else: end current race
 		if(number == 1 && one.getOn() == true){
-			if(one.getStart() == true){
+			if(individual){
 				Racer racer = currentRun.startRacer(timer.getCurrentTime(),1);
 				if(racer == null){
 					return 0;
@@ -229,35 +229,35 @@ public class Chronotimer {
 				}
 			}
 			else{
-				Racer racer = currentRun.endRacer(timer.getCurrentTime(),1);
-				if(racer == null){
-					return 0;
+				Boolean returnValue = currentRun.startGroup(timer.getCurrentTime());
+				if(returnValue == true){
+					return 11111;
 				}else{
-					return racer.getBib();
-				}
-			}	
-		}
-		else if(number == 2 && two.getOn() == true){
-			if(two.getStart() == true){
-				Racer racer = currentRun.startRacer(timer.getCurrentTime(),2);
-				if(racer == null){
 					return 0;
-				}else{
-					return racer.getBib();
 				}
 			}
-			else{
+		}
+		else if(number == 2 && two.getOn() == true){
+			if(individual){
 				Racer racer = currentRun.endRacer(timer.getCurrentTime(),2);
 				if(racer == null){
 					return 0;
 				}else{
 					return racer.getBib();
 				}
-			}	
+			}
+			else{
+				Boolean returnValue = currentRun.endGroup(timer.getCurrentTime());
+				if(returnValue == true){
+					return 11111;
+				}else{
+					return 0;
+				}
+			}
 		}
 		else if(number == 3 && three.getOn() == true){
-			if(three.getStart() == true){
-				Racer racer = currentRun.startRacer(timer.getCurrentTime(),3);
+			if(individual){
+				Racer racer = currentRun.startRacer(timer.getCurrentTime(),1);
 				if(racer == null){
 					return 0;
 				}else{
@@ -265,17 +265,17 @@ public class Chronotimer {
 				}
 			}
 			else{
-				Racer racer = currentRun.endRacer(timer.getCurrentTime(),3);
-				if(racer == null){
-					return 0;
+				Boolean returnValue = currentRun.startGroup(timer.getCurrentTime());
+				if(returnValue == true){
+					return 11111;
 				}else{
-					return racer.getBib();
+					return 0;
 				}
-			}	
+			}
 		}
 		else if(number == 4 && four.getOn() == true){
-			if(four.getStart() == true){
-				Racer racer =  currentRun.startRacer(timer.getCurrentTime(),4);
+			if(individual){
+				Racer racer = currentRun.endRacer(timer.getCurrentTime(),2);
 				if(racer == null){
 					return 0;
 				}else{
@@ -283,17 +283,17 @@ public class Chronotimer {
 				}
 			}
 			else{
-				Racer racer = currentRun.endRacer(timer.getCurrentTime(),4);
-				if(racer == null){
-					return 0;
+				Boolean returnValue = currentRun.endGroup(timer.getCurrentTime());
+				if(returnValue == true){
+					return 11111;
 				}else{
-					return racer.getBib();
+					return 0;
 				}
-			}	
+			}
 		}
 		else if(number == 5 && five.getOn() == true){
-			if(five.getStart() == true){
-				Racer racer = currentRun.startRacer(timer.getCurrentTime(),5);
+			if(individual){
+				Racer racer = currentRun.startRacer(timer.getCurrentTime(),1);
 				if(racer == null){
 					return 0;
 				}else{
@@ -301,17 +301,17 @@ public class Chronotimer {
 				}
 			}
 			else{
-				Racer racer = currentRun.endRacer(timer.getCurrentTime(),5);
-				if(racer == null){
-					return 0;
+				Boolean returnValue = currentRun.startGroup(timer.getCurrentTime());
+				if(returnValue == true){
+					return 11111;
 				}else{
-					return racer.getBib();
+					return 0;
 				}
-			}	
+			}
 		}
 		else if(number == 6 && six.getOn() == true){
-			if(six.getStart() == true){
-				Racer racer = currentRun.startRacer(timer.getCurrentTime(),6);
+			if(individual){
+				Racer racer = currentRun.endRacer(timer.getCurrentTime(),2);
 				if(racer == null){
 					return 0;
 				}else{
@@ -319,17 +319,17 @@ public class Chronotimer {
 				}
 			}
 			else{
-				Racer racer = currentRun.endRacer(timer.getCurrentTime(),6);
-				if(racer == null){
-					return 0;
+				Boolean returnValue = currentRun.endGroup(timer.getCurrentTime());
+				if(returnValue == true){
+					return 11111;
 				}else{
-					return racer.getBib();
+					return 0;
 				}
-			}	
+			}
 		}
 		else if(number == 7 && seven.getOn() == true){
-			if(seven.getStart() == true){
-				Racer racer = currentRun.startRacer(timer.getCurrentTime(),7);
+			if(individual){
+				Racer racer = currentRun.startRacer(timer.getCurrentTime(),1);
 				if(racer == null){
 					return 0;
 				}else{
@@ -337,17 +337,17 @@ public class Chronotimer {
 				}
 			}
 			else{
-				Racer racer = currentRun.endRacer(timer.getCurrentTime(),7);
-				if(racer == null){
-					return 0;
+				Boolean returnValue = currentRun.startGroup(timer.getCurrentTime());
+				if(returnValue == true){
+					return 11111;
 				}else{
-					return racer.getBib();
+					return 0;
 				}
-			}	
+			}
 		}
 		else if(number == 8 && eight.getOn() == true){
-			if(eight.getStart() == true){
-				Racer racer = currentRun.startRacer(timer.getCurrentTime(),8);
+			if(individual){
+				Racer racer = currentRun.endRacer(timer.getCurrentTime(),2);
 				if(racer == null){
 					return 0;
 				}else{
@@ -355,13 +355,13 @@ public class Chronotimer {
 				}
 			}
 			else{
-				Racer racer = currentRun.endRacer(timer.getCurrentTime(),8);
-				if(racer == null){
-					return 0;
+				Boolean returnValue = currentRun.endGroup(timer.getCurrentTime());
+				if(returnValue == true){
+					return 11111;
 				}else{
-					return racer.getBib();
+					return 0;
 				}
-			}	
+			}
 		}
 		return 0;
 	}
