@@ -20,6 +20,7 @@ public class Driver_GUI extends JFrame{
 	
 	public static void main(String[] args){
 		Driver_GUI myGUI = new Driver_GUI();
+		myGUI.setLocationRelativeTo(null);
 		myGUI.setVisible(true);
 		myGUI.setResizable(false);
 		myGUI.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
