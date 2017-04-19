@@ -91,7 +91,7 @@ public class ChronoTester {
 		assertEquals(false, c3.getChannelSeven().getStart());
 		assertEquals(true, c3.getChannelEight().getStart());
 		
-		assertEquals(true, c3.newRun());
+		assertEquals(1, c3.newRun());
 		assertNotNull(c3.getRuns());
 		
 		c3.setEvent("PARIND");
@@ -134,7 +134,7 @@ public class ChronoTester {
 		Chronotimer c5 = new Chronotimer();
 		c5.power();
 		assertNull(c5.getCurrentRun());
-		assertEquals(true, c5.newRun());
+		assertEquals(1, c5.newRun());
 		assertNotNull(c5.getCurrentRun());
 		assertTrue(c5.endRun());
 		assertNull(c5.getCurrentRun());
@@ -190,7 +190,7 @@ public class ChronoTester {
 		c7.power();
 		c7.toggleChannel("1");
 		c7.toggleChannel("2");
-		assertEquals(true, c7.newRun());
+		assertEquals(1, c7.newRun());
 		assertEquals(1, c7.num("111"));
 		
 		assertEquals(true, c7.start());
@@ -203,7 +203,7 @@ public class ChronoTester {
 		c8.power();
 		c8.toggleChannel("1");
 		c8.toggleChannel("2");
-		assertEquals(true, c8.newRun());
+		assertEquals(1, c8.newRun());
 		c8.num("111");
 		assertEquals(true, c8.start());
 		assertEquals(111, c8.dnf());
@@ -217,7 +217,7 @@ public class ChronoTester {
 		c9.power();
 		c9.toggleChannel("1");
 		c9.toggleChannel("2");
-		assertEquals(true, c9.newRun());
+		assertEquals(1, c9.newRun());
 		c9.num("11");
 		c9.num("22");
 		assertEquals(true, c9.start());
@@ -226,7 +226,7 @@ public class ChronoTester {
 		assertEquals(22, c9.dnf());
 		assertTrue(c9.endRun());
 		
-		assertEquals(true, c9.newRun());
+		assertEquals(1, c9.newRun());
 		c9.num("33");
 		c9.num("44");
 		assertEquals(true, c9.start());
@@ -235,7 +235,7 @@ public class ChronoTester {
 		assertEquals(44, c9.dnf());
 		assertTrue(c9.endRun());
 		
-		assertEquals(true, c9.newRun());
+		assertEquals(1, c9.newRun());
 		c9.num("55");
 		c9.num("66");
 		assertEquals(true, c9.start());
@@ -244,7 +244,7 @@ public class ChronoTester {
 		assertEquals(66, c9.dnf());
 		assertTrue(c9.endRun());
 		
-		assertEquals(true, c9.newRun());
+		assertEquals(1, c9.newRun());
 		c9.num("77");
 		c9.num("88");
 		assertEquals(true, c9.start());
@@ -253,7 +253,7 @@ public class ChronoTester {
 		assertEquals(88, c9.dnf());
 		assertTrue(c9.endRun());
 		
-		assertEquals(true, c9.newRun());
+		assertEquals(1, c9.newRun());
 		c9.num("99");
 		c9.num("11");//changed from "00"
 		assertEquals(true, c9.start());
@@ -269,7 +269,7 @@ public class ChronoTester {
 		c9.power();
 		c9.toggleChannel("1");
 		c9.toggleChannel("2");
-		assertEquals(true, c9.newRun());
+		assertEquals(1, c9.newRun());
 		c9.num("11");
 		c9.num("22");
 		assertEquals(11, c9.trigger("1"));
@@ -278,7 +278,7 @@ public class ChronoTester {
 		assertEquals(22, c9.dnf());
 		assertTrue(c9.endRun());
 		
-		assertEquals(true, c9.newRun());
+		assertEquals(1, c9.newRun());
 		c9.num("33");
 		c9.num("44");
 		assertEquals(33, c9.trigger("1"));
@@ -287,7 +287,7 @@ public class ChronoTester {
 		assertEquals(44, c9.dnf());
 		assertTrue(c9.endRun());
 		
-		assertEquals(true, c9.newRun());
+		assertEquals(1, c9.newRun());
 		c9.num("55");
 		c9.num("66");
 		assertEquals(55, c9.trigger("1"));
@@ -296,7 +296,7 @@ public class ChronoTester {
 		assertEquals(66, c9.dnf());
 		assertTrue(c9.endRun());
 		
-		assertEquals(true, c9.newRun());
+		assertEquals(1, c9.newRun());
 		c9.num("77");
 		c9.num("88");
 		assertEquals(77, c9.trigger("1"));
@@ -305,7 +305,7 @@ public class ChronoTester {
 		assertEquals(88, c9.dnf());
 		assertTrue(c9.endRun());
 		
-		assertEquals(true, c9.newRun());
+		assertEquals(1, c9.newRun());
 		c9.num("99");
 		c9.num("00");
 		assertEquals(99, c9.trigger("1"));
@@ -321,7 +321,7 @@ public class ChronoTester {
 		c0.power();
 		c0.toggleChannel("1");
 		c0.toggleChannel("2");
-		assertEquals(true, c0.newRun());
+		assertEquals(1, c0.newRun());
 		c0.num("12");
 		c0.num("13");
 		c0.num("14");
@@ -341,7 +341,7 @@ public class ChronoTester {
 		c0.power();
 		c0.toggleChannel("1");
 		c0.toggleChannel("2");
-		assertEquals(true, c0.newRun());
+		assertEquals(1, c0.newRun());
 		c0.num("12");
 		c0.num("13");
 		c0.num("14");
@@ -361,7 +361,7 @@ public class ChronoTester {
 		c0.power();
 		c0.toggleChannel("1");
 		c0.toggleChannel("2");
-		assertEquals(true, c0.newRun());
+		assertEquals(1, c0.newRun());
 		c0.num("12");
 		c0.num("13");
 		c0.num("14");
@@ -384,7 +384,7 @@ public class ChronoTester {
 		c0.power();
 		c0.toggleChannel("1");
 		c0.toggleChannel("2");
-		assertEquals(true, c0.newRun());
+		assertEquals(1, c0.newRun());
 		c0.num("12");
 		c0.num("13");
 		c0.num("14");
@@ -408,7 +408,7 @@ public class ChronoTester {
 		c0.power();
 		c0.toggleChannel("1");
 		c0.toggleChannel("2");
-		assertEquals(true, c0.newRun());
+		assertEquals(1, c0.newRun());
 		c0.num("12");
 		c0.num("13");
 		c0.num("14");
@@ -432,7 +432,7 @@ public class ChronoTester {
 		c0.power();
 		c0.toggleChannel("1");
 		c0.toggleChannel("2");
-		assertEquals(true, c0.newRun());
+		assertEquals(1, c0.newRun());
 		c0.num("12");
 		c0.num("13");
 		c0.num("14");
@@ -454,7 +454,7 @@ public class ChronoTester {
 	public void add_same_num_Test(){
 		Chronotimer c0 = new Chronotimer();
 		c0.power();
-		assertEquals(true, c0.newRun());
+		assertEquals(1, c0.newRun());
 		assertEquals(1, c0.num("12"));
 		assertEquals(-3, c0.num("12"));
 	}
@@ -480,7 +480,7 @@ public class ChronoTester {
 		c0.toggleChannel("2");
 		c0.toggleChannel("3");
 		c0.toggleChannel("4");
-		assertEquals(true, c0.newRun());	// set to parallel
+		assertEquals(2, c0.newRun());	// set to parallel
 		c0.num("111");
 		c0.num("222");
 		assertEquals(111, c0.trigger("1"));
@@ -498,7 +498,7 @@ public class ChronoTester {
 		c0.toggleChannel("2");
 		c0.toggleChannel("3");
 		c0.toggleChannel("4");
-		assertEquals(true, c0.newRun());	// set to parallel
+		assertEquals(2, c0.newRun());	// set to parallel
 		c0.num("111");
 		c0.num("222");
 		c0.num("333");
@@ -526,7 +526,7 @@ public class ChronoTester {
 		c0.toggleChannel("6");
 		c0.toggleChannel("7");
 		c0.toggleChannel("8");
-		assertEquals(true, c0.newRun());	// set to parallel
+		assertEquals(2, c0.newRun());	// set to parallel
 		c0.num("111");
 		c0.num("222");
 		c0.num("333");
@@ -554,7 +554,7 @@ public class ChronoTester {
 		c0.toggleChannel("4");
 		c0.toggleChannel("5");
 		c0.toggleChannel("6");
-		assertEquals(true, c0.newRun());	// set to parallel
+		assertEquals(2, c0.newRun());	// set to parallel
 		c0.num("111");
 		c0.num("222");
 		c0.num("333");
@@ -579,7 +579,7 @@ public class ChronoTester {
 		c0.power();
 		c0.toggleChannel("1");
 		c0.toggleChannel("2");
-		assertEquals(true, c0.newRun());
+		assertEquals(1, c0.newRun());
 		c0.num("111");
 		assertEquals(0, c0.dnf());
 	}
@@ -593,7 +593,7 @@ public class ChronoTester {
 		c0.toggleChannel("2");
 		c0.toggleChannel("3");
 		c0.toggleChannel("4");
-		assertEquals(true, c0.newRun());	// set to parallel
+		assertEquals(2, c0.newRun());	// set to parallel
 		c0.num("111");
 		c0.num("222");
 		c0.num("333");
@@ -613,13 +613,13 @@ public class ChronoTester {
 		c0.setEvent("IND");
 		c0.toggleChannel("1");
 		c0.toggleChannel("2");
-		assertEquals(true, c0.newRun());
+		assertEquals(1, c0.newRun());
 		c0.num("111");
 		assertEquals(1,c0.getRuns().get(0).getRunNumber());
 		c0.start();
 		c0.finish();
 		assertTrue(c0.endRun());
-		assertEquals(true, c0.newRun());
+		assertEquals(1, c0.newRun());
 		c0.num("222");
 		assertEquals(2,c0.getRuns().get(1).getRunNumber());
 		c0.start();
@@ -630,10 +630,10 @@ public class ChronoTester {
 	@Test
 	public void failing_newRun(){
 		Chronotimer c0 = new Chronotimer();
-		assertEquals(false, c0.newRun());	// power not on
+		assertEquals(0, c0.newRun());	// power not on
 		c0.power();
-		assertEquals(true, c0.newRun());
-		assertEquals(false, c0.newRun());	// new run already in progress so cannot create another at the same time
+		assertEquals(1, c0.newRun());
+		assertEquals(0, c0.newRun());	// new run already in progress so cannot create another at the same time
 	}
 	
 	@Test
@@ -658,7 +658,7 @@ public class ChronoTester {
 		assertEquals(-2, c0.cancel());	// power not on
 		c0.power();
 		assertEquals(0, c0.cancel());	// no current run to cancel
-		assertTrue(c0.newRun());
+		assertEquals(1, c0.newRun());
 		assertEquals(-1, c0.cancel());	// no racer currently making their run to cancel
 		c0.num("123");
 		c0.toggleChannel("1");

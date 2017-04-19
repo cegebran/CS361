@@ -534,11 +534,19 @@ public class Driver_GUI extends JFrame{
 		    		finishedEnteringNum = false;
 		    		functionIsSelected = false;
 		    		currentNumPad = "";
-		    		boolean result = chronotimer.newRun();
+		    		int result = chronotimer.newRun();
 		    		boolean printerPower = chronotimer.getPrinterPower();
         			if(printerPower == true){
-        				if(result == true){
-        					printerAddLine("New Run Has Been Added");
+        				if(result == 0){
+        					printerAddLine("New Run Has Not Been Added");
+        				}else if(result == 1){
+        					printerAddLine("New IND Run Added");
+        				}else if(result == 2){
+        					printerAddLine("New PARIND Run Added");
+        				}else if(result == 3){
+        					printerAddLine("New GRP Run Added");
+        				}else if(result == 4){
+        					printerAddLine("New PARGRP Run Added");
         				}else{
         					printerAddLine("New Run Has Not Been Added");
         				}
@@ -564,10 +572,18 @@ public class Driver_GUI extends JFrame{
 		    		finishedEnteringNum = false;
 		    		functionIsSelected = false;
 		    		currentNumPad = "";
-		    		chronotimer.print();
+		    		String returnString = chronotimer.print();
+		    		System.out.println(returnString);
 		    		boolean printerPower = chronotimer.getPrinterPower();
         			if(printerPower == true){
-    		    		printerAddLine("Results Have Been Printed");
+        				// Print the results on the printer paper (max of 10 lines)
+        				String[] returnStringSplit = returnString.split("/");
+        				int length = returnStringSplit.length;
+        				int i = 0;
+        				while(i < length){
+        					printerAddLine(returnStringSplit[i]);
+        					i++;
+        				}
         			}
 		    	}
 		    	else if(functionIsSelected && selectedFunction == 6){

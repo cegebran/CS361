@@ -182,12 +182,20 @@ public class Driver {
 					if(chronotimer.getPower() == false){
 						System.out.println("The Chronotimer is off");
 					}else{
-						boolean result = chronotimer.newRun();
-						if(result == true){
-							System.out.println("A new run was added to the queue of runs");
-						}else{
-							System.out.println("A new run has not been created");
-						}
+						int result = chronotimer.newRun();
+						if(result == 0){
+							System.out.println("New Run Has Not Been Added");
+        				}else if(result == 1){
+        					System.out.println("New IND Run Added");
+        				}else if(result == 2){
+        					System.out.println("New PARIND Run Added");
+        				}else if(result == 3){
+        					System.out.println("New GRP Run Added");
+        				}else if(result == 4){
+        					System.out.println("New PARGRP Run Added");
+        				}else{
+        					System.out.println("New Run Has Not Been Added");
+        				}
 					}
 				}
 				

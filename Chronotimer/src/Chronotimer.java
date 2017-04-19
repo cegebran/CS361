@@ -567,17 +567,17 @@ public class Chronotimer {
 	 * @param individual	Takes True if current run type is a parallel, False if group
 	 * @param parallel	Takes True if current run type is parallel, False if series
 	 * 
-	 * @Return true if a run has been created and false otherwise
+	 * @Return 0 = run not created, 1 = ind, 2 = parind, 3 = grp, 4 = pargrp
 	 */
-	public boolean newRun(){
+	public int newRun(){
 		// Ignore if power is off
 		if(power == false){
-			return false;
+			return 0;
 		}
 		
 		// Also ignore if there is a run already underway.
 		if(currentRun != null){
-			return false;
+			return 0;
 		}
 		
 		int newRunNumber = runs.size() + 1;
@@ -586,7 +586,17 @@ public class Chronotimer {
 		current.setEvent(individual,parallel);	// set the event
 		runs.add(current);
 		currentRun = current;
-		return true;
+		if(individual == true && parallel == false){
+			return 1;
+		}else if(individual == true && parallel == true){
+			return 2;
+		}else if(individual == false && parallel == false){
+			return 3;
+		}else if(individual == false && parallel == true){
+			return 4;
+		}else{
+			return 0;
+		}
 	}
 	
 	/**
@@ -1039,7 +1049,8 @@ public class Chronotimer {
 	/**
 	 * Prints the list of available commands, as well as prompts user for input.
 	 */
-	public void print(){
+	public String print(){
+		String stringToReturn = "";
 		if(power != false){
 			System.out.println();
 			Iterator<Run> it = runs.iterator();
@@ -1049,12 +1060,16 @@ public class Chronotimer {
 				
 				if(run.getEventType().equals("IND")){
 					System.out.println("Run number: " + run.getRunNumber() + "     Event Type: " + "Individual");
+					stringToReturn += "Run number: " + run.getRunNumber() + " Event Type: " + "IND/";
 				}else if(run.getEventType().equals("PARIND")){
 					System.out.println("Run number: " + run.getRunNumber() + "     Event Type: " + "Individual Parallel");
+					stringToReturn += "Run number: " + run.getRunNumber() + " Event Type: " + "PARIND/";
 				}else if(run.getEventType().equals("GRP")){
 					System.out.println("Run number: " + run.getRunNumber() + "	   Event Type: " + "Group");
+					stringToReturn += "Run number: " + run.getRunNumber() + " Event Type: " + "GRP/";
 				}else{
 					System.out.println("Run number: " + run.getRunNumber() + "     Event Type: " + "-");
+					stringToReturn += "Run number: " + run.getRunNumber() + " Event Type: " + "-/";
 				}
 				System.out.println("---------------------");
 			
@@ -1067,19 +1082,28 @@ public class Chronotimer {
 					Racer racer = it2.next();
 					System.out.println("Racer BIB number: " + racer.getBib());
 					System.out.println("Start: " + Time.convertTime(stats.getStart(racer)) + "	End: " + Time.convertTime(stats.getEnd(racer)));
+					stringToReturn += racer.getBib() + " Start: " + Time.convertTime(stats.getStart(racer)) + "	End: " + Time.convertTime(stats.getEnd(racer)) + "/";
 					if(stats.getEnd(racer) == -1){
 						System.out.println("Total time: Did not finish");
+						stringToReturn += "Total time: Did not finish" + "/";
 					}
 					else if(stats.getRaceTime(racer) < 0){
 						System.out.println("Total time: Still In Progress");
+						stringToReturn += "Total time: Still In Progress" + "/";
 					}
 					else{
-						System.out.println("Total time: " + Time.convertTime(stats.getRaceTime(racer)));	
+						System.out.println("Total time: " + Time.convertTime(stats.getRaceTime(racer)));
+						stringToReturn += "Total time: " + Time.convertTime(stats.getRaceTime(racer)) + "/";
 					}
 					System.out.println();
 					
 				}
+				if(it.hasNext()){
+					stringToReturn += "-----------------------------------------------------------/";
+				}
 			}
+			return stringToReturn;
 		}
+		return stringToReturn;
 	}
 }
