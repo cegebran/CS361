@@ -153,10 +153,10 @@ public class Test {
 			for (Racer e : employees) {
 				if (counter % 2 == 1) {
 					//result.append("<tr class=\"odd\"><td>").append(e.getTitle()).append("</td><td>").append(e.getFirstName()).append("</td><td>").append(e.getLastName()).append("</td><td>").append(e.getDepartment()).append("</td><td>").append(e.getPhoneNumber()).append("</td><td>").append(e.getGender()).append("</td></tr>");
-					result.append("<tr class=\"odd\"><td>").append(e.getBibNumber()).append(e.getTime()).append("</td></tr>");
+					result.append("<tr class=\"odd\"><td>").append(e.getBibNumber()).append("</td><td>").append("</td><td>").append("</td><td>").append(e.getTime()).append("</td></tr>");
 				} else {
 					//result.append("<tr class=\"even\"><td>").append(e.getTitle()).append("</td><td>").append(e.getFirstName()).append("</td><td>").append(e.getLastName()).append("</td><td>").append(e.getDepartment()).append("</td><td>").append(e.getPhoneNumber()).append("</td><td>").append(e.getGender()).append("</td></tr>");
-					result.append("<tr class=\"even\"><td>").append(e.getBibNumber()).append(e.getTime());
+					result.append("<tr class=\"even\"><td>").append(e.getBibNumber()).append("</td><td>").append("</td><td>").append("</td><td>").append(e.getTime());
 				}
 				counter += 1;
 			}
