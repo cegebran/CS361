@@ -23,7 +23,7 @@ public class Test {
     // a shared area where we get the POST data and then use it in the other handler
     static String sharedResponse = "";
     static boolean gotMessageFlag = false;
-    static ArrayList<Racer> employees = new ArrayList<Racer>();
+    static ArrayList<Racer> racers = new ArrayList<Racer>();
 
     public static void main(String[] args) throws Exception {
 
@@ -95,15 +95,15 @@ public class Test {
     					ArrayList<Racer> fromJson = g.fromJson(tokens[1],
     							new TypeToken<Collection<Racer>>() {
     							}.getType());
-    					employees.addAll(fromJson);
+    					racers.addAll(fromJson);
     					
     					response += "Before sort\n";
-    					for (Racer e : employees) {
+    					for (Racer e : racers) {
     						response += e + "\n";
     					}
-    					Collections.sort(employees);
+    					Collections.sort(racers);
     					response += "\nAfter sort\n";
-    					for (Racer e : employees) {
+    					for (Racer e : racers) {
     						response += e + "\n";
     					}
     				}
@@ -113,13 +113,13 @@ public class Test {
                 response += "\nEnd of response\n";
                 System.out.println(response);
             } else if(tokens[0].equals("PRINT")) {
-            	Iterator<Racer> it = employees.iterator();
+            	Iterator<Racer> it = racers.iterator();
             	while(it.hasNext()){
             		System.out.println(it.next().toString());
             	}
             	System.out.println("\nEnd of response");
             } else if(tokens[0].equals("CLEAR")) {
-            	employees.clear();
+            	racers.clear();
             	System.out.println("\nEnd of response");
             }
 			
@@ -150,13 +150,13 @@ public class Test {
 			result.append("<h1 align=\"center\">Race Results</h1>");
 			result.append("<tr><th>").append("Bib Number").append("</td><th>").append("Last Name").append("</td><th>").append("First Initial").append("</td><th>").append("Time").append("</th></tr>");
 			int counter = 1;
-			for (Racer e : employees) {
+			for (Racer r : racers) {
 				if (counter % 2 == 1) {
 					//result.append("<tr class=\"odd\"><td>").append(e.getTitle()).append("</td><td>").append(e.getFirstName()).append("</td><td>").append(e.getLastName()).append("</td><td>").append(e.getDepartment()).append("</td><td>").append(e.getPhoneNumber()).append("</td><td>").append(e.getGender()).append("</td></tr>");
-					result.append("<tr class=\"odd\"><td>").append(e.getBibNumber()).append("</td><td>").append("</td><td>").append("</td><td>").append(e.getTime()).append("</td></tr>");
+					result.append("<tr class=\"odd\"><td>").append(r.getBibNumber()).append("</td><td>").append("</td><td>").append("</td><td>").append(r.getTime()).append("</td></tr>");
 				} else {
 					//result.append("<tr class=\"even\"><td>").append(e.getTitle()).append("</td><td>").append(e.getFirstName()).append("</td><td>").append(e.getLastName()).append("</td><td>").append(e.getDepartment()).append("</td><td>").append(e.getPhoneNumber()).append("</td><td>").append(e.getGender()).append("</td></tr>");
-					result.append("<tr class=\"even\"><td>").append(e.getBibNumber()).append("</td><td>").append("</td><td>").append("</td><td>").append(e.getTime());
+					result.append("<tr class=\"even\"><td>").append(r.getBibNumber()).append("</td><td>").append("</td><td>").append("</td><td>").append(r.getTime());
 				}
 				counter += 1;
 			}
