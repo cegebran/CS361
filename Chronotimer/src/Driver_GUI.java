@@ -730,6 +730,7 @@ public class Driver_GUI extends JFrame{
 	    });
 		functionBtn.addActionListener(new ActionListener(){
 			public void actionPerformed(ActionEvent e){
+				functionIsSelected = false;
 				if(!displayFunction){
 					functionNum = 0;
 					selectedFunction = 0;
