@@ -606,7 +606,7 @@ public class Chronotimer {
 	 * 
 	 * @Return true if there was actually a run to end and false if otherwise
 	 */
-	public boolean endRun(){
+	public boolean endRun(boolean export){
 		// Ignore if power if off
 		if(power == false){
 			return false;
@@ -621,7 +621,9 @@ public class Chronotimer {
 		int runNumber = currentRun.getRunNumber();
 		String runNumberString = Integer.toString(runNumber);
 		String exportInput = "RUN" + runNumberString + ".txt";
-		export(exportInput);
+		if(export){
+			export(exportInput);
+		}
 		currentRun = null;
 		return true;
 	}

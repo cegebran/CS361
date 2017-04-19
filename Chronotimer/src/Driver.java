@@ -169,7 +169,7 @@ public class Driver {
 					if (chronotimer.getPower() == false) {
 						System.out.println("The Chronotimer is turned off");
 					} else {
-						chronotimer.getTimer().setTime(userInputParse[2]);
+						chronotimer.setTime(userInputParse[2]);
 						System.out.println("The time was set as entered");
 					}
 				}
@@ -279,7 +279,7 @@ public class Driver {
 					if (chronotimer.getPower() == false) {
 						System.out.println("The Chronotimer is off");
 					} else {
-						boolean result = chronotimer.endRun();
+						boolean result = chronotimer.endRun(false);
 						if (result == true) {
 							System.out.println("The current run has ended and the next in the queue (if any) has become the current run");
 						} else {

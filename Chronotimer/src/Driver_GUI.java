@@ -557,7 +557,7 @@ public class Driver_GUI extends JFrame{
 		    		finishedEnteringNum = false;
 		    		functionIsSelected = false;
 		    		currentNumPad = "";
-		    		boolean result = chronotimer.endRun();
+		    		boolean result = chronotimer.endRun(false);
 		    		boolean printerPower = chronotimer.getPrinterPower();
         			if(printerPower == true){
         				if(result == true){
