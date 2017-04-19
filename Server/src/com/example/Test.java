@@ -147,8 +147,8 @@ public class Test {
 			result.append("</head>");
 			result.append("<body>");
 			result.append("<table width=\"100%\">"); // style=\"width:100%\"
-			result.append("<h1 align=\"center\">Company Directory</h1>");
-			result.append("<tr><th>").append("Title").append("</td><th>").append("First Name").append("</td><th>").append("Last Name").append("</td><th>").append("Department").append("</td><th>").append("Phone Number").append("</td><th>").append("Gender").append("</th></tr>");
+			result.append("<h1 align=\"center\">Race Results</h1>");
+			result.append("<tr><th>").append("Bib Number").append("</td><th>").append("Last Name").append("</td><th>").append("First Initial").append("</td><th>").append("Time").append("</th></tr>");
 			int counter = 1;
 			for (Employee e : employees) {
 				if (counter % 2 == 1) {
