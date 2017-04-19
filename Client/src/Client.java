@@ -69,6 +69,9 @@ public class Client extends JFrame {
 	    				sb = sb.append((char) nextChar);
 	    			}
 	    			System.out.println("Return String: " + sb);
+	    			
+	    			bibNumberField.setText("");
+	    			timeField.setText("");
 
 	    		} catch (Exception e2) {
 	    			e2.printStackTrace();
