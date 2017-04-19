@@ -32,6 +32,12 @@ public class Client extends JFrame {
 		
 		final JButton add = new JButton("Add");
 		
+		final JButton print = new JButton("Print");
+		
+		final JButton clear = new JButton("Clear");
+		
+		final JButton exit = new JButton("Exit");
+		
 		add.addActionListener(new ActionListener() {
 	        
 			public void actionPerformed(ActionEvent e) {
@@ -79,10 +85,9 @@ public class Client extends JFrame {
 	        }
 	    });
 		
-		JButton print = new JButton("Print");
 		print.addActionListener(new ActionListener() {
 	        
-			public void actionPerformed(ActionEvent e){
+			public void actionPerformed(ActionEvent e) {
 	        	
 				try {
 					
@@ -121,10 +126,9 @@ public class Client extends JFrame {
 	        }
 	    });
 		
-		JButton clear = new JButton("Clear");
 		clear.addActionListener(new ActionListener() {
 	        
-			public void actionPerformed(ActionEvent e){
+			public void actionPerformed(ActionEvent e) {
 	        	
 				try {
 	    			// Client will connect to this location
@@ -162,7 +166,6 @@ public class Client extends JFrame {
 	        }
 	    });
 		
-		JButton exit = new JButton("Exit");
 		exit.addActionListener(new ActionListener() {
 	        
 			public void actionPerformed(ActionEvent e) {
@@ -176,10 +179,11 @@ public class Client extends JFrame {
 	        }
 	    });
 				
-		setTitle("Lab09");
-		setSize(700, 240);
+		setTitle("Lab 11");
+		setSize(700, 120);
 		setLocation(10, 200);
 		setLayout(new FlowLayout());
+		
 		JPanel myPanel1 = new JPanel();
 		myPanel1.setLayout(new GridLayout(0, 2));
 		myPanel1.add(new JLabel("Bib Number"));
