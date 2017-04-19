@@ -1281,7 +1281,7 @@ public class Driver_GUI extends JFrame{
 		        				currentNumPad = "";
 		        			}
 		        		}	        		
-		        	}//
+		        	}
 		        	else if(functionIsSelected && selectedFunction == 2){
 		        		if(selectedEvent == 0){
 		        			boolean printerPower = chronotimer.getPrinterPower();
