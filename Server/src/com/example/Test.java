@@ -10,6 +10,7 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.Iterator;
+import java.util.TreeMap;
 
 import com.google.gson.Gson;
 import com.google.gson.JsonSyntaxException;
@@ -24,12 +25,18 @@ public class Test {
     static String sharedResponse = "";
     static boolean gotMessageFlag = false;
     static ArrayList<Racer> racers = new ArrayList<Racer>();
+    static TreeMap<String, String> map = new TreeMap<String, String>();
 
     public static void main(String[] args) throws Exception {
-
+    	map.put("Taylor, S", "1");
+    	map.put("Mitch,K", "2");
+    	map.put("Taylor,S", "3");
+    	map.put("Nathan,W", "4");
+    	map.put("Hopkins,J", "5");
+    	
         // set up a simple HTTP server on our local host
         HttpServer server = HttpServer.create(new InetSocketAddress(8000), 0);
-
+        
         // create a context to get the request for the POST
         server.createContext("/sendresults",new PostHandler());
         server.setExecutor(null); // creates a default executor
