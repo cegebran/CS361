@@ -257,7 +257,7 @@ public class Chronotimer {
 		}
 		else if(number == 3 && three.getOn() == true){
 			if(individual){
-				Racer racer = currentRun.startRacer(timer.getCurrentTime(),1);
+				Racer racer = currentRun.startRacer(timer.getCurrentTime(),3);
 				if(racer == null){
 					return 0;
 				}else{
@@ -275,7 +275,7 @@ public class Chronotimer {
 		}
 		else if(number == 4 && four.getOn() == true){
 			if(individual){
-				Racer racer = currentRun.endRacer(timer.getCurrentTime(),2);
+				Racer racer = currentRun.endRacer(timer.getCurrentTime(),4);
 				if(racer == null){
 					return 0;
 				}else{
@@ -293,7 +293,7 @@ public class Chronotimer {
 		}
 		else if(number == 5 && five.getOn() == true){
 			if(individual){
-				Racer racer = currentRun.startRacer(timer.getCurrentTime(),1);
+				Racer racer = currentRun.startRacer(timer.getCurrentTime(),5);
 				if(racer == null){
 					return 0;
 				}else{
@@ -311,7 +311,7 @@ public class Chronotimer {
 		}
 		else if(number == 6 && six.getOn() == true){
 			if(individual){
-				Racer racer = currentRun.endRacer(timer.getCurrentTime(),2);
+				Racer racer = currentRun.endRacer(timer.getCurrentTime(),6);
 				if(racer == null){
 					return 0;
 				}else{
@@ -329,7 +329,7 @@ public class Chronotimer {
 		}
 		else if(number == 7 && seven.getOn() == true){
 			if(individual){
-				Racer racer = currentRun.startRacer(timer.getCurrentTime(),1);
+				Racer racer = currentRun.startRacer(timer.getCurrentTime(),7);
 				if(racer == null){
 					return 0;
 				}else{
@@ -347,7 +347,7 @@ public class Chronotimer {
 		}
 		else if(number == 8 && eight.getOn() == true){
 			if(individual){
-				Racer racer = currentRun.endRacer(timer.getCurrentTime(),2);
+				Racer racer = currentRun.endRacer(timer.getCurrentTime(),8);
 				if(racer == null){
 					return 0;
 				}else{
@@ -434,7 +434,7 @@ public class Chronotimer {
 		}
 		else if(number == 3 && three.getOn() == true){
 			if(individual){
-				Racer racer = currentRun.startRacer(currentTime,1);
+				Racer racer = currentRun.startRacer(currentTime,3);
 				if(racer == null){
 					return 0;
 				}else{
@@ -452,7 +452,7 @@ public class Chronotimer {
 		}
 		else if(number == 4 && four.getOn() == true){
 			if(individual){
-				Racer racer = currentRun.endRacer(currentTime,2);
+				Racer racer = currentRun.endRacer(currentTime,4);
 				if(racer == null){
 					return 0;
 				}else{
@@ -470,7 +470,7 @@ public class Chronotimer {
 		}
 		else if(number == 5 && five.getOn() == true){
 			if(individual){
-				Racer racer = currentRun.startRacer(currentTime,1);
+				Racer racer = currentRun.startRacer(currentTime,5);
 				if(racer == null){
 					return 0;
 				}else{
@@ -488,7 +488,7 @@ public class Chronotimer {
 		}
 		else if(number == 6 && six.getOn() == true){
 			if(individual){
-				Racer racer = currentRun.endRacer(currentTime,2);
+				Racer racer = currentRun.endRacer(currentTime,6);
 				if(racer == null){
 					return 0;
 				}else{
@@ -506,7 +506,7 @@ public class Chronotimer {
 		}
 		else if(number == 7 && seven.getOn() == true){
 			if(individual){
-				Racer racer = currentRun.startRacer(currentTime,1);
+				Racer racer = currentRun.startRacer(currentTime,7);
 				if(racer == null){
 					return 0;
 				}else{
@@ -524,7 +524,7 @@ public class Chronotimer {
 		}
 		else if(number == 8 && eight.getOn() == true){
 			if(individual){
-				Racer racer = currentRun.endRacer(currentTime,2);
+				Racer racer = currentRun.endRacer(currentTime,8);
 				if(racer == null){
 					return 0;
 				}else{
