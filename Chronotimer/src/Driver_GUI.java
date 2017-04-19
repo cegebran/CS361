@@ -1335,6 +1335,11 @@ public class Driver_GUI extends JFrame{
 		        			if(printerPower == true){
 				        		printerAddLine("Could Not Trigger Channel 1");
 		        			}
+		        		}else if(bibNum == 11111){
+		        			boolean printerPower = chronotimer.getPrinterPower();
+		        			if(printerPower == true){
+				        		printerAddLine("Group has started");
+		        			}
 		        		}else{
 		        			boolean printerPower = chronotimer.getPrinterPower();
 		        			if(printerPower == true){
@@ -1356,6 +1361,11 @@ public class Driver_GUI extends JFrame{
 		        			boolean printerPower = chronotimer.getPrinterPower();
 		        			if(printerPower == true){
 				        		printerAddLine("Could Not Trigger Channel 3");
+		        			}
+		        		}else if(bibNum == 11111){
+		        			boolean printerPower = chronotimer.getPrinterPower();
+		        			if(printerPower == true){
+				        		printerAddLine("Group has started");
 		        			}
 		        		}else{
 		        			boolean printerPower = chronotimer.getPrinterPower();
@@ -1379,6 +1389,11 @@ public class Driver_GUI extends JFrame{
 		        			if(printerPower == true){
 				        		printerAddLine("Could Not Trigger Channel 5");
 		        			}
+		        		}else if(bibNum == 11111){
+		        			boolean printerPower = chronotimer.getPrinterPower();
+		        			if(printerPower == true){
+				        		printerAddLine("Group has started");
+		        			}
 		        		}else{
 		        			boolean printerPower = chronotimer.getPrinterPower();
 		        			if(printerPower == true){
@@ -1400,6 +1415,11 @@ public class Driver_GUI extends JFrame{
 		        			boolean printerPower = chronotimer.getPrinterPower();
 		        			if(printerPower == true){
 				        		printerAddLine("Could Not Trigger Channel 7");
+		        			}
+		        		}else if(bibNum == 11111){
+		        			boolean printerPower = chronotimer.getPrinterPower();
+		        			if(printerPower == true){
+				        		printerAddLine("Group has started");
 		        			}
 		        		}else{
 		        			boolean printerPower = chronotimer.getPrinterPower();
@@ -1423,6 +1443,11 @@ public class Driver_GUI extends JFrame{
 		        			if(printerPower == true){
 				        		printerAddLine("Could Not Trigger Channel 2");
 		        			}
+		        		}else if(bibNum == 11111){
+		        			boolean printerPower = chronotimer.getPrinterPower();
+		        			if(printerPower == true){
+				        		printerAddLine("Group racer has finished");
+		        			}
 		        		}else{
 		        			boolean printerPower = chronotimer.getPrinterPower();
 		        			if(printerPower == true){
@@ -1444,6 +1469,11 @@ public class Driver_GUI extends JFrame{
 		        			boolean printerPower = chronotimer.getPrinterPower();
 		        			if(printerPower == true){
 				        		printerAddLine("Could Not Trigger Channel 4");
+		        			}
+		        		}else if(bibNum == 11111){
+		        			boolean printerPower = chronotimer.getPrinterPower();
+		        			if(printerPower == true){
+				        		printerAddLine("Group racer has finished");
 		        			}
 		        		}else{
 		        			boolean printerPower = chronotimer.getPrinterPower();
@@ -1467,6 +1497,11 @@ public class Driver_GUI extends JFrame{
 		        			if(printerPower == true){
 				        		printerAddLine("Could Not Trigger Channel 6");
 		        			}
+		        		}else if(bibNum == 11111){
+		        			boolean printerPower = chronotimer.getPrinterPower();
+		        			if(printerPower == true){
+				        		printerAddLine("Group racer has finished");
+		        			}
 		        		}else{
 		        			boolean printerPower = chronotimer.getPrinterPower();
 		        			if(printerPower == true){
@@ -1488,6 +1523,11 @@ public class Driver_GUI extends JFrame{
 		        			boolean printerPower = chronotimer.getPrinterPower();
 		        			if(printerPower == true){
 				        		printerAddLine("Could Not Trigger Channel 8");
+		        			}
+		        		}else if(bibNum == 11111){
+		        			boolean printerPower = chronotimer.getPrinterPower();
+		        			if(printerPower == true){
+				        		printerAddLine("Group racer has finished");
 		        			}
 		        		}else{
 		        			boolean printerPower = chronotimer.getPrinterPower();

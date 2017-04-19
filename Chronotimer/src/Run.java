@@ -34,6 +34,7 @@ public class Run {
 		racerNum = 0;
 		setRacerNum = 1;
 		runNumber = runNumInput;
+		groupStartTime = -1;
 		
 		if(parallel == true && individual == true){
 			pendingQueue12 = new LinkedList<Racer>();
@@ -241,6 +242,9 @@ public class Run {
 	}
 	
 	public boolean startGroup(long startTime){
+		if(groupStartTime != -1){
+			return false;
+		}
 		groupStartTime = startTime;
 		return true;
 	}
