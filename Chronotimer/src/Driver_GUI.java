@@ -1271,10 +1271,13 @@ public class Driver_GUI extends JFrame{
 		        					functionIsSelected = false;
 		        					enteredTime += ":" + currentNumPad;
 		        					boolean printerPower = chronotimer.getPrinterPower();
-		        					if(printerPower == true){
+		        					
+		        					if(printerPower == true && chronotimer.setTime(enteredTime)){
 		        						printerAddLine("Entered time: " + enteredTime);
 		        					}
-		        					chronotimer.getTimer().setTime(enteredTime);
+		        					else{
+		        						printerAddLine("Cannot enter time while there is a current run");
+		        					}
 		        					enteredTime = "";
 		        					enterNum = false;
 		        				}

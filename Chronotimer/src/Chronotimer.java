@@ -684,6 +684,14 @@ public class Chronotimer {
 		}
 	}
 	
+	public boolean setTime(String time){
+		if(currentRun != null){
+			return false;
+		}
+		timer.setTime(time);
+		return true;
+	}
+	
 	/**
 	 * Changes the status of a channel based on an input string.
 	 * 
