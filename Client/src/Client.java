@@ -10,74 +10,31 @@ import java.awt.event.ActionListener;
 import com.google.gson.Gson;
 
 public class Client extends JFrame {
-	/**
-	 * 
-	 */
+
 	private static final long serialVersionUID = 1L;
-	static String fname = "";
-	static String lname = "";
-	static String departmentString = "";
-	static String phoneString = "";
-	static String titleString = "";
-	static String genderString = "";
+	static String bibNumber = "";
+	static String time = "";
 
 	public static void main(String[] args) {
 		
 		Client myGUI = new Client();
 		myGUI.setVisible(true);
 		myGUI.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		System.out.println("in the client");
+		System.out.println("In the client");
 
 	}
 	
-	public Client(){
+	public Client() {
 		
-		final JTextField firstName = new JTextField("", 15);
+		final JTextField bibNumberField = new JTextField("", 15);
 		
-		final JTextField lastName = new JTextField("", 15);
-		
-		final JTextField department = new JTextField("", 15);
-		
-		final JTextField phone = new JTextField("", 15);
-		
-		JRadioButton genderMale = new JRadioButton("Male");
-		genderMale.addActionListener(new ActionListener() {
-		      public void actionPerformed(ActionEvent e) {
-		    	  genderString = "male";
-		      }
-		});
-		
-		JRadioButton genderFemale = new JRadioButton("Female");
-		genderFemale.addActionListener(new ActionListener() {
-		      public void actionPerformed(ActionEvent e) {
-		    	  genderString = "female";
-		      }
-		});
-		
-		JRadioButton genderOther = new JRadioButton("Other");
-		genderOther.addActionListener(new ActionListener() {
-		      public void actionPerformed(ActionEvent e) {
-		    	  genderString = "other";
-		      }
-		});
-		
-		ButtonGroup group = new ButtonGroup();
-		group.add(genderMale);
-		group.add(genderFemale);
-		group.add(genderOther);
-		String[] listOfTitle = {"Mr.", "Ms", "Mrs.", "Dr.", "Col.", "Prof.", };
-		final JComboBox title = new JComboBox(listOfTitle);
-		title.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e){
-				titleString = title.getSelectedItem().toString();
-			}
-            
-        });
+		final JTextField timeField = new JTextField("", 15);
 		
 		final JButton add = new JButton("Add");
+		
 		add.addActionListener(new ActionListener() {
 	        
-			public void actionPerformed(ActionEvent e){
+			public void actionPerformed(ActionEvent e) {
 	        	
 				try {
 	    			// Client will connect to this location
@@ -91,10 +48,8 @@ public class Client extends JFrame {
 	    			DataOutputStream out = new DataOutputStream(conn.getOutputStream());
 
 	    			// build a string that contains JSON from console
-	    			fname = firstName.getText();
-	    			lname = lastName.getText();
-	    			departmentString = department.getText();
-	    			phoneString = phone.getText();
+	    			bibNumber = bibNumberField.getText();
+	    			time = timeField.getText();
 	    			
 	    			String content = "";
 	    			content = "ADD;" + getJSON();
@@ -127,6 +82,7 @@ public class Client extends JFrame {
 			public void actionPerformed(ActionEvent e){
 	        	
 				try {
+					
 	    			// Client will connect to this location
 	    			URL site = new URL("http://localhost:8000/sendresults");
 	    			HttpURLConnection conn = (HttpURLConnection) site.openConnection();
@@ -223,34 +179,20 @@ public class Client extends JFrame {
 		setLayout(new FlowLayout());
 		JPanel myPanel1 = new JPanel();
 		myPanel1.setLayout(new GridLayout(0, 2));
-		myPanel1.add(new JLabel("First Name"));
-		myPanel1.add(firstName);
-		myPanel1.add(new JLabel("Last Name"));
-		myPanel1.add(lastName);
-		myPanel1.add(new JLabel("Department"));
-		myPanel1.add(department);
-		myPanel1.add(new JLabel("Phone"));
-		myPanel1.add(phone);
-		myPanel1.add(new JLabel("Title"));
-		myPanel1.add(title);
+		myPanel1.add(new JLabel("Bib Number"));
+		myPanel1.add(bibNumberField);
+		myPanel1.add(new JLabel("Time"));
+		myPanel1.add(timeField);
 		myPanel1.setVisible(true);
 		
 		JPanel myPanel2 = new JPanel();
-		myPanel2.setLayout(new GridLayout(0, 3));
-		myPanel2.add(genderMale);
-		myPanel2.add(genderFemale);
-		myPanel2.add(genderOther);
+		myPanel2.setLayout(new GridLayout(0, 4));
+		myPanel2.add(add);
+		myPanel2.add(print);
+		myPanel2.add(clear);
+		myPanel2.add(exit);
 		myPanel1.add(myPanel2);
 		myPanel2.setVisible(true);
-		
-		JPanel myPanel3 = new JPanel();
-		myPanel3.setLayout(new GridLayout(0, 4));
-		myPanel3.add(add);
-		myPanel3.add(print);
-		myPanel3.add(clear);
-		myPanel3.add(exit);
-		myPanel1.add(myPanel3);
-		myPanel3.setVisible(true);		
 		
 		getContentPane().add(myPanel1);	
 		
@@ -258,10 +200,10 @@ public class Client extends JFrame {
 
 	private static String getJSON() {
 
-		ArrayList<Employee> em = new ArrayList<>();
-		em.add(new Employee(fname, lname, departmentString, phoneString, titleString, genderString));
+		ArrayList<Racer> racer = new ArrayList<>();
+		racer.add(new Racer(bibNumber, time));
 		Gson g = new Gson();
-		String json = g.toJson(em);
+		String json = g.toJson(racer);
 		return json;
 		
 	}
