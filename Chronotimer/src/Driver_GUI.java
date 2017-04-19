@@ -1294,7 +1294,7 @@ public class Driver_GUI extends JFrame{
 		        		}
 		        		else if(selectedEvent == 1){
 		        			boolean printerPower = chronotimer.getPrinterPower();
-		        			if(printerPower == true && chronotimer.setEvent("PARGRP")){
+		        			if(printerPower == true && chronotimer.setEvent("PARIND")){
 		        				printerAddLine("Event set to PARIND");	        			
 		        			}
 			        		else{
