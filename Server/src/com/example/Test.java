@@ -28,11 +28,11 @@ public class Test {
     static TreeMap<String, String> map = new TreeMap<String, String>();
 
     public static void main(String[] args) throws Exception {
-    	map.put("Taylor, S", "1");
-    	map.put("Mitch,K", "2");
-    	map.put("Taylor,S", "3");
-    	map.put("Nathan,W", "4");
-    	map.put("Hopkins,J", "5");
+    	map.put("1","Taylor, S");
+    	map.put("2","Mitch,K");
+    	map.put("3","Brandon,C");
+    	map.put("4","Nathan,W");
+    	map.put("5","Hopkins,J");
     	
         // set up a simple HTTP server on our local host
         HttpServer server = HttpServer.create(new InetSocketAddress(8000), 0);
@@ -158,12 +158,13 @@ public class Test {
 			result.append("<tr><th>").append("Bib Number").append("</td><th>").append("Last Name").append("</td><th>").append("First Initial").append("</td><th>").append("Time").append("</th></tr>");
 			int counter = 1;
 			for (Racer r : racers) {
+				String names[] = map.get(r.getBibNumber()).split(",");
 				if (counter % 2 == 1) {
 					//result.append("<tr class=\"odd\"><td>").append(e.getTitle()).append("</td><td>").append(e.getFirstName()).append("</td><td>").append(e.getLastName()).append("</td><td>").append(e.getDepartment()).append("</td><td>").append(e.getPhoneNumber()).append("</td><td>").append(e.getGender()).append("</td></tr>");
-					result.append("<tr class=\"odd\"><td>").append(r.getBibNumber()).append("</td><td>").append("</td><td>").append("</td><td>").append(r.getTime()).append("</td></tr>");
+					result.append("<tr class=\"odd\"><td>").append(r.getBibNumber()).append("</td><td>").append(names[0]).append("</td><td>").append(names[1]).append("</td><td>").append(r.getTime()).append("</td></tr>");
 				} else {
 					//result.append("<tr class=\"even\"><td>").append(e.getTitle()).append("</td><td>").append(e.getFirstName()).append("</td><td>").append(e.getLastName()).append("</td><td>").append(e.getDepartment()).append("</td><td>").append(e.getPhoneNumber()).append("</td><td>").append(e.getGender()).append("</td></tr>");
-					result.append("<tr class=\"even\"><td>").append(r.getBibNumber()).append("</td><td>").append("</td><td>").append("</td><td>").append(r.getTime());
+					result.append("<tr class=\"even\"><td>").append(r.getBibNumber()).append("</td><td>").append(names[0]).append("</td><td>").append(names[1]).append("</td><td>").append(r.getTime());
 				}
 				counter += 1;
 			}

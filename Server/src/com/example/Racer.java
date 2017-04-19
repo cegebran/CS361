@@ -20,6 +20,13 @@ public class Racer implements Comparable<Object>{
 		if (o instanceof Racer) {
 			Racer other = (Racer) o;
 			
+			if(time.equals("DNF")){
+				return Integer.MAX_VALUE;
+			}
+			else if(other.getTime().equals("DNF")){
+				return Integer.MIN_VALUE;
+			}
+			
 			String[] thisstringTimeArray = time.split(":");
 			long[] thisarray = new long[3];
 			thisarray[0] = Long.parseLong(thisstringTimeArray[0]);
