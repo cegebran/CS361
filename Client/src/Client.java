@@ -55,7 +55,7 @@ public class Client extends JFrame {
 
 	    			// build a string that contains JSON from console
 	    			bibNumber = bibNumberField.getText();
-	    			time = timeField.getText();
+	    			time = timeField.getText().toUpperCase();
 	    			
 	    			String content = "";
 	    			content = "ADD;" + getJSON();
