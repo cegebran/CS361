@@ -28,10 +28,10 @@ public class Test {
     static TreeMap<String, String> map = new TreeMap<String, String>();
 
     public static void main(String[] args) throws Exception {
-    	map.put("1","Taylor, S");
-    	map.put("2","Mitch,K");
-    	map.put("3","Brandon,C");
-    	map.put("4","Nathan,W");
+    	map.put("1","Soderling, T");
+    	map.put("2","Kim,M");
+    	map.put("3","Cegelski,B");
+    	map.put("4","Wenslaff,N");
     	map.put("5","Hopkins,J");
     	
         // set up a simple HTTP server on our local host
