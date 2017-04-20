@@ -646,7 +646,6 @@ public class Driver_GUI extends JFrame{
         			}
 		    	}
 		    	else{
-		    		//TODO MAIN DISPLAY
 					displayCenterPanel.setBackground(Color.WHITE);
 					displayLine1Label.setText("");
 		    		displayLine2Label.setText("");
@@ -656,53 +655,131 @@ public class Driver_GUI extends JFrame{
 		    		displayLine6Label.setText("");
 		    		displayLine7Label.setText("");
 		    		displayLine8Label.setText("");
-		    		//Temporarily commented out:
-					/*
-	    			Stats currentStats = chronotimer.getCurrentRun().getStats();//TODO NUllPointerException
-	    			ArrayList<Racer> racerQueue = currentStats.getRacers();
-		    		if(selectedEvent == 0){
-		    			//IND
-		    			//Show the next three to start, and current running racers, and the last racer to finish
-			    		displayLine1Label.setText(Integer.toString(racerQueue.get(0).getBib()) + " " + currentStats.getRaceTime(racerQueue.get(0)));//Still neeed to get the time and the status as well
-			    		displayLine2Label.setText(Integer.toString(racerQueue.get(1).getBib()) + " " + currentStats.getRaceTime(racerQueue.get(1)));
-			    		displayLine3Label.setText(Integer.toString(racerQueue.get(2).getBib()) + " " + currentStats.getRaceTime(racerQueue.get(2)));
-			    		displayLine4Label.setText("");
-			    		displayLine5Label.setText("");
-			    		displayLine6Label.setText("");
-			    		displayLine7Label.setText("");
-			    		displayLine8Label.setText(""); 
-		    		}
-		    		else if(selectedEvent == 1){
-		    			//PARIND
-		    			//Show the next pair to run, running time of the racers, and finish times of the last pair to finish
+		    		
+		    		//TODO Figure out what to check for to prevent null reference exception.
+		    		if((!chronotimer.getCurrentRun().getStats().getRacers().isEmpty()) && chronotimer.getCurrentRun() != null){
+		    			Stats currentStats = chronotimer.getCurrentRun().getStats();	
+		    			LinkedList<Racer> racerStartQueue = chronotimer.getCurrentRun().getBeginQueue();
+		    			LinkedList<Racer> racerEndQueue = chronotimer.getCurrentRun().getEndQueue();
+		    			ArrayList<Racer> racerQueue = chronotimer.getCurrentRun().getStats().getRacers();
+		    			Long currentTime = 0L;
 		    			
-			    		displayLine1Label.setText("");
-			    		displayLine2Label.setText("");
-			    		displayLine3Label.setText("");
-			    		displayLine4Label.setText("");
-			    		displayLine5Label.setText("");
-			    		displayLine6Label.setText("");
-			    		displayLine7Label.setText("");
-			    		displayLine8Label.setText("");
+			    		if(selectedEvent == 0){
+			    			//IND //TODO May have to add logic for extra "current racers"
+			    			//Show the next three to start, and current running racers, and the last racer to finish
+			    			Racer currentRacer = racerQueue.get(racerQueue.size() - chronotimer.getCurrentRun().getEndQueue().size());
+			    			
+			    			//Ongoing time for current racer
+			    			if(currentStats.getStart(currentRacer) != -1){
+			    				currentTime = chronotimer.getTimer().getCurrentTime() - currentStats.getStart(currentRacer);
+			    			}
+			    			
+			    			//No Racers to start and no current racers
+			    			if(racerStartQueue.size() == 0 && (racerQueue.size() == chronotimer.getCurrentRun().getEndQueue().size())){
+			    				displayLine1Label.setText("No Racer Queued");
+					    		displayLine2Label.setText("No Racer Queued");
+					    		displayLine3Label.setText("No Racer Queued :>");
+					    		displayLine5Label.setText("No Current Racer :R");
+					    		if(!(racerEndQueue.isEmpty())){
+					    			displayLine8Label.setText(Integer.toString(racerEndQueue.get(racerEndQueue.size() -1).getBib()) + " " + currentStats.getRaceTime(racerEndQueue.get(racerEndQueue.size() -1)) + " :F");
+					    		}
+			    			}
+			    			//No racers to start
+			    			else if(racerStartQueue.size() == 0){
+					    		displayLine1Label.setText("No Racer Queued");
+					    		displayLine2Label.setText("No Racer Queued");
+					    		displayLine3Label.setText("No Racer Queued :>");
+					    		displayLine5Label.setText(Integer.toString(currentRacer.getBib()) + " " + chronotimer.getTimer().convertTime(currentTime) + " :R");
+					    		if(!(racerEndQueue.isEmpty())){
+					    			displayLine8Label.setText(Integer.toString(racerEndQueue.get(racerEndQueue.size() -1).getBib()) + " " + currentStats.getRaceTime(racerEndQueue.get(racerEndQueue.size() -1)) + " :F");
+					    		}
+			    			}
+			    			//1 racer to start 
+			    			else if(racerStartQueue.size() == 1){
+					    		displayLine1Label.setText("No Racer Queued");
+					    		displayLine2Label.setText("No Racer Queued");
+					    		displayLine3Label.setText(Integer.toString(racerStartQueue.get(0).getBib()) + " " + currentStats.getRaceTime(racerStartQueue.get(0)) + " :>");
+					    		displayLine5Label.setText(Integer.toString(currentRacer.getBib()) + " " + chronotimer.getTimer().convertTime(currentTime) + " :R");
+					    		if(!(racerEndQueue.isEmpty())){
+					    			displayLine8Label.setText(Integer.toString(racerEndQueue.get(racerEndQueue.size() -1).getBib()) + " " + currentStats.getRaceTime(racerEndQueue.get(racerEndQueue.size() -1)) + " :F");
+					    		}
+					    	}
+			    			//2 racers to start
+			    			else if(racerStartQueue.size() == 2){
+					    		displayLine1Label.setText("Next Racer" + "No Racer Queued");
+					    		displayLine2Label.setText(Integer.toString(racerStartQueue.get(1).getBib()) + " " + currentStats.getRaceTime(racerStartQueue.get(1)));
+					    		displayLine3Label.setText(Integer.toString(racerStartQueue.get(0).getBib()) + " " + currentStats.getRaceTime(racerStartQueue.get(0)) + " :>");
+					    		displayLine5Label.setText(Integer.toString(currentRacer.getBib()) + " " + chronotimer.getTimer().convertTime(currentTime) + " :R");
+					    		if(!(racerEndQueue.isEmpty())){
+					    			displayLine8Label.setText(Integer.toString(racerEndQueue.get(racerEndQueue.size() -1).getBib()) + " " + currentStats.getRaceTime(racerEndQueue.get(racerEndQueue.size() -1)) + " :F");
+					    		}
+					    	}
+			    			//3 or more racers to start
+			    			else{
+					    		displayLine1Label.setText(Integer.toString(racerStartQueue.get(2).getBib()) + " " + currentStats.getRaceTime(racerStartQueue.get(2)));
+					    		displayLine2Label.setText(Integer.toString(racerStartQueue.get(1).getBib()) + " " + currentStats.getRaceTime(racerStartQueue.get(1)));
+					    		displayLine3Label.setText(Integer.toString(racerStartQueue.get(0).getBib()) + " " + currentStats.getRaceTime(racerStartQueue.get(0)) + " :>");
+					    		displayLine5Label.setText(Integer.toString(currentRacer.getBib()) + " " + chronotimer.getTimer().convertTime(currentTime) + " :R");
+					    		if(!(racerEndQueue.isEmpty())){
+					    			displayLine8Label.setText(Integer.toString(racerEndQueue.get(racerEndQueue.size() -1).getBib()) + " " + currentStats.getRaceTime(racerEndQueue.get(racerEndQueue.size() -1)) + " :F");
+					    		}
+					    	}
+			    		}
+			    		else if(selectedEvent == 1){
+			    			//PARIND //TODO Finish PARIND
+			    			//Show the next pair to run, running time of the racers, and finish times of the last pair to finish
+			    			
+			    			//No racer pair to start and no current racer pair
+			    			if(racerStartQueue.size() == 0 && (racerQueue.size() == chronotimer.getCurrentRun().getEndQueue().size())){
+					    		displayLine1Label.setText("");
+					    		displayLine2Label.setText("");
+					    		displayLine3Label.setText("");
+					    		displayLine4Label.setText("");
+					    		displayLine5Label.setText("");
+					    		displayLine6Label.setText("");
+					    		displayLine7Label.setText("");
+					    		displayLine8Label.setText("");
+			    			}
+			    			//No racer pair to start
+			    			else if(racerStartQueue.size() == 0){
+					    		displayLine1Label.setText("");
+					    		displayLine2Label.setText("");
+					    		displayLine3Label.setText("");
+					    		displayLine4Label.setText("");
+					    		displayLine5Label.setText("");
+					    		displayLine6Label.setText("");
+					    		displayLine7Label.setText("");
+					    		displayLine8Label.setText("");
+			    			}
+			    			//Pair of racers to start and current racer pair
+			    			else{
+					    		displayLine1Label.setText("");
+					    		displayLine2Label.setText("");
+					    		displayLine3Label.setText("");
+					    		displayLine4Label.setText("");
+					    		displayLine5Label.setText("");
+					    		displayLine6Label.setText("");
+					    		displayLine7Label.setText("");
+					    		displayLine8Label.setText("");
+			    			}
+			    		}
+						else if(selectedEvent == 2){
+							//GRP TODO Finish GRP.
+							//Since there are no starters only running time and last finish needs to be displayed.
+						
+				    		displayLine1Label.setText("");
+				    		displayLine2Label.setText("");
+				    		displayLine3Label.setText("");
+				    		displayLine4Label.setText("");
+				    		displayLine5Label.setText("");
+				    		displayLine6Label.setText("");
+				    		displayLine7Label.setText("");
+				    		displayLine8Label.setText("");
+						}
+						else if(selectedEvent == 3){
+							//PARGRP For Next Sprint
+						}
 		    		}
-					else if(selectedEvent == 2){
-						//GRP
-						//Since there are no starters only running time and last finish needs to be displayed.
-					
-			    		displayLine1Label.setText("");
-			    		displayLine2Label.setText("");
-			    		displayLine3Label.setText("");
-			    		displayLine4Label.setText("");
-			    		displayLine5Label.setText("");
-			    		displayLine6Label.setText("");
-			    		displayLine7Label.setText("");
-			    		displayLine8Label.setText("");
-					}
-					else if(selectedEvent == 3){
-						//TODO Next Sprint
-						//PARGRP
-					}
-					*/
 				}
 			}
 		});
