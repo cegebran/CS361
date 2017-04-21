@@ -715,6 +715,7 @@ public class Driver_GUI extends JFrame{
 					    		}else{
 					    			displayLine8Label.setText(lastRetValue);
 					    		}
+					    		
 					    		//if(!(racerEndQueue.isEmpty())){
 					    		//	displayLine8Label.setText(Integer.toString(racerEndQueue.get(racerEndQueue.size() -1).getBib()) + " " + currentStats.getRaceTime(racerEndQueue.get(racerEndQueue.size() -1)) + " :F");
 					    		//}
@@ -742,6 +743,7 @@ public class Driver_GUI extends JFrame{
 					    		}else{
 					    			displayLine8Label.setText(lastRetValue);
 					    		}
+					    		
 					    		//if(!(racerEndQueue.isEmpty())){
 					    		//	displayLine8Label.setText(Integer.toString(racerEndQueue.get(racerEndQueue.size() -1).getBib()) + " " + currentStats.getRaceTime(racerEndQueue.get(racerEndQueue.size() -1)) + " :F");
 					    		//}
@@ -769,6 +771,7 @@ public class Driver_GUI extends JFrame{
 					    		}else{
 					    			displayLine8Label.setText(lastRetValue);
 					    		}
+					    		
 					    		//if(!(racerEndQueue.isEmpty())){
 					    		//	displayLine8Label.setText(Integer.toString(racerEndQueue.get(racerEndQueue.size() -1).getBib()) + " " + currentStats.getRaceTime(racerEndQueue.get(racerEndQueue.size() -1)) + " :F");
 					    		//}
@@ -796,6 +799,7 @@ public class Driver_GUI extends JFrame{
 					    		}else{
 					    			displayLine8Label.setText(lastRetValue);
 					    		}
+					    		
 					    		//if(!(racerEndQueue.isEmpty())){
 					    		//	displayLine8Label.setText(Integer.toString(racerEndQueue.get(racerEndQueue.size() -1).getBib()) + " " + currentStats.getRaceTime(racerEndQueue.get(racerEndQueue.size() -1)) + " :F");
 					    		//}
@@ -823,6 +827,7 @@ public class Driver_GUI extends JFrame{
 					    		}else{
 					    			displayLine8Label.setText(lastRetValue);
 					    		}
+					    		
 					    		//if(!(racerEndQueue.isEmpty())){
 					    		//	displayLine8Label.setText(Integer.toString(racerEndQueue.get(racerEndQueue.size() -1).getBib()) + " " + currentStats.getRaceTime(racerEndQueue.get(racerEndQueue.size() -1)) + " :F");
 					    		//}
