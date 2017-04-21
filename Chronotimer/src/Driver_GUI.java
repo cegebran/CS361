@@ -1121,7 +1121,6 @@ public class Driver_GUI extends JFrame{
 			    		else if(selectedEvent == 1){
 			    			//PARIND //TODO Finish PARIND
 			    			//Show the next pair to run, running time of the racers, and finish times of the last pair to finish
-			    			
 			    			//No racer pair to start and no current racer pair
 			    			if(racerStartQueue.size() == 0 && (racerQueue.size() == chronotimer.getCurrentRun().getEndQueue().size())){
 					    		displayLine1Label.setText("");
