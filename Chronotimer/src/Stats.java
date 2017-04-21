@@ -70,6 +70,33 @@ public class Stats {
 		racers.add(racer);
 	}
 	
+	public void cancel(Racer racer){
+		Iterator<Node> it = start.iterator();
+		while(it.hasNext()){
+			Node tmp = it.next();
+			if(racer == tmp.racer){
+				it.remove();
+				break;
+			}
+		}
+		Iterator<Racer> it2 = racers.iterator();
+		while(it2.hasNext()){
+			Racer tmp2 = it2.next();
+			if(racer == tmp2){
+				it2.remove();
+				break;
+			}
+		}
+		Iterator<Node> it3 = end.iterator();
+		while(it3.hasNext()){
+			Node tmp3 = it3.next();
+			if(racer == tmp3.racer){
+				it3.remove();
+				break;
+			}
+		}
+	}
+	
 	public long getEnd(Racer racer){
 		Iterator<Node> it = end.iterator();
 		while(it.hasNext()){

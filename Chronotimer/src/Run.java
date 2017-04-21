@@ -340,6 +340,7 @@ public class Run {
 			return 0;	// no racer has been cancelled
 		}
 		Racer tmp = endQueue.removeLast();
+		stats.cancel(tmp);
 		beginQueue.addFirst(tmp);
 		int tmpBibNum = tmp.getBib();
 		return tmpBibNum;	// a racer has been cancelled
