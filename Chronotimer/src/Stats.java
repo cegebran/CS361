@@ -30,6 +30,30 @@ public class Stats {
 		return this.end;
 	}
 	
+	public String getLastToFinish(){
+		if(end.isEmpty()){
+			return null;
+		}else{
+			Node lastNode = end.getLast();
+			int value = end.indexOf(lastNode);
+			boolean pos = false;
+			while(value >= 0 && pos == false){
+				Racer last = end.get(value).racer;
+				int bib = last.getBib();
+				String bibS = Integer.toString(bib);
+				long raceTime = getRaceTime(last);
+				if(raceTime < 0){
+					pos = false;
+				}else{
+					String raceTimeS = String.valueOf(raceTime);
+					return bibS + ";" + raceTimeS;
+				}
+				value--;
+			}
+			return null;
+		}
+	}
+	
 	public long getStart(Racer racer){
 		Iterator<Node> it = start.iterator();
 		while(it.hasNext()){

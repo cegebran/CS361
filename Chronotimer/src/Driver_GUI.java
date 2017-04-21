@@ -686,11 +686,14 @@ public class Driver_GUI extends JFrame{
 		    			LinkedList<Racer> racerStartQueue = chronotimer.getCurrentRun().getBeginQueue();
 		    			LinkedList<Racer> racerEndQueue = chronotimer.getCurrentRun().getEndQueue();
 		    			ArrayList<Racer> racerQueue = chronotimer.getCurrentRun().getStats().getRacers();
+		    			
 		    			Long currentTime = 0L;
 		    			
 			    		if(selectedEvent == 0){
 			    			//IND //TODO May have to add logic for extra "current racers"
 			    			//Show the next three to start, and current running racers, and the last racer to finish
+			    			
+			    			// comment out this code block and placed inside of each of the different if statements with different number of racers queued up to start surrounded by an if statement
 			    		//	Racer currentRacer = racerQueue.get(racerQueue.size() - chronotimer.getCurrentRun().getEndQueue().size());
 			    		//	System.out.println(racerQueue.size() + " " + chronotimer.getCurrentRun().getEndQueue().size());
 			    		//	//Ongoing time for current racer
@@ -705,9 +708,16 @@ public class Driver_GUI extends JFrame{
 					    		displayLine2Label.setText("No Racer Queued");
 					    		displayLine3Label.setText("No Racer Queued :>");
 					    		displayLine5Label.setText("No Current Racer :R");
-					    		if(!(racerEndQueue.isEmpty())){
-					    			displayLine8Label.setText(Integer.toString(racerEndQueue.get(racerEndQueue.size() -1).getBib()) + " " + currentStats.getRaceTime(racerEndQueue.get(racerEndQueue.size() -1)) + " :F");
+					    		
+					    		String lastRetValue = chronotimer.getLastToFinish();
+					    		if(lastRetValue == null){
+					    			displayLine8Label.setText("No Racers Have Finished");
+					    		}else{
+					    			displayLine8Label.setText(lastRetValue);
 					    		}
+					    		//if(!(racerEndQueue.isEmpty())){
+					    		//	displayLine8Label.setText(Integer.toString(racerEndQueue.get(racerEndQueue.size() -1).getBib()) + " " + currentStats.getRaceTime(racerEndQueue.get(racerEndQueue.size() -1)) + " :F");
+					    		//}
 			    			}
 			    			//No racers to start
 			    			else if(racerStartQueue.size() == 0){
@@ -726,9 +736,15 @@ public class Driver_GUI extends JFrame{
 					    			displayLine5Label.setText("No Current Racer :R");
 					    		}
 					    		
-					    		if(!(racerEndQueue.isEmpty())){
-					    			displayLine8Label.setText(Integer.toString(racerEndQueue.get(racerEndQueue.size() -1).getBib()) + " " + currentStats.getRaceTime(racerEndQueue.get(racerEndQueue.size() -1)) + " :F");
+					    		String lastRetValue = chronotimer.getLastToFinish();
+					    		if(lastRetValue == null){
+					    			displayLine8Label.setText("No Racers Have Finished");
+					    		}else{
+					    			displayLine8Label.setText(lastRetValue);
 					    		}
+					    		//if(!(racerEndQueue.isEmpty())){
+					    		//	displayLine8Label.setText(Integer.toString(racerEndQueue.get(racerEndQueue.size() -1).getBib()) + " " + currentStats.getRaceTime(racerEndQueue.get(racerEndQueue.size() -1)) + " :F");
+					    		//}
 			    			}
 			    			//1 racer to start 
 			    			else if(racerStartQueue.size() == 1){
@@ -747,9 +763,15 @@ public class Driver_GUI extends JFrame{
 					    			displayLine5Label.setText("No Current Racer :R");
 					    		}
 					    		
-					    		if(!(racerEndQueue.isEmpty())){
-					    			displayLine8Label.setText(Integer.toString(racerEndQueue.get(racerEndQueue.size() -1).getBib()) + " " + currentStats.getRaceTime(racerEndQueue.get(racerEndQueue.size() -1)) + " :F");
+					    		String lastRetValue = chronotimer.getLastToFinish();
+					    		if(lastRetValue == null){
+					    			displayLine8Label.setText("No Racers Have Finished");
+					    		}else{
+					    			displayLine8Label.setText(lastRetValue);
 					    		}
+					    		//if(!(racerEndQueue.isEmpty())){
+					    		//	displayLine8Label.setText(Integer.toString(racerEndQueue.get(racerEndQueue.size() -1).getBib()) + " " + currentStats.getRaceTime(racerEndQueue.get(racerEndQueue.size() -1)) + " :F");
+					    		//}
 					    	}
 			    			//2 racers to start
 			    			else if(racerStartQueue.size() == 2){
@@ -768,9 +790,15 @@ public class Driver_GUI extends JFrame{
 					    			displayLine5Label.setText("No Current Racer :R");
 					    		}
 					    		
-					    		if(!(racerEndQueue.isEmpty())){
-					    			displayLine8Label.setText(Integer.toString(racerEndQueue.get(racerEndQueue.size() -1).getBib()) + " " + currentStats.getRaceTime(racerEndQueue.get(racerEndQueue.size() -1)) + " :F");
+					    		String lastRetValue = chronotimer.getLastToFinish();
+					    		if(lastRetValue == null){
+					    			displayLine8Label.setText("No Racers Have Finished");
+					    		}else{
+					    			displayLine8Label.setText(lastRetValue);
 					    		}
+					    		//if(!(racerEndQueue.isEmpty())){
+					    		//	displayLine8Label.setText(Integer.toString(racerEndQueue.get(racerEndQueue.size() -1).getBib()) + " " + currentStats.getRaceTime(racerEndQueue.get(racerEndQueue.size() -1)) + " :F");
+					    		//}
 					    	}
 			    			//3 or more racers to start
 			    			else{
@@ -789,9 +817,15 @@ public class Driver_GUI extends JFrame{
 					    			displayLine5Label.setText("No Current Racer :R");
 					    		}
 					    		
-					    		if(!(racerEndQueue.isEmpty())){
-					    			displayLine8Label.setText(Integer.toString(racerEndQueue.get(racerEndQueue.size() -1).getBib()) + " " + currentStats.getRaceTime(racerEndQueue.get(racerEndQueue.size() -1)) + " :F");
+					    		String lastRetValue = chronotimer.getLastToFinish();
+					    		if(lastRetValue == null){
+					    			displayLine8Label.setText("No Racers Have Finished");
+					    		}else{
+					    			displayLine8Label.setText(lastRetValue);
 					    		}
+					    		//if(!(racerEndQueue.isEmpty())){
+					    		//	displayLine8Label.setText(Integer.toString(racerEndQueue.get(racerEndQueue.size() -1).getBib()) + " " + currentStats.getRaceTime(racerEndQueue.get(racerEndQueue.size() -1)) + " :F");
+					    		//}
 					    	}
 			    		}
 			    		else if(selectedEvent == 1){

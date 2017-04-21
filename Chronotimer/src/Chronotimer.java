@@ -1116,4 +1116,25 @@ public class Chronotimer {
 		}
 		return stringToReturn;
 	}
+	
+	public String getLastToFinish(){
+		if(power != false){
+			if(currentRun != null){
+				String value = currentRun.getStats().getLastToFinish();
+				if(value == null){
+					return null;
+				}else{
+					String[] splitValue = value.split(";");
+					long time = Long.parseLong(splitValue[1]);
+					String timeConv = getTimer().convertTime(time);
+					String toReturn = splitValue[0] + " " + timeConv + " F";
+					return toReturn;
+				}
+			}else{
+				return null;
+			}
+		}else{
+			return null;
+		}
+	}
 }
