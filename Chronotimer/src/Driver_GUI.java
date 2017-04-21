@@ -593,7 +593,6 @@ public class Driver_GUI extends JFrame{
 		    		functionIsSelected = false;
 		    		currentNumPad = "";
 		    		String returnString = chronotimer.print();
-		    		System.out.println(returnString);
 		    		boolean printerPower = chronotimer.getPrinterPower();
         			if(printerPower == true){
         				// Print the results on the printer paper (max of 10 lines)
@@ -677,10 +676,6 @@ public class Driver_GUI extends JFrame{
 		    		displayLine8Label.setText("");
 		    		
 		    		//TODO Figure out what to check for to prevent null reference exception.
-		    		// The line below was the old line
-		    		//if((!chronotimer.getCurrentRun().getStats().getRacers().isEmpty()) && chronotimer.getCurrentRun() != null){
-		    		// I added the line below to first check if there is a current run before . extending the null current run
-		    		// This will allow the power to be turned on without getting a nullpointerexception
 		    		if(chronotimer.getCurrentRun() != null && (!chronotimer.getCurrentRun().getStats().getRacers().isEmpty())){
 		    			Stats currentStats = chronotimer.getCurrentRun().getStats();	
 		    			LinkedList<Racer> racerStartQueue = chronotimer.getCurrentRun().getBeginQueue();
@@ -696,16 +691,7 @@ public class Driver_GUI extends JFrame{
 			    			//IND //TODO May have to add logic for extra "current racers"
 			    			//Show the next three to start, and current running racers, and the last racer to finish
 			    			
-			    			// comment out this code block and placed inside of each of the different if statements with different number of racers queued up to start surrounded by an if statement
-			    		//	Racer currentRacer = racerQueue.get(racerQueue.size() - chronotimer.getCurrentRun().getEndQueue().size());
-			    		//	System.out.println(racerQueue.size() + " " + chronotimer.getCurrentRun().getEndQueue().size());
-			    		//	//Ongoing time for current racer
-			    		//	if(currentStats.getStart(currentRacer) != -1){
-			    		//		currentTime = chronotimer.getTimer().getCurrentTime() - currentStats.getStart(currentRacer);
-			    		//	}
-			    			
 			    			//No Racers to start and no current racers
-			    			//if(racerStartQueue.size() == 0 && (racerQueue.size() == chronotimer.getCurrentRun().getEndQueue().size())){
 			    			if(racerStartQueue.size() == 0 && racerEndQueue.size() == 0){
 			    				displayLine1Label.setText("No Racer Queued");
 					    		displayLine2Label.setText("No Racer Queued");
@@ -729,98 +715,84 @@ public class Driver_GUI extends JFrame{
 					    		if(chronotimer.getCurrentRun().getEndQueue().size() > 0){
 					    			if(chronotimer.getCurrentRun().getEndQueue().size() == 1){
 					    				Racer currentRacer = racerQueue.get(racerQueue.size() - chronotimer.getCurrentRun().getEndQueue().size());
-						    			//Ongoing time for current racer
 						    			if(currentStats.getStart(currentRacer) != -1){
 						    				currentTime = chronotimer.getTimer().getCurrentTime() - currentStats.getStart(currentRacer);
 						    			}
 						    			displayLine5Label.setText(Integer.toString(currentRacer.getBib()) + " " + chronotimer.getTimer().convertTime(currentTime) + " :R");
 					    			}else if(chronotimer.getCurrentRun().getEndQueue().size() == 2){
 					    				Racer currentRacer = racerQueue.get(racerQueue.size() - chronotimer.getCurrentRun().getEndQueue().size());
-						    			//Ongoing time for current racer
 						    			if(currentStats.getStart(currentRacer) != -1){
 						    				currentTime = chronotimer.getTimer().getCurrentTime() - currentStats.getStart(currentRacer);
 						    			}
 						    			displayLine5Label.setText(Integer.toString(currentRacer.getBib()) + " " + chronotimer.getTimer().convertTime(currentTime) + " :R");
 						    			
 						    			Racer currentRacer2 = racerQueue.get(racerQueue.size() - chronotimer.getCurrentRun().getEndQueue().size()+1);
-						    			//Ongoing time for current racer
 						    			if(currentStats.getStart(currentRacer2) != -1){
 						    				currentTime2 = chronotimer.getTimer().getCurrentTime() - currentStats.getStart(currentRacer2);
 						    			}
 						    			displayLine6Label.setText(Integer.toString(currentRacer2.getBib()) + " " + chronotimer.getTimer().convertTime(currentTime2) + " :R");
 					    			}else if(chronotimer.getCurrentRun().getEndQueue().size() == 3){
 					    				Racer currentRacer = racerQueue.get(racerQueue.size() - chronotimer.getCurrentRun().getEndQueue().size());
-						    			//Ongoing time for current racer
 						    			if(currentStats.getStart(currentRacer) != -1){
 						    				currentTime = chronotimer.getTimer().getCurrentTime() - currentStats.getStart(currentRacer);
 						    			}
 						    			displayLine4Label.setText(Integer.toString(currentRacer.getBib()) + " " + chronotimer.getTimer().convertTime(currentTime) + " :R");
 						    			
 						    			Racer currentRacer2 = racerQueue.get(racerQueue.size() - chronotimer.getCurrentRun().getEndQueue().size()+1);
-						    			//Ongoing time for current racer
 						    			if(currentStats.getStart(currentRacer2) != -1){
 						    				currentTime2 = chronotimer.getTimer().getCurrentTime() - currentStats.getStart(currentRacer2);
 						    			}
 						    			displayLine5Label.setText(Integer.toString(currentRacer2.getBib()) + " " + chronotimer.getTimer().convertTime(currentTime2) + " :R");
 						    			
 						    			Racer currentRacer3 = racerQueue.get(racerQueue.size() - chronotimer.getCurrentRun().getEndQueue().size()+2);
-						    			//Ongoing time for current racer
 						    			if(currentStats.getStart(currentRacer3) != -1){
 						    				currentTime3 = chronotimer.getTimer().getCurrentTime() - currentStats.getStart(currentRacer3);
 						    			}
 						    			displayLine6Label.setText(Integer.toString(currentRacer3.getBib()) + " " + chronotimer.getTimer().convertTime(currentTime3) + " :R");
 					    			}else if(chronotimer.getCurrentRun().getEndQueue().size() == 4){
 					    				Racer currentRacer = racerQueue.get(racerQueue.size() - chronotimer.getCurrentRun().getEndQueue().size());
-						    			//Ongoing time for current racer
 						    			if(currentStats.getStart(currentRacer) != -1){
 						    				currentTime = chronotimer.getTimer().getCurrentTime() - currentStats.getStart(currentRacer);
 						    			}
 						    			displayLine4Label.setText(Integer.toString(currentRacer.getBib()) + " " + chronotimer.getTimer().convertTime(currentTime) + " :R");
 						    			
 						    			Racer currentRacer2 = racerQueue.get(racerQueue.size() - chronotimer.getCurrentRun().getEndQueue().size()+1);
-						    			//Ongoing time for current racer
 						    			if(currentStats.getStart(currentRacer2) != -1){
 						    				currentTime2 = chronotimer.getTimer().getCurrentTime() - currentStats.getStart(currentRacer2);
 						    			}
 						    			displayLine5Label.setText(Integer.toString(currentRacer2.getBib()) + " " + chronotimer.getTimer().convertTime(currentTime2) + " :R");
 						    			
 						    			Racer currentRacer3 = racerQueue.get(racerQueue.size() - chronotimer.getCurrentRun().getEndQueue().size()+2);
-						    			//Ongoing time for current racer
 						    			if(currentStats.getStart(currentRacer3) != -1){
 						    				currentTime3 = chronotimer.getTimer().getCurrentTime() - currentStats.getStart(currentRacer3);
 						    			}
 						    			displayLine6Label.setText(Integer.toString(currentRacer3.getBib()) + " " + chronotimer.getTimer().convertTime(currentTime3) + " :R");
 						    			
 						    			Racer currentRacer4 = racerQueue.get(racerQueue.size() - chronotimer.getCurrentRun().getEndQueue().size()+3);
-						    			//Ongoing time for current racer
 						    			if(currentStats.getStart(currentRacer4) != -1){
 						    				currentTime4 = chronotimer.getTimer().getCurrentTime() - currentStats.getStart(currentRacer4);
 						    			}
 						    			displayLine7Label.setText(Integer.toString(currentRacer4.getBib()) + " " + chronotimer.getTimer().convertTime(currentTime4) + " :R");
 					    			}else{
 					    				Racer currentRacer = racerQueue.get(chronotimer.getCurrentRun().getEndQueue().size()-4);
-						    			//Ongoing time for current racer
 						    			if(currentStats.getStart(currentRacer) != -1){
 						    				currentTime = chronotimer.getTimer().getCurrentTime() - currentStats.getStart(currentRacer);
 						    			}
 						    			displayLine4Label.setText(Integer.toString(currentRacer.getBib()) + " " + chronotimer.getTimer().convertTime(currentTime) + " :R");
 						    			
 						    			Racer currentRacer2 = racerQueue.get(chronotimer.getCurrentRun().getEndQueue().size()-3);
-						    			//Ongoing time for current racer
 						    			if(currentStats.getStart(currentRacer2) != -1){
 						    				currentTime2 = chronotimer.getTimer().getCurrentTime() - currentStats.getStart(currentRacer2);
 						    			}
 						    			displayLine5Label.setText(Integer.toString(currentRacer2.getBib()) + " " + chronotimer.getTimer().convertTime(currentTime2) + " :R");
 						    			
 						    			Racer currentRacer3 = racerQueue.get(chronotimer.getCurrentRun().getEndQueue().size()-2);
-						    			//Ongoing time for current racer
 						    			if(currentStats.getStart(currentRacer3) != -1){
 						    				currentTime3 = chronotimer.getTimer().getCurrentTime() - currentStats.getStart(currentRacer3);
 						    			}
 						    			displayLine6Label.setText(Integer.toString(currentRacer3.getBib()) + " " + chronotimer.getTimer().convertTime(currentTime3) + " :R");
 						    			
 						    			Racer currentRacer4 = racerQueue.get(chronotimer.getCurrentRun().getEndQueue().size()-1);
-						    			//Ongoing time for current racer
 						    			if(currentStats.getStart(currentRacer4) != -1){
 						    				currentTime4 = chronotimer.getTimer().getCurrentTime() - currentStats.getStart(currentRacer4);
 						    			}
@@ -846,98 +818,84 @@ public class Driver_GUI extends JFrame{
 					    		if(chronotimer.getCurrentRun().getEndQueue().size() > 0){
 					    			if(chronotimer.getCurrentRun().getEndQueue().size() == 1){
 					    				Racer currentRacer = racerQueue.get(racerQueue.size() - chronotimer.getCurrentRun().getEndQueue().size());
-						    			//Ongoing time for current racer
 						    			if(currentStats.getStart(currentRacer) != -1){
 						    				currentTime = chronotimer.getTimer().getCurrentTime() - currentStats.getStart(currentRacer);
 						    			}
 						    			displayLine5Label.setText(Integer.toString(currentRacer.getBib()) + " " + chronotimer.getTimer().convertTime(currentTime) + " :R");
 					    			}else if(chronotimer.getCurrentRun().getEndQueue().size() == 2){
 					    				Racer currentRacer = racerQueue.get(racerQueue.size() - chronotimer.getCurrentRun().getEndQueue().size());
-						    			//Ongoing time for current racer
 						    			if(currentStats.getStart(currentRacer) != -1){
 						    				currentTime = chronotimer.getTimer().getCurrentTime() - currentStats.getStart(currentRacer);
 						    			}
 						    			displayLine5Label.setText(Integer.toString(currentRacer.getBib()) + " " + chronotimer.getTimer().convertTime(currentTime) + " :R");
 						    			
 						    			Racer currentRacer2 = racerQueue.get(racerQueue.size() - chronotimer.getCurrentRun().getEndQueue().size()+1);
-						    			//Ongoing time for current racer
 						    			if(currentStats.getStart(currentRacer2) != -1){
 						    				currentTime2 = chronotimer.getTimer().getCurrentTime() - currentStats.getStart(currentRacer2);
 						    			}
 						    			displayLine6Label.setText(Integer.toString(currentRacer2.getBib()) + " " + chronotimer.getTimer().convertTime(currentTime2) + " :R");
 					    			}else if(chronotimer.getCurrentRun().getEndQueue().size() == 3){
 					    				Racer currentRacer = racerQueue.get(racerQueue.size() - chronotimer.getCurrentRun().getEndQueue().size());
-						    			//Ongoing time for current racer
 						    			if(currentStats.getStart(currentRacer) != -1){
 						    				currentTime = chronotimer.getTimer().getCurrentTime() - currentStats.getStart(currentRacer);
 						    			}
 						    			displayLine4Label.setText(Integer.toString(currentRacer.getBib()) + " " + chronotimer.getTimer().convertTime(currentTime) + " :R");
 						    			
 						    			Racer currentRacer2 = racerQueue.get(racerQueue.size() - chronotimer.getCurrentRun().getEndQueue().size()+1);
-						    			//Ongoing time for current racer
 						    			if(currentStats.getStart(currentRacer2) != -1){
 						    				currentTime2 = chronotimer.getTimer().getCurrentTime() - currentStats.getStart(currentRacer2);
 						    			}
 						    			displayLine5Label.setText(Integer.toString(currentRacer2.getBib()) + " " + chronotimer.getTimer().convertTime(currentTime2) + " :R");
 						    			
 						    			Racer currentRacer3 = racerQueue.get(racerQueue.size() - chronotimer.getCurrentRun().getEndQueue().size()+2);
-						    			//Ongoing time for current racer
 						    			if(currentStats.getStart(currentRacer3) != -1){
 						    				currentTime3 = chronotimer.getTimer().getCurrentTime() - currentStats.getStart(currentRacer3);
 						    			}
 						    			displayLine6Label.setText(Integer.toString(currentRacer3.getBib()) + " " + chronotimer.getTimer().convertTime(currentTime3) + " :R");
 					    			}else if(chronotimer.getCurrentRun().getEndQueue().size() == 4){
 					    				Racer currentRacer = racerQueue.get(racerQueue.size() - chronotimer.getCurrentRun().getEndQueue().size());
-						    			//Ongoing time for current racer
 						    			if(currentStats.getStart(currentRacer) != -1){
 						    				currentTime = chronotimer.getTimer().getCurrentTime() - currentStats.getStart(currentRacer);
 						    			}
 						    			displayLine4Label.setText(Integer.toString(currentRacer.getBib()) + " " + chronotimer.getTimer().convertTime(currentTime) + " :R");
 						    			
 						    			Racer currentRacer2 = racerQueue.get(racerQueue.size() - chronotimer.getCurrentRun().getEndQueue().size()+1);
-						    			//Ongoing time for current racer
 						    			if(currentStats.getStart(currentRacer2) != -1){
 						    				currentTime2 = chronotimer.getTimer().getCurrentTime() - currentStats.getStart(currentRacer2);
 						    			}
 						    			displayLine5Label.setText(Integer.toString(currentRacer2.getBib()) + " " + chronotimer.getTimer().convertTime(currentTime2) + " :R");
 						    			
 						    			Racer currentRacer3 = racerQueue.get(racerQueue.size() - chronotimer.getCurrentRun().getEndQueue().size()+2);
-						    			//Ongoing time for current racer
 						    			if(currentStats.getStart(currentRacer3) != -1){
 						    				currentTime3 = chronotimer.getTimer().getCurrentTime() - currentStats.getStart(currentRacer3);
 						    			}
 						    			displayLine6Label.setText(Integer.toString(currentRacer3.getBib()) + " " + chronotimer.getTimer().convertTime(currentTime3) + " :R");
 						    			
 						    			Racer currentRacer4 = racerQueue.get(racerQueue.size() - chronotimer.getCurrentRun().getEndQueue().size()+3);
-						    			//Ongoing time for current racer
 						    			if(currentStats.getStart(currentRacer4) != -1){
 						    				currentTime4 = chronotimer.getTimer().getCurrentTime() - currentStats.getStart(currentRacer4);
 						    			}
 						    			displayLine7Label.setText(Integer.toString(currentRacer4.getBib()) + " " + chronotimer.getTimer().convertTime(currentTime4) + " :R");
 					    			}else{
 					    				Racer currentRacer = racerQueue.get(chronotimer.getCurrentRun().getEndQueue().size()-4);
-						    			//Ongoing time for current racer
 						    			if(currentStats.getStart(currentRacer) != -1){
 						    				currentTime = chronotimer.getTimer().getCurrentTime() - currentStats.getStart(currentRacer);
 						    			}
 						    			displayLine4Label.setText(Integer.toString(currentRacer.getBib()) + " " + chronotimer.getTimer().convertTime(currentTime) + " :R");
 						    			
 						    			Racer currentRacer2 = racerQueue.get(chronotimer.getCurrentRun().getEndQueue().size()-3);
-						    			//Ongoing time for current racer
 						    			if(currentStats.getStart(currentRacer2) != -1){
 						    				currentTime2 = chronotimer.getTimer().getCurrentTime() - currentStats.getStart(currentRacer2);
 						    			}
 						    			displayLine5Label.setText(Integer.toString(currentRacer2.getBib()) + " " + chronotimer.getTimer().convertTime(currentTime2) + " :R");
 						    			
 						    			Racer currentRacer3 = racerQueue.get(chronotimer.getCurrentRun().getEndQueue().size()-2);
-						    			//Ongoing time for current racer
 						    			if(currentStats.getStart(currentRacer3) != -1){
 						    				currentTime3 = chronotimer.getTimer().getCurrentTime() - currentStats.getStart(currentRacer3);
 						    			}
 						    			displayLine6Label.setText(Integer.toString(currentRacer3.getBib()) + " " + chronotimer.getTimer().convertTime(currentTime3) + " :R");
 						    			
 						    			Racer currentRacer4 = racerQueue.get(chronotimer.getCurrentRun().getEndQueue().size()-1);
-						    			//Ongoing time for current racer
 						    			if(currentStats.getStart(currentRacer4) != -1){
 						    				currentTime4 = chronotimer.getTimer().getCurrentTime() - currentStats.getStart(currentRacer4);
 						    			}
@@ -963,98 +921,84 @@ public class Driver_GUI extends JFrame{
 					    		if(chronotimer.getCurrentRun().getEndQueue().size() > 0){
 					    			if(chronotimer.getCurrentRun().getEndQueue().size() == 1){
 					    				Racer currentRacer = racerQueue.get(racerQueue.size() - chronotimer.getCurrentRun().getEndQueue().size());
-						    			//Ongoing time for current racer
 						    			if(currentStats.getStart(currentRacer) != -1){
 						    				currentTime = chronotimer.getTimer().getCurrentTime() - currentStats.getStart(currentRacer);
 						    			}
 						    			displayLine5Label.setText(Integer.toString(currentRacer.getBib()) + " " + chronotimer.getTimer().convertTime(currentTime) + " :R");
 					    			}else if(chronotimer.getCurrentRun().getEndQueue().size() == 2){
 					    				Racer currentRacer = racerQueue.get(racerQueue.size() - chronotimer.getCurrentRun().getEndQueue().size());
-						    			//Ongoing time for current racer
 						    			if(currentStats.getStart(currentRacer) != -1){
 						    				currentTime = chronotimer.getTimer().getCurrentTime() - currentStats.getStart(currentRacer);
 						    			}
 						    			displayLine5Label.setText(Integer.toString(currentRacer.getBib()) + " " + chronotimer.getTimer().convertTime(currentTime) + " :R");
 						    			
 						    			Racer currentRacer2 = racerQueue.get(racerQueue.size() - chronotimer.getCurrentRun().getEndQueue().size()+1);
-						    			//Ongoing time for current racer
 						    			if(currentStats.getStart(currentRacer2) != -1){
 						    				currentTime2 = chronotimer.getTimer().getCurrentTime() - currentStats.getStart(currentRacer2);
 						    			}
 						    			displayLine6Label.setText(Integer.toString(currentRacer2.getBib()) + " " + chronotimer.getTimer().convertTime(currentTime2) + " :R");
 					    			}else if(chronotimer.getCurrentRun().getEndQueue().size() == 3){
 					    				Racer currentRacer = racerQueue.get(racerQueue.size() - chronotimer.getCurrentRun().getEndQueue().size());
-						    			//Ongoing time for current racer
 						    			if(currentStats.getStart(currentRacer) != -1){
 						    				currentTime = chronotimer.getTimer().getCurrentTime() - currentStats.getStart(currentRacer);
 						    			}
 						    			displayLine4Label.setText(Integer.toString(currentRacer.getBib()) + " " + chronotimer.getTimer().convertTime(currentTime) + " :R");
 						    			
 						    			Racer currentRacer2 = racerQueue.get(racerQueue.size() - chronotimer.getCurrentRun().getEndQueue().size()+1);
-						    			//Ongoing time for current racer
 						    			if(currentStats.getStart(currentRacer2) != -1){
 						    				currentTime2 = chronotimer.getTimer().getCurrentTime() - currentStats.getStart(currentRacer2);
 						    			}
 						    			displayLine5Label.setText(Integer.toString(currentRacer2.getBib()) + " " + chronotimer.getTimer().convertTime(currentTime2) + " :R");
 						    			
 						    			Racer currentRacer3 = racerQueue.get(racerQueue.size() - chronotimer.getCurrentRun().getEndQueue().size()+2);
-						    			//Ongoing time for current racer
 						    			if(currentStats.getStart(currentRacer3) != -1){
 						    				currentTime3 = chronotimer.getTimer().getCurrentTime() - currentStats.getStart(currentRacer3);
 						    			}
 						    			displayLine6Label.setText(Integer.toString(currentRacer3.getBib()) + " " + chronotimer.getTimer().convertTime(currentTime3) + " :R");
 					    			}else if(chronotimer.getCurrentRun().getEndQueue().size() == 4){
 					    				Racer currentRacer = racerQueue.get(racerQueue.size() - chronotimer.getCurrentRun().getEndQueue().size());
-						    			//Ongoing time for current racer
 						    			if(currentStats.getStart(currentRacer) != -1){
 						    				currentTime = chronotimer.getTimer().getCurrentTime() - currentStats.getStart(currentRacer);
 						    			}
 						    			displayLine4Label.setText(Integer.toString(currentRacer.getBib()) + " " + chronotimer.getTimer().convertTime(currentTime) + " :R");
 						    			
 						    			Racer currentRacer2 = racerQueue.get(racerQueue.size() - chronotimer.getCurrentRun().getEndQueue().size()+1);
-						    			//Ongoing time for current racer
 						    			if(currentStats.getStart(currentRacer2) != -1){
 						    				currentTime2 = chronotimer.getTimer().getCurrentTime() - currentStats.getStart(currentRacer2);
 						    			}
 						    			displayLine5Label.setText(Integer.toString(currentRacer2.getBib()) + " " + chronotimer.getTimer().convertTime(currentTime2) + " :R");
 						    			
 						    			Racer currentRacer3 = racerQueue.get(racerQueue.size() - chronotimer.getCurrentRun().getEndQueue().size()+2);
-						    			//Ongoing time for current racer
 						    			if(currentStats.getStart(currentRacer3) != -1){
 						    				currentTime3 = chronotimer.getTimer().getCurrentTime() - currentStats.getStart(currentRacer3);
 						    			}
 						    			displayLine6Label.setText(Integer.toString(currentRacer3.getBib()) + " " + chronotimer.getTimer().convertTime(currentTime3) + " :R");
 						    			
 						    			Racer currentRacer4 = racerQueue.get(racerQueue.size() - chronotimer.getCurrentRun().getEndQueue().size()+3);
-						    			//Ongoing time for current racer
 						    			if(currentStats.getStart(currentRacer4) != -1){
 						    				currentTime4 = chronotimer.getTimer().getCurrentTime() - currentStats.getStart(currentRacer4);
 						    			}
 						    			displayLine7Label.setText(Integer.toString(currentRacer4.getBib()) + " " + chronotimer.getTimer().convertTime(currentTime4) + " :R");
 					    			}else{
 					    				Racer currentRacer = racerQueue.get(chronotimer.getCurrentRun().getEndQueue().size()-4);
-						    			//Ongoing time for current racer
 						    			if(currentStats.getStart(currentRacer) != -1){
 						    				currentTime = chronotimer.getTimer().getCurrentTime() - currentStats.getStart(currentRacer);
 						    			}
 						    			displayLine4Label.setText(Integer.toString(currentRacer.getBib()) + " " + chronotimer.getTimer().convertTime(currentTime) + " :R");
 						    			
 						    			Racer currentRacer2 = racerQueue.get(chronotimer.getCurrentRun().getEndQueue().size()-3);
-						    			//Ongoing time for current racer
 						    			if(currentStats.getStart(currentRacer2) != -1){
 						    				currentTime2 = chronotimer.getTimer().getCurrentTime() - currentStats.getStart(currentRacer2);
 						    			}
 						    			displayLine5Label.setText(Integer.toString(currentRacer2.getBib()) + " " + chronotimer.getTimer().convertTime(currentTime2) + " :R");
 						    			
 						    			Racer currentRacer3 = racerQueue.get(chronotimer.getCurrentRun().getEndQueue().size()-2);
-						    			//Ongoing time for current racer
 						    			if(currentStats.getStart(currentRacer3) != -1){
 						    				currentTime3 = chronotimer.getTimer().getCurrentTime() - currentStats.getStart(currentRacer3);
 						    			}
 						    			displayLine6Label.setText(Integer.toString(currentRacer3.getBib()) + " " + chronotimer.getTimer().convertTime(currentTime3) + " :R");
 						    			
 						    			Racer currentRacer4 = racerQueue.get(chronotimer.getCurrentRun().getEndQueue().size()-1);
-						    			//Ongoing time for current racer
 						    			if(currentStats.getStart(currentRacer4) != -1){
 						    				currentTime4 = chronotimer.getTimer().getCurrentTime() - currentStats.getStart(currentRacer4);
 						    			}
@@ -1080,98 +1024,84 @@ public class Driver_GUI extends JFrame{
 					    		if(chronotimer.getCurrentRun().getEndQueue().size() > 0){
 					    			if(chronotimer.getCurrentRun().getEndQueue().size() == 1){
 					    				Racer currentRacer = racerQueue.get(racerQueue.size() - chronotimer.getCurrentRun().getEndQueue().size());
-						    			//Ongoing time for current racer
 						    			if(currentStats.getStart(currentRacer) != -1){
 						    				currentTime = chronotimer.getTimer().getCurrentTime() - currentStats.getStart(currentRacer);
 						    			}
 						    			displayLine5Label.setText(Integer.toString(currentRacer.getBib()) + " " + chronotimer.getTimer().convertTime(currentTime) + " :R");
 					    			}else if(chronotimer.getCurrentRun().getEndQueue().size() == 2){
 					    				Racer currentRacer = racerQueue.get(racerQueue.size() - chronotimer.getCurrentRun().getEndQueue().size());
-						    			//Ongoing time for current racer
 						    			if(currentStats.getStart(currentRacer) != -1){
 						    				currentTime = chronotimer.getTimer().getCurrentTime() - currentStats.getStart(currentRacer);
 						    			}
 						    			displayLine5Label.setText(Integer.toString(currentRacer.getBib()) + " " + chronotimer.getTimer().convertTime(currentTime) + " :R");
 						    			
 						    			Racer currentRacer2 = racerQueue.get(racerQueue.size() - chronotimer.getCurrentRun().getEndQueue().size()+1);
-						    			//Ongoing time for current racer
 						    			if(currentStats.getStart(currentRacer2) != -1){
 						    				currentTime2 = chronotimer.getTimer().getCurrentTime() - currentStats.getStart(currentRacer2);
 						    			}
 						    			displayLine6Label.setText(Integer.toString(currentRacer2.getBib()) + " " + chronotimer.getTimer().convertTime(currentTime2) + " :R");
 					    			}else if(chronotimer.getCurrentRun().getEndQueue().size() == 3){
 					    				Racer currentRacer = racerQueue.get(racerQueue.size() - chronotimer.getCurrentRun().getEndQueue().size());
-						    			//Ongoing time for current racer
 						    			if(currentStats.getStart(currentRacer) != -1){
 						    				currentTime = chronotimer.getTimer().getCurrentTime() - currentStats.getStart(currentRacer);
 						    			}
 						    			displayLine4Label.setText(Integer.toString(currentRacer.getBib()) + " " + chronotimer.getTimer().convertTime(currentTime) + " :R");
 						    			
 						    			Racer currentRacer2 = racerQueue.get(racerQueue.size() - chronotimer.getCurrentRun().getEndQueue().size()+1);
-						    			//Ongoing time for current racer
 						    			if(currentStats.getStart(currentRacer2) != -1){
 						    				currentTime2 = chronotimer.getTimer().getCurrentTime() - currentStats.getStart(currentRacer2);
 						    			}
 						    			displayLine5Label.setText(Integer.toString(currentRacer2.getBib()) + " " + chronotimer.getTimer().convertTime(currentTime2) + " :R");
 						    			
 						    			Racer currentRacer3 = racerQueue.get(racerQueue.size() - chronotimer.getCurrentRun().getEndQueue().size()+2);
-						    			//Ongoing time for current racer
 						    			if(currentStats.getStart(currentRacer3) != -1){
 						    				currentTime3 = chronotimer.getTimer().getCurrentTime() - currentStats.getStart(currentRacer3);
 						    			}
 						    			displayLine6Label.setText(Integer.toString(currentRacer3.getBib()) + " " + chronotimer.getTimer().convertTime(currentTime3) + " :R");
 					    			}else if(chronotimer.getCurrentRun().getEndQueue().size() == 4){
 					    				Racer currentRacer = racerQueue.get(racerQueue.size() - chronotimer.getCurrentRun().getEndQueue().size());
-						    			//Ongoing time for current racer
 						    			if(currentStats.getStart(currentRacer) != -1){
 						    				currentTime = chronotimer.getTimer().getCurrentTime() - currentStats.getStart(currentRacer);
 						    			}
 						    			displayLine4Label.setText(Integer.toString(currentRacer.getBib()) + " " + chronotimer.getTimer().convertTime(currentTime) + " :R");
 						    			
 						    			Racer currentRacer2 = racerQueue.get(racerQueue.size() - chronotimer.getCurrentRun().getEndQueue().size()+1);
-						    			//Ongoing time for current racer
 						    			if(currentStats.getStart(currentRacer2) != -1){
 						    				currentTime2 = chronotimer.getTimer().getCurrentTime() - currentStats.getStart(currentRacer2);
 						    			}
 						    			displayLine5Label.setText(Integer.toString(currentRacer2.getBib()) + " " + chronotimer.getTimer().convertTime(currentTime2) + " :R");
 						    			
 						    			Racer currentRacer3 = racerQueue.get(racerQueue.size() - chronotimer.getCurrentRun().getEndQueue().size()+2);
-						    			//Ongoing time for current racer
 						    			if(currentStats.getStart(currentRacer3) != -1){
 						    				currentTime3 = chronotimer.getTimer().getCurrentTime() - currentStats.getStart(currentRacer3);
 						    			}
 						    			displayLine6Label.setText(Integer.toString(currentRacer3.getBib()) + " " + chronotimer.getTimer().convertTime(currentTime3) + " :R");
 						    			
 						    			Racer currentRacer4 = racerQueue.get(racerQueue.size() - chronotimer.getCurrentRun().getEndQueue().size()+3);
-						    			//Ongoing time for current racer
 						    			if(currentStats.getStart(currentRacer4) != -1){
 						    				currentTime4 = chronotimer.getTimer().getCurrentTime() - currentStats.getStart(currentRacer4);
 						    			}
 						    			displayLine7Label.setText(Integer.toString(currentRacer4.getBib()) + " " + chronotimer.getTimer().convertTime(currentTime4) + " :R");
 					    			}else{
 					    				Racer currentRacer = racerQueue.get(chronotimer.getCurrentRun().getEndQueue().size()-4);
-						    			//Ongoing time for current racer
 						    			if(currentStats.getStart(currentRacer) != -1){
 						    				currentTime = chronotimer.getTimer().getCurrentTime() - currentStats.getStart(currentRacer);
 						    			}
 						    			displayLine4Label.setText(Integer.toString(currentRacer.getBib()) + " " + chronotimer.getTimer().convertTime(currentTime) + " :R");
 						    			
 						    			Racer currentRacer2 = racerQueue.get(chronotimer.getCurrentRun().getEndQueue().size()-3);
-						    			//Ongoing time for current racer
 						    			if(currentStats.getStart(currentRacer2) != -1){
 						    				currentTime2 = chronotimer.getTimer().getCurrentTime() - currentStats.getStart(currentRacer2);
 						    			}
 						    			displayLine5Label.setText(Integer.toString(currentRacer2.getBib()) + " " + chronotimer.getTimer().convertTime(currentTime2) + " :R");
 						    			
 						    			Racer currentRacer3 = racerQueue.get(chronotimer.getCurrentRun().getEndQueue().size()-2);
-						    			//Ongoing time for current racer
 						    			if(currentStats.getStart(currentRacer3) != -1){
 						    				currentTime3 = chronotimer.getTimer().getCurrentTime() - currentStats.getStart(currentRacer3);
 						    			}
 						    			displayLine6Label.setText(Integer.toString(currentRacer3.getBib()) + " " + chronotimer.getTimer().convertTime(currentTime3) + " :R");
 						    			
 						    			Racer currentRacer4 = racerQueue.get(chronotimer.getCurrentRun().getEndQueue().size()-1);
-						    			//Ongoing time for current racer
 						    			if(currentStats.getStart(currentRacer4) != -1){
 						    				currentTime4 = chronotimer.getTimer().getCurrentTime() - currentStats.getStart(currentRacer4);
 						    			}
