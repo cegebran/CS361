@@ -691,12 +691,12 @@ public class Driver_GUI extends JFrame{
 			    		if(selectedEvent == 0){
 			    			//IND //TODO May have to add logic for extra "current racers"
 			    			//Show the next three to start, and current running racers, and the last racer to finish
-			    			Racer currentRacer = racerQueue.get(racerQueue.size() - chronotimer.getCurrentRun().getEndQueue().size());
-			    			
-			    			//Ongoing time for current racer
-			    			if(currentStats.getStart(currentRacer) != -1){
-			    				currentTime = chronotimer.getTimer().getCurrentTime() - currentStats.getStart(currentRacer);
-			    			}
+			    		//	Racer currentRacer = racerQueue.get(racerQueue.size() - chronotimer.getCurrentRun().getEndQueue().size());
+			    		//	System.out.println(racerQueue.size() + " " + chronotimer.getCurrentRun().getEndQueue().size());
+			    		//	//Ongoing time for current racer
+			    		//	if(currentStats.getStart(currentRacer) != -1){
+			    		//		currentTime = chronotimer.getTimer().getCurrentTime() - currentStats.getStart(currentRacer);
+			    		//	}
 			    			
 			    			//No Racers to start and no current racers
 			    			//if(racerStartQueue.size() == 0 && (racerQueue.size() == chronotimer.getCurrentRun().getEndQueue().size())){
@@ -714,7 +714,18 @@ public class Driver_GUI extends JFrame{
 					    		displayLine1Label.setText("No Racer Queued");
 					    		displayLine2Label.setText("No Racer Queued");
 					    		displayLine3Label.setText("No Racer Queued :>");
+					    		
+					    		if(chronotimer.getCurrentRun().getEndQueue().size() > 0){
+					    		Racer currentRacer = racerQueue.get(racerQueue.size() - chronotimer.getCurrentRun().getEndQueue().size());
+				    			//Ongoing time for current racer
+				    			if(currentStats.getStart(currentRacer) != -1){
+				    				currentTime = chronotimer.getTimer().getCurrentTime() - currentStats.getStart(currentRacer);
+				    			}
 					    		displayLine5Label.setText(Integer.toString(currentRacer.getBib()) + " " + chronotimer.getTimer().convertTime(currentTime) + " :R");
+					    		}else{
+					    			displayLine5Label.setText("No Current Racer :R");
+					    		}
+					    		
 					    		if(!(racerEndQueue.isEmpty())){
 					    			displayLine8Label.setText(Integer.toString(racerEndQueue.get(racerEndQueue.size() -1).getBib()) + " " + currentStats.getRaceTime(racerEndQueue.get(racerEndQueue.size() -1)) + " :F");
 					    		}
@@ -724,7 +735,18 @@ public class Driver_GUI extends JFrame{
 					    		displayLine1Label.setText("No Racer Queued");
 					    		displayLine2Label.setText("No Racer Queued");
 					    		displayLine3Label.setText(Integer.toString(racerStartQueue.get(0).getBib()) + " :>");
+					    		
+					    		if(chronotimer.getCurrentRun().getEndQueue().size() > 0){
+					    		Racer currentRacer = racerQueue.get(racerQueue.size() - chronotimer.getCurrentRun().getEndQueue().size());
+				    			//Ongoing time for current racer
+				    			if(currentStats.getStart(currentRacer) != -1){
+				    				currentTime = chronotimer.getTimer().getCurrentTime() - currentStats.getStart(currentRacer);
+				    			}
 					    		displayLine5Label.setText(Integer.toString(currentRacer.getBib()) + " " + chronotimer.getTimer().convertTime(currentTime) + " :R");
+					    		}else{
+					    			displayLine5Label.setText("No Current Racer :R");
+					    		}
+					    		
 					    		if(!(racerEndQueue.isEmpty())){
 					    			displayLine8Label.setText(Integer.toString(racerEndQueue.get(racerEndQueue.size() -1).getBib()) + " " + currentStats.getRaceTime(racerEndQueue.get(racerEndQueue.size() -1)) + " :F");
 					    		}
@@ -734,7 +756,18 @@ public class Driver_GUI extends JFrame{
 					    		displayLine1Label.setText("Next Racer" + "No Racer Queued");
 					    		displayLine2Label.setText(Integer.toString(racerStartQueue.get(1).getBib()));
 					    		displayLine3Label.setText(Integer.toString(racerStartQueue.get(0).getBib()) + " :>");
+					    		
+					    		if(chronotimer.getCurrentRun().getEndQueue().size() > 0){
+					    		Racer currentRacer = racerQueue.get(racerQueue.size() - chronotimer.getCurrentRun().getEndQueue().size());
+				    			//Ongoing time for current racer
+				    			if(currentStats.getStart(currentRacer) != -1){
+				    				currentTime = chronotimer.getTimer().getCurrentTime() - currentStats.getStart(currentRacer);
+				    			}
 					    		displayLine5Label.setText(Integer.toString(currentRacer.getBib()) + " " + chronotimer.getTimer().convertTime(currentTime) + " :R");
+					    		}else{
+					    			displayLine5Label.setText("No Current Racer :R");
+					    		}
+					    		
 					    		if(!(racerEndQueue.isEmpty())){
 					    			displayLine8Label.setText(Integer.toString(racerEndQueue.get(racerEndQueue.size() -1).getBib()) + " " + currentStats.getRaceTime(racerEndQueue.get(racerEndQueue.size() -1)) + " :F");
 					    		}
@@ -744,7 +777,18 @@ public class Driver_GUI extends JFrame{
 					    		displayLine1Label.setText(Integer.toString(racerStartQueue.get(2).getBib()));
 					    		displayLine2Label.setText(Integer.toString(racerStartQueue.get(1).getBib()));
 					    		displayLine3Label.setText(Integer.toString(racerStartQueue.get(0).getBib()) + " :>");
+					    		
+					    		if(chronotimer.getCurrentRun().getEndQueue().size() > 0){
+					    		Racer currentRacer = racerQueue.get(racerQueue.size() - chronotimer.getCurrentRun().getEndQueue().size());
+				    			//Ongoing time for current racer
+				    			if(currentStats.getStart(currentRacer) != -1){
+				    				currentTime = chronotimer.getTimer().getCurrentTime() - currentStats.getStart(currentRacer);
+				    			}
 					    		displayLine5Label.setText(Integer.toString(currentRacer.getBib()) + " " + chronotimer.getTimer().convertTime(currentTime) + " :R");
+					    		}else{
+					    			displayLine5Label.setText("No Current Racer :R");
+					    		}
+					    		
 					    		if(!(racerEndQueue.isEmpty())){
 					    			displayLine8Label.setText(Integer.toString(racerEndQueue.get(racerEndQueue.size() -1).getBib()) + " " + currentStats.getRaceTime(racerEndQueue.get(racerEndQueue.size() -1)) + " :F");
 					    		}
