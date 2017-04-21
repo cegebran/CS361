@@ -657,7 +657,11 @@ public class Driver_GUI extends JFrame{
 		    		displayLine8Label.setText("");
 		    		
 		    		//TODO Figure out what to check for to prevent null reference exception.
-		    		if((!chronotimer.getCurrentRun().getStats().getRacers().isEmpty()) && chronotimer.getCurrentRun() != null){
+		    		// The line below was the old line
+		    		//if((!chronotimer.getCurrentRun().getStats().getRacers().isEmpty()) && chronotimer.getCurrentRun() != null){
+		    		// I added the line below to first check if there is a current run before . extending the null current run
+		    		// This will allow the power to be turned on without getting a nullpointerexception
+		    		if(chronotimer.getCurrentRun() != null && (!chronotimer.getCurrentRun().getStats().getRacers().isEmpty())){
 		    			Stats currentStats = chronotimer.getCurrentRun().getStats();	
 		    			LinkedList<Racer> racerStartQueue = chronotimer.getCurrentRun().getBeginQueue();
 		    			LinkedList<Racer> racerEndQueue = chronotimer.getCurrentRun().getEndQueue();
