@@ -676,7 +676,8 @@ public class Driver_GUI extends JFrame{
 		    		displayLine8Label.setText("");
 		    		
 		    		//TODO Figure out what to check for to prevent null reference exception.
-		    		if(chronotimer.getCurrentRun() != null && (!chronotimer.getCurrentRun().getStats().getRacers().isEmpty())){
+		    		//if(chronotimer.getCurrentRun() != null && (!chronotimer.getCurrentRun().getStats().getRacers().isEmpty())){
+		    		if(chronotimer.getCurrentRun() != null){
 		    			Stats currentStats = chronotimer.getCurrentRun().getStats();	
 		    			LinkedList<Racer> racerStartQueue = chronotimer.getCurrentRun().getBeginQueue();
 		    			LinkedList<Racer> racerEndQueue = chronotimer.getCurrentRun().getEndQueue();
@@ -912,7 +913,7 @@ public class Driver_GUI extends JFrame{
 					    	}
 			    			//2 racers to start
 			    			else if(racerStartQueue.size() == 2){
-					    		displayLine1Label.setText("Next Racer" + "No Racer Queued");
+					    		displayLine1Label.setText("No Racer Queued");
 					    		displayLine2Label.setText(Integer.toString(racerStartQueue.get(1).getBib()));
 					    		displayLine3Label.setText(Integer.toString(racerStartQueue.get(0).getBib()) + " :>");
 					    		
