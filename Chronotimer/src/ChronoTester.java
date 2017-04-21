@@ -665,5 +665,8 @@ public class ChronoTester {
 		c0.start();
 		assertEquals(123, c0.cancel());	// racer bib number returned when currently making a run
 	}
+	
+	// Newly added Group Functionality Tests
+	
 
 }
