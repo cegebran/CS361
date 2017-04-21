@@ -614,7 +614,7 @@ public class Driver_GUI extends JFrame{
 		    		boolean printerPower = chronotimer.getPrinterPower();
         			if(printerPower == true){
         				if(result == true){
-        					printerAddLine("Results Have Been Exported to results.txt");
+        					printerAddLine("Results Have Been Exported To results.txt");
         				}else{
         					printerAddLine("The Results Have Not Been Exported");
         				}
