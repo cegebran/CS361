@@ -699,7 +699,8 @@ public class Driver_GUI extends JFrame{
 			    			}
 			    			
 			    			//No Racers to start and no current racers
-			    			if(racerStartQueue.size() == 0 && (racerQueue.size() == chronotimer.getCurrentRun().getEndQueue().size())){
+			    			//if(racerStartQueue.size() == 0 && (racerQueue.size() == chronotimer.getCurrentRun().getEndQueue().size())){
+			    			if(racerStartQueue.size() == 0 && racerEndQueue.size() == 0){
 			    				displayLine1Label.setText("No Racer Queued");
 					    		displayLine2Label.setText("No Racer Queued");
 					    		displayLine3Label.setText("No Racer Queued :>");
@@ -722,7 +723,7 @@ public class Driver_GUI extends JFrame{
 			    			else if(racerStartQueue.size() == 1){
 					    		displayLine1Label.setText("No Racer Queued");
 					    		displayLine2Label.setText("No Racer Queued");
-					    		displayLine3Label.setText(Integer.toString(racerStartQueue.get(0).getBib()) + " " + currentStats.getRaceTime(racerStartQueue.get(0)) + " :>");
+					    		displayLine3Label.setText(Integer.toString(racerStartQueue.get(0).getBib()) + " :>");
 					    		displayLine5Label.setText(Integer.toString(currentRacer.getBib()) + " " + chronotimer.getTimer().convertTime(currentTime) + " :R");
 					    		if(!(racerEndQueue.isEmpty())){
 					    			displayLine8Label.setText(Integer.toString(racerEndQueue.get(racerEndQueue.size() -1).getBib()) + " " + currentStats.getRaceTime(racerEndQueue.get(racerEndQueue.size() -1)) + " :F");
@@ -731,8 +732,8 @@ public class Driver_GUI extends JFrame{
 			    			//2 racers to start
 			    			else if(racerStartQueue.size() == 2){
 					    		displayLine1Label.setText("Next Racer" + "No Racer Queued");
-					    		displayLine2Label.setText(Integer.toString(racerStartQueue.get(1).getBib()) + " " + currentStats.getRaceTime(racerStartQueue.get(1)));
-					    		displayLine3Label.setText(Integer.toString(racerStartQueue.get(0).getBib()) + " " + currentStats.getRaceTime(racerStartQueue.get(0)) + " :>");
+					    		displayLine2Label.setText(Integer.toString(racerStartQueue.get(1).getBib()));
+					    		displayLine3Label.setText(Integer.toString(racerStartQueue.get(0).getBib()) + " :>");
 					    		displayLine5Label.setText(Integer.toString(currentRacer.getBib()) + " " + chronotimer.getTimer().convertTime(currentTime) + " :R");
 					    		if(!(racerEndQueue.isEmpty())){
 					    			displayLine8Label.setText(Integer.toString(racerEndQueue.get(racerEndQueue.size() -1).getBib()) + " " + currentStats.getRaceTime(racerEndQueue.get(racerEndQueue.size() -1)) + " :F");
@@ -740,9 +741,9 @@ public class Driver_GUI extends JFrame{
 					    	}
 			    			//3 or more racers to start
 			    			else{
-					    		displayLine1Label.setText(Integer.toString(racerStartQueue.get(2).getBib()) + " " + currentStats.getRaceTime(racerStartQueue.get(2)));
-					    		displayLine2Label.setText(Integer.toString(racerStartQueue.get(1).getBib()) + " " + currentStats.getRaceTime(racerStartQueue.get(1)));
-					    		displayLine3Label.setText(Integer.toString(racerStartQueue.get(0).getBib()) + " " + currentStats.getRaceTime(racerStartQueue.get(0)) + " :>");
+					    		displayLine1Label.setText(Integer.toString(racerStartQueue.get(2).getBib()));
+					    		displayLine2Label.setText(Integer.toString(racerStartQueue.get(1).getBib()));
+					    		displayLine3Label.setText(Integer.toString(racerStartQueue.get(0).getBib()) + " :>");
 					    		displayLine5Label.setText(Integer.toString(currentRacer.getBib()) + " " + chronotimer.getTimer().convertTime(currentTime) + " :R");
 					    		if(!(racerEndQueue.isEmpty())){
 					    			displayLine8Label.setText(Integer.toString(racerEndQueue.get(racerEndQueue.size() -1).getBib()) + " " + currentStats.getRaceTime(racerEndQueue.get(racerEndQueue.size() -1)) + " :F");
@@ -831,12 +832,15 @@ public class Driver_GUI extends JFrame{
 	    });
 		functionBtn.addActionListener(new ActionListener(){
 			public void actionPerformed(ActionEvent e){
-				functionIsSelected = false;
-				if(!displayFunction){
-					functionNum = 0;
-					selectedFunction = 0;
+				boolean pwr = chronotimer.getPower();
+				if(pwr == true){
+					functionIsSelected = false;
+					if(!displayFunction){
+						functionNum = 0;
+						selectedFunction = 0;
+					}
+					displayFunction = !displayFunction;
 				}
-				displayFunction = !displayFunction;
 			}
 		});
 		
