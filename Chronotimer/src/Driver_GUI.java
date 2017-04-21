@@ -655,7 +655,9 @@ public class Driver_GUI extends JFrame{
 		    		int result = chronotimer.dnf();
 		    		boolean printerPower = chronotimer.getPrinterPower();
         			if(printerPower == true){
-        				if(result == -2){
+        				if(result == -3){
+        					printerAddLine("DNF Only Works in IND");
+        				}else if(result == -2){
         					printerAddLine("No Current Run In Progress");
         				}else if(result == 0){
         					printerAddLine("No Current Racer In Progress");

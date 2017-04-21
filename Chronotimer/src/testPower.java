@@ -4,7 +4,6 @@ import org.junit.Test;
 public class testPower {
 
 	Chronotimer chronotimer = new Chronotimer();
-	Run current = new Run(chronotimer.getIndividual(), chronotimer.getParallel(),0);
 	
 	@Test
 	public void chronotimerOffTestButtonPush(){

@@ -913,25 +913,26 @@ public class Chronotimer {
 	/**
 	 * Marks the current racer with a 'Did Not Finish' status'.
 	 * 
-	 * @return	-1 = power off, -2 = no current run, 0 no racer in run to dnf, bib# if successful dnf
+	 * @return	-1 = power off, -2 = no current run, -3 = not IND, 0 no racer in run to dnf, bib# if successful dnf
 	 */
 	public int dnf(){
 		// Only act if Chronotimer is on
 		if(power == false){
 			return -1;
+		}
+		// Only perform if there is a run underway
+		if(currentRun == null){
+			return -2;
+		}
+		if(!(individual && !parallel)){
+			return -3;
+		}
+		// Utilize Run object's 'Did Not Finish' method for marking
+		int dnfResult = currentRun.didNotFinish();
+		if(dnfResult == 0){
+			return 0;
 		}else{
-			// Only perform if there is a run underway
-			if(currentRun == null){
-				return -2;
-			}else{
-				// Utilize Run object's 'Did Not Finish' method for marking
-				int dnfResult = currentRun.didNotFinish();
-				if(dnfResult == 0){
-					return 0;
-				}else{
-					return dnfResult;
-				}
-			}
+			return dnfResult;
 		}
 	}
 	
