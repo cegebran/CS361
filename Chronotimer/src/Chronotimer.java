@@ -891,14 +891,15 @@ public class Chronotimer {
 	/**
 	 * Cancels the last racer to start the race and the farthest back in the queue of racers currently making their runs
 	 * 
-	 * @Return the bib number of the race who has been canceled, -2 if the chronotimer is off, -1 if there is no racer in the race to cancel
+	 * @Return the bib number of the race who has been canceled, -3 if not IND event, -2 if the chronotimer is off, -1 if there is no racer in the race to cancel
 	 * and 0 if there is no current run to cancel a racer from
 	 */
 	public int cancel(){
 		if(power == false){
 			return -2;
-		}
-		if(currentRun == null){
+		}else if(!(individual && !parallel)){
+			return -3;
+		}else if(currentRun == null){
 			return 0;
 		}else{
 			int returnBibNumber = currentRun.cancel();
@@ -913,7 +914,7 @@ public class Chronotimer {
 	/**
 	 * Marks the current racer with a 'Did Not Finish' status'.
 	 * 
-	 * @return	-1 = power off, -2 = no current run, -3 = not IND, 0 no racer in run to dnf, bib# if successful dnf
+	 * @return	-1 = power off, -2 = no current run, -3 = not IND or PARIND, 0 no racer in run to dnf, bib# if successful dnf
 	 */
 	public int dnf(){
 		// Only act if Chronotimer is on
@@ -924,7 +925,7 @@ public class Chronotimer {
 		if(currentRun == null){
 			return -2;
 		}
-		if(!(individual && !parallel)){
+		if(!individual){
 			return -3;
 		}
 		// Utilize Run object's 'Did Not Finish' method for marking

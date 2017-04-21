@@ -673,9 +673,11 @@ public class ChronoTester {
 		c0.power();
 		assertTrue(c0.setEvent("GRP"));
 		assertEquals(3,c0.newRun());
-		assertEquals(1, c0.num("111"));
-		assertEquals(1, c0.num("222"));
-		assertEquals(1, c0.num("333"));
+		assertEquals(0, c0.num("111"));
+		assertEquals(0, c0.num("222"));
+		assertEquals(0, c0.num("333"));
+		assertFalse(c0.start());
+		c0.toggleChannel("1");
 		assertTrue(c0.start());
 	}
 

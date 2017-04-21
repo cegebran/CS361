@@ -640,6 +640,8 @@ public class Driver_GUI extends JFrame{
         			if(printerPower == true){
         				if(resultBibNumber > 0){
         					printerAddLine("Canceled Racer: # " + resultBibNumber);
+        				}else if(resultBibNumber == -3){
+        					printerAddLine("Cancel Only Works in IND");
         				}else if(resultBibNumber == -1){
         					printerAddLine("No Racer Running To Cancel");
         				}else if(resultBibNumber == 0){
@@ -656,7 +658,7 @@ public class Driver_GUI extends JFrame{
 		    		boolean printerPower = chronotimer.getPrinterPower();
         			if(printerPower == true){
         				if(result == -3){
-        					printerAddLine("DNF Only Works in IND");
+        					printerAddLine("DNF Only Works in IND and PARIND");
         				}else if(result == -2){
         					printerAddLine("No Current Run In Progress");
         				}else if(result == 0){
