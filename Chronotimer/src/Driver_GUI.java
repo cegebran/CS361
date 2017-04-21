@@ -711,7 +711,6 @@ public class Driver_GUI extends JFrame{
 					    		displayLine2Label.setText("No Racer Queued");
 					    		displayLine3Label.setText("No Racer Queued :>");
 					    		
-					    		
 					    		if(chronotimer.getCurrentRun().getEndQueue().size() > 0){
 					    			if(chronotimer.getCurrentRun().getEndQueue().size() == 1){
 					    				Racer currentRacer = racerQueue.get(racerQueue.size() - chronotimer.getCurrentRun().getEndQueue().size());
