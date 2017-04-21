@@ -389,6 +389,26 @@ public class Driver_GUI extends JFrame{
 		
 		JPanel usbPanel = new JPanel();
 		usbPanel.setBorder(BorderFactory.createMatteBorder(1, 0, 0, 0, Color.BLACK));
+		JLabel usbText = new JLabel("USB PORT");
+		JPanel usbCenterPanel = new JPanel(new FlowLayout());
+		usbPanel.setLayout(new GridLayout(7,1));
+		JLabel buffer1 = new JLabel(" ");
+		JLabel buffer2 = new JLabel(" ");
+		JLabel buffer3 = new JLabel(" ");
+		JLabel buffer4 = new JLabel(" ");
+		JLabel buffer5 = new JLabel(" ");
+		JLabel buffer6 = new JLabel(" ");
+		JButton usbPortBtn = new JButton();
+		usbPortBtn.setEnabled(false);
+		usbCenterPanel.add(usbPortBtn);
+		usbCenterPanel.add(usbText);
+		usbPanel.add(buffer1);
+		usbPanel.add(buffer2);
+		usbPanel.add(buffer3);
+		usbPanel.add(usbCenterPanel);
+		usbPanel.add(buffer4);
+		usbPanel.add(buffer5);
+		usbPanel.add(buffer6);
 		
 		JPanel blankPanel = new JPanel();
 		blankPanel.setBorder(BorderFactory.createMatteBorder(1, 0, 0, 0, Color.BLACK));

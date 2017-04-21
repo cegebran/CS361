@@ -620,7 +620,7 @@ public class ChronoTester {
 		c0.finish();
 		assertTrue(c0.endRun(false));
 		assertEquals(1, c0.newRun());
-		c0.num("222");
+		assertEquals(1,c0.num("222"));
 		assertEquals(2,c0.getRuns().get(1).getRunNumber());
 		c0.start();
 		c0.finish();
@@ -660,13 +660,23 @@ public class ChronoTester {
 		assertEquals(0, c0.cancel());	// no current run to cancel
 		assertEquals(1, c0.newRun());
 		assertEquals(-1, c0.cancel());	// no racer currently making their run to cancel
-		c0.num("123");
+		assertEquals(1,c0.num("123"));
 		c0.toggleChannel("1");
 		c0.start();
 		assertEquals(123, c0.cancel());	// racer bib number returned when currently making a run
 	}
 	
 	// Newly added Group Functionality Tests
-	
+	@Test
+	public void test_Group(){
+		Chronotimer c0 = new Chronotimer();
+		c0.power();
+		assertTrue(c0.setEvent("GRP"));
+		assertEquals(3,c0.newRun());
+		assertEquals(1, c0.num("111"));
+		assertEquals(1, c0.num("222"));
+		assertEquals(1, c0.num("333"));
+		assertTrue(c0.start());
+	}
 
 }
