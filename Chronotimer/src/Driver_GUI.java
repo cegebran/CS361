@@ -1162,7 +1162,6 @@ public class Driver_GUI extends JFrame{
 						else if(selectedEvent == 2){
 							//GRP TODO Finish GRP.
 							//Since there are no starters only running time and last finish needs to be displayed.
-						
 				    		displayLine1Label.setText("");
 				    		displayLine2Label.setText("");
 				    		displayLine3Label.setText("");
@@ -1171,6 +1170,21 @@ public class Driver_GUI extends JFrame{
 				    		displayLine6Label.setText("");
 				    		displayLine7Label.setText("");
 				    		displayLine8Label.setText("");
+				    		
+				    		if(chronotimer.getCurrentRun().getGroupStartTime() == -1){
+				    			displayLine2Label.setText("The Group Run Has Not Started Yet :T");
+				    			displayLine5Label.setText("No Racers Have Finished :F");
+				    		}else{
+				    			long currentRunTime = chronotimer.getTimer().getCurrentTime() - chronotimer.getCurrentRun().getGroupStartTime();
+				    			displayLine2Label.setText(chronotimer.getTimer().convertTime(currentRunTime) + " :T");
+				    			
+				    			String lastRetValue = chronotimer.getLastToFinish();
+				    			if(lastRetValue == null){
+				    				displayLine5Label.setText("No Racers Have Finished :F");
+				    			}else{
+				    				displayLine5Label.setText(lastRetValue);
+				    			}
+				    		}
 						}
 						else if(selectedEvent == 3){
 							//PARGRP For Next Sprint

@@ -78,6 +78,14 @@ public class Run {
 	}
 	
 	/**
+	 * 
+	 * @return the start time of the current run, -1 if not started or the time if already started
+	 */
+	public long getGroupStartTime(){
+		return groupStartTime;
+	}
+	
+	/**
 	 * Returns list of racers in line to start their runs.
 	 * 
 	 * @return	LinkedList of racers yet to start.
