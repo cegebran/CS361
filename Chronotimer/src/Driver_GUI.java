@@ -1171,17 +1171,19 @@ public class Driver_GUI extends JFrame{
 				    		displayLine7Label.setText("");
 				    		displayLine8Label.setText("");
 				    		
+				    		// have already tested if the run is null so can . extend currentRun
 				    		if(chronotimer.getCurrentRun().getGroupStartTime() == -1){
 				    			displayLine2Label.setText("The Group Run Has Not Started Yet :T");
 				    			displayLine5Label.setText("No Racers Have Finished :F");
 				    		}else{
-				    			long currentRunTime = chronotimer.getTimer().getCurrentTime() - chronotimer.getCurrentRun().getGroupStartTime();
-				    			displayLine2Label.setText(chronotimer.getTimer().convertTime(currentRunTime) + " :T");
+				    			long currentRunTime = chronotimer.getTimer().getCurrentTime() - chronotimer.getCurrentRun().getGroupStartTime();	// calculate the current run time
+				    			displayLine2Label.setText(chronotimer.getTimer().convertTime(currentRunTime) + " :T");	// Print the current run time to the screen
 				    			
+				    			// Test if any racer has finished yet from the group by using a function to test
 				    			String lastRetValue = chronotimer.getLastToFinish();
-				    			if(lastRetValue == null){
+				    			if(lastRetValue == null){	// no racer finsihed yet
 				    				displayLine5Label.setText("No Racers Have Finished :F");
-				    			}else{
+				    			}else{	// racer finished so display the most recent racer to finish with their bib # and race time
 				    				displayLine5Label.setText(lastRetValue);
 				    			}
 				    		}
