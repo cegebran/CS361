@@ -796,4 +796,49 @@ public class ChronoTester {
 		assertFalse(c.getChannelOne().getOn());
 		assertNull(c.getCurrentRun());
 	}
+	
+	@Test
+	public void test_Swap(){
+		Chronotimer c0 = new Chronotimer();
+		c0.power();
+		assertTrue(c0.toggleChannel("1"));
+		assertTrue(c0.toggleChannel("2"));
+		assertTrue(c0.setEvent("IND"));
+		assertEquals(1, c0.newRun());
+		c0.num("111");
+		c0.num("222");
+		assertEquals(true, c0.start());
+		assertEquals(true, c0.start());
+		assertTrue(c0.swap());
+		assertEquals(222, c0.trigger("2"));
+		assertEquals(111, c0.trigger("2"));
+		assertTrue(c0.endRun(false));
+		c0.power();
+	}
+	
+	@Test
+	public void test_Swap2(){
+		Chronotimer c0 = new Chronotimer();
+		c0.power();
+		assertTrue(c0.toggleChannel("1"));
+		assertTrue(c0.toggleChannel("2"));
+		assertTrue(c0.setEvent("IND"));
+		assertEquals(1, c0.newRun());
+		c0.num("111");
+		c0.num("222");
+		c0.num("333");
+		c0.num("444");
+		assertEquals(true, c0.start());
+		assertEquals(true, c0.start());
+		assertEquals(true, c0.start());
+		assertEquals(true, c0.start());
+		assertTrue(c0.swap());
+		assertEquals(222, c0.trigger("2"));
+		assertTrue(c0.swap());
+		assertEquals(333, c0.trigger("2"));
+		assertTrue(c0.swap());
+		assertEquals(444, c0.trigger("2"));
+		assertFalse(c0.swap());
+		assertEquals(111, c0.trigger("2"));
+	}
 }
