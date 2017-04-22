@@ -25,6 +25,12 @@ public class ChronoTester {
 		c2.setEvent("IND");
 		assertEquals(true, c2.getIndividual());
 		assertEquals(false, c2.getParallel());
+		c2.setEvent("GRP");
+		assertEquals(false, c2.getIndividual());
+		assertEquals(false, c2.getParallel());
+		c2.setEvent("PARGRP");
+		assertEquals(false, c2.getIndividual());
+		assertEquals(true, c2.getParallel());
 	}
 	
 	@Test

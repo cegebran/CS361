@@ -681,6 +681,10 @@ public class Chronotimer {
 			individual = false;
 			parallel = false;
 			return true;
+		}else if(userInput.equals("PARGRP")){
+			individual = false;
+			parallel = true;
+			return true;
 		}else{
 			return false;
 		}
