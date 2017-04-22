@@ -684,8 +684,13 @@ public class ChronoTester {
 		assertEquals(0, c0.num("333"));
 		assertFalse(c0.start());
 		c0.toggleChannel("1");
+		c0.toggleChannel("2");
 		assertTrue(c0.start());
+		assertTrue(c0.finish());
+		assertTrue(c0.finish());
+		assertTrue(c0.finish());
 	}
+	
 	@Test
 	public void test_Reset(){
 		Chronotimer c = new Chronotimer();
