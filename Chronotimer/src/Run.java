@@ -105,6 +105,38 @@ public class Run {
 	
 	/**
 	 * 
+	 * @return	LinkedList of racers currently running in Queue 12
+	 */
+	public LinkedList<Racer> getPendingQueue12(){
+		return this.pendingQueue12;
+	}
+	
+	/**
+	 * 
+	 * @return	LinkedList of racers currently running in Queue 34
+	 */
+	public LinkedList<Racer> getPendingQueue34(){
+		return this.pendingQueue34;
+	}
+	
+	/**
+	 * 
+	 * @return	LinkedList of racers currently running in Queue 56
+	 */
+	public LinkedList<Racer> getPendingQueue56(){
+		return this.pendingQueue56;
+	}
+	
+	/**
+	 * 
+	 * @return	LinkedList of racers currently running in Queue 78
+	 */
+	public LinkedList<Racer> getPendingQueue78(){
+		return this.pendingQueue78;
+	}
+	
+	/**
+	 * 
 	 * @return event type abbreviation of the event the run is
 	 */
 	public String getEventType(){

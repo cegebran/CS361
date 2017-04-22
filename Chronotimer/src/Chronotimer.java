@@ -678,7 +678,7 @@ public class Chronotimer {
 		if(power == false){
 			return false;
 		}
-		if(currentRun != null){
+		if(getCurrentRun() != null){
 			return false;
 		}
 		if(userInput.equals("IND")){

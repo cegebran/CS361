@@ -302,8 +302,8 @@ public class Driver_GUI extends JFrame{
 		funcSwapPanel.add(funcSwapCentPanel, BorderLayout.CENTER);
 		
 		JPanel displayPanel = new JPanel(new BorderLayout());
-		JLabel displayPanelBufferLabelLeft = new JLabel("          ");
-		JLabel displayPanelBufferLabelRight = new JLabel("        ");
+		JLabel displayPanelBufferLabelLeft = new JLabel(" ");
+		JLabel displayPanelBufferLabelRight = new JLabel(" ");
 		JLabel displayPanelBufferLabelTop = new JLabel(" ");
 		displayPanel.add(displayPanelBufferLabelTop, BorderLayout.PAGE_START);
 		displayPanel.add(displayPanelBufferLabelLeft, BorderLayout.LINE_START);
@@ -686,6 +686,11 @@ public class Driver_GUI extends JFrame{
 		    			LinkedList<Racer> racerStartQueue = chronotimer.getCurrentRun().getBeginQueue();
 		    			LinkedList<Racer> racerEndQueue = chronotimer.getCurrentRun().getEndQueue();
 		    			ArrayList<Racer> racerQueue = chronotimer.getCurrentRun().getStats().getRacers();
+		    			
+		    			LinkedList<Racer> queue12 = chronotimer.getCurrentRun().getPendingQueue12();
+		    			LinkedList<Racer> queue34 = chronotimer.getCurrentRun().getPendingQueue34();
+		    			LinkedList<Racer> queue56 = chronotimer.getCurrentRun().getPendingQueue56();
+		    			LinkedList<Racer> queue78 = chronotimer.getCurrentRun().getPendingQueue78();
 
 		    			Long currentTime = 0L;
 		    			Long currentTime2 = 0L;
@@ -1126,19 +1131,54 @@ public class Driver_GUI extends JFrame{
 			    			//PARIND //TODO Finish PARIND
 			    			//Show the next pair to run, running time of the racers, and finish times of the last pair to finish
 			    			//No racer pair to start and no current racer pair
+			    			
 			    			if(racerStartQueue.size() == 0 && (racerQueue.size() == chronotimer.getCurrentRun().getEndQueue().size())){
-					    		displayLine1Label.setText("");
-					    		displayLine2Label.setText("");
-					    		displayLine3Label.setText("");
+					    		displayLine1Label.setText("No Queued Racer  /  No Queued Racer :>");
+					    		displayLine2Label.setText("Lane 1                                        Lane 2");
+					    		displayLine3Label.setText("No Current Racer                   No Current Racer :R");
 					    		displayLine4Label.setText("");
 					    		displayLine5Label.setText("");
 					    		displayLine6Label.setText("");
 					    		displayLine7Label.setText("");
 					    		displayLine8Label.setText("");
+					    		
+					    		// Last pair of racers to finish in each lane
+					    		
 			    			}
-			    			//No racer pair to start
+			    			//No racer pair to start but could be racers running and/or racers finished
 			    			else if(racerStartQueue.size() == 0){
-					    		displayLine1Label.setText("");
+					    		displayLine1Label.setText("No Queued Racer  /  No Queued Racer :>");
+					    		
+					    		
+					    		if(racerEndQueue.isEmpty() == false){	// if not empty will have racer in progress
+					    			if((queue12.size() > 0) && (queue34.isEmpty() == true) && (queue56.isEmpty() == true) && (queue78.isEmpty() == true)){
+					    				
+					    			}else if((queue12.size() > 0) && (queue34.size() > 0) && (queue56.isEmpty() == true) && (queue78.isEmpty() == true)){
+					    				
+					    			}else if((queue12.size() > 0) && (queue34.isEmpty() == true) && (queue56.size() > 0) && (queue78.isEmpty() == true)){
+					    				
+					    			}else if((queue12.size() > 0) && (queue34.isEmpty() == true) && (queue56.isEmpty() == true) && (queue78.size() > 0)){
+					    				
+					    			}else if((queue12.isEmpty() == true) && (queue34.size() > 0) && (queue56.size() > 0) && (queue78.isEmpty() == true)){
+					    				
+					    			}else if((queue12.isEmpty() == true) && (queue34.size() > 0) && (queue56.isEmpty() == true) && (queue78.size() > 0)){
+					    				
+					    			}else if((queue12.isEmpty() == true) && (queue34.size() > 0) && (queue56.isEmpty() == true) && (queue78.isEmpty() == true)){
+					    				
+					    			}else if((queue12.isEmpty() == true) && (queue34.isEmpty() == true) && (queue56.size() > 0) && (queue78.isEmpty() == true)){
+					    				
+					    			}else if((queue12.isEmpty() == true) && (queue34.isEmpty() == true) && (queue56.size() > 0) && (queue78.size() > 0)){
+					    				
+					    			}else if((queue12.isEmpty() == true) && (queue34.isEmpty() == true) && (queue56.isEmpty() == true) && (queue78.size() > 0)){
+					    				
+					    			}
+					    			
+					    			
+					    			
+					    		}
+					    		
+					    		
+					    		
 					    		displayLine2Label.setText("");
 					    		displayLine3Label.setText("");
 					    		displayLine4Label.setText("");
@@ -1146,10 +1186,25 @@ public class Driver_GUI extends JFrame{
 					    		displayLine6Label.setText("");
 					    		displayLine7Label.setText("");
 					    		displayLine8Label.setText("");
+					    		
+					    		// last pair of racers to finish in each lane
 			    			}
 			    			//Pair of racers to start and current racer pair
 			    			else{
-					    		displayLine1Label.setText("");
+			    				if(racerStartQueue.isEmpty()){
+			    					displayLine1Label.setText("No Queued Racer  /  No Queued Racer :>");
+			    				}else if(racerStartQueue.size() == 1){
+			    					displayLine1Label.setText(racerStartQueue.get(0).getBib() + "  /  No Queued Racer :>");
+			    				}else if(racerStartQueue.size() > 1){
+			    					displayLine1Label.setText(racerStartQueue.get(0).getBib() + "  /  " + racerStartQueue.get(1).getBib() + " :>");
+			    				}
+			    				
+			    				
+			    				
+			    				
+			    				
+			    				
+			    				
 					    		displayLine2Label.setText("");
 					    		displayLine3Label.setText("");
 					    		displayLine4Label.setText("");
@@ -1157,6 +1212,8 @@ public class Driver_GUI extends JFrame{
 					    		displayLine6Label.setText("");
 					    		displayLine7Label.setText("");
 					    		displayLine8Label.setText("");
+					    		
+					    		// last pair of racers to finish in each lane
 			    			}
 			    		}
 						else if(selectedEvent == 2){
@@ -1784,7 +1841,9 @@ public class Driver_GUI extends JFrame{
 		        				printerAddLine("Event set to IND");		        			
 		        			}
 		        			else{
-		        				printerAddLine("Only Set Event Before Starting a Run");		        			
+		        				if(chronotimer.getPrinterPower() == true){
+		        					printerAddLine("Only Set Event Before Starting a Run");
+		        				}
 		        			}
 		        		}
 		        		else if(selectedEvent == 1){
@@ -1793,7 +1852,9 @@ public class Driver_GUI extends JFrame{
 		        				printerAddLine("Event set to PARIND");	        			
 		        			}
 			        		else{
-		        				printerAddLine("Only Set Event Before Starting a Run");		        			
+			        			if(chronotimer.getPrinterPower() == true){
+		        					printerAddLine("Only Set Event Before Starting a Run");
+		        				}        			
 			        		}
 		        		}
 		        		else if(selectedEvent == 2){
@@ -1802,7 +1863,9 @@ public class Driver_GUI extends JFrame{
 		        				printerAddLine("Event set to GRP");	        			
 		        			}
 			        		else{
-		        				printerAddLine("Only Set Event Before Starting a Run");		        			
+		        				if(chronotimer.getPrinterPower() == true){
+		        					printerAddLine("Only Set Event Before Starting a Run");
+		        				}	        			
 			        		}
 		        		}
 		        		else if(selectedEvent == 3){
@@ -1811,7 +1874,9 @@ public class Driver_GUI extends JFrame{
 		        				printerAddLine("Event set to PARGRP");	        			
 		        			}
 			        		else{
-		        				printerAddLine("Only Set Event Before Starting a Run");		        			
+			        			if(chronotimer.getPrinterPower() == true){
+		        					printerAddLine("Only Set Event Before Starting a Run");
+		        				}	        			
 			        		}
 		        		}
 		        		functionIsSelected = false;
