@@ -48,18 +48,25 @@ public class Run {
 		}
 	}
 	
-	public boolean setRacerNum(int bib){
+	/**
+	 * 
+	 * @return 1 if added, 0 if no racer to add to, and -1 if number already exists in the run
+	 */
+	public int setRacerNum(int bib){
 		if(setRacerNum > racerNum){
-			return false;
+			return 0;
 		}
 		Iterator<Racer> it = stats.getRacers().iterator();
 		Racer tmp = null;
 		for(int i = 0; i < setRacerNum; i++){
 			tmp = it.next();
+			if(tmp.getBib() == bib){
+				return -1;
+			}
 		}
 		tmp.setBib(bib);
 		setRacerNum++;
-		return true;
+		return 1;
 	}
 	
 	/**

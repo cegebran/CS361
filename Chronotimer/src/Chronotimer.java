@@ -824,11 +824,13 @@ public class Chronotimer {
 		}
 		else if(!individual){
 			if(currentRun != null){
-				boolean result = currentRun.setRacerNum(Integer.parseInt(number));
-				if(result == true){
-					return 1;
-				}else{
+				int result = currentRun.setRacerNum(Integer.parseInt(number));
+				if(result == 0){
 					return 0;
+				}else if(result == -1){
+					return -3;
+				}else if(result == 1){
+					return 1;
 				}
 			}
 			return -2;

@@ -709,6 +709,72 @@ public class ChronoTester {
 		assertTrue(c0.finish());
 		assertTrue(c0.finish());
 		assertTrue(c0.finish());
+		assertEquals(1, c0.num("111"));
+		assertEquals(1, c0.num("222"));
+		assertEquals(1, c0.num("333"));
+		assertEquals(1, c0.num("444"));
+		assertEquals(1, c0.num("555"));
+		assertEquals(1, c0.num("888"));
+		assertEquals(1, c0.num("122"));
+		assertEquals(0, c0.num("144"));	// no more finished racers to add a bib # to
+		assertTrue(c0.endRun(false));
+		assertFalse(c0.start());
+		assertFalse(c0.finish());
+		assertTrue(c0.setEvent("IND"));
+		assertTrue(c0.setEvent("PARIND"));
+		assertTrue(c0.setEvent("GRP"));
+		c0.power();
+	}
+	
+	@Test
+	public void test_Group3(){
+		Chronotimer c0 = new Chronotimer();
+		c0.power();
+		assertTrue(c0.setEvent("GRP"));
+		c0.toggleChannel("1");
+		c0.toggleChannel("2");
+		assertEquals(3,c0.newRun());
+		assertTrue(c0.start());
+		assertTrue(c0.finish());
+		assertTrue(c0.finish());
+		assertTrue(c0.finish());
+		assertEquals(1, c0.num("111"));
+		assertEquals(1, c0.num("222"));
+		assertEquals(-3, c0.num("111"));	// 111 already a bib number in the run
+		assertEquals(1, c0.num("555"));
+		assertTrue(c0.endRun(false));
+		assertFalse(c0.start());
+		assertFalse(c0.finish());
+		assertTrue(c0.setEvent("IND"));
+		assertTrue(c0.setEvent("PARIND"));
+		assertTrue(c0.setEvent("GRP"));
+		c0.power();
+	}
+	
+	@Test
+	public void test_Group4(){
+		Chronotimer c0 = new Chronotimer();
+		c0.power();
+		assertTrue(c0.setEvent("GRP"));
+		c0.toggleChannel("1");
+		c0.toggleChannel("2");
+		assertEquals(3,c0.newRun());
+		assertTrue(c0.start());
+		assertTrue(c0.finish());
+		assertTrue(c0.finish());
+		assertEquals(1, c0.num("111"));
+		assertEquals(1, c0.num("222"));
+		assertTrue(c0.finish());
+		assertEquals(1, c0.num("333"));
+		assertTrue(c0.finish());
+		assertTrue(c0.finish());
+		assertEquals(1, c0.num("555"));
+		assertTrue(c0.finish());
+		assertEquals(1, c0.num("888"));
+		assertEquals(1, c0.num("122"));
+		assertEquals(0, c0.num("888"));
+		assertTrue(c0.finish());
+		assertEquals(1, c0.num("144"));
 		assertTrue(c0.endRun(false));
 		assertFalse(c0.start());
 		assertFalse(c0.finish());
