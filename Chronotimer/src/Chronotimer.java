@@ -171,6 +171,7 @@ public class Chronotimer {
 			power = true;
 		}
 		else{
+			reset();
 			power = false;
 			printerPower = false;
 		}
