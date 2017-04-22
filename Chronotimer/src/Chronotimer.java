@@ -644,7 +644,6 @@ public class Chronotimer {
 		if(currentRun != null){
 			endRun(false);
 		}
-		printerPower = false;
 		runs = new ArrayList<Run>();
 		this.one = new Channel(true, false);	//set default state of sensors
 		this.two = new Channel(false, false);
