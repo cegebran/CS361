@@ -686,5 +686,16 @@ public class ChronoTester {
 		c0.toggleChannel("1");
 		assertTrue(c0.start());
 	}
-
+	@Test
+	public void test_Reset(){
+		Chronotimer c = new Chronotimer();
+		c.power();
+		assertTrue(c.toggleChannel("1"));
+		assertNull(c.getCurrentRun());
+		c.newRun();
+		assertNotNull(c.getCurrentRun());
+		c.reset();
+		assertFalse(c.getChannelOne().getOn());
+		assertNull(c.getCurrentRun());
+	}
 }

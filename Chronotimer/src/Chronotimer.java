@@ -641,6 +641,11 @@ public class Chronotimer {
 		if(power == false){
 			return;
 		}
+		if(currentRun != null){
+			endRun(false);
+		}
+		printerPower = false;
+		runs = new ArrayList<Run>();
 		this.one = new Channel(true, false);	//set default state of sensors
 		this.two = new Channel(false, false);
 		this.three = new Channel(true, false);	
@@ -649,8 +654,9 @@ public class Chronotimer {
 		this.six = new Channel(false, false);
 		this.seven = new Channel(true, false);	
 		this.eight = new Channel(false, false);
-		runs = new ArrayList<Run>();
 		currentRun = null;
+		timer = new Time();
+		bibNumberString = "";
 		this.individual = true;
 		this.parallel = false;
 	}
