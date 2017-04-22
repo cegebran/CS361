@@ -128,4 +128,16 @@ public class Stats {
 		}
 		return raceTime;
 	}
+	
+	public boolean swapRacers(){
+		Racer first = racers.remove(0);
+		Racer second = racers.remove(0);
+		if(first == null || second == null){
+			return false;
+		}else{
+			racers.add(0, first);
+			racers.add(0, second);
+			return true;
+		}
+	}
 }

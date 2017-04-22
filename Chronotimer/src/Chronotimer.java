@@ -181,7 +181,13 @@ public class Chronotimer {
 			return false;
 		}
 		else{
-			return currentRun.swap();
+			boolean runSwap = currentRun.swap();
+			boolean statSwap = currentRun.getStats().swapRacers();
+			if(runSwap == true && statSwap == true){
+				return true;
+			}else{
+				return false;
+			}
 		}
 	}
 	
