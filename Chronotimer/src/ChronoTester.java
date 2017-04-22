@@ -692,6 +692,33 @@ public class ChronoTester {
 	}
 	
 	@Test
+	public void test_Group2(){
+		Chronotimer c0 = new Chronotimer();
+		c0.power();
+		assertTrue(c0.setEvent("GRP"));
+		c0.toggleChannel("1");
+		c0.toggleChannel("2");
+		assertEquals(3,c0.newRun());
+		assertTrue(c0.start());
+		assertFalse(c0.start());
+		assertTrue(c0.finish());
+		assertTrue(c0.finish());
+		assertTrue(c0.finish());
+		assertFalse(c0.start());
+		assertTrue(c0.finish());
+		assertTrue(c0.finish());
+		assertTrue(c0.finish());
+		assertTrue(c0.finish());
+		assertTrue(c0.endRun(false));
+		assertFalse(c0.start());
+		assertFalse(c0.finish());
+		assertTrue(c0.setEvent("IND"));
+		assertTrue(c0.setEvent("PARIND"));
+		assertTrue(c0.setEvent("GRP"));
+		c0.power();
+	}
+	
+	@Test
 	public void test_Reset(){
 		Chronotimer c = new Chronotimer();
 		c.power();
