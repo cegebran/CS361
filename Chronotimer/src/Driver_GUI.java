@@ -47,6 +47,7 @@ public class Driver_GUI extends JFrame{
 	final JLabel printerLine10Label = new JLabel(" ");
 	
 	public void printerAddLine(String lineToPrint){
+		lineToPrint = lineToPrint.toUpperCase();
 		System.out.println(lineToPrint);
 		String[] lineArray = new String[10];
 		lineArray[0] = printerLine1Label.getText();
@@ -1618,6 +1619,12 @@ public class Driver_GUI extends JFrame{
 		// Action Listeners
 		powerBtn.addActionListener(new ActionListener() {
 	        public void actionPerformed(ActionEvent e){
+	        	if(!chronotimer.getPower()){
+	        		System.out.println("CHRONOTIMER POWERED ON");
+	        	}
+	        	else{
+	        		System.out.println("CHRONOTIMER POWERED OFF");
+	        	}
 	        	chronotimer.power();
 	        	displayFunction = false;
 	        	selectedEvent = 0;
@@ -2256,7 +2263,7 @@ public class Driver_GUI extends JFrame{
 	        				}else if(result == -3){
 	        					printerAddLine("A Racer Already Has BIB #" + currentNumPad);
 	        				}else if(result == -4){
-	        					printerAddLine("No BIB Number Inputted");
+	        					printerAddLine("No BIB Number Entered");
 	        				}
 	        			}
 		        		currentNumPad = "";
@@ -2282,7 +2289,7 @@ public class Driver_GUI extends JFrame{
 		        		}else{
 		        			boolean printerPower = chronotimer.getPrinterPower();
 		        			if(printerPower == true){
-		        				String toPrint = bibNum + " start";
+		        				String toPrint = "BIB# " + bibNum + " start";
 				        		printerAddLine(toPrint);
 		        			}
 		        		}
@@ -2309,7 +2316,7 @@ public class Driver_GUI extends JFrame{
 		        		}else{
 		        			boolean printerPower = chronotimer.getPrinterPower();
 		        			if(printerPower == true){
-		        				String toPrint = bibNum + " start";
+		        				String toPrint = "BIB# " + bibNum + " start";
 				        		printerAddLine(toPrint);
 		        			}
 		        		}
@@ -2336,7 +2343,7 @@ public class Driver_GUI extends JFrame{
 		        		}else{
 		        			boolean printerPower = chronotimer.getPrinterPower();
 		        			if(printerPower == true){
-		        				String toPrint = bibNum + " start";
+		        				String toPrint = "BIB# " + bibNum + " start";
 				        		printerAddLine(toPrint);
 		        			}
 		        		}
@@ -2363,7 +2370,7 @@ public class Driver_GUI extends JFrame{
 		        		}else{
 		        			boolean printerPower = chronotimer.getPrinterPower();
 		        			if(printerPower == true){
-		        				String toPrint = bibNum + " start";
+		        				String toPrint = "BIB# " + bibNum + " start";
 				        		printerAddLine(toPrint);
 		        			}
 		        		}
@@ -2390,7 +2397,7 @@ public class Driver_GUI extends JFrame{
 		        		}else{
 		        			boolean printerPower = chronotimer.getPrinterPower();
 		        			if(printerPower == true){
-		        				String toPrint = bibNum + " finish";
+		        				String toPrint = "BIB# " + bibNum + " finish";
 		        				printerAddLine(toPrint);
 		        			}
 		        		}
@@ -2417,7 +2424,7 @@ public class Driver_GUI extends JFrame{
 		        		}else{
 		        			boolean printerPower = chronotimer.getPrinterPower();
 		        			if(printerPower == true){
-		        				String toPrint = bibNum + " finish";
+		        				String toPrint = "BIB# " + bibNum + " finish";
 		        				printerAddLine(toPrint);
 		        			}
 		        		}
@@ -2444,7 +2451,7 @@ public class Driver_GUI extends JFrame{
 		        		}else{
 		        			boolean printerPower = chronotimer.getPrinterPower();
 		        			if(printerPower == true){
-		        				String toPrint = bibNum + " finish";
+		        				String toPrint = "BIB# " + bibNum + " finish";
 		        				printerAddLine(toPrint);
 		        			}
 		        		}
@@ -2471,7 +2478,7 @@ public class Driver_GUI extends JFrame{
 		        		}else{
 		        			boolean printerPower = chronotimer.getPrinterPower();
 		        			if(printerPower == true){
-		        				String toPrint = bibNum + " finish";
+		        				String toPrint = "BIB# " + bibNum + " finish";
 		        				printerAddLine(toPrint);
 		        			}
 		        		}
