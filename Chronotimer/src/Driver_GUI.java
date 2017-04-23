@@ -1387,6 +1387,10 @@ public class Driver_GUI extends JFrame{
 	    		}
 		    }
 		    
+		    public void parIndFinishPair(){
+		    	
+		    }
+		    
 		    public void updateModel(){
 		    	if(chronotimer.getPower() == false){
 		    		displayCenterPanel.setBackground(Color.DARK_GRAY);
