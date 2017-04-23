@@ -79,6 +79,23 @@ public class Run {
 	
 	/**
 	 * 
+	 * @return the other lane being used if any 0 = 12, 1 = 34, 2 = 56, 3 = 78, -1 = none
+	 */
+	public int getOtherLane(int knownLane){
+		int i = 0;
+		while(i < 4){
+			if(usedLanes[i] == true){
+				if(i != knownLane){
+					return i;
+				}
+			}
+			i++;
+		}
+		return -1;
+	}
+	
+	/**
+	 * 
 	 * @return the start time of the current run, -1 if not started or the time if already started
 	 */
 	public long getGroupStartTime(){
