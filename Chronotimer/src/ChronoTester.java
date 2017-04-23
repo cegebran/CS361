@@ -841,4 +841,34 @@ public class ChronoTester {
 		assertFalse(c0.swap());
 		assertEquals(111, c0.trigger("2"));
 	}
+	
+	@Test
+	public void test_Cancel_GRP(){
+		Chronotimer c1 = new Chronotimer();
+		c1.power();
+		c1.setEvent("GRP");
+		c1.newRun();
+		assertTrue(c1.toggleChannel("1"));
+		assertTrue(c1.toggleChannel("2"));
+		assertEquals(11111, c1.trigger("1"));
+		assertEquals(-3, c1.cancel());
+	}
+	
+	@Test
+	public void test_Cancel_IND(){
+		Chronotimer c2 = new Chronotimer();
+		c2.power();
+		c2.newRun();
+		assertTrue(c2.toggleChannel("1"));
+		assertTrue(c2.toggleChannel("2"));
+		assertEquals(1, c2.num("1"));
+		assertEquals(1, c2.num("2"));
+		assertEquals(-1, c2.cancel());
+		assertEquals(1, c2.trigger("1"));
+		assertEquals(2, c2.trigger("1"));
+		assertEquals(2, c2.cancel());
+		assertEquals(2, c2.trigger("1"));
+		assertEquals(1, c2.trigger("2"));
+		assertEquals(2, c2.trigger("2"));
+	}
 }
