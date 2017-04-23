@@ -1387,6 +1387,7 @@ public class Driver_GUI extends JFrame{
 	    		}
 		    }
 		    
+		    // display last finishing pair on line 8 of PARIND display screen
 		    public void parIndFinishPair(){
 		    	
 		    }
