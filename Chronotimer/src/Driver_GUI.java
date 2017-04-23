@@ -1884,9 +1884,11 @@ public class Driver_GUI extends JFrame{
 			    			if(racerStartQueue.size() == 0){
 					    		displayLine1Label.setText("No Queued Racer  /  No Queued Racer :>");
 					    		
+					    		// Print the current racers to the screen in the correct format
 					    		pairIndCurrentRacer();
 					    		
 					    		// last pair of racers to finish in each lane
+					    		
 			    			}
 			    			//Pair of racers to start and current racer pair
 			    			else{
@@ -1898,9 +1900,11 @@ public class Driver_GUI extends JFrame{
 			    					displayLine1Label.setText(racerStartQueue.get(0).getBib() + "  /  " + racerStartQueue.get(1).getBib() + " :>");
 			    				}
 			    				
+			    				// Print the current racers to the screen in the correct format, lines 2-8
 			    				pairIndCurrentRacer();
 					    		
-					    		// last pair of racers to finish in each lane
+					    		// last pair of racers to finish in each lane, lines 2-8
+			    				
 			    			}
 			    		}
 						else if(selectedEvent == 3){
