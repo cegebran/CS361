@@ -236,19 +236,26 @@ public class Driver {
 					if (chronotimer.getPower() == false) {
 						System.out.println("The Chronotimer is off");
 					} else {
-						int triggered = chronotimer.trigger(userInputParse[2]);
-						if (triggered != 0) {
-							System.out.println("The channel has been triggered");
-						} else {
-							System.out.println("The channel has not been triggered");
+						if(realTime){
+							int triggered = chronotimer.trigger(userInputParse[2]);
+							if (triggered != 0) {
+								System.out.println("The channel has been triggered");
+							} else {
+								System.out.println("The channel has not been triggered");
+							}
+						}/*The following block needs to be here in order for the simulation to work if it's not in
+						real time. If you commend out the else block, it will case incorrect reporting of trigger times
+						when reading from a file.
+						*/
+						else{
+							int test = chronotimer.triggerTime(userInputParse[2], userInputParse[0]);
+							if(test != 0){
+								System.out.println("Channel has been triggered");
+							}
+							else{
+								System.out.println("Channel has not been triggered");
+							}
 						}
-						//int test = chronotimer.triggerTime(userInputParse[2], userInputParse[0]);
-						//if(test != 0){
-						//	System.out.println("Channel has been triggered");
-						//}
-						//else{
-						//	System.out.println("Channel has not been triggered");
-						//}
 					}
 				}
 				
