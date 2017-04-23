@@ -47,6 +47,7 @@ public class Driver_GUI extends JFrame{
 	final JLabel printerLine10Label = new JLabel(" ");
 	
 	public void printerAddLine(String lineToPrint){
+		System.out.println(lineToPrint);
 		String[] lineArray = new String[10];
 		lineArray[0] = printerLine1Label.getText();
 		lineArray[1] = printerLine2Label.getText();
@@ -1618,6 +1619,9 @@ public class Driver_GUI extends JFrame{
 		powerBtn.addActionListener(new ActionListener() {
 	        public void actionPerformed(ActionEvent e){
 	        	chronotimer.power();
+	        	displayFunction = false;
+	        	selectedEvent = 0;
+	        	selectedFunction = 0;
 	        }
 	    });
 		swapBtn.addActionListener(new ActionListener() {
