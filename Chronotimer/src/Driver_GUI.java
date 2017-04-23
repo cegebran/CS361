@@ -1378,6 +1378,7 @@ public class Driver_GUI extends JFrame{
 	    			}else if(valueSplit[0].equals("2") && valueSplit[1].equals("3")){
 	    				displayLine2Label.setText("Lane 5/6                                        Lane 7/8");
 	    			}
+	    			
 	    	    	displayLine3Label.setText("No Current Racer                   No Current Racer :R");
 	    		    displayLine4Label.setText("");
 	    		    displayLine5Label.setText("");
