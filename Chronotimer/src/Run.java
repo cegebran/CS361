@@ -28,6 +28,7 @@ public class Run {
 	private long groupStartTime;
 	private int racerNum;
 	private int setRacerNum;
+	private long lastGroupFinish;
 	
 	public Run(boolean individual, boolean parallel, int runNumInput){
 		beginQueue = new LinkedList<Racer>();
@@ -43,6 +44,7 @@ public class Run {
 		queue34Finish = null;
 		queue56Finish = null;
 		queue78Finish = null;
+		lastGroupFinish = -1;
 		
 		if(parallel == true && individual == true){
 			pendingQueue12 = new LinkedList<Racer>();
@@ -386,7 +388,12 @@ public class Run {
 		stats.setStart(tmp, groupStartTime);
 		racerNum++;
 		stats.setEnd(tmp, endTime);
+		lastGroupFinish = endTime;
 		return true;
+	}
+	
+	public long getLastGroupFinish(){
+		return lastGroupFinish;
 	}
 	
 	/**
