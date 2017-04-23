@@ -444,7 +444,16 @@ public class Driver_GUI extends JFrame{
     			LinkedList<Racer> queue78 = chronotimer.getCurrentRun().getPendingQueue78();
 		    	
 	    		if((queue12.size() > 0) && (queue34.isEmpty() == true) && (queue56.isEmpty() == true) && (queue78.isEmpty() == true)){
-	    			displayLine2Label.setText("Lane 1/2                                        Lane N/A");
+	    			int result = chronotimer.getCurrentRun().getOtherLane(0);
+	    			if(result == -1){
+	    				displayLine2Label.setText("Lane 1/2                                        Lane N/A");
+	    			}else if(result == 1){
+	    				displayLine2Label.setText("Lane 1/2                                        Lane 3/4");
+	    			}else if(result == 2){
+	    				displayLine2Label.setText("Lane 1/2                                        Lane 5/6");
+	    			}else if(result == 3){
+	    				displayLine2Label.setText("Lane 1/2                                        Lane 7/8");
+	    			}
 	    			if(queue12.size() < 6){
 	   					if(queue12.size() == 0){
 	   						displayLine3Label.setText("No Current Racer                   No Current Racer :R");
@@ -1171,7 +1180,31 @@ public class Driver_GUI extends JFrame{
 	    			}
 	    				
 	    		}else if((queue12.isEmpty() == true) && (queue34.isEmpty() == true) && (queue56.isEmpty() == true) && (queue78.isEmpty() == true)){
-	    			displayLine2Label.setText("Lane N/A                                        Lane N/A");
+	    			String value = chronotimer.getCurrentRun().getOtherLaneNoCurrentRacers();
+	    			String[] valueSplit = value.split(":");
+	    			if(valueSplit[0].equals("9")){
+	    				displayLine2Label.setText("Lane N/A                                        Lane N/A");
+	    			}else if(valueSplit[0].equals("0") && valueSplit[1].equals("9")){
+	    				displayLine2Label.setText("Lane 1/2                                        Lane N/A");
+	    			}else if(valueSplit[0].equals("1") && valueSplit[1].equals("9")){
+	    				displayLine2Label.setText("Lane 3/4                                        Lane N/A");
+	    			}else if(valueSplit[0].equals("2") && valueSplit[1].equals("9")){
+	    				displayLine2Label.setText("Lane 5/6                                        Lane N/A");
+	    			}else if(valueSplit[0].equals("3") && valueSplit[1].equals("9")){
+	    				displayLine2Label.setText("Lane 7/8                                        Lane N/A");
+	    			}else if(valueSplit[0].equals("0") && valueSplit[1].equals("1")){
+	    				displayLine2Label.setText("Lane 1/2                                        Lane 3/4");
+	    			}else if(valueSplit[0].equals("0") && valueSplit[1].equals("2")){
+	    				displayLine2Label.setText("Lane 1/2                                        Lane 5/6");
+	    			}else if(valueSplit[0].equals("0") && valueSplit[1].equals("3")){
+	    				displayLine2Label.setText("Lane 1/2                                        Lane 7/8");
+	    			}else if(valueSplit[0].equals("1") && valueSplit[1].equals("2")){
+	    				displayLine2Label.setText("Lane 3/4                                        Lane 5/6");
+	    			}else if(valueSplit[0].equals("1") && valueSplit[1].equals("3")){
+	    				displayLine2Label.setText("Lane 3/4                                        Lane 7/8");
+	    			}else if(valueSplit[0].equals("2") && valueSplit[1].equals("3")){
+	    				displayLine2Label.setText("Lane 5/6                                        Lane 7/8");
+	    			}
 	    	    	displayLine3Label.setText("No Current Racer                   No Current Racer :R");
 	    		    displayLine4Label.setText("");
 	    		    displayLine5Label.setText("");

@@ -96,6 +96,34 @@ public class Run {
 	
 	/**
 	 * 
+	 * @return the the two lanes being used, if any
+	 */
+	public String getOtherLaneNoCurrentRacers(){
+		String lanesReturn = "";
+		int i = 0;
+		int ct = 0;
+		while(i < 4){
+			if(usedLanes[i] == true){
+				lanesReturn += i;
+				if(ct == 0){
+					lanesReturn +=":";
+				}
+				ct++;
+			}
+			i++;
+		}
+		if(ct == 2){
+			return lanesReturn;
+		}else if(ct == 1){
+			lanesReturn += "9";
+			return lanesReturn;
+		}else{
+			return "9:9";
+		}
+	}
+	
+	/**
+	 * 
 	 * @return the start time of the current run, -1 if not started or the time if already started
 	 */
 	public long getGroupStartTime(){
