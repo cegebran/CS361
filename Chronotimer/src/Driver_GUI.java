@@ -1389,7 +1389,149 @@ public class Driver_GUI extends JFrame{
 		    
 		    // display last finishing pair on line 8 of PARIND display screen
 		    public void parIndFinishPair(){
+		    	// Current Racers Running
+		    	Stats currentStats = chronotimer.getCurrentRun().getStats();	
+    			LinkedList<Racer> racerStartQueue = chronotimer.getCurrentRun().getBeginQueue();
+    			LinkedList<Racer> racerEndQueue = chronotimer.getCurrentRun().getEndQueue();
 		    	
+    			LinkedList<Racer> queue12 = chronotimer.getCurrentRun().getPendingQueue12();
+    			LinkedList<Racer> queue34 = chronotimer.getCurrentRun().getPendingQueue34();
+    			LinkedList<Racer> queue56 = chronotimer.getCurrentRun().getPendingQueue56();
+    			LinkedList<Racer> queue78 = chronotimer.getCurrentRun().getPendingQueue78();
+		    	
+    			String result = chronotimer.getCurrentRun().getOtherLaneNoCurrentRacers();
+    			String[] resultSplit = result.split(":");
+    			if(resultSplit[0].equals("9") && resultSplit[1].equals("9")){
+    				displayLine8Label.setText("No Finished Racer                      No Finished Racer :F");
+    			}else if(resultSplit[0].equals("0") && resultSplit[1].equals("9")){
+    				Racer firstLaneRacer = chronotimer.getCurrentRun().getQueue12Finish();
+    				if(firstLaneRacer != null){
+    					int firstBib = firstLaneRacer.getBib();
+    					displayLine8Label.setText(firstBib + " " + chronotimer.getTimer().convertTime(currentStats.getRaceTime(firstLaneRacer)) + "                          No Finished Racer :F");
+    				}else{
+    					displayLine8Label.setText("No Finished Racer                      No Finished Racer :F");
+    				}
+    			}else if(resultSplit[0].equals("1") && resultSplit[1].equals("9")){
+    				Racer firstLaneRacer = chronotimer.getCurrentRun().getQueue34Finish();
+    				if(firstLaneRacer != null){
+    					int firstBib = firstLaneRacer.getBib();
+    					displayLine8Label.setText(firstBib + " " + chronotimer.getTimer().convertTime(currentStats.getRaceTime(firstLaneRacer)) + "                          No Finished Racer :F");
+    				}else{
+    					displayLine8Label.setText("No Finished Racer                      No Finished Racer :F");
+    				}
+    			}else if(resultSplit[0].equals("2") && resultSplit[1].equals("9")){
+    				Racer firstLaneRacer = chronotimer.getCurrentRun().getQueue56Finish();
+    				if(firstLaneRacer != null){
+    					int firstBib = firstLaneRacer.getBib();
+    					displayLine8Label.setText(firstBib + " " + chronotimer.getTimer().convertTime(currentStats.getRaceTime(firstLaneRacer)) + "                          No Finished Racer :F");
+    				}else{
+    					displayLine8Label.setText("No Finished Racer                      No Finished Racer :F");
+    				}
+    			}else if(resultSplit[0].equals("3") && resultSplit[1].equals("9")){
+    				Racer firstLaneRacer = chronotimer.getCurrentRun().getQueue78Finish();
+    				if(firstLaneRacer != null){
+    					int firstBib = firstLaneRacer.getBib();
+    					displayLine8Label.setText(firstBib + " " + chronotimer.getTimer().convertTime(currentStats.getRaceTime(firstLaneRacer)) + "                          No Finished Racer :F");
+    				}else{
+    					displayLine8Label.setText("No Finished Racer                      No Finished Racer :F");
+    				}
+    			}else if(resultSplit[0].equals("0") && resultSplit[1].equals("1")){
+    				Racer firstLaneRacer = chronotimer.getCurrentRun().getQueue12Finish();
+    				Racer secondLaneRacer = chronotimer.getCurrentRun().getQueue34Finish();
+    				if(firstLaneRacer == null && secondLaneRacer == null){
+    					displayLine8Label.setText("No Finished Racer                      No Finished Racer :F");
+    				}else if(firstLaneRacer != null && secondLaneRacer == null){
+    					int firstBib = firstLaneRacer.getBib();
+    					displayLine8Label.setText(firstBib + " " + chronotimer.getTimer().convertTime(currentStats.getRaceTime(firstLaneRacer)) + "                          No Finished Racer :F");
+    				}else if(firstLaneRacer == null && secondLaneRacer != null){
+    					int secondBib = secondLaneRacer.getBib();
+    					displayLine8Label.setText("No Finished Racer                          " + secondBib + " " + chronotimer.getTimer().convertTime(currentStats.getRaceTime(secondLaneRacer)) + " :F");
+    				}else{	// both non-null
+    					int firstBib = firstLaneRacer.getBib();
+    					int secondBib = secondLaneRacer.getBib();
+    					displayLine8Label.setText(firstBib + "  " + chronotimer.getTimer().convertTime(currentStats.getRaceTime(firstLaneRacer)) + "                          " + secondBib + "  " + chronotimer.getTimer().convertTime(currentStats.getRaceTime(secondLaneRacer)) + " :F");
+    				}
+    			}else if(resultSplit[0].equals("0") && resultSplit[1].equals("2")){
+    				Racer firstLaneRacer = chronotimer.getCurrentRun().getQueue12Finish();
+    				Racer secondLaneRacer = chronotimer.getCurrentRun().getQueue56Finish();
+    				if(firstLaneRacer == null && secondLaneRacer == null){
+    					displayLine8Label.setText("No Finished Racer                      No Finished Racer :F");
+    				}else if(firstLaneRacer != null && secondLaneRacer == null){
+    					int firstBib = firstLaneRacer.getBib();
+    					displayLine8Label.setText(firstBib + " " + chronotimer.getTimer().convertTime(currentStats.getRaceTime(firstLaneRacer)) + "                          No Finished Racer :F");
+    				}else if(firstLaneRacer == null && secondLaneRacer != null){
+    					int secondBib = secondLaneRacer.getBib();
+    					displayLine8Label.setText("No Finished Racer                          " + secondBib + " " + chronotimer.getTimer().convertTime(currentStats.getRaceTime(secondLaneRacer)) + " :F");
+    				}else{	// both non-null
+    					int firstBib = firstLaneRacer.getBib();
+    					int secondBib = secondLaneRacer.getBib();
+    					displayLine8Label.setText(firstBib + "  " + chronotimer.getTimer().convertTime(currentStats.getRaceTime(firstLaneRacer)) + "                          " + secondBib + "  " + chronotimer.getTimer().convertTime(currentStats.getRaceTime(secondLaneRacer)) + " :F");
+    				}
+    			}else if(resultSplit[0].equals("0") && resultSplit[1].equals("3")){
+    				Racer firstLaneRacer = chronotimer.getCurrentRun().getQueue12Finish();
+    				Racer secondLaneRacer = chronotimer.getCurrentRun().getQueue78Finish();
+    				if(firstLaneRacer == null && secondLaneRacer == null){
+    					displayLine8Label.setText("No Finished Racer                      No Finished Racer :F");
+    				}else if(firstLaneRacer != null && secondLaneRacer == null){
+    					int firstBib = firstLaneRacer.getBib();
+    					displayLine8Label.setText(firstBib + " " + chronotimer.getTimer().convertTime(currentStats.getRaceTime(firstLaneRacer)) + "                          No Finished Racer :F");
+    				}else if(firstLaneRacer == null && secondLaneRacer != null){
+    					int secondBib = secondLaneRacer.getBib();
+    					displayLine8Label.setText("No Finished Racer                          " + secondBib + " " + chronotimer.getTimer().convertTime(currentStats.getRaceTime(secondLaneRacer)) + " :F");
+    				}else{	// both non-null
+    					int firstBib = firstLaneRacer.getBib();
+    					int secondBib = secondLaneRacer.getBib();
+    					displayLine8Label.setText(firstBib + "  " + chronotimer.getTimer().convertTime(currentStats.getRaceTime(firstLaneRacer)) + "                          " + secondBib + "  " + chronotimer.getTimer().convertTime(currentStats.getRaceTime(secondLaneRacer)) + " :F");
+    				}
+    			}else if(resultSplit[0].equals("1") && resultSplit[1].equals("2")){
+    				Racer firstLaneRacer = chronotimer.getCurrentRun().getQueue34Finish();
+    				Racer secondLaneRacer = chronotimer.getCurrentRun().getQueue56Finish();
+    				if(firstLaneRacer == null && secondLaneRacer == null){
+    					displayLine8Label.setText("No Finished Racer                      No Finished Racer :F");
+    				}else if(firstLaneRacer != null && secondLaneRacer == null){
+    					int firstBib = firstLaneRacer.getBib();
+    					displayLine8Label.setText(firstBib + " " + chronotimer.getTimer().convertTime(currentStats.getRaceTime(firstLaneRacer)) + "                          No Finished Racer :F");
+    				}else if(firstLaneRacer == null && secondLaneRacer != null){
+    					int secondBib = secondLaneRacer.getBib();
+    					displayLine8Label.setText("No Finished Racer                          " + secondBib + " " + chronotimer.getTimer().convertTime(currentStats.getRaceTime(secondLaneRacer)) + " :F");
+    				}else{	// both non-null
+    					int firstBib = firstLaneRacer.getBib();
+    					int secondBib = secondLaneRacer.getBib();
+    					displayLine8Label.setText(firstBib + "  " + chronotimer.getTimer().convertTime(currentStats.getRaceTime(firstLaneRacer)) + "                          " + secondBib + "  " + chronotimer.getTimer().convertTime(currentStats.getRaceTime(secondLaneRacer)) + " :F");
+    				}
+    			}else if(resultSplit[0].equals("1") && resultSplit[1].equals("3")){
+    				Racer firstLaneRacer = chronotimer.getCurrentRun().getQueue34Finish();
+    				Racer secondLaneRacer = chronotimer.getCurrentRun().getQueue78Finish();
+    				if(firstLaneRacer == null && secondLaneRacer == null){
+    					displayLine8Label.setText("No Finished Racer                      No Finished Racer :F");
+    				}else if(firstLaneRacer != null && secondLaneRacer == null){
+    					int firstBib = firstLaneRacer.getBib();
+    					displayLine8Label.setText(firstBib + " " + chronotimer.getTimer().convertTime(currentStats.getRaceTime(firstLaneRacer)) + "                          No Finished Racer :F");
+    				}else if(firstLaneRacer == null && secondLaneRacer != null){
+    					int secondBib = secondLaneRacer.getBib();
+    					displayLine8Label.setText("No Finished Racer                          " + secondBib + " " + chronotimer.getTimer().convertTime(currentStats.getRaceTime(secondLaneRacer)) + " :F");
+    				}else{	// both non-null
+    					int firstBib = firstLaneRacer.getBib();
+    					int secondBib = secondLaneRacer.getBib();
+    					displayLine8Label.setText(firstBib + "  " +chronotimer.getTimer().convertTime(currentStats.getRaceTime(firstLaneRacer)) + "                          " + secondBib + "  " + chronotimer.getTimer().convertTime(currentStats.getRaceTime(secondLaneRacer)) + " :F");
+    				}
+    			}else{
+    				Racer firstLaneRacer = chronotimer.getCurrentRun().getQueue56Finish();
+    				Racer secondLaneRacer = chronotimer.getCurrentRun().getQueue78Finish();
+    				if(firstLaneRacer == null && secondLaneRacer == null){
+    					displayLine8Label.setText("No Finished Racer                      No Finished Racer :F");
+    				}else if(firstLaneRacer != null && secondLaneRacer == null){
+    					int firstBib = firstLaneRacer.getBib();
+    					displayLine8Label.setText(firstBib + " " + chronotimer.getTimer().convertTime(currentStats.getRaceTime(firstLaneRacer)) + "                          No Finished Racer :F");
+    				}else if(firstLaneRacer == null && secondLaneRacer != null){
+    					int secondBib = secondLaneRacer.getBib();
+    					displayLine8Label.setText("No Finished Racer                          " + secondBib + " " + chronotimer.getTimer().convertTime(currentStats.getRaceTime(secondLaneRacer)) + " :F");
+    				}else{	// both non-null
+    					int firstBib = firstLaneRacer.getBib();
+    					int secondBib = secondLaneRacer.getBib();
+    					displayLine8Label.setText(firstBib + "  " + chronotimer.getTimer().convertTime(currentStats.getRaceTime(firstLaneRacer)) + "                          " + secondBib + "  " + chronotimer.getTimer().convertTime(currentStats.getRaceTime(secondLaneRacer)) + " :F");
+    				}
+    			}
 		    }
 		    
 		    public void updateModel(){
@@ -2100,7 +2242,7 @@ public class Driver_GUI extends JFrame{
 					    		pairIndCurrentRacer();
 					    		
 					    		// last pair of racers to finish in each lane
-					    		
+					    		parIndFinishPair();
 			    			}
 			    			//Pair of racers to start and current racer pair
 			    			else{
@@ -2116,7 +2258,7 @@ public class Driver_GUI extends JFrame{
 			    				pairIndCurrentRacer();
 					    		
 					    		// last pair of racers to finish in each lane, lines 2-8
-			    				
+			    				parIndFinishPair();
 			    			}
 			    		}
 						else if(selectedEvent == 3){

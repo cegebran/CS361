@@ -16,6 +16,10 @@ public class Run {
 	private LinkedList<Racer> pendingQueue56;
 	private LinkedList<Racer> pendingQueue78;
 	private boolean[] usedLanes;
+	private Racer queue12Finish;
+	private Racer queue34Finish;
+	private Racer queue56Finish;
+	private Racer queue78Finish;
 	
 	// added for export functionality
 	private int runNumber;
@@ -35,6 +39,10 @@ public class Run {
 		setRacerNum = 1;
 		runNumber = runNumInput;
 		groupStartTime = -1;
+		queue12Finish = null;
+		queue34Finish = null;
+		queue56Finish = null;
+		queue78Finish = null;
 		
 		if(parallel == true && individual == true){
 			pendingQueue12 = new LinkedList<Racer>();
@@ -75,6 +83,38 @@ public class Run {
 	 */
 	public int getRunNumber(){
 		return runNumber;
+	}
+	
+	/**
+	 * 
+	 * @return the run Number associated with the run
+	 */
+	public Racer getQueue12Finish(){
+		return queue12Finish;
+	}
+	
+	/**
+	 * 
+	 * @return the run Number associated with the run
+	 */
+	public Racer getQueue34Finish(){
+		return queue34Finish;
+	}
+	
+	/**
+	 * 
+	 * @return the run Number associated with the run
+	 */
+	public Racer getQueue56Finish(){
+		return queue56Finish;
+	}
+	
+	/**
+	 * 
+	 * @return the run Number associated with the run
+	 */
+	public Racer getQueue78Finish(){
+		return queue78Finish;
 	}
 	
 	/**
@@ -371,6 +411,7 @@ public class Run {
 					if(pendingQueue12.isEmpty() != true){
 						Racer racer = pendingQueue12.removeFirst();
 						stats.setEnd(racer, time);
+						queue12Finish = racer;
 						return racer;
 					}else{
 						return null;
@@ -383,6 +424,7 @@ public class Run {
 					if(pendingQueue34.isEmpty() != true){
 						Racer racer = pendingQueue34.removeFirst();
 						stats.setEnd(racer, time);
+						queue34Finish = racer;
 						return racer;
 					}else{
 						return null;
@@ -395,6 +437,7 @@ public class Run {
 					if(pendingQueue56.isEmpty() != true){
 						Racer racer = pendingQueue56.removeFirst();
 						stats.setEnd(racer, time);
+						queue56Finish = racer;
 						return racer;
 					}else{
 						return null;
@@ -407,6 +450,7 @@ public class Run {
 					if(pendingQueue78.isEmpty() != true){
 						Racer racer = pendingQueue78.removeFirst();
 						stats.setEnd(racer, time);
+						queue78Finish = racer;
 						return racer;
 					}else{
 						return null;
