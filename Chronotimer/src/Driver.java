@@ -244,7 +244,7 @@ public class Driver {
 								System.out.println("The channel has not been triggered");
 							}
 						}/*The following block needs to be here in order for the simulation to work if it's not in
-						real time. If you commend out the else block, it will case incorrect reporting of trigger times
+						real time. If you commend out the else block, it will cause incorrect reporting of trigger times
 						when reading from a file.
 						*/
 						else{
