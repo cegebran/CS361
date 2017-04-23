@@ -432,6 +432,1518 @@ public class Driver_GUI extends JFrame{
 		      updateModel();
 		    }
 		    
+		    public void pairIndDisplay(){
+		    	//PARIND //TODO Finish PARIND
+    			//Show the next pair to run, running time of the racers, and finish times of the last pair to finish
+    			//No racer pair to start and no current racer pair
+		    	
+		    	Stats currentStats = chronotimer.getCurrentRun().getStats();	
+    			LinkedList<Racer> racerStartQueue = chronotimer.getCurrentRun().getBeginQueue();
+    			LinkedList<Racer> racerEndQueue = chronotimer.getCurrentRun().getEndQueue();
+		    	
+    			LinkedList<Racer> queue12 = chronotimer.getCurrentRun().getPendingQueue12();
+    			LinkedList<Racer> queue34 = chronotimer.getCurrentRun().getPendingQueue34();
+    			LinkedList<Racer> queue56 = chronotimer.getCurrentRun().getPendingQueue56();
+    			LinkedList<Racer> queue78 = chronotimer.getCurrentRun().getPendingQueue78();
+		    	
+    			if(racerStartQueue.size() == 0){
+		    		displayLine1Label.setText("No Queued Racer  /  No Queued Racer :>");
+		    		
+		    		// Current Racers Running
+		    		if(racerEndQueue.isEmpty() == false){	// if not empty will have racer in progress
+		    			if((queue12.size() > 0) && (queue34.isEmpty() == true) && (queue56.isEmpty() == true) && (queue78.isEmpty() == true)){
+		    				displayLine2Label.setText("Lane 1/2                                        Lane N/A");
+		    				if(queue12.size() < 6){
+		    					if(queue12.size() == 0){
+		    						displayLine3Label.setText("No Current Racer                   No Current Racer :R");
+			    					displayLine4Label.setText("");
+			    					displayLine5Label.setText("");
+			    					displayLine6Label.setText("");
+			    					displayLine7Label.setText("");
+		    					}else if(queue12.size() == 1){
+		    						displayLine3Label.setText(queue12.get(0).getBib() + " " + chronotimer.getTimer().convertTime(chronotimer.getTimer().getCurrentTime() - currentStats.getStart(queue12.get(0))) + "            :R");
+			    					displayLine4Label.setText("");
+			    					displayLine5Label.setText("");
+			    					displayLine6Label.setText("");
+			    					displayLine7Label.setText("");
+		    					}else if(queue12.size() == 2){
+		    						displayLine3Label.setText(queue12.get(0).getBib() + " " + chronotimer.getTimer().convertTime(chronotimer.getTimer().getCurrentTime() - currentStats.getStart(queue12.get(0))) + "            :R");
+			    					displayLine4Label.setText(queue12.get(1).getBib() + " " + chronotimer.getTimer().convertTime(chronotimer.getTimer().getCurrentTime() - currentStats.getStart(queue12.get(1))) + "            :R");
+			    					displayLine5Label.setText("");
+			    					displayLine6Label.setText("");
+			    					displayLine7Label.setText("");
+		    					}else if(queue12.size() == 3){
+		    						displayLine3Label.setText(queue12.get(0).getBib() + " " + chronotimer.getTimer().convertTime(chronotimer.getTimer().getCurrentTime() - currentStats.getStart(queue12.get(0))) + "            :R");
+			    					displayLine4Label.setText(queue12.get(1).getBib() + " " + chronotimer.getTimer().convertTime(chronotimer.getTimer().getCurrentTime() - currentStats.getStart(queue12.get(1))) + "            :R");
+			    					displayLine5Label.setText(queue12.get(2).getBib() + " " + chronotimer.getTimer().convertTime(chronotimer.getTimer().getCurrentTime() - currentStats.getStart(queue12.get(2))) + "            :R");
+			    					displayLine6Label.setText("");
+			    					displayLine7Label.setText("");
+		    					}else if(queue12.size() == 4){
+		    						displayLine3Label.setText(queue12.get(0).getBib() + " " + chronotimer.getTimer().convertTime(chronotimer.getTimer().getCurrentTime() - currentStats.getStart(queue12.get(0))) + "            :R");
+			    					displayLine4Label.setText(queue12.get(1).getBib() + " " + chronotimer.getTimer().convertTime(chronotimer.getTimer().getCurrentTime() - currentStats.getStart(queue12.get(1))) + "            :R");
+			    					displayLine5Label.setText(queue12.get(2).getBib() + " " + chronotimer.getTimer().convertTime(chronotimer.getTimer().getCurrentTime() - currentStats.getStart(queue12.get(2))) + "            :R");
+			    					displayLine6Label.setText(queue12.get(3).getBib() + " " + chronotimer.getTimer().convertTime(chronotimer.getTimer().getCurrentTime() - currentStats.getStart(queue12.get(3))) + "            :R");
+			    					displayLine7Label.setText("");
+		    					}else if(queue12.size() == 5){
+		    						displayLine3Label.setText(queue12.get(0).getBib() + " " + chronotimer.getTimer().convertTime(chronotimer.getTimer().getCurrentTime() - currentStats.getStart(queue12.get(0))) + "            :R");
+			    					displayLine4Label.setText(queue12.get(1).getBib() + " " + chronotimer.getTimer().convertTime(chronotimer.getTimer().getCurrentTime() - currentStats.getStart(queue12.get(1))) + "            :R");
+			    					displayLine5Label.setText(queue12.get(2).getBib() + " " + chronotimer.getTimer().convertTime(chronotimer.getTimer().getCurrentTime() - currentStats.getStart(queue12.get(2))) + "            :R");
+			    					displayLine6Label.setText(queue12.get(3).getBib() + " " + chronotimer.getTimer().convertTime(chronotimer.getTimer().getCurrentTime() - currentStats.getStart(queue12.get(3))) + "            :R");
+			    					displayLine7Label.setText(queue12.get(4).getBib() + " " + chronotimer.getTimer().convertTime(chronotimer.getTimer().getCurrentTime() - currentStats.getStart(queue12.get(4))) + "            :R");
+		    					}
+		    				}else{
+		    					int sizeTot = queue12.size();
+		    					displayLine3Label.setText(queue12.get(sizeTot-1).getBib() + " " + chronotimer.getTimer().convertTime(chronotimer.getTimer().getCurrentTime() - currentStats.getStart(queue12.get(sizeTot-1))) + "            :R");
+		    					displayLine4Label.setText(queue12.get(sizeTot-2).getBib() + " " + chronotimer.getTimer().convertTime(chronotimer.getTimer().getCurrentTime() - currentStats.getStart(queue12.get(sizeTot-2))) + "            :R");
+		    					displayLine5Label.setText(queue12.get(sizeTot-3).getBib() + " " + chronotimer.getTimer().convertTime(chronotimer.getTimer().getCurrentTime() - currentStats.getStart(queue12.get(sizeTot-3))) + "            :R");
+		    					displayLine6Label.setText(queue12.get(sizeTot-4).getBib() + " " + chronotimer.getTimer().convertTime(chronotimer.getTimer().getCurrentTime() - currentStats.getStart(queue12.get(sizeTot-4))) + "            :R");
+		    					displayLine7Label.setText(queue12.get(sizeTot-5).getBib() + " " + chronotimer.getTimer().convertTime(chronotimer.getTimer().getCurrentTime() - currentStats.getStart(queue12.get(sizeTot-5))) + "            :R");
+		    				}
+		    			}else if((queue12.size() > 0) && (queue34.size() > 0) && (queue56.isEmpty() == true) && (queue78.isEmpty() == true)){
+		    				displayLine2Label.setText("Lane 1/2                                        Lane 3/4");
+		    				String line3 = "";
+		    				String line4 = "";
+		    				String line5 = "";
+		    				String line6 = "";
+		    				String line7 = "";
+		    				if(queue12.size() < 6){
+		    					if(queue12.size() == 0){
+		    						line3 += "No Current Racer     ";
+		    					}else if(queue12.size() == 1){
+		    						line3 += (queue12.get(0).getBib() + " " + chronotimer.getTimer().convertTime(chronotimer.getTimer().getCurrentTime() - currentStats.getStart(queue12.get(0)))+ "    ");
+		    						line4 += "                                  ";
+		    						line5 += "                                  ";
+		    						line6 += "                                  ";
+		    						line7 += "                                  ";
+		    					}else if(queue12.size() == 2){
+		    						line3 += (queue12.get(0).getBib() + " " + chronotimer.getTimer().convertTime(chronotimer.getTimer().getCurrentTime() - currentStats.getStart(queue12.get(0)))+ "    ");
+			    					line4 += (queue12.get(1).getBib() + " " + chronotimer.getTimer().convertTime(chronotimer.getTimer().getCurrentTime() - currentStats.getStart(queue12.get(1)))+ "    ");
+			    					line5 += "                                  ";
+		    						line6 += "                                  ";
+		    						line7 += "                                  ";
+		    					}else if(queue12.size() == 3){
+		    						line3 += (queue12.get(0).getBib() + " " + chronotimer.getTimer().convertTime(chronotimer.getTimer().getCurrentTime() - currentStats.getStart(queue12.get(0)))+ "    ");
+		    						line4 += (queue12.get(1).getBib() + " " + chronotimer.getTimer().convertTime(chronotimer.getTimer().getCurrentTime() - currentStats.getStart(queue12.get(1)))+ "    ");
+		    						line5 += (queue12.get(2).getBib() + " " + chronotimer.getTimer().convertTime(chronotimer.getTimer().getCurrentTime() - currentStats.getStart(queue12.get(2)))+ "    ");
+		    						line6 += "                                  ";
+		    						line7 += "                                  ";
+		    					}else if(queue12.size() == 4){
+		    						line3 += (queue12.get(0).getBib() + " " + chronotimer.getTimer().convertTime(chronotimer.getTimer().getCurrentTime() - currentStats.getStart(queue12.get(0)))+ "    ");
+		    						line4 += (queue12.get(1).getBib() + " " + chronotimer.getTimer().convertTime(chronotimer.getTimer().getCurrentTime() - currentStats.getStart(queue12.get(1)))+ "    ");
+		    						line5 += (queue12.get(2).getBib() + " " + chronotimer.getTimer().convertTime(chronotimer.getTimer().getCurrentTime() - currentStats.getStart(queue12.get(2)))+ "    ");
+		    						line6 += (queue12.get(3).getBib() + " " + chronotimer.getTimer().convertTime(chronotimer.getTimer().getCurrentTime() - currentStats.getStart(queue12.get(3)))+ "    ");
+		    						line7 += "                                  ";
+		    					}else if(queue12.size() == 5){
+		    						line3 += (queue12.get(0).getBib() + " " + chronotimer.getTimer().convertTime(chronotimer.getTimer().getCurrentTime() - currentStats.getStart(queue12.get(0)))+ "    ");
+		    						line4 += (queue12.get(1).getBib() + " " + chronotimer.getTimer().convertTime(chronotimer.getTimer().getCurrentTime() - currentStats.getStart(queue12.get(1)))+ "    ");
+		    						line5 += (queue12.get(2).getBib() + " " + chronotimer.getTimer().convertTime(chronotimer.getTimer().getCurrentTime() - currentStats.getStart(queue12.get(2)))+ "    ");
+		    						line6 += (queue12.get(3).getBib() + " " + chronotimer.getTimer().convertTime(chronotimer.getTimer().getCurrentTime() - currentStats.getStart(queue12.get(3)))+ "    ");
+		    						line7 += (queue12.get(4).getBib() + " " + chronotimer.getTimer().convertTime(chronotimer.getTimer().getCurrentTime() - currentStats.getStart(queue12.get(4)))+ "    ");
+		    					}
+		    				}else{
+		    					int sizeTot = queue12.size();
+		    					line3 += (queue12.get(sizeTot-1).getBib() + " " + chronotimer.getTimer().convertTime(chronotimer.getTimer().getCurrentTime() - currentStats.getStart(queue12.get(sizeTot-1)))+ "    ");
+		    					line4 += (queue12.get(sizeTot-2).getBib() + " " + chronotimer.getTimer().convertTime(chronotimer.getTimer().getCurrentTime() - currentStats.getStart(queue12.get(sizeTot-2)))+ "    ");
+		    					line5 += (queue12.get(sizeTot-3).getBib() + " " + chronotimer.getTimer().convertTime(chronotimer.getTimer().getCurrentTime() - currentStats.getStart(queue12.get(sizeTot-3)))+ "    ");
+		    					line6 += (queue12.get(sizeTot-4).getBib() + " " + chronotimer.getTimer().convertTime(chronotimer.getTimer().getCurrentTime() - currentStats.getStart(queue12.get(sizeTot-4)))+ "    ");
+		    					line7 += (queue12.get(sizeTot-5).getBib() + " " + chronotimer.getTimer().convertTime(chronotimer.getTimer().getCurrentTime() - currentStats.getStart(queue12.get(sizeTot-5)))+ "    ");
+		    				}
+		    				
+		    				if(queue34.size() < 6){
+		    					if(queue34.size() == 0){
+		    						line3 += "No Current Racer :R";
+		    					}else if(queue34.size() == 1){
+		    						line3 += (queue34.get(0).getBib() + " " + chronotimer.getTimer().convertTime(chronotimer.getTimer().getCurrentTime() - currentStats.getStart(queue34.get(0))) + " :R");
+		    					}else if(queue34.size() == 2){
+		    						line3 += (queue34.get(0).getBib() + " " + chronotimer.getTimer().convertTime(chronotimer.getTimer().getCurrentTime() - currentStats.getStart(queue34.get(0))) + " :R");
+		    						line4 += (queue34.get(1).getBib() + " " + chronotimer.getTimer().convertTime(chronotimer.getTimer().getCurrentTime() - currentStats.getStart(queue34.get(1))) + " :R");
+		    					}else if(queue34.size() == 3){
+		    						line3 += (queue34.get(0).getBib() + " " + chronotimer.getTimer().convertTime(chronotimer.getTimer().getCurrentTime() - currentStats.getStart(queue34.get(0))) + " :R");
+		    						line4 += (queue34.get(1).getBib() + " " + chronotimer.getTimer().convertTime(chronotimer.getTimer().getCurrentTime() - currentStats.getStart(queue34.get(1))) + " :R");
+		    						line5 += (queue34.get(2).getBib() + " " + chronotimer.getTimer().convertTime(chronotimer.getTimer().getCurrentTime() - currentStats.getStart(queue34.get(2))) + " :R");
+		    					}else if(queue34.size() == 4){
+		    						line3 += (queue34.get(0).getBib() + " " + chronotimer.getTimer().convertTime(chronotimer.getTimer().getCurrentTime() - currentStats.getStart(queue34.get(0))) + " :R");
+		    						line4 += (queue34.get(1).getBib() + " " + chronotimer.getTimer().convertTime(chronotimer.getTimer().getCurrentTime() - currentStats.getStart(queue34.get(1))) + " :R");
+		    						line5 += (queue34.get(2).getBib() + " " + chronotimer.getTimer().convertTime(chronotimer.getTimer().getCurrentTime() - currentStats.getStart(queue34.get(2))) + " :R");
+		    						line6 += (queue34.get(3).getBib() + " " + chronotimer.getTimer().convertTime(chronotimer.getTimer().getCurrentTime() - currentStats.getStart(queue34.get(3))) + " :R");
+		    					}else if(queue34.size() == 5){
+		    						line3 += (queue34.get(0).getBib() + " " + chronotimer.getTimer().convertTime(chronotimer.getTimer().getCurrentTime() - currentStats.getStart(queue34.get(0))) + " :R");
+		    						line4 += (queue34.get(1).getBib() + " " + chronotimer.getTimer().convertTime(chronotimer.getTimer().getCurrentTime() - currentStats.getStart(queue34.get(1))) + " :R");
+		    						line5 += (queue34.get(2).getBib() + " " + chronotimer.getTimer().convertTime(chronotimer.getTimer().getCurrentTime() - currentStats.getStart(queue34.get(2))) + " :R");
+		    						line6 += (queue34.get(3).getBib() + " " + chronotimer.getTimer().convertTime(chronotimer.getTimer().getCurrentTime() - currentStats.getStart(queue34.get(3))) + " :R");
+		    						line7 += (queue34.get(4).getBib() + " " + chronotimer.getTimer().convertTime(chronotimer.getTimer().getCurrentTime() - currentStats.getStart(queue34.get(4))) + " :R");
+		    					}
+		    				}else{
+		    					int sizeTot = queue34.size();
+		    					line3 += (queue34.get(sizeTot-1).getBib() + " " + chronotimer.getTimer().convertTime(chronotimer.getTimer().getCurrentTime() - currentStats.getStart(queue34.get(sizeTot-1))) + " :R");
+		    					line4 += (queue34.get(sizeTot-2).getBib() + " " + chronotimer.getTimer().convertTime(chronotimer.getTimer().getCurrentTime() - currentStats.getStart(queue34.get(sizeTot-2))) + " :R");
+		    					line5 += (queue34.get(sizeTot-3).getBib() + " " + chronotimer.getTimer().convertTime(chronotimer.getTimer().getCurrentTime() - currentStats.getStart(queue34.get(sizeTot-3))) + " :R");
+		    					line6 += (queue34.get(sizeTot-4).getBib() + " " + chronotimer.getTimer().convertTime(chronotimer.getTimer().getCurrentTime() - currentStats.getStart(queue34.get(sizeTot-4))) + " :R");
+		    					line7 += (queue34.get(sizeTot-5).getBib() + " " + chronotimer.getTimer().convertTime(chronotimer.getTimer().getCurrentTime() - currentStats.getStart(queue34.get(sizeTot-5))) + " :R");
+		    				}
+		    				
+		    				displayLine2Label.setText("Lane 1/2                                        Lane 3/4");
+			    			displayLine3Label.setText(line3);
+				    		displayLine4Label.setText(line4);
+				    		displayLine5Label.setText(line5);
+				    		displayLine6Label.setText(line6);
+				    		displayLine7Label.setText(line7);
+		    			}else if((queue12.size() > 0) && (queue34.isEmpty() == true) && (queue56.size() > 0) && (queue78.isEmpty() == true)){
+		    				displayLine2Label.setText("Lane 1/2                                        Lane 5/6");
+		    				String line3 = "";
+		    				String line4 = "";
+		    				String line5 = "";
+		    				String line6 = "";
+		    				String line7 = "";
+		    				if(queue12.size() < 6){
+		    					if(queue12.size() == 0){
+		    						line3 += "No Current Racer     ";
+		    					}else if(queue12.size() == 1){
+		    						line3 += (queue12.get(0).getBib() + " " + chronotimer.getTimer().convertTime(chronotimer.getTimer().getCurrentTime() - currentStats.getStart(queue12.get(0)))+ "    ");
+		    						line4 += "                                  ";
+		    						line5 += "                                  ";
+		    						line6 += "                                  ";
+		    						line7 += "                                  ";
+		    					}else if(queue12.size() == 2){
+		    						line3 += (queue12.get(0).getBib() + " " + chronotimer.getTimer().convertTime(chronotimer.getTimer().getCurrentTime() - currentStats.getStart(queue12.get(0)))+ "    ");
+			    					line4 += (queue12.get(1).getBib() + " " + chronotimer.getTimer().convertTime(chronotimer.getTimer().getCurrentTime() - currentStats.getStart(queue12.get(1)))+ "    ");
+			    					line5 += "                                  ";
+		    						line6 += "                                  ";
+		    						line7 += "                                  ";
+		    					}else if(queue12.size() == 3){
+		    						line3 += (queue12.get(0).getBib() + " " + chronotimer.getTimer().convertTime(chronotimer.getTimer().getCurrentTime() - currentStats.getStart(queue12.get(0)))+ "    ");
+		    						line4 += (queue12.get(1).getBib() + " " + chronotimer.getTimer().convertTime(chronotimer.getTimer().getCurrentTime() - currentStats.getStart(queue12.get(1)))+ "    ");
+		    						line5 += (queue12.get(2).getBib() + " " + chronotimer.getTimer().convertTime(chronotimer.getTimer().getCurrentTime() - currentStats.getStart(queue12.get(2)))+ "    ");
+		    						line6 += "                                  ";
+		    						line7 += "                                  ";
+		    					}else if(queue12.size() == 4){
+		    						line3 += (queue12.get(0).getBib() + " " + chronotimer.getTimer().convertTime(chronotimer.getTimer().getCurrentTime() - currentStats.getStart(queue12.get(0)))+ "    ");
+		    						line4 += (queue12.get(1).getBib() + " " + chronotimer.getTimer().convertTime(chronotimer.getTimer().getCurrentTime() - currentStats.getStart(queue12.get(1)))+ "    ");
+		    						line5 += (queue12.get(2).getBib() + " " + chronotimer.getTimer().convertTime(chronotimer.getTimer().getCurrentTime() - currentStats.getStart(queue12.get(2)))+ "    ");
+		    						line6 += (queue12.get(3).getBib() + " " + chronotimer.getTimer().convertTime(chronotimer.getTimer().getCurrentTime() - currentStats.getStart(queue12.get(3)))+ "    ");
+		    						line7 += "                                  ";
+		    					}else if(queue12.size() == 5){
+		    						line3 += (queue12.get(0).getBib() + " " + chronotimer.getTimer().convertTime(chronotimer.getTimer().getCurrentTime() - currentStats.getStart(queue12.get(0)))+ "    ");
+		    						line4 += (queue12.get(1).getBib() + " " + chronotimer.getTimer().convertTime(chronotimer.getTimer().getCurrentTime() - currentStats.getStart(queue12.get(1)))+ "    ");
+		    						line5 += (queue12.get(2).getBib() + " " + chronotimer.getTimer().convertTime(chronotimer.getTimer().getCurrentTime() - currentStats.getStart(queue12.get(2)))+ "    ");
+		    						line6 += (queue12.get(3).getBib() + " " + chronotimer.getTimer().convertTime(chronotimer.getTimer().getCurrentTime() - currentStats.getStart(queue12.get(3)))+ "    ");
+		    						line7 += (queue12.get(4).getBib() + " " + chronotimer.getTimer().convertTime(chronotimer.getTimer().getCurrentTime() - currentStats.getStart(queue12.get(4)))+ "    ");
+		    					}
+		    				}else{
+		    					int sizeTot = queue12.size();
+		    					line3 += (queue12.get(sizeTot-1).getBib() + " " + chronotimer.getTimer().convertTime(chronotimer.getTimer().getCurrentTime() - currentStats.getStart(queue12.get(sizeTot-1)))+ "    ");
+		    					line4 += (queue12.get(sizeTot-2).getBib() + " " + chronotimer.getTimer().convertTime(chronotimer.getTimer().getCurrentTime() - currentStats.getStart(queue12.get(sizeTot-2)))+ "    ");
+		    					line5 += (queue12.get(sizeTot-3).getBib() + " " + chronotimer.getTimer().convertTime(chronotimer.getTimer().getCurrentTime() - currentStats.getStart(queue12.get(sizeTot-3)))+ "    ");
+		    					line6 += (queue12.get(sizeTot-4).getBib() + " " + chronotimer.getTimer().convertTime(chronotimer.getTimer().getCurrentTime() - currentStats.getStart(queue12.get(sizeTot-4)))+ "    ");
+		    					line7 += (queue12.get(sizeTot-5).getBib() + " " + chronotimer.getTimer().convertTime(chronotimer.getTimer().getCurrentTime() - currentStats.getStart(queue12.get(sizeTot-5)))+ "    ");
+		    				}
+		    				
+		    				if(queue56.size() < 6){
+		    					if(queue56.size() == 0){
+		    						line3 += "No Current Racer :R";
+		    					}else if(queue56.size() == 1){
+		    						line3 += (queue56.get(0).getBib() + " " + chronotimer.getTimer().convertTime(chronotimer.getTimer().getCurrentTime() - currentStats.getStart(queue56.get(0))) + " :R");
+		    					}else if(queue56.size() == 2){
+		    						line3 += (queue56.get(0).getBib() + " " + chronotimer.getTimer().convertTime(chronotimer.getTimer().getCurrentTime() - currentStats.getStart(queue56.get(0))) + " :R");
+		    						line4 += (queue56.get(1).getBib() + " " + chronotimer.getTimer().convertTime(chronotimer.getTimer().getCurrentTime() - currentStats.getStart(queue56.get(1))) + " :R");
+		    					}else if(queue56.size() == 3){
+		    						line3 += (queue56.get(0).getBib() + " " + chronotimer.getTimer().convertTime(chronotimer.getTimer().getCurrentTime() - currentStats.getStart(queue56.get(0))) + " :R");
+		    						line4 += (queue56.get(1).getBib() + " " + chronotimer.getTimer().convertTime(chronotimer.getTimer().getCurrentTime() - currentStats.getStart(queue56.get(1))) + " :R");
+		    						line5 += (queue56.get(2).getBib() + " " + chronotimer.getTimer().convertTime(chronotimer.getTimer().getCurrentTime() - currentStats.getStart(queue56.get(2))) + " :R");
+		    					}else if(queue56.size() == 4){
+		    						line3 += (queue56.get(0).getBib() + " " + chronotimer.getTimer().convertTime(chronotimer.getTimer().getCurrentTime() - currentStats.getStart(queue56.get(0))) + " :R");
+		    						line4 += (queue56.get(1).getBib() + " " + chronotimer.getTimer().convertTime(chronotimer.getTimer().getCurrentTime() - currentStats.getStart(queue56.get(1))) + " :R");
+		    						line5 += (queue56.get(2).getBib() + " " + chronotimer.getTimer().convertTime(chronotimer.getTimer().getCurrentTime() - currentStats.getStart(queue56.get(2))) + " :R");
+		    						line6 += (queue56.get(3).getBib() + " " + chronotimer.getTimer().convertTime(chronotimer.getTimer().getCurrentTime() - currentStats.getStart(queue56.get(3))) + " :R");
+		    					}else if(queue56.size() == 5){
+		    						line3 += (queue56.get(0).getBib() + " " + chronotimer.getTimer().convertTime(chronotimer.getTimer().getCurrentTime() - currentStats.getStart(queue56.get(0))) + " :R");
+		    						line4 += (queue56.get(1).getBib() + " " + chronotimer.getTimer().convertTime(chronotimer.getTimer().getCurrentTime() - currentStats.getStart(queue56.get(1))) + " :R");
+		    						line5 += (queue56.get(2).getBib() + " " + chronotimer.getTimer().convertTime(chronotimer.getTimer().getCurrentTime() - currentStats.getStart(queue56.get(2))) + " :R");
+		    						line6 += (queue56.get(3).getBib() + " " + chronotimer.getTimer().convertTime(chronotimer.getTimer().getCurrentTime() - currentStats.getStart(queue56.get(3))) + " :R");
+		    						line7 += (queue56.get(4).getBib() + " " + chronotimer.getTimer().convertTime(chronotimer.getTimer().getCurrentTime() - currentStats.getStart(queue56.get(4))) + " :R");
+		    					}
+		    				}else{
+		    					int sizeTot = queue56.size();
+		    					line3 += (queue56.get(sizeTot-1).getBib() + " " + chronotimer.getTimer().convertTime(chronotimer.getTimer().getCurrentTime() - currentStats.getStart(queue56.get(sizeTot-1))) + " :R");
+		    					line4 += (queue56.get(sizeTot-2).getBib() + " " + chronotimer.getTimer().convertTime(chronotimer.getTimer().getCurrentTime() - currentStats.getStart(queue56.get(sizeTot-2))) + " :R");
+		    					line5 += (queue56.get(sizeTot-3).getBib() + " " + chronotimer.getTimer().convertTime(chronotimer.getTimer().getCurrentTime() - currentStats.getStart(queue56.get(sizeTot-3))) + " :R");
+		    					line6 += (queue56.get(sizeTot-4).getBib() + " " + chronotimer.getTimer().convertTime(chronotimer.getTimer().getCurrentTime() - currentStats.getStart(queue56.get(sizeTot-4))) + " :R");
+		    					line7 += (queue56.get(sizeTot-5).getBib() + " " + chronotimer.getTimer().convertTime(chronotimer.getTimer().getCurrentTime() - currentStats.getStart(queue56.get(sizeTot-5))) + " :R");
+		    				}
+		    				
+		    				displayLine2Label.setText("Lane 1/2                                        Lane 5/6");
+			    			displayLine3Label.setText(line3);
+				    		displayLine4Label.setText(line4);
+				    		displayLine5Label.setText(line5);
+				    		displayLine6Label.setText(line6);
+				    		displayLine7Label.setText(line7);
+		    			}else if((queue12.size() > 0) && (queue34.isEmpty() == true) && (queue56.isEmpty() == true) && (queue78.size() > 0)){
+		    				displayLine2Label.setText("Lane 1/2                                        Lane 7/8");
+		    				String line3 = "";
+		    				String line4 = "";
+		    				String line5 = "";
+		    				String line6 = "";
+		    				String line7 = "";
+		    				if(queue12.size() < 6){
+		    					if(queue12.size() == 0){
+		    						line3 += "No Current Racer     ";
+		    					}else if(queue12.size() == 1){
+		    						line3 += (queue12.get(0).getBib() + " " + chronotimer.getTimer().convertTime(chronotimer.getTimer().getCurrentTime() - currentStats.getStart(queue12.get(0)))+ "    ");
+		    						line4 += "                                  ";
+		    						line5 += "                                  ";
+		    						line6 += "                                  ";
+		    						line7 += "                                  ";
+		    					}else if(queue12.size() == 2){
+		    						line3 += (queue12.get(0).getBib() + " " + chronotimer.getTimer().convertTime(chronotimer.getTimer().getCurrentTime() - currentStats.getStart(queue12.get(0)))+ "    ");
+			    					line4 += (queue12.get(1).getBib() + " " + chronotimer.getTimer().convertTime(chronotimer.getTimer().getCurrentTime() - currentStats.getStart(queue12.get(1)))+ "    ");
+			    					line5 += "                                  ";
+		    						line6 += "                                  ";
+		    						line7 += "                                  ";
+		    					}else if(queue12.size() == 3){
+		    						line3 += (queue12.get(0).getBib() + " " + chronotimer.getTimer().convertTime(chronotimer.getTimer().getCurrentTime() - currentStats.getStart(queue12.get(0)))+ "    ");
+		    						line4 += (queue12.get(1).getBib() + " " + chronotimer.getTimer().convertTime(chronotimer.getTimer().getCurrentTime() - currentStats.getStart(queue12.get(1)))+ "    ");
+		    						line5 += (queue12.get(2).getBib() + " " + chronotimer.getTimer().convertTime(chronotimer.getTimer().getCurrentTime() - currentStats.getStart(queue12.get(2)))+ "    ");
+		    						line6 += "                                  ";
+		    						line7 += "                                  ";
+		    					}else if(queue12.size() == 4){
+		    						line3 += (queue12.get(0).getBib() + " " + chronotimer.getTimer().convertTime(chronotimer.getTimer().getCurrentTime() - currentStats.getStart(queue12.get(0)))+ "    ");
+		    						line4 += (queue12.get(1).getBib() + " " + chronotimer.getTimer().convertTime(chronotimer.getTimer().getCurrentTime() - currentStats.getStart(queue12.get(1)))+ "    ");
+		    						line5 += (queue12.get(2).getBib() + " " + chronotimer.getTimer().convertTime(chronotimer.getTimer().getCurrentTime() - currentStats.getStart(queue12.get(2)))+ "    ");
+		    						line6 += (queue12.get(3).getBib() + " " + chronotimer.getTimer().convertTime(chronotimer.getTimer().getCurrentTime() - currentStats.getStart(queue12.get(3)))+ "    ");
+		    						line7 += "                                  ";
+		    					}else if(queue12.size() == 5){
+		    						line3 += (queue12.get(0).getBib() + " " + chronotimer.getTimer().convertTime(chronotimer.getTimer().getCurrentTime() - currentStats.getStart(queue12.get(0)))+ "    ");
+		    						line4 += (queue12.get(1).getBib() + " " + chronotimer.getTimer().convertTime(chronotimer.getTimer().getCurrentTime() - currentStats.getStart(queue12.get(1)))+ "    ");
+		    						line5 += (queue12.get(2).getBib() + " " + chronotimer.getTimer().convertTime(chronotimer.getTimer().getCurrentTime() - currentStats.getStart(queue12.get(2)))+ "    ");
+		    						line6 += (queue12.get(3).getBib() + " " + chronotimer.getTimer().convertTime(chronotimer.getTimer().getCurrentTime() - currentStats.getStart(queue12.get(3)))+ "    ");
+		    						line7 += (queue12.get(4).getBib() + " " + chronotimer.getTimer().convertTime(chronotimer.getTimer().getCurrentTime() - currentStats.getStart(queue12.get(4)))+ "    ");
+		    					}
+		    				}else{
+		    					int sizeTot = queue12.size();
+		    					line3 += (queue12.get(sizeTot-1).getBib() + " " + chronotimer.getTimer().convertTime(chronotimer.getTimer().getCurrentTime() - currentStats.getStart(queue12.get(sizeTot-1)))+ "    ");
+		    					line4 += (queue12.get(sizeTot-2).getBib() + " " + chronotimer.getTimer().convertTime(chronotimer.getTimer().getCurrentTime() - currentStats.getStart(queue12.get(sizeTot-2)))+ "    ");
+		    					line5 += (queue12.get(sizeTot-3).getBib() + " " + chronotimer.getTimer().convertTime(chronotimer.getTimer().getCurrentTime() - currentStats.getStart(queue12.get(sizeTot-3)))+ "    ");
+		    					line6 += (queue12.get(sizeTot-4).getBib() + " " + chronotimer.getTimer().convertTime(chronotimer.getTimer().getCurrentTime() - currentStats.getStart(queue12.get(sizeTot-4)))+ "    ");
+		    					line7 += (queue12.get(sizeTot-5).getBib() + " " + chronotimer.getTimer().convertTime(chronotimer.getTimer().getCurrentTime() - currentStats.getStart(queue12.get(sizeTot-5)))+ "    ");
+		    				}
+		    				
+		    				if(queue78.size() < 6){
+		    					if(queue78.size() == 0){
+		    						line3 += "No Current Racer :R";
+		    					}else if(queue78.size() == 1){
+		    						line3 += (queue78.get(0).getBib() + " " + chronotimer.getTimer().convertTime(chronotimer.getTimer().getCurrentTime() - currentStats.getStart(queue78.get(0))) + " :R");
+		    					}else if(queue78.size() == 2){
+		    						line3 += (queue78.get(0).getBib() + " " + chronotimer.getTimer().convertTime(chronotimer.getTimer().getCurrentTime() - currentStats.getStart(queue78.get(0))) + " :R");
+		    						line4 += (queue78.get(1).getBib() + " " + chronotimer.getTimer().convertTime(chronotimer.getTimer().getCurrentTime() - currentStats.getStart(queue78.get(1))) + " :R");
+		    					}else if(queue78.size() == 3){
+		    						line3 += (queue78.get(0).getBib() + " " + chronotimer.getTimer().convertTime(chronotimer.getTimer().getCurrentTime() - currentStats.getStart(queue78.get(0))) + " :R");
+		    						line4 += (queue78.get(1).getBib() + " " + chronotimer.getTimer().convertTime(chronotimer.getTimer().getCurrentTime() - currentStats.getStart(queue78.get(1))) + " :R");
+		    						line5 += (queue78.get(2).getBib() + " " + chronotimer.getTimer().convertTime(chronotimer.getTimer().getCurrentTime() - currentStats.getStart(queue78.get(2))) + " :R");
+		    					}else if(queue78.size() == 4){
+		    						line3 += (queue78.get(0).getBib() + " " + chronotimer.getTimer().convertTime(chronotimer.getTimer().getCurrentTime() - currentStats.getStart(queue78.get(0))) + " :R");
+		    						line4 += (queue78.get(1).getBib() + " " + chronotimer.getTimer().convertTime(chronotimer.getTimer().getCurrentTime() - currentStats.getStart(queue78.get(1))) + " :R");
+		    						line5 += (queue78.get(2).getBib() + " " + chronotimer.getTimer().convertTime(chronotimer.getTimer().getCurrentTime() - currentStats.getStart(queue78.get(2))) + " :R");
+		    						line6 += (queue78.get(3).getBib() + " " + chronotimer.getTimer().convertTime(chronotimer.getTimer().getCurrentTime() - currentStats.getStart(queue78.get(3))) + " :R");
+		    					}else if(queue78.size() == 5){
+		    						line3 += (queue78.get(0).getBib() + " " + chronotimer.getTimer().convertTime(chronotimer.getTimer().getCurrentTime() - currentStats.getStart(queue78.get(0))) + " :R");
+		    						line4 += (queue78.get(1).getBib() + " " + chronotimer.getTimer().convertTime(chronotimer.getTimer().getCurrentTime() - currentStats.getStart(queue78.get(1))) + " :R");
+		    						line5 += (queue78.get(2).getBib() + " " + chronotimer.getTimer().convertTime(chronotimer.getTimer().getCurrentTime() - currentStats.getStart(queue78.get(2))) + " :R");
+		    						line6 += (queue78.get(3).getBib() + " " + chronotimer.getTimer().convertTime(chronotimer.getTimer().getCurrentTime() - currentStats.getStart(queue78.get(3))) + " :R");
+		    						line7 += (queue78.get(4).getBib() + " " + chronotimer.getTimer().convertTime(chronotimer.getTimer().getCurrentTime() - currentStats.getStart(queue78.get(4))) + " :R");
+		    					}
+		    				}else{
+		    					int sizeTot = queue78.size();
+		    					line3 += (queue78.get(sizeTot-1).getBib() + " " + chronotimer.getTimer().convertTime(chronotimer.getTimer().getCurrentTime() - currentStats.getStart(queue78.get(sizeTot-1))) + " :R");
+		    					line4 += (queue78.get(sizeTot-2).getBib() + " " + chronotimer.getTimer().convertTime(chronotimer.getTimer().getCurrentTime() - currentStats.getStart(queue78.get(sizeTot-2))) + " :R");
+		    					line5 += (queue78.get(sizeTot-3).getBib() + " " + chronotimer.getTimer().convertTime(chronotimer.getTimer().getCurrentTime() - currentStats.getStart(queue78.get(sizeTot-3))) + " :R");
+		    					line6 += (queue78.get(sizeTot-4).getBib() + " " + chronotimer.getTimer().convertTime(chronotimer.getTimer().getCurrentTime() - currentStats.getStart(queue78.get(sizeTot-4))) + " :R");
+		    					line7 += (queue78.get(sizeTot-5).getBib() + " " + chronotimer.getTimer().convertTime(chronotimer.getTimer().getCurrentTime() - currentStats.getStart(queue78.get(sizeTot-5))) + " :R");
+		    				}
+		    				
+		    				displayLine2Label.setText("Lane 1/2                                        Lane 7/8");
+			    			displayLine3Label.setText(line3);
+				    		displayLine4Label.setText(line4);
+				    		displayLine5Label.setText(line5);
+				    		displayLine6Label.setText(line6);
+				    		displayLine7Label.setText(line7);
+		    			}else if((queue12.isEmpty() == true) && (queue34.size() > 0) && (queue56.size() > 0) && (queue78.isEmpty() == true)){
+		    				displayLine2Label.setText("Lane 3/4                                        Lane 5/6");
+		    				String line3 = "";
+		    				String line4 = "";
+		    				String line5 = "";
+		    				String line6 = "";
+		    				String line7 = "";
+		    				if(queue34.size() < 6){
+		    					if(queue34.size() == 0){
+		    						line3 += "No Current Racer     ";
+		    					}else if(queue34.size() == 1){
+		    						line3 += (queue34.get(0).getBib() + " " + chronotimer.getTimer().convertTime(chronotimer.getTimer().getCurrentTime() - currentStats.getStart(queue34.get(0)))+ "    ");
+		    						line4 += "                                  ";
+		    						line5 += "                                  ";
+		    						line6 += "                                  ";
+		    						line7 += "                                  ";
+		    					}else if(queue34.size() == 2){
+		    						line3 += (queue34.get(0).getBib() + " " + chronotimer.getTimer().convertTime(chronotimer.getTimer().getCurrentTime() - currentStats.getStart(queue34.get(0)))+ "    ");
+			    					line4 += (queue34.get(1).getBib() + " " + chronotimer.getTimer().convertTime(chronotimer.getTimer().getCurrentTime() - currentStats.getStart(queue34.get(1)))+ "    ");
+			    					line5 += "                                  ";
+		    						line6 += "                                  ";
+		    						line7 += "                                  ";
+		    					}else if(queue34.size() == 3){
+		    						line3 += (queue34.get(0).getBib() + " " + chronotimer.getTimer().convertTime(chronotimer.getTimer().getCurrentTime() - currentStats.getStart(queue34.get(0)))+ "    ");
+		    						line4 += (queue34.get(1).getBib() + " " + chronotimer.getTimer().convertTime(chronotimer.getTimer().getCurrentTime() - currentStats.getStart(queue34.get(1)))+ "    ");
+		    						line5 += (queue34.get(2).getBib() + " " + chronotimer.getTimer().convertTime(chronotimer.getTimer().getCurrentTime() - currentStats.getStart(queue34.get(2)))+ "    ");
+		    						line6 += "                                  ";
+		    						line7 += "                                  ";
+		    					}else if(queue34.size() == 4){
+		    						line3 += (queue34.get(0).getBib() + " " + chronotimer.getTimer().convertTime(chronotimer.getTimer().getCurrentTime() - currentStats.getStart(queue34.get(0)))+ "    ");
+		    						line4 += (queue34.get(1).getBib() + " " + chronotimer.getTimer().convertTime(chronotimer.getTimer().getCurrentTime() - currentStats.getStart(queue34.get(1)))+ "    ");
+		    						line5 += (queue34.get(2).getBib() + " " + chronotimer.getTimer().convertTime(chronotimer.getTimer().getCurrentTime() - currentStats.getStart(queue34.get(2)))+ "    ");
+		    						line6 += (queue34.get(3).getBib() + " " + chronotimer.getTimer().convertTime(chronotimer.getTimer().getCurrentTime() - currentStats.getStart(queue34.get(3)))+ "    ");
+		    						line7 += "                                  ";
+		    					}else if(queue34.size() == 5){
+		    						line3 += (queue34.get(0).getBib() + " " + chronotimer.getTimer().convertTime(chronotimer.getTimer().getCurrentTime() - currentStats.getStart(queue34.get(0)))+ "    ");
+		    						line4 += (queue34.get(1).getBib() + " " + chronotimer.getTimer().convertTime(chronotimer.getTimer().getCurrentTime() - currentStats.getStart(queue34.get(1)))+ "    ");
+		    						line5 += (queue34.get(2).getBib() + " " + chronotimer.getTimer().convertTime(chronotimer.getTimer().getCurrentTime() - currentStats.getStart(queue34.get(2)))+ "    ");
+		    						line6 += (queue34.get(3).getBib() + " " + chronotimer.getTimer().convertTime(chronotimer.getTimer().getCurrentTime() - currentStats.getStart(queue34.get(3)))+ "    ");
+		    						line7 += (queue34.get(4).getBib() + " " + chronotimer.getTimer().convertTime(chronotimer.getTimer().getCurrentTime() - currentStats.getStart(queue34.get(4)))+ "    ");
+		    					}
+		    				}else{
+		    					int sizeTot = queue34.size();
+		    					line3 += (queue34.get(sizeTot-1).getBib() + " " + chronotimer.getTimer().convertTime(chronotimer.getTimer().getCurrentTime() - currentStats.getStart(queue34.get(sizeTot-1)))+ "    ");
+		    					line4 += (queue34.get(sizeTot-2).getBib() + " " + chronotimer.getTimer().convertTime(chronotimer.getTimer().getCurrentTime() - currentStats.getStart(queue34.get(sizeTot-2)))+ "    ");
+		    					line5 += (queue34.get(sizeTot-3).getBib() + " " + chronotimer.getTimer().convertTime(chronotimer.getTimer().getCurrentTime() - currentStats.getStart(queue34.get(sizeTot-3)))+ "    ");
+		    					line6 += (queue34.get(sizeTot-4).getBib() + " " + chronotimer.getTimer().convertTime(chronotimer.getTimer().getCurrentTime() - currentStats.getStart(queue34.get(sizeTot-4)))+ "    ");
+		    					line7 += (queue34.get(sizeTot-5).getBib() + " " + chronotimer.getTimer().convertTime(chronotimer.getTimer().getCurrentTime() - currentStats.getStart(queue34.get(sizeTot-5)))+ "    ");
+		    				}
+		    				
+		    				if(queue56.size() < 6){
+		    					if(queue56.size() == 0){
+		    						line3 += "No Current Racer :R";
+		    					}else if(queue56.size() == 1){
+		    						line3 += (queue56.get(0).getBib() + " " + chronotimer.getTimer().convertTime(chronotimer.getTimer().getCurrentTime() - currentStats.getStart(queue56.get(0))) + " :R");
+		    					}else if(queue56.size() == 2){
+		    						line3 += (queue56.get(0).getBib() + " " + chronotimer.getTimer().convertTime(chronotimer.getTimer().getCurrentTime() - currentStats.getStart(queue56.get(0))) + " :R");
+		    						line4 += (queue56.get(1).getBib() + " " + chronotimer.getTimer().convertTime(chronotimer.getTimer().getCurrentTime() - currentStats.getStart(queue56.get(1))) + " :R");
+		    					}else if(queue56.size() == 3){
+		    						line3 += (queue56.get(0).getBib() + " " + chronotimer.getTimer().convertTime(chronotimer.getTimer().getCurrentTime() - currentStats.getStart(queue56.get(0))) + " :R");
+		    						line4 += (queue56.get(1).getBib() + " " + chronotimer.getTimer().convertTime(chronotimer.getTimer().getCurrentTime() - currentStats.getStart(queue56.get(1))) + " :R");
+		    						line5 += (queue56.get(2).getBib() + " " + chronotimer.getTimer().convertTime(chronotimer.getTimer().getCurrentTime() - currentStats.getStart(queue56.get(2))) + " :R");
+		    					}else if(queue56.size() == 4){
+		    						line3 += (queue56.get(0).getBib() + " " + chronotimer.getTimer().convertTime(chronotimer.getTimer().getCurrentTime() - currentStats.getStart(queue56.get(0))) + " :R");
+		    						line4 += (queue56.get(1).getBib() + " " + chronotimer.getTimer().convertTime(chronotimer.getTimer().getCurrentTime() - currentStats.getStart(queue56.get(1))) + " :R");
+		    						line5 += (queue56.get(2).getBib() + " " + chronotimer.getTimer().convertTime(chronotimer.getTimer().getCurrentTime() - currentStats.getStart(queue56.get(2))) + " :R");
+		    						line6 += (queue56.get(3).getBib() + " " + chronotimer.getTimer().convertTime(chronotimer.getTimer().getCurrentTime() - currentStats.getStart(queue56.get(3))) + " :R");
+		    					}else if(queue56.size() == 5){
+		    						line3 += (queue56.get(0).getBib() + " " + chronotimer.getTimer().convertTime(chronotimer.getTimer().getCurrentTime() - currentStats.getStart(queue56.get(0))) + " :R");
+		    						line4 += (queue56.get(1).getBib() + " " + chronotimer.getTimer().convertTime(chronotimer.getTimer().getCurrentTime() - currentStats.getStart(queue56.get(1))) + " :R");
+		    						line5 += (queue56.get(2).getBib() + " " + chronotimer.getTimer().convertTime(chronotimer.getTimer().getCurrentTime() - currentStats.getStart(queue56.get(2))) + " :R");
+		    						line6 += (queue56.get(3).getBib() + " " + chronotimer.getTimer().convertTime(chronotimer.getTimer().getCurrentTime() - currentStats.getStart(queue56.get(3))) + " :R");
+		    						line7 += (queue56.get(4).getBib() + " " + chronotimer.getTimer().convertTime(chronotimer.getTimer().getCurrentTime() - currentStats.getStart(queue56.get(4))) + " :R");
+		    					}
+		    				}else{
+		    					int sizeTot = queue56.size();
+		    					line3 += (queue56.get(sizeTot-1).getBib() + " " + chronotimer.getTimer().convertTime(chronotimer.getTimer().getCurrentTime() - currentStats.getStart(queue56.get(sizeTot-1))) + " :R");
+		    					line4 += (queue56.get(sizeTot-2).getBib() + " " + chronotimer.getTimer().convertTime(chronotimer.getTimer().getCurrentTime() - currentStats.getStart(queue56.get(sizeTot-2))) + " :R");
+		    					line5 += (queue56.get(sizeTot-3).getBib() + " " + chronotimer.getTimer().convertTime(chronotimer.getTimer().getCurrentTime() - currentStats.getStart(queue56.get(sizeTot-3))) + " :R");
+		    					line6 += (queue56.get(sizeTot-4).getBib() + " " + chronotimer.getTimer().convertTime(chronotimer.getTimer().getCurrentTime() - currentStats.getStart(queue56.get(sizeTot-4))) + " :R");
+		    					line7 += (queue56.get(sizeTot-5).getBib() + " " + chronotimer.getTimer().convertTime(chronotimer.getTimer().getCurrentTime() - currentStats.getStart(queue56.get(sizeTot-5))) + " :R");
+		    				}
+		    				
+		    				displayLine2Label.setText("Lane 3/4                                        Lane 5/6");
+			    			displayLine3Label.setText(line3);
+				    		displayLine4Label.setText(line4);
+				    		displayLine5Label.setText(line5);
+				    		displayLine6Label.setText(line6);
+				    		displayLine7Label.setText(line7);
+		    			}else if((queue12.isEmpty() == true) && (queue34.size() > 0) && (queue56.isEmpty() == true) && (queue78.size() > 0)){
+		    				displayLine2Label.setText("Lane 3/4                                        Lane 7/8");
+		    				String line3 = "";
+		    				String line4 = "";
+		    				String line5 = "";
+		    				String line6 = "";
+		    				String line7 = "";
+		    				if(queue34.size() < 6){
+		    					if(queue34.size() == 0){
+		    						line3 += "No Current Racer     ";
+		    					}else if(queue34.size() == 1){
+		    						line3 += (queue34.get(0).getBib() + " " + chronotimer.getTimer().convertTime(chronotimer.getTimer().getCurrentTime() - currentStats.getStart(queue34.get(0)))+ "    ");
+		    						line4 += "                                  ";
+		    						line5 += "                                  ";
+		    						line6 += "                                  ";
+		    						line7 += "                                  ";
+		    					}else if(queue34.size() == 2){
+		    						line3 += (queue34.get(0).getBib() + " " + chronotimer.getTimer().convertTime(chronotimer.getTimer().getCurrentTime() - currentStats.getStart(queue34.get(0)))+ "    ");
+			    					line4 += (queue34.get(1).getBib() + " " + chronotimer.getTimer().convertTime(chronotimer.getTimer().getCurrentTime() - currentStats.getStart(queue34.get(1)))+ "    ");
+			    					line5 += "                                  ";
+		    						line6 += "                                  ";
+		    						line7 += "                                  ";
+		    					}else if(queue34.size() == 3){
+		    						line3 += (queue34.get(0).getBib() + " " + chronotimer.getTimer().convertTime(chronotimer.getTimer().getCurrentTime() - currentStats.getStart(queue34.get(0)))+ "    ");
+		    						line4 += (queue34.get(1).getBib() + " " + chronotimer.getTimer().convertTime(chronotimer.getTimer().getCurrentTime() - currentStats.getStart(queue34.get(1)))+ "    ");
+		    						line5 += (queue34.get(2).getBib() + " " + chronotimer.getTimer().convertTime(chronotimer.getTimer().getCurrentTime() - currentStats.getStart(queue34.get(2)))+ "    ");
+		    						line6 += "                                  ";
+		    						line7 += "                                  ";
+		    					}else if(queue34.size() == 4){
+		    						line3 += (queue34.get(0).getBib() + " " + chronotimer.getTimer().convertTime(chronotimer.getTimer().getCurrentTime() - currentStats.getStart(queue34.get(0)))+ "    ");
+		    						line4 += (queue34.get(1).getBib() + " " + chronotimer.getTimer().convertTime(chronotimer.getTimer().getCurrentTime() - currentStats.getStart(queue34.get(1)))+ "    ");
+		    						line5 += (queue34.get(2).getBib() + " " + chronotimer.getTimer().convertTime(chronotimer.getTimer().getCurrentTime() - currentStats.getStart(queue34.get(2)))+ "    ");
+		    						line6 += (queue34.get(3).getBib() + " " + chronotimer.getTimer().convertTime(chronotimer.getTimer().getCurrentTime() - currentStats.getStart(queue34.get(3)))+ "    ");
+		    						line7 += "                                  ";
+		    					}else if(queue34.size() == 5){
+		    						line3 += (queue34.get(0).getBib() + " " + chronotimer.getTimer().convertTime(chronotimer.getTimer().getCurrentTime() - currentStats.getStart(queue34.get(0)))+ "    ");
+		    						line4 += (queue34.get(1).getBib() + " " + chronotimer.getTimer().convertTime(chronotimer.getTimer().getCurrentTime() - currentStats.getStart(queue34.get(1)))+ "    ");
+		    						line5 += (queue34.get(2).getBib() + " " + chronotimer.getTimer().convertTime(chronotimer.getTimer().getCurrentTime() - currentStats.getStart(queue34.get(2)))+ "    ");
+		    						line6 += (queue34.get(3).getBib() + " " + chronotimer.getTimer().convertTime(chronotimer.getTimer().getCurrentTime() - currentStats.getStart(queue34.get(3)))+ "    ");
+		    						line7 += (queue34.get(4).getBib() + " " + chronotimer.getTimer().convertTime(chronotimer.getTimer().getCurrentTime() - currentStats.getStart(queue34.get(4)))+ "    ");
+		    					}
+		    				}else{
+		    					int sizeTot = queue34.size();
+		    					line3 += (queue34.get(sizeTot-1).getBib() + " " + chronotimer.getTimer().convertTime(chronotimer.getTimer().getCurrentTime() - currentStats.getStart(queue34.get(sizeTot-1)))+ "    ");
+		    					line4 += (queue34.get(sizeTot-2).getBib() + " " + chronotimer.getTimer().convertTime(chronotimer.getTimer().getCurrentTime() - currentStats.getStart(queue34.get(sizeTot-2)))+ "    ");
+		    					line5 += (queue34.get(sizeTot-3).getBib() + " " + chronotimer.getTimer().convertTime(chronotimer.getTimer().getCurrentTime() - currentStats.getStart(queue34.get(sizeTot-3)))+ "    ");
+		    					line6 += (queue34.get(sizeTot-4).getBib() + " " + chronotimer.getTimer().convertTime(chronotimer.getTimer().getCurrentTime() - currentStats.getStart(queue34.get(sizeTot-4)))+ "    ");
+		    					line7 += (queue34.get(sizeTot-5).getBib() + " " + chronotimer.getTimer().convertTime(chronotimer.getTimer().getCurrentTime() - currentStats.getStart(queue34.get(sizeTot-5)))+ "    ");
+		    				}
+		    				
+		    				if(queue78.size() < 6){
+		    					if(queue78.size() == 0){
+		    						line3 += "No Current Racer :R";
+		    					}else if(queue78.size() == 1){
+		    						line3 += (queue78.get(0).getBib() + " " + chronotimer.getTimer().convertTime(chronotimer.getTimer().getCurrentTime() - currentStats.getStart(queue78.get(0))) + " :R");
+		    					}else if(queue78.size() == 2){
+		    						line3 += (queue78.get(0).getBib() + " " + chronotimer.getTimer().convertTime(chronotimer.getTimer().getCurrentTime() - currentStats.getStart(queue78.get(0))) + " :R");
+		    						line4 += (queue78.get(1).getBib() + " " + chronotimer.getTimer().convertTime(chronotimer.getTimer().getCurrentTime() - currentStats.getStart(queue78.get(1))) + " :R");
+		    					}else if(queue78.size() == 3){
+		    						line3 += (queue78.get(0).getBib() + " " + chronotimer.getTimer().convertTime(chronotimer.getTimer().getCurrentTime() - currentStats.getStart(queue78.get(0))) + " :R");
+		    						line4 += (queue78.get(1).getBib() + " " + chronotimer.getTimer().convertTime(chronotimer.getTimer().getCurrentTime() - currentStats.getStart(queue78.get(1))) + " :R");
+		    						line5 += (queue78.get(2).getBib() + " " + chronotimer.getTimer().convertTime(chronotimer.getTimer().getCurrentTime() - currentStats.getStart(queue78.get(2))) + " :R");
+		    					}else if(queue78.size() == 4){
+		    						line3 += (queue78.get(0).getBib() + " " + chronotimer.getTimer().convertTime(chronotimer.getTimer().getCurrentTime() - currentStats.getStart(queue78.get(0))) + " :R");
+		    						line4 += (queue78.get(1).getBib() + " " + chronotimer.getTimer().convertTime(chronotimer.getTimer().getCurrentTime() - currentStats.getStart(queue78.get(1))) + " :R");
+		    						line5 += (queue78.get(2).getBib() + " " + chronotimer.getTimer().convertTime(chronotimer.getTimer().getCurrentTime() - currentStats.getStart(queue78.get(2))) + " :R");
+		    						line6 += (queue78.get(3).getBib() + " " + chronotimer.getTimer().convertTime(chronotimer.getTimer().getCurrentTime() - currentStats.getStart(queue78.get(3))) + " :R");
+		    					}else if(queue78.size() == 5){
+		    						line3 += (queue78.get(0).getBib() + " " + chronotimer.getTimer().convertTime(chronotimer.getTimer().getCurrentTime() - currentStats.getStart(queue78.get(0))) + " :R");
+		    						line4 += (queue78.get(1).getBib() + " " + chronotimer.getTimer().convertTime(chronotimer.getTimer().getCurrentTime() - currentStats.getStart(queue78.get(1))) + " :R");
+		    						line5 += (queue78.get(2).getBib() + " " + chronotimer.getTimer().convertTime(chronotimer.getTimer().getCurrentTime() - currentStats.getStart(queue78.get(2))) + " :R");
+		    						line6 += (queue78.get(3).getBib() + " " + chronotimer.getTimer().convertTime(chronotimer.getTimer().getCurrentTime() - currentStats.getStart(queue78.get(3))) + " :R");
+		    						line7 += (queue78.get(4).getBib() + " " + chronotimer.getTimer().convertTime(chronotimer.getTimer().getCurrentTime() - currentStats.getStart(queue78.get(4))) + " :R");
+		    					}
+		    				}else{
+		    					int sizeTot = queue78.size();
+		    					line3 += (queue78.get(sizeTot-1).getBib() + " " + chronotimer.getTimer().convertTime(chronotimer.getTimer().getCurrentTime() - currentStats.getStart(queue78.get(sizeTot-1))) + " :R");
+		    					line4 += (queue78.get(sizeTot-2).getBib() + " " + chronotimer.getTimer().convertTime(chronotimer.getTimer().getCurrentTime() - currentStats.getStart(queue78.get(sizeTot-2))) + " :R");
+		    					line5 += (queue78.get(sizeTot-3).getBib() + " " + chronotimer.getTimer().convertTime(chronotimer.getTimer().getCurrentTime() - currentStats.getStart(queue78.get(sizeTot-3))) + " :R");
+		    					line6 += (queue78.get(sizeTot-4).getBib() + " " + chronotimer.getTimer().convertTime(chronotimer.getTimer().getCurrentTime() - currentStats.getStart(queue78.get(sizeTot-4))) + " :R");
+		    					line7 += (queue78.get(sizeTot-5).getBib() + " " + chronotimer.getTimer().convertTime(chronotimer.getTimer().getCurrentTime() - currentStats.getStart(queue78.get(sizeTot-5))) + " :R");
+		    				}
+		    				
+		    				displayLine2Label.setText("Lane 3/4                                        Lane 7/8");
+			    			displayLine3Label.setText(line3);
+				    		displayLine4Label.setText(line4);
+				    		displayLine5Label.setText(line5);
+				    		displayLine6Label.setText(line6);
+				    		displayLine7Label.setText(line7);
+		    			}else if((queue12.isEmpty() == true) && (queue34.size() > 0) && (queue56.isEmpty() == true) && (queue78.isEmpty() == true)){
+		    				displayLine2Label.setText("Lane 3/4                                        Lane N/A");
+		    				if(queue34.size() < 6){
+		    					if(queue34.size() == 0){
+		    						displayLine3Label.setText("No Current Racer                   No Current Racer :R");
+			    					displayLine4Label.setText("");
+			    					displayLine5Label.setText("");
+			    					displayLine6Label.setText("");
+			    					displayLine7Label.setText("");
+		    					}else if(queue34.size() == 1){
+		    						displayLine3Label.setText(queue34.get(0).getBib() + " " + chronotimer.getTimer().convertTime(chronotimer.getTimer().getCurrentTime() - currentStats.getStart(queue34.get(0))) + "            :R");
+			    					displayLine4Label.setText("");
+			    					displayLine5Label.setText("");
+			    					displayLine6Label.setText("");
+			    					displayLine7Label.setText("");
+		    					}else if(queue34.size() == 2){
+		    						displayLine3Label.setText(queue34.get(0).getBib() + " " + chronotimer.getTimer().convertTime(chronotimer.getTimer().getCurrentTime() - currentStats.getStart(queue34.get(0))) + "            :R");
+			    					displayLine4Label.setText(queue34.get(1).getBib() + " " + chronotimer.getTimer().convertTime(chronotimer.getTimer().getCurrentTime() - currentStats.getStart(queue34.get(1))) + "            :R");
+			    					displayLine5Label.setText("");
+			    					displayLine6Label.setText("");
+			    					displayLine7Label.setText("");
+		    					}else if(queue34.size() == 3){
+		    						displayLine3Label.setText(queue34.get(0).getBib() + " " + chronotimer.getTimer().convertTime(chronotimer.getTimer().getCurrentTime() - currentStats.getStart(queue34.get(0))) + "            :R");
+			    					displayLine4Label.setText(queue34.get(1).getBib() + " " + chronotimer.getTimer().convertTime(chronotimer.getTimer().getCurrentTime() - currentStats.getStart(queue34.get(1))) + "            :R");
+			    					displayLine5Label.setText(queue34.get(2).getBib() + " " + chronotimer.getTimer().convertTime(chronotimer.getTimer().getCurrentTime() - currentStats.getStart(queue34.get(2))) + "            :R");
+			    					displayLine6Label.setText("");
+			    					displayLine7Label.setText("");
+		    					}else if(queue34.size() == 4){
+		    						displayLine3Label.setText(queue34.get(0).getBib() + " " + chronotimer.getTimer().convertTime(chronotimer.getTimer().getCurrentTime() - currentStats.getStart(queue34.get(0))) + "            :R");
+			    					displayLine4Label.setText(queue34.get(1).getBib() + " " + chronotimer.getTimer().convertTime(chronotimer.getTimer().getCurrentTime() - currentStats.getStart(queue34.get(1))) + "            :R");
+			    					displayLine5Label.setText(queue34.get(2).getBib() + " " + chronotimer.getTimer().convertTime(chronotimer.getTimer().getCurrentTime() - currentStats.getStart(queue34.get(2))) + "            :R");
+			    					displayLine6Label.setText(queue34.get(3).getBib() + " " + chronotimer.getTimer().convertTime(chronotimer.getTimer().getCurrentTime() - currentStats.getStart(queue34.get(3))) + "            :R");
+			    					displayLine7Label.setText("");
+		    					}else if(queue34.size() == 5){
+		    						displayLine3Label.setText(queue34.get(0).getBib() + " " + chronotimer.getTimer().convertTime(chronotimer.getTimer().getCurrentTime() - currentStats.getStart(queue34.get(0))) + "            :R");
+			    					displayLine4Label.setText(queue34.get(1).getBib() + " " + chronotimer.getTimer().convertTime(chronotimer.getTimer().getCurrentTime() - currentStats.getStart(queue34.get(1))) + "            :R");
+			    					displayLine5Label.setText(queue34.get(2).getBib() + " " + chronotimer.getTimer().convertTime(chronotimer.getTimer().getCurrentTime() - currentStats.getStart(queue34.get(2))) + "            :R");
+			    					displayLine6Label.setText(queue34.get(3).getBib() + " " + chronotimer.getTimer().convertTime(chronotimer.getTimer().getCurrentTime() - currentStats.getStart(queue34.get(3))) + "            :R");
+			    					displayLine7Label.setText(queue34.get(4).getBib() + " " + chronotimer.getTimer().convertTime(chronotimer.getTimer().getCurrentTime() - currentStats.getStart(queue34.get(4))) + "            :R");
+		    					}
+		    				}else{
+		    					int sizeTot = queue34.size();
+		    					displayLine3Label.setText(queue34.get(sizeTot-1).getBib() + " " + chronotimer.getTimer().convertTime(chronotimer.getTimer().getCurrentTime() - currentStats.getStart(queue34.get(sizeTot-1))) + "            :R");
+		    					displayLine4Label.setText(queue34.get(sizeTot-2).getBib() + " " + chronotimer.getTimer().convertTime(chronotimer.getTimer().getCurrentTime() - currentStats.getStart(queue34.get(sizeTot-2))) + "            :R");
+		    					displayLine5Label.setText(queue34.get(sizeTot-3).getBib() + " " + chronotimer.getTimer().convertTime(chronotimer.getTimer().getCurrentTime() - currentStats.getStart(queue34.get(sizeTot-3))) + "            :R");
+		    					displayLine6Label.setText(queue34.get(sizeTot-4).getBib() + " " + chronotimer.getTimer().convertTime(chronotimer.getTimer().getCurrentTime() - currentStats.getStart(queue34.get(sizeTot-4))) + "            :R");
+		    					displayLine7Label.setText(queue34.get(sizeTot-5).getBib() + " " + chronotimer.getTimer().convertTime(chronotimer.getTimer().getCurrentTime() - currentStats.getStart(queue34.get(sizeTot-5))) + "            :R");
+		    				}
+		    			}else if((queue12.isEmpty() == true) && (queue34.isEmpty() == true) && (queue56.size() > 0) && (queue78.isEmpty() == true)){
+		    				displayLine2Label.setText("Lane 5/6                                        Lane N/A");
+		    				if(queue56.size() < 6){
+		    					if(queue56.size() == 0){
+		    						displayLine3Label.setText("No Current Racer                   No Current Racer :R");
+			    					displayLine4Label.setText("");
+			    					displayLine5Label.setText("");
+			    					displayLine6Label.setText("");
+			    					displayLine7Label.setText("");
+		    					}else if(queue56.size() == 1){
+		    						displayLine3Label.setText(queue56.get(0).getBib() + " " + chronotimer.getTimer().convertTime(chronotimer.getTimer().getCurrentTime() - currentStats.getStart(queue56.get(0))) + "            :R");
+			    					displayLine4Label.setText("");
+			    					displayLine5Label.setText("");
+			    					displayLine6Label.setText("");
+			    					displayLine7Label.setText("");
+		    					}else if(queue56.size() == 2){
+		    						displayLine3Label.setText(queue56.get(0).getBib() + " " + chronotimer.getTimer().convertTime(chronotimer.getTimer().getCurrentTime() - currentStats.getStart(queue56.get(0))) + "            :R");
+			    					displayLine4Label.setText(queue56.get(1).getBib() + " " + chronotimer.getTimer().convertTime(chronotimer.getTimer().getCurrentTime() - currentStats.getStart(queue56.get(1))) + "            :R");
+			    					displayLine5Label.setText("");
+			    					displayLine6Label.setText("");
+			    					displayLine7Label.setText("");
+		    					}else if(queue56.size() == 3){
+		    						displayLine3Label.setText(queue56.get(0).getBib() + " " + chronotimer.getTimer().convertTime(chronotimer.getTimer().getCurrentTime() - currentStats.getStart(queue56.get(0))) + "            :R");
+			    					displayLine4Label.setText(queue56.get(1).getBib() + " " + chronotimer.getTimer().convertTime(chronotimer.getTimer().getCurrentTime() - currentStats.getStart(queue56.get(1))) + "            :R");
+			    					displayLine5Label.setText(queue56.get(2).getBib() + " " + chronotimer.getTimer().convertTime(chronotimer.getTimer().getCurrentTime() - currentStats.getStart(queue56.get(2))) + "            :R");
+			    					displayLine6Label.setText("");
+			    					displayLine7Label.setText("");
+		    					}else if(queue56.size() == 4){
+		    						displayLine3Label.setText(queue56.get(0).getBib() + " " + chronotimer.getTimer().convertTime(chronotimer.getTimer().getCurrentTime() - currentStats.getStart(queue56.get(0))) + "            :R");
+			    					displayLine4Label.setText(queue56.get(1).getBib() + " " + chronotimer.getTimer().convertTime(chronotimer.getTimer().getCurrentTime() - currentStats.getStart(queue56.get(1))) + "            :R");
+			    					displayLine5Label.setText(queue56.get(2).getBib() + " " + chronotimer.getTimer().convertTime(chronotimer.getTimer().getCurrentTime() - currentStats.getStart(queue56.get(2))) + "            :R");
+			    					displayLine6Label.setText(queue56.get(3).getBib() + " " + chronotimer.getTimer().convertTime(chronotimer.getTimer().getCurrentTime() - currentStats.getStart(queue56.get(3))) + "            :R");
+			    					displayLine7Label.setText("");
+		    					}else if(queue56.size() == 5){
+		    						displayLine3Label.setText(queue56.get(0).getBib() + " " + chronotimer.getTimer().convertTime(chronotimer.getTimer().getCurrentTime() - currentStats.getStart(queue56.get(0))) + "            :R");
+			    					displayLine4Label.setText(queue56.get(1).getBib() + " " + chronotimer.getTimer().convertTime(chronotimer.getTimer().getCurrentTime() - currentStats.getStart(queue56.get(1))) + "            :R");
+			    					displayLine5Label.setText(queue56.get(2).getBib() + " " + chronotimer.getTimer().convertTime(chronotimer.getTimer().getCurrentTime() - currentStats.getStart(queue56.get(2))) + "            :R");
+			    					displayLine6Label.setText(queue56.get(3).getBib() + " " + chronotimer.getTimer().convertTime(chronotimer.getTimer().getCurrentTime() - currentStats.getStart(queue56.get(3))) + "            :R");
+			    					displayLine7Label.setText(queue56.get(4).getBib() + " " + chronotimer.getTimer().convertTime(chronotimer.getTimer().getCurrentTime() - currentStats.getStart(queue56.get(4))) + "            :R");
+		    					}
+		    				}else{
+		    					int sizeTot = queue56.size();
+		    					displayLine3Label.setText(queue56.get(sizeTot-1).getBib() + " " + chronotimer.getTimer().convertTime(chronotimer.getTimer().getCurrentTime() - currentStats.getStart(queue56.get(sizeTot-1))) + "            :R");
+		    					displayLine4Label.setText(queue56.get(sizeTot-2).getBib() + " " + chronotimer.getTimer().convertTime(chronotimer.getTimer().getCurrentTime() - currentStats.getStart(queue56.get(sizeTot-2))) + "            :R");
+		    					displayLine5Label.setText(queue56.get(sizeTot-3).getBib() + " " + chronotimer.getTimer().convertTime(chronotimer.getTimer().getCurrentTime() - currentStats.getStart(queue56.get(sizeTot-3))) + "            :R");
+		    					displayLine6Label.setText(queue56.get(sizeTot-4).getBib() + " " + chronotimer.getTimer().convertTime(chronotimer.getTimer().getCurrentTime() - currentStats.getStart(queue56.get(sizeTot-4))) + "            :R");
+		    					displayLine7Label.setText(queue56.get(sizeTot-5).getBib() + " " + chronotimer.getTimer().convertTime(chronotimer.getTimer().getCurrentTime() - currentStats.getStart(queue56.get(sizeTot-5))) + "            :R");
+		    				}
+		    			}else if((queue12.isEmpty() == true) && (queue34.isEmpty() == true) && (queue56.size() > 0) && (queue78.size() > 0)){
+		    				displayLine2Label.setText("Lane 5/6                                        Lane 7/8");
+		    				String line3 = "";
+		    				String line4 = "";
+		    				String line5 = "";
+		    				String line6 = "";
+		    				String line7 = "";
+		    				if(queue56.size() < 6){
+		    					if(queue56.size() == 0){
+		    						line3 += "No Current Racer     ";
+		    					}else if(queue56.size() == 1){
+		    						line3 += (queue56.get(0).getBib() + " " + chronotimer.getTimer().convertTime(chronotimer.getTimer().getCurrentTime() - currentStats.getStart(queue56.get(0)))+ "    ");
+		    						line4 += "                                  ";
+		    						line5 += "                                  ";
+		    						line6 += "                                  ";
+		    						line7 += "                                  ";
+		    					}else if(queue56.size() == 2){
+		    						line3 += (queue56.get(0).getBib() + " " + chronotimer.getTimer().convertTime(chronotimer.getTimer().getCurrentTime() - currentStats.getStart(queue56.get(0)))+ "    ");
+			    					line4 += (queue56.get(1).getBib() + " " + chronotimer.getTimer().convertTime(chronotimer.getTimer().getCurrentTime() - currentStats.getStart(queue56.get(1)))+ "    ");
+			    					line5 += "                                  ";
+		    						line6 += "                                  ";
+		    						line7 += "                                  ";
+		    					}else if(queue56.size() == 3){
+		    						line3 += (queue56.get(0).getBib() + " " + chronotimer.getTimer().convertTime(chronotimer.getTimer().getCurrentTime() - currentStats.getStart(queue56.get(0)))+ "    ");
+		    						line4 += (queue56.get(1).getBib() + " " + chronotimer.getTimer().convertTime(chronotimer.getTimer().getCurrentTime() - currentStats.getStart(queue56.get(1)))+ "    ");
+		    						line5 += (queue56.get(2).getBib() + " " + chronotimer.getTimer().convertTime(chronotimer.getTimer().getCurrentTime() - currentStats.getStart(queue56.get(2)))+ "    ");
+		    						line6 += "                                  ";
+		    						line7 += "                                  ";
+		    					}else if(queue56.size() == 4){
+		    						line3 += (queue56.get(0).getBib() + " " + chronotimer.getTimer().convertTime(chronotimer.getTimer().getCurrentTime() - currentStats.getStart(queue56.get(0)))+ "    ");
+		    						line4 += (queue56.get(1).getBib() + " " + chronotimer.getTimer().convertTime(chronotimer.getTimer().getCurrentTime() - currentStats.getStart(queue56.get(1)))+ "    ");
+		    						line5 += (queue56.get(2).getBib() + " " + chronotimer.getTimer().convertTime(chronotimer.getTimer().getCurrentTime() - currentStats.getStart(queue56.get(2)))+ "    ");
+		    						line6 += (queue56.get(3).getBib() + " " + chronotimer.getTimer().convertTime(chronotimer.getTimer().getCurrentTime() - currentStats.getStart(queue56.get(3)))+ "    ");
+		    						line7 += "                                  ";
+		    					}else if(queue56.size() == 5){
+		    						line3 += (queue56.get(0).getBib() + " " + chronotimer.getTimer().convertTime(chronotimer.getTimer().getCurrentTime() - currentStats.getStart(queue56.get(0)))+ "    ");
+		    						line4 += (queue56.get(1).getBib() + " " + chronotimer.getTimer().convertTime(chronotimer.getTimer().getCurrentTime() - currentStats.getStart(queue56.get(1)))+ "    ");
+		    						line5 += (queue56.get(2).getBib() + " " + chronotimer.getTimer().convertTime(chronotimer.getTimer().getCurrentTime() - currentStats.getStart(queue56.get(2)))+ "    ");
+		    						line6 += (queue56.get(3).getBib() + " " + chronotimer.getTimer().convertTime(chronotimer.getTimer().getCurrentTime() - currentStats.getStart(queue56.get(3)))+ "    ");
+		    						line7 += (queue56.get(4).getBib() + " " + chronotimer.getTimer().convertTime(chronotimer.getTimer().getCurrentTime() - currentStats.getStart(queue56.get(4)))+ "    ");
+		    					}
+		    				}else{
+		    					int sizeTot = queue56.size();
+		    					line3 += (queue56.get(sizeTot-1).getBib() + " " + chronotimer.getTimer().convertTime(chronotimer.getTimer().getCurrentTime() - currentStats.getStart(queue56.get(sizeTot-1)))+ "    ");
+		    					line4 += (queue56.get(sizeTot-2).getBib() + " " + chronotimer.getTimer().convertTime(chronotimer.getTimer().getCurrentTime() - currentStats.getStart(queue56.get(sizeTot-2)))+ "    ");
+		    					line5 += (queue56.get(sizeTot-3).getBib() + " " + chronotimer.getTimer().convertTime(chronotimer.getTimer().getCurrentTime() - currentStats.getStart(queue56.get(sizeTot-3)))+ "    ");
+		    					line6 += (queue56.get(sizeTot-4).getBib() + " " + chronotimer.getTimer().convertTime(chronotimer.getTimer().getCurrentTime() - currentStats.getStart(queue56.get(sizeTot-4)))+ "    ");
+		    					line7 += (queue56.get(sizeTot-5).getBib() + " " + chronotimer.getTimer().convertTime(chronotimer.getTimer().getCurrentTime() - currentStats.getStart(queue56.get(sizeTot-5)))+ "    ");
+		    				}
+		    				
+		    				if(queue78.size() < 6){
+		    					if(queue78.size() == 0){
+		    						line3 += "No Current Racer :R";
+		    					}else if(queue78.size() == 1){
+		    						line3 += (queue78.get(0).getBib() + " " + chronotimer.getTimer().convertTime(chronotimer.getTimer().getCurrentTime() - currentStats.getStart(queue78.get(0))) + " :R");
+		    					}else if(queue78.size() == 2){
+		    						line3 += (queue78.get(0).getBib() + " " + chronotimer.getTimer().convertTime(chronotimer.getTimer().getCurrentTime() - currentStats.getStart(queue78.get(0))) + " :R");
+		    						line4 += (queue78.get(1).getBib() + " " + chronotimer.getTimer().convertTime(chronotimer.getTimer().getCurrentTime() - currentStats.getStart(queue78.get(1))) + " :R");
+		    					}else if(queue78.size() == 3){
+		    						line3 += (queue78.get(0).getBib() + " " + chronotimer.getTimer().convertTime(chronotimer.getTimer().getCurrentTime() - currentStats.getStart(queue78.get(0))) + " :R");
+		    						line4 += (queue78.get(1).getBib() + " " + chronotimer.getTimer().convertTime(chronotimer.getTimer().getCurrentTime() - currentStats.getStart(queue78.get(1))) + " :R");
+		    						line5 += (queue78.get(2).getBib() + " " + chronotimer.getTimer().convertTime(chronotimer.getTimer().getCurrentTime() - currentStats.getStart(queue78.get(2))) + " :R");
+		    					}else if(queue78.size() == 4){
+		    						line3 += (queue78.get(0).getBib() + " " + chronotimer.getTimer().convertTime(chronotimer.getTimer().getCurrentTime() - currentStats.getStart(queue78.get(0))) + " :R");
+		    						line4 += (queue78.get(1).getBib() + " " + chronotimer.getTimer().convertTime(chronotimer.getTimer().getCurrentTime() - currentStats.getStart(queue78.get(1))) + " :R");
+		    						line5 += (queue78.get(2).getBib() + " " + chronotimer.getTimer().convertTime(chronotimer.getTimer().getCurrentTime() - currentStats.getStart(queue78.get(2))) + " :R");
+		    						line6 += (queue78.get(3).getBib() + " " + chronotimer.getTimer().convertTime(chronotimer.getTimer().getCurrentTime() - currentStats.getStart(queue78.get(3))) + " :R");
+		    					}else if(queue78.size() == 5){
+		    						line3 += (queue78.get(0).getBib() + " " + chronotimer.getTimer().convertTime(chronotimer.getTimer().getCurrentTime() - currentStats.getStart(queue78.get(0))) + " :R");
+		    						line4 += (queue78.get(1).getBib() + " " + chronotimer.getTimer().convertTime(chronotimer.getTimer().getCurrentTime() - currentStats.getStart(queue78.get(1))) + " :R");
+		    						line5 += (queue78.get(2).getBib() + " " + chronotimer.getTimer().convertTime(chronotimer.getTimer().getCurrentTime() - currentStats.getStart(queue78.get(2))) + " :R");
+		    						line6 += (queue78.get(3).getBib() + " " + chronotimer.getTimer().convertTime(chronotimer.getTimer().getCurrentTime() - currentStats.getStart(queue78.get(3))) + " :R");
+		    						line7 += (queue78.get(4).getBib() + " " + chronotimer.getTimer().convertTime(chronotimer.getTimer().getCurrentTime() - currentStats.getStart(queue78.get(4))) + " :R");
+		    					}
+		    				}else{
+		    					int sizeTot = queue78.size();
+		    					line3 += (queue78.get(sizeTot-1).getBib() + " " + chronotimer.getTimer().convertTime(chronotimer.getTimer().getCurrentTime() - currentStats.getStart(queue78.get(sizeTot-1))) + " :R");
+		    					line4 += (queue78.get(sizeTot-2).getBib() + " " + chronotimer.getTimer().convertTime(chronotimer.getTimer().getCurrentTime() - currentStats.getStart(queue78.get(sizeTot-2))) + " :R");
+		    					line5 += (queue78.get(sizeTot-3).getBib() + " " + chronotimer.getTimer().convertTime(chronotimer.getTimer().getCurrentTime() - currentStats.getStart(queue78.get(sizeTot-3))) + " :R");
+		    					line6 += (queue78.get(sizeTot-4).getBib() + " " + chronotimer.getTimer().convertTime(chronotimer.getTimer().getCurrentTime() - currentStats.getStart(queue78.get(sizeTot-4))) + " :R");
+		    					line7 += (queue78.get(sizeTot-5).getBib() + " " + chronotimer.getTimer().convertTime(chronotimer.getTimer().getCurrentTime() - currentStats.getStart(queue78.get(sizeTot-5))) + " :R");
+		    				}
+		    				
+		    				displayLine2Label.setText("Lane 5/6                                        Lane 7/8");
+			    			displayLine3Label.setText(line3);
+				    		displayLine4Label.setText(line4);
+				    		displayLine5Label.setText(line5);
+				    		displayLine6Label.setText(line6);
+				    		displayLine7Label.setText(line7);
+		    			}else if((queue12.isEmpty() == true) && (queue34.isEmpty() == true) && (queue56.isEmpty() == true) && (queue78.size() > 0)){
+		    				displayLine2Label.setText("Lane 7/8                                        Lane N/A");
+		    				if(queue78.size() < 6){
+		    					if(queue78.size() == 0){
+		    						displayLine3Label.setText("No Current Racer                   No Current Racer :R");
+			    					displayLine4Label.setText("");
+			    					displayLine5Label.setText("");
+			    					displayLine6Label.setText("");
+			    					displayLine7Label.setText("");
+		    					}else if(queue78.size() == 1){
+		    						displayLine3Label.setText("No Current Racer     " + queue78.get(0).getBib() + " " + chronotimer.getTimer().convertTime(chronotimer.getTimer().getCurrentTime() - currentStats.getStart(queue78.get(0))) + " :R");
+			    					displayLine4Label.setText("");
+			    					displayLine5Label.setText("");
+			    					displayLine6Label.setText("");
+			    					displayLine7Label.setText("");
+		    					}else if(queue78.size() == 2){
+		    						displayLine3Label.setText("No Current Racer     " + queue78.get(0).getBib() + " " + chronotimer.getTimer().convertTime(chronotimer.getTimer().getCurrentTime() - currentStats.getStart(queue78.get(0))) + " :R");
+			    					displayLine4Label.setText("No Current Racer     " + queue78.get(1).getBib() + " " + chronotimer.getTimer().convertTime(chronotimer.getTimer().getCurrentTime() - currentStats.getStart(queue78.get(1))) + " :R");
+			    					displayLine5Label.setText("");
+			    					displayLine6Label.setText("");
+			    					displayLine7Label.setText("");
+		    					}else if(queue78.size() == 3){
+		    						displayLine3Label.setText("No Current Racer     " + queue78.get(0).getBib() + " " + chronotimer.getTimer().convertTime(chronotimer.getTimer().getCurrentTime() - currentStats.getStart(queue78.get(0))) + " :R");
+			    					displayLine4Label.setText("No Current Racer     " + queue78.get(1).getBib() + " " + chronotimer.getTimer().convertTime(chronotimer.getTimer().getCurrentTime() - currentStats.getStart(queue78.get(1))) + " :R");
+			    					displayLine5Label.setText("No Current Racer     " + queue78.get(2).getBib() + " " + chronotimer.getTimer().convertTime(chronotimer.getTimer().getCurrentTime() - currentStats.getStart(queue78.get(2))) + " :R");
+			    					displayLine6Label.setText("");
+			    					displayLine7Label.setText("");
+		    					}else if(queue78.size() == 4){
+		    						displayLine3Label.setText("No Current Racer     " + queue78.get(0).getBib() + " " + chronotimer.getTimer().convertTime(chronotimer.getTimer().getCurrentTime() - currentStats.getStart(queue78.get(0))) + " :R");
+			    					displayLine4Label.setText("No Current Racer     " + queue78.get(1).getBib() + " " + chronotimer.getTimer().convertTime(chronotimer.getTimer().getCurrentTime() - currentStats.getStart(queue78.get(1))) + " :R");
+			    					displayLine5Label.setText("No Current Racer     " + queue78.get(2).getBib() + " " + chronotimer.getTimer().convertTime(chronotimer.getTimer().getCurrentTime() - currentStats.getStart(queue78.get(2))) + " :R");
+			    					displayLine6Label.setText("No Current Racer     " + queue78.get(3).getBib() + " " + chronotimer.getTimer().convertTime(chronotimer.getTimer().getCurrentTime() - currentStats.getStart(queue78.get(3))) + " :R");
+			    					displayLine7Label.setText("");
+		    					}else if(queue78.size() == 5){
+		    						displayLine3Label.setText("No Current Racer     " + queue78.get(0).getBib() + " " + chronotimer.getTimer().convertTime(chronotimer.getTimer().getCurrentTime() - currentStats.getStart(queue78.get(0))) + " :R");
+			    					displayLine4Label.setText("No Current Racer     " + queue78.get(1).getBib() + " " + chronotimer.getTimer().convertTime(chronotimer.getTimer().getCurrentTime() - currentStats.getStart(queue78.get(1))) + " :R");
+			    					displayLine5Label.setText("No Current Racer     " + queue78.get(2).getBib() + " " + chronotimer.getTimer().convertTime(chronotimer.getTimer().getCurrentTime() - currentStats.getStart(queue78.get(2))) + " :R");
+			    					displayLine6Label.setText("No Current Racer     " + queue78.get(3).getBib() + " " + chronotimer.getTimer().convertTime(chronotimer.getTimer().getCurrentTime() - currentStats.getStart(queue78.get(3))) + " :R");
+			    					displayLine7Label.setText("No Current Racer     " + queue78.get(4).getBib() + " " + chronotimer.getTimer().convertTime(chronotimer.getTimer().getCurrentTime() - currentStats.getStart(queue78.get(4))) + " :R");
+		    					}
+		    				}else{
+		    					int sizeTot = queue78.size();
+		    					displayLine3Label.setText("No Current Racer     " + queue78.get(sizeTot-1).getBib() + " " + chronotimer.getTimer().convertTime(chronotimer.getTimer().getCurrentTime() - currentStats.getStart(queue78.get(sizeTot-1))) + " :R");
+		    					displayLine4Label.setText("No Current Racer     " + queue78.get(sizeTot-2).getBib() + " " + chronotimer.getTimer().convertTime(chronotimer.getTimer().getCurrentTime() - currentStats.getStart(queue78.get(sizeTot-2))) + " :R");
+		    					displayLine5Label.setText("No Current Racer     " + queue78.get(sizeTot-3).getBib() + " " + chronotimer.getTimer().convertTime(chronotimer.getTimer().getCurrentTime() - currentStats.getStart(queue78.get(sizeTot-3))) + " :R");
+		    					displayLine6Label.setText("No Current Racer     " + queue78.get(sizeTot-4).getBib() + " " + chronotimer.getTimer().convertTime(chronotimer.getTimer().getCurrentTime() - currentStats.getStart(queue78.get(sizeTot-4))) + " :R");
+		    					displayLine7Label.setText("No Current Racer     " + queue78.get(sizeTot-5).getBib() + " " + chronotimer.getTimer().convertTime(chronotimer.getTimer().getCurrentTime() - currentStats.getStart(queue78.get(sizeTot-5))) + " :R");
+		    				}
+		    				
+		    			}
+		    		}else{	// No racers running
+		    			displayLine2Label.setText("Lane N/A                                        Lane N/A");
+		    			displayLine3Label.setText("No Current Racer                   No Current Racer :R");
+			    		displayLine4Label.setText("");
+			    		displayLine5Label.setText("");
+			    		displayLine6Label.setText("");
+			    		displayLine7Label.setText("");
+		    		}
+		    		
+		    		// last pair of racers to finish in each lane
+    			}
+    			//Pair of racers to start and current racer pair
+    			else{
+    				if(racerStartQueue.isEmpty()){
+    					displayLine1Label.setText("No Queued Racer  /  No Queued Racer :>");
+    				}else if(racerStartQueue.size() == 1){
+    					displayLine1Label.setText(racerStartQueue.get(0).getBib() + "  /  No Queued Racer :>");
+    				}else if(racerStartQueue.size() > 1){
+    					displayLine1Label.setText(racerStartQueue.get(0).getBib() + "  /  " + racerStartQueue.get(1).getBib() + " :>");
+    				}
+    				
+    				
+    				// Current Racers Running
+		    		if(racerEndQueue.isEmpty() == false){	// if not empty will have racer in progress
+		    			if((queue12.size() > 0) && (queue34.isEmpty() == true) && (queue56.isEmpty() == true) && (queue78.isEmpty() == true)){
+		    				displayLine2Label.setText("Lane 1/2                                        Lane N/A");
+		    				if(queue12.size() < 6){
+		    					if(queue12.size() == 0){
+		    						displayLine3Label.setText("No Current Racer                   No Current Racer :R");
+			    					displayLine4Label.setText("");
+			    					displayLine5Label.setText("");
+			    					displayLine6Label.setText("");
+			    					displayLine7Label.setText("");
+		    					}else if(queue12.size() == 1){
+		    						displayLine3Label.setText(queue12.get(0).getBib() + " " + chronotimer.getTimer().convertTime(chronotimer.getTimer().getCurrentTime() - currentStats.getStart(queue12.get(0))) + "            :R");
+			    					displayLine4Label.setText("");
+			    					displayLine5Label.setText("");
+			    					displayLine6Label.setText("");
+			    					displayLine7Label.setText("");
+		    					}else if(queue12.size() == 2){
+		    						displayLine3Label.setText(queue12.get(0).getBib() + " " + chronotimer.getTimer().convertTime(chronotimer.getTimer().getCurrentTime() - currentStats.getStart(queue12.get(0))) + "            :R");
+			    					displayLine4Label.setText(queue12.get(1).getBib() + " " + chronotimer.getTimer().convertTime(chronotimer.getTimer().getCurrentTime() - currentStats.getStart(queue12.get(1))) + "            :R");
+			    					displayLine5Label.setText("");
+			    					displayLine6Label.setText("");
+			    					displayLine7Label.setText("");
+		    					}else if(queue12.size() == 3){
+		    						displayLine3Label.setText(queue12.get(0).getBib() + " " + chronotimer.getTimer().convertTime(chronotimer.getTimer().getCurrentTime() - currentStats.getStart(queue12.get(0))) + "            :R");
+			    					displayLine4Label.setText(queue12.get(1).getBib() + " " + chronotimer.getTimer().convertTime(chronotimer.getTimer().getCurrentTime() - currentStats.getStart(queue12.get(1))) + "            :R");
+			    					displayLine5Label.setText(queue12.get(2).getBib() + " " + chronotimer.getTimer().convertTime(chronotimer.getTimer().getCurrentTime() - currentStats.getStart(queue12.get(2))) + "            :R");
+			    					displayLine6Label.setText("");
+			    					displayLine7Label.setText("");
+		    					}else if(queue12.size() == 4){
+		    						displayLine3Label.setText(queue12.get(0).getBib() + " " + chronotimer.getTimer().convertTime(chronotimer.getTimer().getCurrentTime() - currentStats.getStart(queue12.get(0))) + "            :R");
+			    					displayLine4Label.setText(queue12.get(1).getBib() + " " + chronotimer.getTimer().convertTime(chronotimer.getTimer().getCurrentTime() - currentStats.getStart(queue12.get(1))) + "            :R");
+			    					displayLine5Label.setText(queue12.get(2).getBib() + " " + chronotimer.getTimer().convertTime(chronotimer.getTimer().getCurrentTime() - currentStats.getStart(queue12.get(2))) + "            :R");
+			    					displayLine6Label.setText(queue12.get(3).getBib() + " " + chronotimer.getTimer().convertTime(chronotimer.getTimer().getCurrentTime() - currentStats.getStart(queue12.get(3))) + "            :R");
+			    					displayLine7Label.setText("");
+		    					}else if(queue12.size() == 5){
+		    						displayLine3Label.setText(queue12.get(0).getBib() + " " + chronotimer.getTimer().convertTime(chronotimer.getTimer().getCurrentTime() - currentStats.getStart(queue12.get(0))) + "            :R");
+			    					displayLine4Label.setText(queue12.get(1).getBib() + " " + chronotimer.getTimer().convertTime(chronotimer.getTimer().getCurrentTime() - currentStats.getStart(queue12.get(1))) + "            :R");
+			    					displayLine5Label.setText(queue12.get(2).getBib() + " " + chronotimer.getTimer().convertTime(chronotimer.getTimer().getCurrentTime() - currentStats.getStart(queue12.get(2))) + "            :R");
+			    					displayLine6Label.setText(queue12.get(3).getBib() + " " + chronotimer.getTimer().convertTime(chronotimer.getTimer().getCurrentTime() - currentStats.getStart(queue12.get(3))) + "            :R");
+			    					displayLine7Label.setText(queue12.get(4).getBib() + " " + chronotimer.getTimer().convertTime(chronotimer.getTimer().getCurrentTime() - currentStats.getStart(queue12.get(4))) + "            :R");
+		    					}
+		    				}else{
+		    					int sizeTot = queue12.size();
+		    					displayLine3Label.setText(queue12.get(sizeTot-1).getBib() + " " + chronotimer.getTimer().convertTime(chronotimer.getTimer().getCurrentTime() - currentStats.getStart(queue12.get(sizeTot-1))) + "            :R");
+		    					displayLine4Label.setText(queue12.get(sizeTot-2).getBib() + " " + chronotimer.getTimer().convertTime(chronotimer.getTimer().getCurrentTime() - currentStats.getStart(queue12.get(sizeTot-2))) + "            :R");
+		    					displayLine5Label.setText(queue12.get(sizeTot-3).getBib() + " " + chronotimer.getTimer().convertTime(chronotimer.getTimer().getCurrentTime() - currentStats.getStart(queue12.get(sizeTot-3))) + "            :R");
+		    					displayLine6Label.setText(queue12.get(sizeTot-4).getBib() + " " + chronotimer.getTimer().convertTime(chronotimer.getTimer().getCurrentTime() - currentStats.getStart(queue12.get(sizeTot-4))) + "            :R");
+		    					displayLine7Label.setText(queue12.get(sizeTot-5).getBib() + " " + chronotimer.getTimer().convertTime(chronotimer.getTimer().getCurrentTime() - currentStats.getStart(queue12.get(sizeTot-5))) + "            :R");
+		    				}
+		    			}else if((queue12.size() > 0) && (queue34.size() > 0) && (queue56.isEmpty() == true) && (queue78.isEmpty() == true)){
+		    				displayLine2Label.setText("Lane 1/2                                        Lane 3/4");
+		    				String line3 = "";
+		    				String line4 = "";
+		    				String line5 = "";
+		    				String line6 = "";
+		    				String line7 = "";
+		    				if(queue12.size() < 6){
+		    					if(queue12.size() == 0){
+		    						line3 += "No Current Racer     ";
+		    					}else if(queue12.size() == 1){
+		    						line3 += (queue12.get(0).getBib() + " " + chronotimer.getTimer().convertTime(chronotimer.getTimer().getCurrentTime() - currentStats.getStart(queue12.get(0)))+ "    ");
+		    						line4 += "                                  ";
+		    						line5 += "                                  ";
+		    						line6 += "                                  ";
+		    						line7 += "                                  ";
+		    					}else if(queue12.size() == 2){
+		    						line3 += (queue12.get(0).getBib() + " " + chronotimer.getTimer().convertTime(chronotimer.getTimer().getCurrentTime() - currentStats.getStart(queue12.get(0)))+ "    ");
+			    					line4 += (queue12.get(1).getBib() + " " + chronotimer.getTimer().convertTime(chronotimer.getTimer().getCurrentTime() - currentStats.getStart(queue12.get(1)))+ "    ");
+			    					line5 += "                                  ";
+		    						line6 += "                                  ";
+		    						line7 += "                                  ";
+		    					}else if(queue12.size() == 3){
+		    						line3 += (queue12.get(0).getBib() + " " + chronotimer.getTimer().convertTime(chronotimer.getTimer().getCurrentTime() - currentStats.getStart(queue12.get(0)))+ "    ");
+		    						line4 += (queue12.get(1).getBib() + " " + chronotimer.getTimer().convertTime(chronotimer.getTimer().getCurrentTime() - currentStats.getStart(queue12.get(1)))+ "    ");
+		    						line5 += (queue12.get(2).getBib() + " " + chronotimer.getTimer().convertTime(chronotimer.getTimer().getCurrentTime() - currentStats.getStart(queue12.get(2)))+ "    ");
+		    						line6 += "                                  ";
+		    						line7 += "                                  ";
+		    					}else if(queue12.size() == 4){
+		    						line3 += (queue12.get(0).getBib() + " " + chronotimer.getTimer().convertTime(chronotimer.getTimer().getCurrentTime() - currentStats.getStart(queue12.get(0)))+ "    ");
+		    						line4 += (queue12.get(1).getBib() + " " + chronotimer.getTimer().convertTime(chronotimer.getTimer().getCurrentTime() - currentStats.getStart(queue12.get(1)))+ "    ");
+		    						line5 += (queue12.get(2).getBib() + " " + chronotimer.getTimer().convertTime(chronotimer.getTimer().getCurrentTime() - currentStats.getStart(queue12.get(2)))+ "    ");
+		    						line6 += (queue12.get(3).getBib() + " " + chronotimer.getTimer().convertTime(chronotimer.getTimer().getCurrentTime() - currentStats.getStart(queue12.get(3)))+ "    ");
+		    						line7 += "                                  ";
+		    					}else if(queue12.size() == 5){
+		    						line3 += (queue12.get(0).getBib() + " " + chronotimer.getTimer().convertTime(chronotimer.getTimer().getCurrentTime() - currentStats.getStart(queue12.get(0)))+ "    ");
+		    						line4 += (queue12.get(1).getBib() + " " + chronotimer.getTimer().convertTime(chronotimer.getTimer().getCurrentTime() - currentStats.getStart(queue12.get(1)))+ "    ");
+		    						line5 += (queue12.get(2).getBib() + " " + chronotimer.getTimer().convertTime(chronotimer.getTimer().getCurrentTime() - currentStats.getStart(queue12.get(2)))+ "    ");
+		    						line6 += (queue12.get(3).getBib() + " " + chronotimer.getTimer().convertTime(chronotimer.getTimer().getCurrentTime() - currentStats.getStart(queue12.get(3)))+ "    ");
+		    						line7 += (queue12.get(4).getBib() + " " + chronotimer.getTimer().convertTime(chronotimer.getTimer().getCurrentTime() - currentStats.getStart(queue12.get(4)))+ "    ");
+		    					}
+		    				}else{
+		    					int sizeTot = queue12.size();
+		    					line3 += (queue12.get(sizeTot-1).getBib() + " " + chronotimer.getTimer().convertTime(chronotimer.getTimer().getCurrentTime() - currentStats.getStart(queue12.get(sizeTot-1)))+ "    ");
+		    					line4 += (queue12.get(sizeTot-2).getBib() + " " + chronotimer.getTimer().convertTime(chronotimer.getTimer().getCurrentTime() - currentStats.getStart(queue12.get(sizeTot-2)))+ "    ");
+		    					line5 += (queue12.get(sizeTot-3).getBib() + " " + chronotimer.getTimer().convertTime(chronotimer.getTimer().getCurrentTime() - currentStats.getStart(queue12.get(sizeTot-3)))+ "    ");
+		    					line6 += (queue12.get(sizeTot-4).getBib() + " " + chronotimer.getTimer().convertTime(chronotimer.getTimer().getCurrentTime() - currentStats.getStart(queue12.get(sizeTot-4)))+ "    ");
+		    					line7 += (queue12.get(sizeTot-5).getBib() + " " + chronotimer.getTimer().convertTime(chronotimer.getTimer().getCurrentTime() - currentStats.getStart(queue12.get(sizeTot-5)))+ "    ");
+		    				}
+		    				
+		    				if(queue34.size() < 6){
+		    					if(queue34.size() == 0){
+		    						line3 += "No Current Racer :R";
+		    					}else if(queue34.size() == 1){
+		    						line3 += (queue34.get(0).getBib() + " " + chronotimer.getTimer().convertTime(chronotimer.getTimer().getCurrentTime() - currentStats.getStart(queue34.get(0))) + " :R");
+		    					}else if(queue34.size() == 2){
+		    						line3 += (queue34.get(0).getBib() + " " + chronotimer.getTimer().convertTime(chronotimer.getTimer().getCurrentTime() - currentStats.getStart(queue34.get(0))) + " :R");
+		    						line4 += (queue34.get(1).getBib() + " " + chronotimer.getTimer().convertTime(chronotimer.getTimer().getCurrentTime() - currentStats.getStart(queue34.get(1))) + " :R");
+		    					}else if(queue34.size() == 3){
+		    						line3 += (queue34.get(0).getBib() + " " + chronotimer.getTimer().convertTime(chronotimer.getTimer().getCurrentTime() - currentStats.getStart(queue34.get(0))) + " :R");
+		    						line4 += (queue34.get(1).getBib() + " " + chronotimer.getTimer().convertTime(chronotimer.getTimer().getCurrentTime() - currentStats.getStart(queue34.get(1))) + " :R");
+		    						line5 += (queue34.get(2).getBib() + " " + chronotimer.getTimer().convertTime(chronotimer.getTimer().getCurrentTime() - currentStats.getStart(queue34.get(2))) + " :R");
+		    					}else if(queue34.size() == 4){
+		    						line3 += (queue34.get(0).getBib() + " " + chronotimer.getTimer().convertTime(chronotimer.getTimer().getCurrentTime() - currentStats.getStart(queue34.get(0))) + " :R");
+		    						line4 += (queue34.get(1).getBib() + " " + chronotimer.getTimer().convertTime(chronotimer.getTimer().getCurrentTime() - currentStats.getStart(queue34.get(1))) + " :R");
+		    						line5 += (queue34.get(2).getBib() + " " + chronotimer.getTimer().convertTime(chronotimer.getTimer().getCurrentTime() - currentStats.getStart(queue34.get(2))) + " :R");
+		    						line6 += (queue34.get(3).getBib() + " " + chronotimer.getTimer().convertTime(chronotimer.getTimer().getCurrentTime() - currentStats.getStart(queue34.get(3))) + " :R");
+		    					}else if(queue34.size() == 5){
+		    						line3 += (queue34.get(0).getBib() + " " + chronotimer.getTimer().convertTime(chronotimer.getTimer().getCurrentTime() - currentStats.getStart(queue34.get(0))) + " :R");
+		    						line4 += (queue34.get(1).getBib() + " " + chronotimer.getTimer().convertTime(chronotimer.getTimer().getCurrentTime() - currentStats.getStart(queue34.get(1))) + " :R");
+		    						line5 += (queue34.get(2).getBib() + " " + chronotimer.getTimer().convertTime(chronotimer.getTimer().getCurrentTime() - currentStats.getStart(queue34.get(2))) + " :R");
+		    						line6 += (queue34.get(3).getBib() + " " + chronotimer.getTimer().convertTime(chronotimer.getTimer().getCurrentTime() - currentStats.getStart(queue34.get(3))) + " :R");
+		    						line7 += (queue34.get(4).getBib() + " " + chronotimer.getTimer().convertTime(chronotimer.getTimer().getCurrentTime() - currentStats.getStart(queue34.get(4))) + " :R");
+		    					}
+		    				}else{
+		    					int sizeTot = queue34.size();
+		    					line3 += (queue34.get(sizeTot-1).getBib() + " " + chronotimer.getTimer().convertTime(chronotimer.getTimer().getCurrentTime() - currentStats.getStart(queue34.get(sizeTot-1))) + " :R");
+		    					line4 += (queue34.get(sizeTot-2).getBib() + " " + chronotimer.getTimer().convertTime(chronotimer.getTimer().getCurrentTime() - currentStats.getStart(queue34.get(sizeTot-2))) + " :R");
+		    					line5 += (queue34.get(sizeTot-3).getBib() + " " + chronotimer.getTimer().convertTime(chronotimer.getTimer().getCurrentTime() - currentStats.getStart(queue34.get(sizeTot-3))) + " :R");
+		    					line6 += (queue34.get(sizeTot-4).getBib() + " " + chronotimer.getTimer().convertTime(chronotimer.getTimer().getCurrentTime() - currentStats.getStart(queue34.get(sizeTot-4))) + " :R");
+		    					line7 += (queue34.get(sizeTot-5).getBib() + " " + chronotimer.getTimer().convertTime(chronotimer.getTimer().getCurrentTime() - currentStats.getStart(queue34.get(sizeTot-5))) + " :R");
+		    				}
+		    				
+		    				displayLine2Label.setText("Lane 1/2                                        Lane 3/4");
+			    			displayLine3Label.setText(line3);
+				    		displayLine4Label.setText(line4);
+				    		displayLine5Label.setText(line5);
+				    		displayLine6Label.setText(line6);
+				    		displayLine7Label.setText(line7);
+		    			}else if((queue12.size() > 0) && (queue34.isEmpty() == true) && (queue56.size() > 0) && (queue78.isEmpty() == true)){
+		    				displayLine2Label.setText("Lane 1/2                                        Lane 5/6");
+		    				String line3 = "";
+		    				String line4 = "";
+		    				String line5 = "";
+		    				String line6 = "";
+		    				String line7 = "";
+		    				if(queue12.size() < 6){
+		    					if(queue12.size() == 0){
+		    						line3 += "No Current Racer     ";
+		    					}else if(queue12.size() == 1){
+		    						line3 += (queue12.get(0).getBib() + " " + chronotimer.getTimer().convertTime(chronotimer.getTimer().getCurrentTime() - currentStats.getStart(queue12.get(0)))+ "    ");
+		    						line4 += "                                  ";
+		    						line5 += "                                  ";
+		    						line6 += "                                  ";
+		    						line7 += "                                  ";
+		    					}else if(queue12.size() == 2){
+		    						line3 += (queue12.get(0).getBib() + " " + chronotimer.getTimer().convertTime(chronotimer.getTimer().getCurrentTime() - currentStats.getStart(queue12.get(0)))+ "    ");
+			    					line4 += (queue12.get(1).getBib() + " " + chronotimer.getTimer().convertTime(chronotimer.getTimer().getCurrentTime() - currentStats.getStart(queue12.get(1)))+ "    ");
+			    					line5 += "                                  ";
+		    						line6 += "                                  ";
+		    						line7 += "                                  ";
+		    					}else if(queue12.size() == 3){
+		    						line3 += (queue12.get(0).getBib() + " " + chronotimer.getTimer().convertTime(chronotimer.getTimer().getCurrentTime() - currentStats.getStart(queue12.get(0)))+ "    ");
+		    						line4 += (queue12.get(1).getBib() + " " + chronotimer.getTimer().convertTime(chronotimer.getTimer().getCurrentTime() - currentStats.getStart(queue12.get(1)))+ "    ");
+		    						line5 += (queue12.get(2).getBib() + " " + chronotimer.getTimer().convertTime(chronotimer.getTimer().getCurrentTime() - currentStats.getStart(queue12.get(2)))+ "    ");
+		    						line6 += "                                  ";
+		    						line7 += "                                  ";
+		    					}else if(queue12.size() == 4){
+		    						line3 += (queue12.get(0).getBib() + " " + chronotimer.getTimer().convertTime(chronotimer.getTimer().getCurrentTime() - currentStats.getStart(queue12.get(0)))+ "    ");
+		    						line4 += (queue12.get(1).getBib() + " " + chronotimer.getTimer().convertTime(chronotimer.getTimer().getCurrentTime() - currentStats.getStart(queue12.get(1)))+ "    ");
+		    						line5 += (queue12.get(2).getBib() + " " + chronotimer.getTimer().convertTime(chronotimer.getTimer().getCurrentTime() - currentStats.getStart(queue12.get(2)))+ "    ");
+		    						line6 += (queue12.get(3).getBib() + " " + chronotimer.getTimer().convertTime(chronotimer.getTimer().getCurrentTime() - currentStats.getStart(queue12.get(3)))+ "    ");
+		    						line7 += "                                  ";
+		    					}else if(queue12.size() == 5){
+		    						line3 += (queue12.get(0).getBib() + " " + chronotimer.getTimer().convertTime(chronotimer.getTimer().getCurrentTime() - currentStats.getStart(queue12.get(0)))+ "    ");
+		    						line4 += (queue12.get(1).getBib() + " " + chronotimer.getTimer().convertTime(chronotimer.getTimer().getCurrentTime() - currentStats.getStart(queue12.get(1)))+ "    ");
+		    						line5 += (queue12.get(2).getBib() + " " + chronotimer.getTimer().convertTime(chronotimer.getTimer().getCurrentTime() - currentStats.getStart(queue12.get(2)))+ "    ");
+		    						line6 += (queue12.get(3).getBib() + " " + chronotimer.getTimer().convertTime(chronotimer.getTimer().getCurrentTime() - currentStats.getStart(queue12.get(3)))+ "    ");
+		    						line7 += (queue12.get(4).getBib() + " " + chronotimer.getTimer().convertTime(chronotimer.getTimer().getCurrentTime() - currentStats.getStart(queue12.get(4)))+ "    ");
+		    					}
+		    				}else{
+		    					int sizeTot = queue12.size();
+		    					line3 += (queue12.get(sizeTot-1).getBib() + " " + chronotimer.getTimer().convertTime(chronotimer.getTimer().getCurrentTime() - currentStats.getStart(queue12.get(sizeTot-1)))+ "    ");
+		    					line4 += (queue12.get(sizeTot-2).getBib() + " " + chronotimer.getTimer().convertTime(chronotimer.getTimer().getCurrentTime() - currentStats.getStart(queue12.get(sizeTot-2)))+ "    ");
+		    					line5 += (queue12.get(sizeTot-3).getBib() + " " + chronotimer.getTimer().convertTime(chronotimer.getTimer().getCurrentTime() - currentStats.getStart(queue12.get(sizeTot-3)))+ "    ");
+		    					line6 += (queue12.get(sizeTot-4).getBib() + " " + chronotimer.getTimer().convertTime(chronotimer.getTimer().getCurrentTime() - currentStats.getStart(queue12.get(sizeTot-4)))+ "    ");
+		    					line7 += (queue12.get(sizeTot-5).getBib() + " " + chronotimer.getTimer().convertTime(chronotimer.getTimer().getCurrentTime() - currentStats.getStart(queue12.get(sizeTot-5)))+ "    ");
+		    				}
+		    				
+		    				if(queue56.size() < 6){
+		    					if(queue56.size() == 0){
+		    						line3 += "No Current Racer :R";
+		    					}else if(queue56.size() == 1){
+		    						line3 += (queue56.get(0).getBib() + " " + chronotimer.getTimer().convertTime(chronotimer.getTimer().getCurrentTime() - currentStats.getStart(queue56.get(0))) + " :R");
+		    					}else if(queue56.size() == 2){
+		    						line3 += (queue56.get(0).getBib() + " " + chronotimer.getTimer().convertTime(chronotimer.getTimer().getCurrentTime() - currentStats.getStart(queue56.get(0))) + " :R");
+		    						line4 += (queue56.get(1).getBib() + " " + chronotimer.getTimer().convertTime(chronotimer.getTimer().getCurrentTime() - currentStats.getStart(queue56.get(1))) + " :R");
+		    					}else if(queue56.size() == 3){
+		    						line3 += (queue56.get(0).getBib() + " " + chronotimer.getTimer().convertTime(chronotimer.getTimer().getCurrentTime() - currentStats.getStart(queue56.get(0))) + " :R");
+		    						line4 += (queue56.get(1).getBib() + " " + chronotimer.getTimer().convertTime(chronotimer.getTimer().getCurrentTime() - currentStats.getStart(queue56.get(1))) + " :R");
+		    						line5 += (queue56.get(2).getBib() + " " + chronotimer.getTimer().convertTime(chronotimer.getTimer().getCurrentTime() - currentStats.getStart(queue56.get(2))) + " :R");
+		    					}else if(queue56.size() == 4){
+		    						line3 += (queue56.get(0).getBib() + " " + chronotimer.getTimer().convertTime(chronotimer.getTimer().getCurrentTime() - currentStats.getStart(queue56.get(0))) + " :R");
+		    						line4 += (queue56.get(1).getBib() + " " + chronotimer.getTimer().convertTime(chronotimer.getTimer().getCurrentTime() - currentStats.getStart(queue56.get(1))) + " :R");
+		    						line5 += (queue56.get(2).getBib() + " " + chronotimer.getTimer().convertTime(chronotimer.getTimer().getCurrentTime() - currentStats.getStart(queue56.get(2))) + " :R");
+		    						line6 += (queue56.get(3).getBib() + " " + chronotimer.getTimer().convertTime(chronotimer.getTimer().getCurrentTime() - currentStats.getStart(queue56.get(3))) + " :R");
+		    					}else if(queue56.size() == 5){
+		    						line3 += (queue56.get(0).getBib() + " " + chronotimer.getTimer().convertTime(chronotimer.getTimer().getCurrentTime() - currentStats.getStart(queue56.get(0))) + " :R");
+		    						line4 += (queue56.get(1).getBib() + " " + chronotimer.getTimer().convertTime(chronotimer.getTimer().getCurrentTime() - currentStats.getStart(queue56.get(1))) + " :R");
+		    						line5 += (queue56.get(2).getBib() + " " + chronotimer.getTimer().convertTime(chronotimer.getTimer().getCurrentTime() - currentStats.getStart(queue56.get(2))) + " :R");
+		    						line6 += (queue56.get(3).getBib() + " " + chronotimer.getTimer().convertTime(chronotimer.getTimer().getCurrentTime() - currentStats.getStart(queue56.get(3))) + " :R");
+		    						line7 += (queue56.get(4).getBib() + " " + chronotimer.getTimer().convertTime(chronotimer.getTimer().getCurrentTime() - currentStats.getStart(queue56.get(4))) + " :R");
+		    					}
+		    				}else{
+		    					int sizeTot = queue56.size();
+		    					line3 += (queue56.get(sizeTot-1).getBib() + " " + chronotimer.getTimer().convertTime(chronotimer.getTimer().getCurrentTime() - currentStats.getStart(queue56.get(sizeTot-1))) + " :R");
+		    					line4 += (queue56.get(sizeTot-2).getBib() + " " + chronotimer.getTimer().convertTime(chronotimer.getTimer().getCurrentTime() - currentStats.getStart(queue56.get(sizeTot-2))) + " :R");
+		    					line5 += (queue56.get(sizeTot-3).getBib() + " " + chronotimer.getTimer().convertTime(chronotimer.getTimer().getCurrentTime() - currentStats.getStart(queue56.get(sizeTot-3))) + " :R");
+		    					line6 += (queue56.get(sizeTot-4).getBib() + " " + chronotimer.getTimer().convertTime(chronotimer.getTimer().getCurrentTime() - currentStats.getStart(queue56.get(sizeTot-4))) + " :R");
+		    					line7 += (queue56.get(sizeTot-5).getBib() + " " + chronotimer.getTimer().convertTime(chronotimer.getTimer().getCurrentTime() - currentStats.getStart(queue56.get(sizeTot-5))) + " :R");
+		    				}
+		    				
+		    				displayLine2Label.setText("Lane 1/2                                        Lane 5/6");
+			    			displayLine3Label.setText(line3);
+				    		displayLine4Label.setText(line4);
+				    		displayLine5Label.setText(line5);
+				    		displayLine6Label.setText(line6);
+				    		displayLine7Label.setText(line7);
+		    			}else if((queue12.size() > 0) && (queue34.isEmpty() == true) && (queue56.isEmpty() == true) && (queue78.size() > 0)){
+		    				displayLine2Label.setText("Lane 1/2                                        Lane 7/8");
+		    				String line3 = "";
+		    				String line4 = "";
+		    				String line5 = "";
+		    				String line6 = "";
+		    				String line7 = "";
+		    				if(queue12.size() < 6){
+		    					if(queue12.size() == 0){
+		    						line3 += "No Current Racer     ";
+		    					}else if(queue12.size() == 1){
+		    						line3 += (queue12.get(0).getBib() + " " + chronotimer.getTimer().convertTime(chronotimer.getTimer().getCurrentTime() - currentStats.getStart(queue12.get(0)))+ "    ");
+		    						line4 += "                                  ";
+		    						line5 += "                                  ";
+		    						line6 += "                                  ";
+		    						line7 += "                                  ";
+		    					}else if(queue12.size() == 2){
+		    						line3 += (queue12.get(0).getBib() + " " + chronotimer.getTimer().convertTime(chronotimer.getTimer().getCurrentTime() - currentStats.getStart(queue12.get(0)))+ "    ");
+			    					line4 += (queue12.get(1).getBib() + " " + chronotimer.getTimer().convertTime(chronotimer.getTimer().getCurrentTime() - currentStats.getStart(queue12.get(1)))+ "    ");
+			    					line5 += "                                  ";
+		    						line6 += "                                  ";
+		    						line7 += "                                  ";
+		    					}else if(queue12.size() == 3){
+		    						line3 += (queue12.get(0).getBib() + " " + chronotimer.getTimer().convertTime(chronotimer.getTimer().getCurrentTime() - currentStats.getStart(queue12.get(0)))+ "    ");
+		    						line4 += (queue12.get(1).getBib() + " " + chronotimer.getTimer().convertTime(chronotimer.getTimer().getCurrentTime() - currentStats.getStart(queue12.get(1)))+ "    ");
+		    						line5 += (queue12.get(2).getBib() + " " + chronotimer.getTimer().convertTime(chronotimer.getTimer().getCurrentTime() - currentStats.getStart(queue12.get(2)))+ "    ");
+		    						line6 += "                                  ";
+		    						line7 += "                                  ";
+		    					}else if(queue12.size() == 4){
+		    						line3 += (queue12.get(0).getBib() + " " + chronotimer.getTimer().convertTime(chronotimer.getTimer().getCurrentTime() - currentStats.getStart(queue12.get(0)))+ "    ");
+		    						line4 += (queue12.get(1).getBib() + " " + chronotimer.getTimer().convertTime(chronotimer.getTimer().getCurrentTime() - currentStats.getStart(queue12.get(1)))+ "    ");
+		    						line5 += (queue12.get(2).getBib() + " " + chronotimer.getTimer().convertTime(chronotimer.getTimer().getCurrentTime() - currentStats.getStart(queue12.get(2)))+ "    ");
+		    						line6 += (queue12.get(3).getBib() + " " + chronotimer.getTimer().convertTime(chronotimer.getTimer().getCurrentTime() - currentStats.getStart(queue12.get(3)))+ "    ");
+		    						line7 += "                                  ";
+		    					}else if(queue12.size() == 5){
+		    						line3 += (queue12.get(0).getBib() + " " + chronotimer.getTimer().convertTime(chronotimer.getTimer().getCurrentTime() - currentStats.getStart(queue12.get(0)))+ "    ");
+		    						line4 += (queue12.get(1).getBib() + " " + chronotimer.getTimer().convertTime(chronotimer.getTimer().getCurrentTime() - currentStats.getStart(queue12.get(1)))+ "    ");
+		    						line5 += (queue12.get(2).getBib() + " " + chronotimer.getTimer().convertTime(chronotimer.getTimer().getCurrentTime() - currentStats.getStart(queue12.get(2)))+ "    ");
+		    						line6 += (queue12.get(3).getBib() + " " + chronotimer.getTimer().convertTime(chronotimer.getTimer().getCurrentTime() - currentStats.getStart(queue12.get(3)))+ "    ");
+		    						line7 += (queue12.get(4).getBib() + " " + chronotimer.getTimer().convertTime(chronotimer.getTimer().getCurrentTime() - currentStats.getStart(queue12.get(4)))+ "    ");
+		    					}
+		    				}else{
+		    					int sizeTot = queue12.size();
+		    					line3 += (queue12.get(sizeTot-1).getBib() + " " + chronotimer.getTimer().convertTime(chronotimer.getTimer().getCurrentTime() - currentStats.getStart(queue12.get(sizeTot-1)))+ "    ");
+		    					line4 += (queue12.get(sizeTot-2).getBib() + " " + chronotimer.getTimer().convertTime(chronotimer.getTimer().getCurrentTime() - currentStats.getStart(queue12.get(sizeTot-2)))+ "    ");
+		    					line5 += (queue12.get(sizeTot-3).getBib() + " " + chronotimer.getTimer().convertTime(chronotimer.getTimer().getCurrentTime() - currentStats.getStart(queue12.get(sizeTot-3)))+ "    ");
+		    					line6 += (queue12.get(sizeTot-4).getBib() + " " + chronotimer.getTimer().convertTime(chronotimer.getTimer().getCurrentTime() - currentStats.getStart(queue12.get(sizeTot-4)))+ "    ");
+		    					line7 += (queue12.get(sizeTot-5).getBib() + " " + chronotimer.getTimer().convertTime(chronotimer.getTimer().getCurrentTime() - currentStats.getStart(queue12.get(sizeTot-5)))+ "    ");
+		    				}
+		    				
+		    				if(queue78.size() < 6){
+		    					if(queue78.size() == 0){
+		    						line3 += "No Current Racer :R";
+		    					}else if(queue78.size() == 1){
+		    						line3 += (queue78.get(0).getBib() + " " + chronotimer.getTimer().convertTime(chronotimer.getTimer().getCurrentTime() - currentStats.getStart(queue78.get(0))) + " :R");
+		    					}else if(queue78.size() == 2){
+		    						line3 += (queue78.get(0).getBib() + " " + chronotimer.getTimer().convertTime(chronotimer.getTimer().getCurrentTime() - currentStats.getStart(queue78.get(0))) + " :R");
+		    						line4 += (queue78.get(1).getBib() + " " + chronotimer.getTimer().convertTime(chronotimer.getTimer().getCurrentTime() - currentStats.getStart(queue78.get(1))) + " :R");
+		    					}else if(queue78.size() == 3){
+		    						line3 += (queue78.get(0).getBib() + " " + chronotimer.getTimer().convertTime(chronotimer.getTimer().getCurrentTime() - currentStats.getStart(queue78.get(0))) + " :R");
+		    						line4 += (queue78.get(1).getBib() + " " + chronotimer.getTimer().convertTime(chronotimer.getTimer().getCurrentTime() - currentStats.getStart(queue78.get(1))) + " :R");
+		    						line5 += (queue78.get(2).getBib() + " " + chronotimer.getTimer().convertTime(chronotimer.getTimer().getCurrentTime() - currentStats.getStart(queue78.get(2))) + " :R");
+		    					}else if(queue78.size() == 4){
+		    						line3 += (queue78.get(0).getBib() + " " + chronotimer.getTimer().convertTime(chronotimer.getTimer().getCurrentTime() - currentStats.getStart(queue78.get(0))) + " :R");
+		    						line4 += (queue78.get(1).getBib() + " " + chronotimer.getTimer().convertTime(chronotimer.getTimer().getCurrentTime() - currentStats.getStart(queue78.get(1))) + " :R");
+		    						line5 += (queue78.get(2).getBib() + " " + chronotimer.getTimer().convertTime(chronotimer.getTimer().getCurrentTime() - currentStats.getStart(queue78.get(2))) + " :R");
+		    						line6 += (queue78.get(3).getBib() + " " + chronotimer.getTimer().convertTime(chronotimer.getTimer().getCurrentTime() - currentStats.getStart(queue78.get(3))) + " :R");
+		    					}else if(queue78.size() == 5){
+		    						line3 += (queue78.get(0).getBib() + " " + chronotimer.getTimer().convertTime(chronotimer.getTimer().getCurrentTime() - currentStats.getStart(queue78.get(0))) + " :R");
+		    						line4 += (queue78.get(1).getBib() + " " + chronotimer.getTimer().convertTime(chronotimer.getTimer().getCurrentTime() - currentStats.getStart(queue78.get(1))) + " :R");
+		    						line5 += (queue78.get(2).getBib() + " " + chronotimer.getTimer().convertTime(chronotimer.getTimer().getCurrentTime() - currentStats.getStart(queue78.get(2))) + " :R");
+		    						line6 += (queue78.get(3).getBib() + " " + chronotimer.getTimer().convertTime(chronotimer.getTimer().getCurrentTime() - currentStats.getStart(queue78.get(3))) + " :R");
+		    						line7 += (queue78.get(4).getBib() + " " + chronotimer.getTimer().convertTime(chronotimer.getTimer().getCurrentTime() - currentStats.getStart(queue78.get(4))) + " :R");
+		    					}
+		    				}else{
+		    					int sizeTot = queue78.size();
+		    					line3 += (queue78.get(sizeTot-1).getBib() + " " + chronotimer.getTimer().convertTime(chronotimer.getTimer().getCurrentTime() - currentStats.getStart(queue78.get(sizeTot-1))) + " :R");
+		    					line4 += (queue78.get(sizeTot-2).getBib() + " " + chronotimer.getTimer().convertTime(chronotimer.getTimer().getCurrentTime() - currentStats.getStart(queue78.get(sizeTot-2))) + " :R");
+		    					line5 += (queue78.get(sizeTot-3).getBib() + " " + chronotimer.getTimer().convertTime(chronotimer.getTimer().getCurrentTime() - currentStats.getStart(queue78.get(sizeTot-3))) + " :R");
+		    					line6 += (queue78.get(sizeTot-4).getBib() + " " + chronotimer.getTimer().convertTime(chronotimer.getTimer().getCurrentTime() - currentStats.getStart(queue78.get(sizeTot-4))) + " :R");
+		    					line7 += (queue78.get(sizeTot-5).getBib() + " " + chronotimer.getTimer().convertTime(chronotimer.getTimer().getCurrentTime() - currentStats.getStart(queue78.get(sizeTot-5))) + " :R");
+		    				}
+		    				
+		    				displayLine2Label.setText("Lane 1/2                                        Lane 7/8");
+			    			displayLine3Label.setText(line3);
+				    		displayLine4Label.setText(line4);
+				    		displayLine5Label.setText(line5);
+				    		displayLine6Label.setText(line6);
+				    		displayLine7Label.setText(line7);
+		    			}else if((queue12.isEmpty() == true) && (queue34.size() > 0) && (queue56.size() > 0) && (queue78.isEmpty() == true)){
+		    				displayLine2Label.setText("Lane 3/4                                        Lane 5/6");
+		    				String line3 = "";
+		    				String line4 = "";
+		    				String line5 = "";
+		    				String line6 = "";
+		    				String line7 = "";
+		    				if(queue34.size() < 6){
+		    					if(queue34.size() == 0){
+		    						line3 += "No Current Racer     ";
+		    					}else if(queue34.size() == 1){
+		    						line3 += (queue34.get(0).getBib() + " " + chronotimer.getTimer().convertTime(chronotimer.getTimer().getCurrentTime() - currentStats.getStart(queue34.get(0)))+ "    ");
+		    						line4 += "                                  ";
+		    						line5 += "                                  ";
+		    						line6 += "                                  ";
+		    						line7 += "                                  ";
+		    					}else if(queue34.size() == 2){
+		    						line3 += (queue34.get(0).getBib() + " " + chronotimer.getTimer().convertTime(chronotimer.getTimer().getCurrentTime() - currentStats.getStart(queue34.get(0)))+ "    ");
+			    					line4 += (queue34.get(1).getBib() + " " + chronotimer.getTimer().convertTime(chronotimer.getTimer().getCurrentTime() - currentStats.getStart(queue34.get(1)))+ "    ");
+			    					line5 += "                                  ";
+		    						line6 += "                                  ";
+		    						line7 += "                                  ";
+		    					}else if(queue34.size() == 3){
+		    						line3 += (queue34.get(0).getBib() + " " + chronotimer.getTimer().convertTime(chronotimer.getTimer().getCurrentTime() - currentStats.getStart(queue34.get(0)))+ "    ");
+		    						line4 += (queue34.get(1).getBib() + " " + chronotimer.getTimer().convertTime(chronotimer.getTimer().getCurrentTime() - currentStats.getStart(queue34.get(1)))+ "    ");
+		    						line5 += (queue34.get(2).getBib() + " " + chronotimer.getTimer().convertTime(chronotimer.getTimer().getCurrentTime() - currentStats.getStart(queue34.get(2)))+ "    ");
+		    						line6 += "                                  ";
+		    						line7 += "                                  ";
+		    					}else if(queue34.size() == 4){
+		    						line3 += (queue34.get(0).getBib() + " " + chronotimer.getTimer().convertTime(chronotimer.getTimer().getCurrentTime() - currentStats.getStart(queue34.get(0)))+ "    ");
+		    						line4 += (queue34.get(1).getBib() + " " + chronotimer.getTimer().convertTime(chronotimer.getTimer().getCurrentTime() - currentStats.getStart(queue34.get(1)))+ "    ");
+		    						line5 += (queue34.get(2).getBib() + " " + chronotimer.getTimer().convertTime(chronotimer.getTimer().getCurrentTime() - currentStats.getStart(queue34.get(2)))+ "    ");
+		    						line6 += (queue34.get(3).getBib() + " " + chronotimer.getTimer().convertTime(chronotimer.getTimer().getCurrentTime() - currentStats.getStart(queue34.get(3)))+ "    ");
+		    						line7 += "                                  ";
+		    					}else if(queue34.size() == 5){
+		    						line3 += (queue34.get(0).getBib() + " " + chronotimer.getTimer().convertTime(chronotimer.getTimer().getCurrentTime() - currentStats.getStart(queue34.get(0)))+ "    ");
+		    						line4 += (queue34.get(1).getBib() + " " + chronotimer.getTimer().convertTime(chronotimer.getTimer().getCurrentTime() - currentStats.getStart(queue34.get(1)))+ "    ");
+		    						line5 += (queue34.get(2).getBib() + " " + chronotimer.getTimer().convertTime(chronotimer.getTimer().getCurrentTime() - currentStats.getStart(queue34.get(2)))+ "    ");
+		    						line6 += (queue34.get(3).getBib() + " " + chronotimer.getTimer().convertTime(chronotimer.getTimer().getCurrentTime() - currentStats.getStart(queue34.get(3)))+ "    ");
+		    						line7 += (queue34.get(4).getBib() + " " + chronotimer.getTimer().convertTime(chronotimer.getTimer().getCurrentTime() - currentStats.getStart(queue34.get(4)))+ "    ");
+		    					}
+		    				}else{
+		    					int sizeTot = queue34.size();
+		    					line3 += (queue34.get(sizeTot-1).getBib() + " " + chronotimer.getTimer().convertTime(chronotimer.getTimer().getCurrentTime() - currentStats.getStart(queue34.get(sizeTot-1)))+ "    ");
+		    					line4 += (queue34.get(sizeTot-2).getBib() + " " + chronotimer.getTimer().convertTime(chronotimer.getTimer().getCurrentTime() - currentStats.getStart(queue34.get(sizeTot-2)))+ "    ");
+		    					line5 += (queue34.get(sizeTot-3).getBib() + " " + chronotimer.getTimer().convertTime(chronotimer.getTimer().getCurrentTime() - currentStats.getStart(queue34.get(sizeTot-3)))+ "    ");
+		    					line6 += (queue34.get(sizeTot-4).getBib() + " " + chronotimer.getTimer().convertTime(chronotimer.getTimer().getCurrentTime() - currentStats.getStart(queue34.get(sizeTot-4)))+ "    ");
+		    					line7 += (queue34.get(sizeTot-5).getBib() + " " + chronotimer.getTimer().convertTime(chronotimer.getTimer().getCurrentTime() - currentStats.getStart(queue34.get(sizeTot-5)))+ "    ");
+		    				}
+		    				
+		    				if(queue56.size() < 6){
+		    					if(queue56.size() == 0){
+		    						line3 += "No Current Racer :R";
+		    					}else if(queue56.size() == 1){
+		    						line3 += (queue56.get(0).getBib() + " " + chronotimer.getTimer().convertTime(chronotimer.getTimer().getCurrentTime() - currentStats.getStart(queue56.get(0))) + " :R");
+		    					}else if(queue56.size() == 2){
+		    						line3 += (queue56.get(0).getBib() + " " + chronotimer.getTimer().convertTime(chronotimer.getTimer().getCurrentTime() - currentStats.getStart(queue56.get(0))) + " :R");
+		    						line4 += (queue56.get(1).getBib() + " " + chronotimer.getTimer().convertTime(chronotimer.getTimer().getCurrentTime() - currentStats.getStart(queue56.get(1))) + " :R");
+		    					}else if(queue56.size() == 3){
+		    						line3 += (queue56.get(0).getBib() + " " + chronotimer.getTimer().convertTime(chronotimer.getTimer().getCurrentTime() - currentStats.getStart(queue56.get(0))) + " :R");
+		    						line4 += (queue56.get(1).getBib() + " " + chronotimer.getTimer().convertTime(chronotimer.getTimer().getCurrentTime() - currentStats.getStart(queue56.get(1))) + " :R");
+		    						line5 += (queue56.get(2).getBib() + " " + chronotimer.getTimer().convertTime(chronotimer.getTimer().getCurrentTime() - currentStats.getStart(queue56.get(2))) + " :R");
+		    					}else if(queue56.size() == 4){
+		    						line3 += (queue56.get(0).getBib() + " " + chronotimer.getTimer().convertTime(chronotimer.getTimer().getCurrentTime() - currentStats.getStart(queue56.get(0))) + " :R");
+		    						line4 += (queue56.get(1).getBib() + " " + chronotimer.getTimer().convertTime(chronotimer.getTimer().getCurrentTime() - currentStats.getStart(queue56.get(1))) + " :R");
+		    						line5 += (queue56.get(2).getBib() + " " + chronotimer.getTimer().convertTime(chronotimer.getTimer().getCurrentTime() - currentStats.getStart(queue56.get(2))) + " :R");
+		    						line6 += (queue56.get(3).getBib() + " " + chronotimer.getTimer().convertTime(chronotimer.getTimer().getCurrentTime() - currentStats.getStart(queue56.get(3))) + " :R");
+		    					}else if(queue56.size() == 5){
+		    						line3 += (queue56.get(0).getBib() + " " + chronotimer.getTimer().convertTime(chronotimer.getTimer().getCurrentTime() - currentStats.getStart(queue56.get(0))) + " :R");
+		    						line4 += (queue56.get(1).getBib() + " " + chronotimer.getTimer().convertTime(chronotimer.getTimer().getCurrentTime() - currentStats.getStart(queue56.get(1))) + " :R");
+		    						line5 += (queue56.get(2).getBib() + " " + chronotimer.getTimer().convertTime(chronotimer.getTimer().getCurrentTime() - currentStats.getStart(queue56.get(2))) + " :R");
+		    						line6 += (queue56.get(3).getBib() + " " + chronotimer.getTimer().convertTime(chronotimer.getTimer().getCurrentTime() - currentStats.getStart(queue56.get(3))) + " :R");
+		    						line7 += (queue56.get(4).getBib() + " " + chronotimer.getTimer().convertTime(chronotimer.getTimer().getCurrentTime() - currentStats.getStart(queue56.get(4))) + " :R");
+		    					}
+		    				}else{
+		    					int sizeTot = queue56.size();
+		    					line3 += (queue56.get(sizeTot-1).getBib() + " " + chronotimer.getTimer().convertTime(chronotimer.getTimer().getCurrentTime() - currentStats.getStart(queue56.get(sizeTot-1))) + " :R");
+		    					line4 += (queue56.get(sizeTot-2).getBib() + " " + chronotimer.getTimer().convertTime(chronotimer.getTimer().getCurrentTime() - currentStats.getStart(queue56.get(sizeTot-2))) + " :R");
+		    					line5 += (queue56.get(sizeTot-3).getBib() + " " + chronotimer.getTimer().convertTime(chronotimer.getTimer().getCurrentTime() - currentStats.getStart(queue56.get(sizeTot-3))) + " :R");
+		    					line6 += (queue56.get(sizeTot-4).getBib() + " " + chronotimer.getTimer().convertTime(chronotimer.getTimer().getCurrentTime() - currentStats.getStart(queue56.get(sizeTot-4))) + " :R");
+		    					line7 += (queue56.get(sizeTot-5).getBib() + " " + chronotimer.getTimer().convertTime(chronotimer.getTimer().getCurrentTime() - currentStats.getStart(queue56.get(sizeTot-5))) + " :R");
+		    				}
+		    				
+		    				displayLine2Label.setText("Lane 3/4                                        Lane 5/6");
+			    			displayLine3Label.setText(line3);
+				    		displayLine4Label.setText(line4);
+				    		displayLine5Label.setText(line5);
+				    		displayLine6Label.setText(line6);
+				    		displayLine7Label.setText(line7);
+		    			}else if((queue12.isEmpty() == true) && (queue34.size() > 0) && (queue56.isEmpty() == true) && (queue78.size() > 0)){
+		    				displayLine2Label.setText("Lane 3/4                                        Lane 7/8");
+		    				String line3 = "";
+		    				String line4 = "";
+		    				String line5 = "";
+		    				String line6 = "";
+		    				String line7 = "";
+		    				if(queue34.size() < 6){
+		    					if(queue34.size() == 0){
+		    						line3 += "No Current Racer     ";
+		    					}else if(queue34.size() == 1){
+		    						line3 += (queue34.get(0).getBib() + " " + chronotimer.getTimer().convertTime(chronotimer.getTimer().getCurrentTime() - currentStats.getStart(queue34.get(0)))+ "    ");
+		    						line4 += "                                  ";
+		    						line5 += "                                  ";
+		    						line6 += "                                  ";
+		    						line7 += "                                  ";
+		    					}else if(queue34.size() == 2){
+		    						line3 += (queue34.get(0).getBib() + " " + chronotimer.getTimer().convertTime(chronotimer.getTimer().getCurrentTime() - currentStats.getStart(queue34.get(0)))+ "    ");
+			    					line4 += (queue34.get(1).getBib() + " " + chronotimer.getTimer().convertTime(chronotimer.getTimer().getCurrentTime() - currentStats.getStart(queue34.get(1)))+ "    ");
+			    					line5 += "                                  ";
+		    						line6 += "                                  ";
+		    						line7 += "                                  ";
+		    					}else if(queue34.size() == 3){
+		    						line3 += (queue34.get(0).getBib() + " " + chronotimer.getTimer().convertTime(chronotimer.getTimer().getCurrentTime() - currentStats.getStart(queue34.get(0)))+ "    ");
+		    						line4 += (queue34.get(1).getBib() + " " + chronotimer.getTimer().convertTime(chronotimer.getTimer().getCurrentTime() - currentStats.getStart(queue34.get(1)))+ "    ");
+		    						line5 += (queue34.get(2).getBib() + " " + chronotimer.getTimer().convertTime(chronotimer.getTimer().getCurrentTime() - currentStats.getStart(queue34.get(2)))+ "    ");
+		    						line6 += "                                  ";
+		    						line7 += "                                  ";
+		    					}else if(queue34.size() == 4){
+		    						line3 += (queue34.get(0).getBib() + " " + chronotimer.getTimer().convertTime(chronotimer.getTimer().getCurrentTime() - currentStats.getStart(queue34.get(0)))+ "    ");
+		    						line4 += (queue34.get(1).getBib() + " " + chronotimer.getTimer().convertTime(chronotimer.getTimer().getCurrentTime() - currentStats.getStart(queue34.get(1)))+ "    ");
+		    						line5 += (queue34.get(2).getBib() + " " + chronotimer.getTimer().convertTime(chronotimer.getTimer().getCurrentTime() - currentStats.getStart(queue34.get(2)))+ "    ");
+		    						line6 += (queue34.get(3).getBib() + " " + chronotimer.getTimer().convertTime(chronotimer.getTimer().getCurrentTime() - currentStats.getStart(queue34.get(3)))+ "    ");
+		    						line7 += "                                  ";
+		    					}else if(queue34.size() == 5){
+		    						line3 += (queue34.get(0).getBib() + " " + chronotimer.getTimer().convertTime(chronotimer.getTimer().getCurrentTime() - currentStats.getStart(queue34.get(0)))+ "    ");
+		    						line4 += (queue34.get(1).getBib() + " " + chronotimer.getTimer().convertTime(chronotimer.getTimer().getCurrentTime() - currentStats.getStart(queue34.get(1)))+ "    ");
+		    						line5 += (queue34.get(2).getBib() + " " + chronotimer.getTimer().convertTime(chronotimer.getTimer().getCurrentTime() - currentStats.getStart(queue34.get(2)))+ "    ");
+		    						line6 += (queue34.get(3).getBib() + " " + chronotimer.getTimer().convertTime(chronotimer.getTimer().getCurrentTime() - currentStats.getStart(queue34.get(3)))+ "    ");
+		    						line7 += (queue34.get(4).getBib() + " " + chronotimer.getTimer().convertTime(chronotimer.getTimer().getCurrentTime() - currentStats.getStart(queue34.get(4)))+ "    ");
+		    					}
+		    				}else{
+		    					int sizeTot = queue34.size();
+		    					line3 += (queue34.get(sizeTot-1).getBib() + " " + chronotimer.getTimer().convertTime(chronotimer.getTimer().getCurrentTime() - currentStats.getStart(queue34.get(sizeTot-1)))+ "    ");
+		    					line4 += (queue34.get(sizeTot-2).getBib() + " " + chronotimer.getTimer().convertTime(chronotimer.getTimer().getCurrentTime() - currentStats.getStart(queue34.get(sizeTot-2)))+ "    ");
+		    					line5 += (queue34.get(sizeTot-3).getBib() + " " + chronotimer.getTimer().convertTime(chronotimer.getTimer().getCurrentTime() - currentStats.getStart(queue34.get(sizeTot-3)))+ "    ");
+		    					line6 += (queue34.get(sizeTot-4).getBib() + " " + chronotimer.getTimer().convertTime(chronotimer.getTimer().getCurrentTime() - currentStats.getStart(queue34.get(sizeTot-4)))+ "    ");
+		    					line7 += (queue34.get(sizeTot-5).getBib() + " " + chronotimer.getTimer().convertTime(chronotimer.getTimer().getCurrentTime() - currentStats.getStart(queue34.get(sizeTot-5)))+ "    ");
+		    				}
+		    				
+		    				if(queue78.size() < 6){
+		    					if(queue78.size() == 0){
+		    						line3 += "No Current Racer :R";
+		    					}else if(queue78.size() == 1){
+		    						line3 += (queue78.get(0).getBib() + " " + chronotimer.getTimer().convertTime(chronotimer.getTimer().getCurrentTime() - currentStats.getStart(queue78.get(0))) + " :R");
+		    					}else if(queue78.size() == 2){
+		    						line3 += (queue78.get(0).getBib() + " " + chronotimer.getTimer().convertTime(chronotimer.getTimer().getCurrentTime() - currentStats.getStart(queue78.get(0))) + " :R");
+		    						line4 += (queue78.get(1).getBib() + " " + chronotimer.getTimer().convertTime(chronotimer.getTimer().getCurrentTime() - currentStats.getStart(queue78.get(1))) + " :R");
+		    					}else if(queue78.size() == 3){
+		    						line3 += (queue78.get(0).getBib() + " " + chronotimer.getTimer().convertTime(chronotimer.getTimer().getCurrentTime() - currentStats.getStart(queue78.get(0))) + " :R");
+		    						line4 += (queue78.get(1).getBib() + " " + chronotimer.getTimer().convertTime(chronotimer.getTimer().getCurrentTime() - currentStats.getStart(queue78.get(1))) + " :R");
+		    						line5 += (queue78.get(2).getBib() + " " + chronotimer.getTimer().convertTime(chronotimer.getTimer().getCurrentTime() - currentStats.getStart(queue78.get(2))) + " :R");
+		    					}else if(queue78.size() == 4){
+		    						line3 += (queue78.get(0).getBib() + " " + chronotimer.getTimer().convertTime(chronotimer.getTimer().getCurrentTime() - currentStats.getStart(queue78.get(0))) + " :R");
+		    						line4 += (queue78.get(1).getBib() + " " + chronotimer.getTimer().convertTime(chronotimer.getTimer().getCurrentTime() - currentStats.getStart(queue78.get(1))) + " :R");
+		    						line5 += (queue78.get(2).getBib() + " " + chronotimer.getTimer().convertTime(chronotimer.getTimer().getCurrentTime() - currentStats.getStart(queue78.get(2))) + " :R");
+		    						line6 += (queue78.get(3).getBib() + " " + chronotimer.getTimer().convertTime(chronotimer.getTimer().getCurrentTime() - currentStats.getStart(queue78.get(3))) + " :R");
+		    					}else if(queue78.size() == 5){
+		    						line3 += (queue78.get(0).getBib() + " " + chronotimer.getTimer().convertTime(chronotimer.getTimer().getCurrentTime() - currentStats.getStart(queue78.get(0))) + " :R");
+		    						line4 += (queue78.get(1).getBib() + " " + chronotimer.getTimer().convertTime(chronotimer.getTimer().getCurrentTime() - currentStats.getStart(queue78.get(1))) + " :R");
+		    						line5 += (queue78.get(2).getBib() + " " + chronotimer.getTimer().convertTime(chronotimer.getTimer().getCurrentTime() - currentStats.getStart(queue78.get(2))) + " :R");
+		    						line6 += (queue78.get(3).getBib() + " " + chronotimer.getTimer().convertTime(chronotimer.getTimer().getCurrentTime() - currentStats.getStart(queue78.get(3))) + " :R");
+		    						line7 += (queue78.get(4).getBib() + " " + chronotimer.getTimer().convertTime(chronotimer.getTimer().getCurrentTime() - currentStats.getStart(queue78.get(4))) + " :R");
+		    					}
+		    				}else{
+		    					int sizeTot = queue78.size();
+		    					line3 += (queue78.get(sizeTot-1).getBib() + " " + chronotimer.getTimer().convertTime(chronotimer.getTimer().getCurrentTime() - currentStats.getStart(queue78.get(sizeTot-1))) + " :R");
+		    					line4 += (queue78.get(sizeTot-2).getBib() + " " + chronotimer.getTimer().convertTime(chronotimer.getTimer().getCurrentTime() - currentStats.getStart(queue78.get(sizeTot-2))) + " :R");
+		    					line5 += (queue78.get(sizeTot-3).getBib() + " " + chronotimer.getTimer().convertTime(chronotimer.getTimer().getCurrentTime() - currentStats.getStart(queue78.get(sizeTot-3))) + " :R");
+		    					line6 += (queue78.get(sizeTot-4).getBib() + " " + chronotimer.getTimer().convertTime(chronotimer.getTimer().getCurrentTime() - currentStats.getStart(queue78.get(sizeTot-4))) + " :R");
+		    					line7 += (queue78.get(sizeTot-5).getBib() + " " + chronotimer.getTimer().convertTime(chronotimer.getTimer().getCurrentTime() - currentStats.getStart(queue78.get(sizeTot-5))) + " :R");
+		    				}
+		    				
+		    				displayLine2Label.setText("Lane 3/4                                        Lane 7/8");
+			    			displayLine3Label.setText(line3);
+				    		displayLine4Label.setText(line4);
+				    		displayLine5Label.setText(line5);
+				    		displayLine6Label.setText(line6);
+				    		displayLine7Label.setText(line7);
+		    			}else if((queue12.isEmpty() == true) && (queue34.size() > 0) && (queue56.isEmpty() == true) && (queue78.isEmpty() == true)){
+		    				displayLine2Label.setText("Lane 3/4                                        Lane N/A");
+		    				if(queue34.size() < 6){
+		    					if(queue34.size() == 0){
+		    						displayLine3Label.setText("No Current Racer                   No Current Racer :R");
+			    					displayLine4Label.setText("");
+			    					displayLine5Label.setText("");
+			    					displayLine6Label.setText("");
+			    					displayLine7Label.setText("");
+		    					}else if(queue34.size() == 1){
+		    						displayLine3Label.setText(queue34.get(0).getBib() + " " + chronotimer.getTimer().convertTime(chronotimer.getTimer().getCurrentTime() - currentStats.getStart(queue34.get(0))) + "            :R");
+			    					displayLine4Label.setText("");
+			    					displayLine5Label.setText("");
+			    					displayLine6Label.setText("");
+			    					displayLine7Label.setText("");
+		    					}else if(queue34.size() == 2){
+		    						displayLine3Label.setText(queue34.get(0).getBib() + " " + chronotimer.getTimer().convertTime(chronotimer.getTimer().getCurrentTime() - currentStats.getStart(queue34.get(0))) + "            :R");
+			    					displayLine4Label.setText(queue34.get(1).getBib() + " " + chronotimer.getTimer().convertTime(chronotimer.getTimer().getCurrentTime() - currentStats.getStart(queue34.get(1))) + "            :R");
+			    					displayLine5Label.setText("");
+			    					displayLine6Label.setText("");
+			    					displayLine7Label.setText("");
+		    					}else if(queue34.size() == 3){
+		    						displayLine3Label.setText(queue34.get(0).getBib() + " " + chronotimer.getTimer().convertTime(chronotimer.getTimer().getCurrentTime() - currentStats.getStart(queue34.get(0))) + "            :R");
+			    					displayLine4Label.setText(queue34.get(1).getBib() + " " + chronotimer.getTimer().convertTime(chronotimer.getTimer().getCurrentTime() - currentStats.getStart(queue34.get(1))) + "            :R");
+			    					displayLine5Label.setText(queue34.get(2).getBib() + " " + chronotimer.getTimer().convertTime(chronotimer.getTimer().getCurrentTime() - currentStats.getStart(queue34.get(2))) + "            :R");
+			    					displayLine6Label.setText("");
+			    					displayLine7Label.setText("");
+		    					}else if(queue34.size() == 4){
+		    						displayLine3Label.setText(queue34.get(0).getBib() + " " + chronotimer.getTimer().convertTime(chronotimer.getTimer().getCurrentTime() - currentStats.getStart(queue34.get(0))) + "            :R");
+			    					displayLine4Label.setText(queue34.get(1).getBib() + " " + chronotimer.getTimer().convertTime(chronotimer.getTimer().getCurrentTime() - currentStats.getStart(queue34.get(1))) + "            :R");
+			    					displayLine5Label.setText(queue34.get(2).getBib() + " " + chronotimer.getTimer().convertTime(chronotimer.getTimer().getCurrentTime() - currentStats.getStart(queue34.get(2))) + "            :R");
+			    					displayLine6Label.setText(queue34.get(3).getBib() + " " + chronotimer.getTimer().convertTime(chronotimer.getTimer().getCurrentTime() - currentStats.getStart(queue34.get(3))) + "            :R");
+			    					displayLine7Label.setText("");
+		    					}else if(queue34.size() == 5){
+		    						displayLine3Label.setText(queue34.get(0).getBib() + " " + chronotimer.getTimer().convertTime(chronotimer.getTimer().getCurrentTime() - currentStats.getStart(queue34.get(0))) + "            :R");
+			    					displayLine4Label.setText(queue34.get(1).getBib() + " " + chronotimer.getTimer().convertTime(chronotimer.getTimer().getCurrentTime() - currentStats.getStart(queue34.get(1))) + "            :R");
+			    					displayLine5Label.setText(queue34.get(2).getBib() + " " + chronotimer.getTimer().convertTime(chronotimer.getTimer().getCurrentTime() - currentStats.getStart(queue34.get(2))) + "            :R");
+			    					displayLine6Label.setText(queue34.get(3).getBib() + " " + chronotimer.getTimer().convertTime(chronotimer.getTimer().getCurrentTime() - currentStats.getStart(queue34.get(3))) + "            :R");
+			    					displayLine7Label.setText(queue34.get(4).getBib() + " " + chronotimer.getTimer().convertTime(chronotimer.getTimer().getCurrentTime() - currentStats.getStart(queue34.get(4))) + "            :R");
+		    					}
+		    				}else{
+		    					int sizeTot = queue34.size();
+		    					displayLine3Label.setText(queue34.get(sizeTot-1).getBib() + " " + chronotimer.getTimer().convertTime(chronotimer.getTimer().getCurrentTime() - currentStats.getStart(queue34.get(sizeTot-1))) + "            :R");
+		    					displayLine4Label.setText(queue34.get(sizeTot-2).getBib() + " " + chronotimer.getTimer().convertTime(chronotimer.getTimer().getCurrentTime() - currentStats.getStart(queue34.get(sizeTot-2))) + "            :R");
+		    					displayLine5Label.setText(queue34.get(sizeTot-3).getBib() + " " + chronotimer.getTimer().convertTime(chronotimer.getTimer().getCurrentTime() - currentStats.getStart(queue34.get(sizeTot-3))) + "            :R");
+		    					displayLine6Label.setText(queue34.get(sizeTot-4).getBib() + " " + chronotimer.getTimer().convertTime(chronotimer.getTimer().getCurrentTime() - currentStats.getStart(queue34.get(sizeTot-4))) + "            :R");
+		    					displayLine7Label.setText(queue34.get(sizeTot-5).getBib() + " " + chronotimer.getTimer().convertTime(chronotimer.getTimer().getCurrentTime() - currentStats.getStart(queue34.get(sizeTot-5))) + "            :R");
+		    				}
+		    			}else if((queue12.isEmpty() == true) && (queue34.isEmpty() == true) && (queue56.size() > 0) && (queue78.isEmpty() == true)){
+		    				displayLine2Label.setText("Lane 5/6                                        Lane N/A");
+		    				if(queue56.size() < 6){
+		    					if(queue56.size() == 0){
+		    						displayLine3Label.setText("No Current Racer                   No Current Racer :R");
+			    					displayLine4Label.setText("");
+			    					displayLine5Label.setText("");
+			    					displayLine6Label.setText("");
+			    					displayLine7Label.setText("");
+		    					}else if(queue56.size() == 1){
+		    						displayLine3Label.setText(queue56.get(0).getBib() + " " + chronotimer.getTimer().convertTime(chronotimer.getTimer().getCurrentTime() - currentStats.getStart(queue56.get(0))) + "            :R");
+			    					displayLine4Label.setText("");
+			    					displayLine5Label.setText("");
+			    					displayLine6Label.setText("");
+			    					displayLine7Label.setText("");
+		    					}else if(queue56.size() == 2){
+		    						displayLine3Label.setText(queue56.get(0).getBib() + " " + chronotimer.getTimer().convertTime(chronotimer.getTimer().getCurrentTime() - currentStats.getStart(queue56.get(0))) + "            :R");
+			    					displayLine4Label.setText(queue56.get(1).getBib() + " " + chronotimer.getTimer().convertTime(chronotimer.getTimer().getCurrentTime() - currentStats.getStart(queue56.get(1))) + "            :R");
+			    					displayLine5Label.setText("");
+			    					displayLine6Label.setText("");
+			    					displayLine7Label.setText("");
+		    					}else if(queue56.size() == 3){
+		    						displayLine3Label.setText(queue56.get(0).getBib() + " " + chronotimer.getTimer().convertTime(chronotimer.getTimer().getCurrentTime() - currentStats.getStart(queue56.get(0))) + "            :R");
+			    					displayLine4Label.setText(queue56.get(1).getBib() + " " + chronotimer.getTimer().convertTime(chronotimer.getTimer().getCurrentTime() - currentStats.getStart(queue56.get(1))) + "            :R");
+			    					displayLine5Label.setText(queue56.get(2).getBib() + " " + chronotimer.getTimer().convertTime(chronotimer.getTimer().getCurrentTime() - currentStats.getStart(queue56.get(2))) + "            :R");
+			    					displayLine6Label.setText("");
+			    					displayLine7Label.setText("");
+		    					}else if(queue56.size() == 4){
+		    						displayLine3Label.setText(queue56.get(0).getBib() + " " + chronotimer.getTimer().convertTime(chronotimer.getTimer().getCurrentTime() - currentStats.getStart(queue56.get(0))) + "            :R");
+			    					displayLine4Label.setText(queue56.get(1).getBib() + " " + chronotimer.getTimer().convertTime(chronotimer.getTimer().getCurrentTime() - currentStats.getStart(queue56.get(1))) + "            :R");
+			    					displayLine5Label.setText(queue56.get(2).getBib() + " " + chronotimer.getTimer().convertTime(chronotimer.getTimer().getCurrentTime() - currentStats.getStart(queue56.get(2))) + "            :R");
+			    					displayLine6Label.setText(queue56.get(3).getBib() + " " + chronotimer.getTimer().convertTime(chronotimer.getTimer().getCurrentTime() - currentStats.getStart(queue56.get(3))) + "            :R");
+			    					displayLine7Label.setText("");
+		    					}else if(queue56.size() == 5){
+		    						displayLine3Label.setText(queue56.get(0).getBib() + " " + chronotimer.getTimer().convertTime(chronotimer.getTimer().getCurrentTime() - currentStats.getStart(queue56.get(0))) + "            :R");
+			    					displayLine4Label.setText(queue56.get(1).getBib() + " " + chronotimer.getTimer().convertTime(chronotimer.getTimer().getCurrentTime() - currentStats.getStart(queue56.get(1))) + "            :R");
+			    					displayLine5Label.setText(queue56.get(2).getBib() + " " + chronotimer.getTimer().convertTime(chronotimer.getTimer().getCurrentTime() - currentStats.getStart(queue56.get(2))) + "            :R");
+			    					displayLine6Label.setText(queue56.get(3).getBib() + " " + chronotimer.getTimer().convertTime(chronotimer.getTimer().getCurrentTime() - currentStats.getStart(queue56.get(3))) + "            :R");
+			    					displayLine7Label.setText(queue56.get(4).getBib() + " " + chronotimer.getTimer().convertTime(chronotimer.getTimer().getCurrentTime() - currentStats.getStart(queue56.get(4))) + "            :R");
+		    					}
+		    				}else{
+		    					int sizeTot = queue56.size();
+		    					displayLine3Label.setText(queue56.get(sizeTot-1).getBib() + " " + chronotimer.getTimer().convertTime(chronotimer.getTimer().getCurrentTime() - currentStats.getStart(queue56.get(sizeTot-1))) + "            :R");
+		    					displayLine4Label.setText(queue56.get(sizeTot-2).getBib() + " " + chronotimer.getTimer().convertTime(chronotimer.getTimer().getCurrentTime() - currentStats.getStart(queue56.get(sizeTot-2))) + "            :R");
+		    					displayLine5Label.setText(queue56.get(sizeTot-3).getBib() + " " + chronotimer.getTimer().convertTime(chronotimer.getTimer().getCurrentTime() - currentStats.getStart(queue56.get(sizeTot-3))) + "            :R");
+		    					displayLine6Label.setText(queue56.get(sizeTot-4).getBib() + " " + chronotimer.getTimer().convertTime(chronotimer.getTimer().getCurrentTime() - currentStats.getStart(queue56.get(sizeTot-4))) + "            :R");
+		    					displayLine7Label.setText(queue56.get(sizeTot-5).getBib() + " " + chronotimer.getTimer().convertTime(chronotimer.getTimer().getCurrentTime() - currentStats.getStart(queue56.get(sizeTot-5))) + "            :R");
+		    				}
+		    			}else if((queue12.isEmpty() == true) && (queue34.isEmpty() == true) && (queue56.size() > 0) && (queue78.size() > 0)){
+		    				displayLine2Label.setText("Lane 5/6                                        Lane 7/8");
+		    				String line3 = "";
+		    				String line4 = "";
+		    				String line5 = "";
+		    				String line6 = "";
+		    				String line7 = "";
+		    				if(queue56.size() < 6){
+		    					if(queue56.size() == 0){
+		    						line3 += "No Current Racer     ";
+		    					}else if(queue56.size() == 1){
+		    						line3 += (queue56.get(0).getBib() + " " + chronotimer.getTimer().convertTime(chronotimer.getTimer().getCurrentTime() - currentStats.getStart(queue56.get(0)))+ "    ");
+		    						line4 += "                                  ";
+		    						line5 += "                                  ";
+		    						line6 += "                                  ";
+		    						line7 += "                                  ";
+		    					}else if(queue56.size() == 2){
+		    						line3 += (queue56.get(0).getBib() + " " + chronotimer.getTimer().convertTime(chronotimer.getTimer().getCurrentTime() - currentStats.getStart(queue56.get(0)))+ "    ");
+			    					line4 += (queue56.get(1).getBib() + " " + chronotimer.getTimer().convertTime(chronotimer.getTimer().getCurrentTime() - currentStats.getStart(queue56.get(1)))+ "    ");
+			    					line5 += "                                  ";
+		    						line6 += "                                  ";
+		    						line7 += "                                  ";
+		    					}else if(queue56.size() == 3){
+		    						line3 += (queue56.get(0).getBib() + " " + chronotimer.getTimer().convertTime(chronotimer.getTimer().getCurrentTime() - currentStats.getStart(queue56.get(0)))+ "    ");
+		    						line4 += (queue56.get(1).getBib() + " " + chronotimer.getTimer().convertTime(chronotimer.getTimer().getCurrentTime() - currentStats.getStart(queue56.get(1)))+ "    ");
+		    						line5 += (queue56.get(2).getBib() + " " + chronotimer.getTimer().convertTime(chronotimer.getTimer().getCurrentTime() - currentStats.getStart(queue56.get(2)))+ "    ");
+		    						line6 += "                                  ";
+		    						line7 += "                                  ";
+		    					}else if(queue56.size() == 4){
+		    						line3 += (queue56.get(0).getBib() + " " + chronotimer.getTimer().convertTime(chronotimer.getTimer().getCurrentTime() - currentStats.getStart(queue56.get(0)))+ "    ");
+		    						line4 += (queue56.get(1).getBib() + " " + chronotimer.getTimer().convertTime(chronotimer.getTimer().getCurrentTime() - currentStats.getStart(queue56.get(1)))+ "    ");
+		    						line5 += (queue56.get(2).getBib() + " " + chronotimer.getTimer().convertTime(chronotimer.getTimer().getCurrentTime() - currentStats.getStart(queue56.get(2)))+ "    ");
+		    						line6 += (queue56.get(3).getBib() + " " + chronotimer.getTimer().convertTime(chronotimer.getTimer().getCurrentTime() - currentStats.getStart(queue56.get(3)))+ "    ");
+		    						line7 += "                                  ";
+		    					}else if(queue56.size() == 5){
+		    						line3 += (queue56.get(0).getBib() + " " + chronotimer.getTimer().convertTime(chronotimer.getTimer().getCurrentTime() - currentStats.getStart(queue56.get(0)))+ "    ");
+		    						line4 += (queue56.get(1).getBib() + " " + chronotimer.getTimer().convertTime(chronotimer.getTimer().getCurrentTime() - currentStats.getStart(queue56.get(1)))+ "    ");
+		    						line5 += (queue56.get(2).getBib() + " " + chronotimer.getTimer().convertTime(chronotimer.getTimer().getCurrentTime() - currentStats.getStart(queue56.get(2)))+ "    ");
+		    						line6 += (queue56.get(3).getBib() + " " + chronotimer.getTimer().convertTime(chronotimer.getTimer().getCurrentTime() - currentStats.getStart(queue56.get(3)))+ "    ");
+		    						line7 += (queue56.get(4).getBib() + " " + chronotimer.getTimer().convertTime(chronotimer.getTimer().getCurrentTime() - currentStats.getStart(queue56.get(4)))+ "    ");
+		    					}
+		    				}else{
+		    					int sizeTot = queue56.size();
+		    					line3 += (queue56.get(sizeTot-1).getBib() + " " + chronotimer.getTimer().convertTime(chronotimer.getTimer().getCurrentTime() - currentStats.getStart(queue56.get(sizeTot-1)))+ "    ");
+		    					line4 += (queue56.get(sizeTot-2).getBib() + " " + chronotimer.getTimer().convertTime(chronotimer.getTimer().getCurrentTime() - currentStats.getStart(queue56.get(sizeTot-2)))+ "    ");
+		    					line5 += (queue56.get(sizeTot-3).getBib() + " " + chronotimer.getTimer().convertTime(chronotimer.getTimer().getCurrentTime() - currentStats.getStart(queue56.get(sizeTot-3)))+ "    ");
+		    					line6 += (queue56.get(sizeTot-4).getBib() + " " + chronotimer.getTimer().convertTime(chronotimer.getTimer().getCurrentTime() - currentStats.getStart(queue56.get(sizeTot-4)))+ "    ");
+		    					line7 += (queue56.get(sizeTot-5).getBib() + " " + chronotimer.getTimer().convertTime(chronotimer.getTimer().getCurrentTime() - currentStats.getStart(queue56.get(sizeTot-5)))+ "    ");
+		    				}
+		    				
+		    				if(queue78.size() < 6){
+		    					if(queue78.size() == 0){
+		    						line3 += "No Current Racer :R";
+		    					}else if(queue78.size() == 1){
+		    						line3 += (queue78.get(0).getBib() + " " + chronotimer.getTimer().convertTime(chronotimer.getTimer().getCurrentTime() - currentStats.getStart(queue78.get(0))) + " :R");
+		    					}else if(queue78.size() == 2){
+		    						line3 += (queue78.get(0).getBib() + " " + chronotimer.getTimer().convertTime(chronotimer.getTimer().getCurrentTime() - currentStats.getStart(queue78.get(0))) + " :R");
+		    						line4 += (queue78.get(1).getBib() + " " + chronotimer.getTimer().convertTime(chronotimer.getTimer().getCurrentTime() - currentStats.getStart(queue78.get(1))) + " :R");
+		    					}else if(queue78.size() == 3){
+		    						line3 += (queue78.get(0).getBib() + " " + chronotimer.getTimer().convertTime(chronotimer.getTimer().getCurrentTime() - currentStats.getStart(queue78.get(0))) + " :R");
+		    						line4 += (queue78.get(1).getBib() + " " + chronotimer.getTimer().convertTime(chronotimer.getTimer().getCurrentTime() - currentStats.getStart(queue78.get(1))) + " :R");
+		    						line5 += (queue78.get(2).getBib() + " " + chronotimer.getTimer().convertTime(chronotimer.getTimer().getCurrentTime() - currentStats.getStart(queue78.get(2))) + " :R");
+		    					}else if(queue78.size() == 4){
+		    						line3 += (queue78.get(0).getBib() + " " + chronotimer.getTimer().convertTime(chronotimer.getTimer().getCurrentTime() - currentStats.getStart(queue78.get(0))) + " :R");
+		    						line4 += (queue78.get(1).getBib() + " " + chronotimer.getTimer().convertTime(chronotimer.getTimer().getCurrentTime() - currentStats.getStart(queue78.get(1))) + " :R");
+		    						line5 += (queue78.get(2).getBib() + " " + chronotimer.getTimer().convertTime(chronotimer.getTimer().getCurrentTime() - currentStats.getStart(queue78.get(2))) + " :R");
+		    						line6 += (queue78.get(3).getBib() + " " + chronotimer.getTimer().convertTime(chronotimer.getTimer().getCurrentTime() - currentStats.getStart(queue78.get(3))) + " :R");
+		    					}else if(queue78.size() == 5){
+		    						line3 += (queue78.get(0).getBib() + " " + chronotimer.getTimer().convertTime(chronotimer.getTimer().getCurrentTime() - currentStats.getStart(queue78.get(0))) + " :R");
+		    						line4 += (queue78.get(1).getBib() + " " + chronotimer.getTimer().convertTime(chronotimer.getTimer().getCurrentTime() - currentStats.getStart(queue78.get(1))) + " :R");
+		    						line5 += (queue78.get(2).getBib() + " " + chronotimer.getTimer().convertTime(chronotimer.getTimer().getCurrentTime() - currentStats.getStart(queue78.get(2))) + " :R");
+		    						line6 += (queue78.get(3).getBib() + " " + chronotimer.getTimer().convertTime(chronotimer.getTimer().getCurrentTime() - currentStats.getStart(queue78.get(3))) + " :R");
+		    						line7 += (queue78.get(4).getBib() + " " + chronotimer.getTimer().convertTime(chronotimer.getTimer().getCurrentTime() - currentStats.getStart(queue78.get(4))) + " :R");
+		    					}
+		    				}else{
+		    					int sizeTot = queue78.size();
+		    					line3 += (queue78.get(sizeTot-1).getBib() + " " + chronotimer.getTimer().convertTime(chronotimer.getTimer().getCurrentTime() - currentStats.getStart(queue78.get(sizeTot-1))) + " :R");
+		    					line4 += (queue78.get(sizeTot-2).getBib() + " " + chronotimer.getTimer().convertTime(chronotimer.getTimer().getCurrentTime() - currentStats.getStart(queue78.get(sizeTot-2))) + " :R");
+		    					line5 += (queue78.get(sizeTot-3).getBib() + " " + chronotimer.getTimer().convertTime(chronotimer.getTimer().getCurrentTime() - currentStats.getStart(queue78.get(sizeTot-3))) + " :R");
+		    					line6 += (queue78.get(sizeTot-4).getBib() + " " + chronotimer.getTimer().convertTime(chronotimer.getTimer().getCurrentTime() - currentStats.getStart(queue78.get(sizeTot-4))) + " :R");
+		    					line7 += (queue78.get(sizeTot-5).getBib() + " " + chronotimer.getTimer().convertTime(chronotimer.getTimer().getCurrentTime() - currentStats.getStart(queue78.get(sizeTot-5))) + " :R");
+		    				}
+		    				
+		    				displayLine2Label.setText("Lane 5/6                                        Lane 7/8");
+			    			displayLine3Label.setText(line3);
+				    		displayLine4Label.setText(line4);
+				    		displayLine5Label.setText(line5);
+				    		displayLine6Label.setText(line6);
+				    		displayLine7Label.setText(line7);
+		    			}else if((queue12.isEmpty() == true) && (queue34.isEmpty() == true) && (queue56.isEmpty() == true) && (queue78.size() > 0)){
+		    				displayLine2Label.setText("Lane 7/8                                        Lane N/A");
+		    				if(queue78.size() < 6){
+		    					if(queue78.size() == 0){
+		    						displayLine3Label.setText("No Current Racer                   No Current Racer :R");
+			    					displayLine4Label.setText("");
+			    					displayLine5Label.setText("");
+			    					displayLine6Label.setText("");
+			    					displayLine7Label.setText("");
+		    					}else if(queue78.size() == 1){
+		    						displayLine3Label.setText("No Current Racer     " + queue78.get(0).getBib() + " " + chronotimer.getTimer().convertTime(chronotimer.getTimer().getCurrentTime() - currentStats.getStart(queue78.get(0))) + " :R");
+			    					displayLine4Label.setText("");
+			    					displayLine5Label.setText("");
+			    					displayLine6Label.setText("");
+			    					displayLine7Label.setText("");
+		    					}else if(queue78.size() == 2){
+		    						displayLine3Label.setText("No Current Racer     " + queue78.get(0).getBib() + " " + chronotimer.getTimer().convertTime(chronotimer.getTimer().getCurrentTime() - currentStats.getStart(queue78.get(0))) + " :R");
+			    					displayLine4Label.setText("No Current Racer     " + queue78.get(1).getBib() + " " + chronotimer.getTimer().convertTime(chronotimer.getTimer().getCurrentTime() - currentStats.getStart(queue78.get(1))) + " :R");
+			    					displayLine5Label.setText("");
+			    					displayLine6Label.setText("");
+			    					displayLine7Label.setText("");
+		    					}else if(queue78.size() == 3){
+		    						displayLine3Label.setText("No Current Racer     " + queue78.get(0).getBib() + " " + chronotimer.getTimer().convertTime(chronotimer.getTimer().getCurrentTime() - currentStats.getStart(queue78.get(0))) + " :R");
+			    					displayLine4Label.setText("No Current Racer     " + queue78.get(1).getBib() + " " + chronotimer.getTimer().convertTime(chronotimer.getTimer().getCurrentTime() - currentStats.getStart(queue78.get(1))) + " :R");
+			    					displayLine5Label.setText("No Current Racer     " + queue78.get(2).getBib() + " " + chronotimer.getTimer().convertTime(chronotimer.getTimer().getCurrentTime() - currentStats.getStart(queue78.get(2))) + " :R");
+			    					displayLine6Label.setText("");
+			    					displayLine7Label.setText("");
+		    					}else if(queue78.size() == 4){
+		    						displayLine3Label.setText("No Current Racer     " + queue78.get(0).getBib() + " " + chronotimer.getTimer().convertTime(chronotimer.getTimer().getCurrentTime() - currentStats.getStart(queue78.get(0))) + " :R");
+			    					displayLine4Label.setText("No Current Racer     " + queue78.get(1).getBib() + " " + chronotimer.getTimer().convertTime(chronotimer.getTimer().getCurrentTime() - currentStats.getStart(queue78.get(1))) + " :R");
+			    					displayLine5Label.setText("No Current Racer     " + queue78.get(2).getBib() + " " + chronotimer.getTimer().convertTime(chronotimer.getTimer().getCurrentTime() - currentStats.getStart(queue78.get(2))) + " :R");
+			    					displayLine6Label.setText("No Current Racer     " + queue78.get(3).getBib() + " " + chronotimer.getTimer().convertTime(chronotimer.getTimer().getCurrentTime() - currentStats.getStart(queue78.get(3))) + " :R");
+			    					displayLine7Label.setText("");
+		    					}else if(queue78.size() == 5){
+		    						displayLine3Label.setText("No Current Racer     " + queue78.get(0).getBib() + " " + chronotimer.getTimer().convertTime(chronotimer.getTimer().getCurrentTime() - currentStats.getStart(queue78.get(0))) + " :R");
+			    					displayLine4Label.setText("No Current Racer     " + queue78.get(1).getBib() + " " + chronotimer.getTimer().convertTime(chronotimer.getTimer().getCurrentTime() - currentStats.getStart(queue78.get(1))) + " :R");
+			    					displayLine5Label.setText("No Current Racer     " + queue78.get(2).getBib() + " " + chronotimer.getTimer().convertTime(chronotimer.getTimer().getCurrentTime() - currentStats.getStart(queue78.get(2))) + " :R");
+			    					displayLine6Label.setText("No Current Racer     " + queue78.get(3).getBib() + " " + chronotimer.getTimer().convertTime(chronotimer.getTimer().getCurrentTime() - currentStats.getStart(queue78.get(3))) + " :R");
+			    					displayLine7Label.setText("No Current Racer     " + queue78.get(4).getBib() + " " + chronotimer.getTimer().convertTime(chronotimer.getTimer().getCurrentTime() - currentStats.getStart(queue78.get(4))) + " :R");
+		    					}
+		    				}else{
+		    					int sizeTot = queue78.size();
+		    					displayLine3Label.setText("No Current Racer     " + queue78.get(sizeTot-1).getBib() + " " + chronotimer.getTimer().convertTime(chronotimer.getTimer().getCurrentTime() - currentStats.getStart(queue78.get(sizeTot-1))) + " :R");
+		    					displayLine4Label.setText("No Current Racer     " + queue78.get(sizeTot-2).getBib() + " " + chronotimer.getTimer().convertTime(chronotimer.getTimer().getCurrentTime() - currentStats.getStart(queue78.get(sizeTot-2))) + " :R");
+		    					displayLine5Label.setText("No Current Racer     " + queue78.get(sizeTot-3).getBib() + " " + chronotimer.getTimer().convertTime(chronotimer.getTimer().getCurrentTime() - currentStats.getStart(queue78.get(sizeTot-3))) + " :R");
+		    					displayLine6Label.setText("No Current Racer     " + queue78.get(sizeTot-4).getBib() + " " + chronotimer.getTimer().convertTime(chronotimer.getTimer().getCurrentTime() - currentStats.getStart(queue78.get(sizeTot-4))) + " :R");
+		    					displayLine7Label.setText("No Current Racer     " + queue78.get(sizeTot-5).getBib() + " " + chronotimer.getTimer().convertTime(chronotimer.getTimer().getCurrentTime() - currentStats.getStart(queue78.get(sizeTot-5))) + " :R");
+		    				}
+		    				
+		    			}
+		    		}else{	// No racers running
+		    			displayLine2Label.setText("Lane N/A                                        Lane N/A");
+		    			displayLine3Label.setText("No Current Racer                   No Current Racer :R");
+			    		displayLine4Label.setText("");
+			    		displayLine5Label.setText("");
+			    		displayLine6Label.setText("");
+			    		displayLine7Label.setText("");
+		    		}
+		    		
+		    		// last pair of racers to finish in each lane
+    			}
+		    }
+		    
 		    public void updateModel(){
 		    	if(chronotimer.getPower() == false){
 		    		displayCenterPanel.setBackground(Color.DARK_GRAY);
@@ -1132,479 +2644,8 @@ public class Driver_GUI extends JFrame{
 			    		else if(selectedEvent == 1){
 			    			//PARIND //TODO Finish PARIND
 			    			//Show the next pair to run, running time of the racers, and finish times of the last pair to finish
-			    			//No racer pair to start and no current racer pair
-			    			if(racerStartQueue.size() == 0){
-					    		displayLine1Label.setText("No Queued Racer  /  No Queued Racer :>");
-					    		
-					    		// Current Racers Running
-					    		if(racerEndQueue.isEmpty() == false){	// if not empty will have racer in progress
-					    			if((queue12.size() > 0) && (queue34.isEmpty() == true) && (queue56.isEmpty() == true) && (queue78.isEmpty() == true)){
-					    				displayLine2Label.setText("Lane 1                                        Lane 2");
-					    				if(queue12.size() < 6){
-					    					if(queue12.size() == 0){
-					    						displayLine3Label.setText("No Current Racer                   No Current Racer :R");
-						    					displayLine4Label.setText("");
-						    					displayLine5Label.setText("");
-						    					displayLine6Label.setText("");
-						    					displayLine7Label.setText("");
-					    					}else if(queue12.size() == 1){
-					    						displayLine3Label.setText(queue12.get(0).getBib() + " " + chronotimer.getTimer().convertTime(chronotimer.getTimer().getCurrentTime() - currentStats.getStart(queue12.get(0))) + "            :R");
-						    					displayLine4Label.setText("");
-						    					displayLine5Label.setText("");
-						    					displayLine6Label.setText("");
-						    					displayLine7Label.setText("");
-					    					}else if(queue12.size() == 2){
-					    						displayLine3Label.setText(queue12.get(0).getBib() + " " + chronotimer.getTimer().convertTime(chronotimer.getTimer().getCurrentTime() - currentStats.getStart(queue12.get(0))) + "            :R");
-						    					displayLine4Label.setText(queue12.get(1).getBib() + " " + chronotimer.getTimer().convertTime(chronotimer.getTimer().getCurrentTime() - currentStats.getStart(queue12.get(1))) + "            :R");
-						    					displayLine5Label.setText("");
-						    					displayLine6Label.setText("");
-						    					displayLine7Label.setText("");
-					    					}else if(queue12.size() == 3){
-					    						displayLine3Label.setText(queue12.get(0).getBib() + " " + chronotimer.getTimer().convertTime(chronotimer.getTimer().getCurrentTime() - currentStats.getStart(queue12.get(0))) + "            :R");
-						    					displayLine4Label.setText(queue12.get(1).getBib() + " " + chronotimer.getTimer().convertTime(chronotimer.getTimer().getCurrentTime() - currentStats.getStart(queue12.get(1))) + "            :R");
-						    					displayLine5Label.setText(queue12.get(2).getBib() + " " + chronotimer.getTimer().convertTime(chronotimer.getTimer().getCurrentTime() - currentStats.getStart(queue12.get(2))) + "            :R");
-						    					displayLine6Label.setText("");
-						    					displayLine7Label.setText("");
-					    					}else if(queue12.size() == 4){
-					    						displayLine3Label.setText(queue12.get(0).getBib() + " " + chronotimer.getTimer().convertTime(chronotimer.getTimer().getCurrentTime() - currentStats.getStart(queue12.get(0))) + "            :R");
-						    					displayLine4Label.setText(queue12.get(1).getBib() + " " + chronotimer.getTimer().convertTime(chronotimer.getTimer().getCurrentTime() - currentStats.getStart(queue12.get(1))) + "            :R");
-						    					displayLine5Label.setText(queue12.get(2).getBib() + " " + chronotimer.getTimer().convertTime(chronotimer.getTimer().getCurrentTime() - currentStats.getStart(queue12.get(2))) + "            :R");
-						    					displayLine6Label.setText(queue12.get(3).getBib() + " " + chronotimer.getTimer().convertTime(chronotimer.getTimer().getCurrentTime() - currentStats.getStart(queue12.get(3))) + "            :R");
-						    					displayLine7Label.setText("");
-					    					}else if(queue12.size() == 5){
-					    						displayLine3Label.setText(queue12.get(0).getBib() + " " + chronotimer.getTimer().convertTime(chronotimer.getTimer().getCurrentTime() - currentStats.getStart(queue12.get(0))) + "            :R");
-						    					displayLine4Label.setText(queue12.get(1).getBib() + " " + chronotimer.getTimer().convertTime(chronotimer.getTimer().getCurrentTime() - currentStats.getStart(queue12.get(1))) + "            :R");
-						    					displayLine5Label.setText(queue12.get(2).getBib() + " " + chronotimer.getTimer().convertTime(chronotimer.getTimer().getCurrentTime() - currentStats.getStart(queue12.get(2))) + "            :R");
-						    					displayLine6Label.setText(queue12.get(3).getBib() + " " + chronotimer.getTimer().convertTime(chronotimer.getTimer().getCurrentTime() - currentStats.getStart(queue12.get(3))) + "            :R");
-						    					displayLine7Label.setText(queue12.get(4).getBib() + " " + chronotimer.getTimer().convertTime(chronotimer.getTimer().getCurrentTime() - currentStats.getStart(queue12.get(4))) + "            :R");
-					    					}
-					    				}else{
-					    					int sizeTot = queue12.size();
-					    					displayLine3Label.setText(queue12.get(sizeTot-1).getBib() + " " + chronotimer.getTimer().convertTime(chronotimer.getTimer().getCurrentTime() - currentStats.getStart(queue12.get(sizeTot-1))) + "            :R");
-					    					displayLine4Label.setText(queue12.get(sizeTot-2).getBib() + " " + chronotimer.getTimer().convertTime(chronotimer.getTimer().getCurrentTime() - currentStats.getStart(queue12.get(sizeTot-2))) + "            :R");
-					    					displayLine5Label.setText(queue12.get(sizeTot-3).getBib() + " " + chronotimer.getTimer().convertTime(chronotimer.getTimer().getCurrentTime() - currentStats.getStart(queue12.get(sizeTot-3))) + "            :R");
-					    					displayLine6Label.setText(queue12.get(sizeTot-4).getBib() + " " + chronotimer.getTimer().convertTime(chronotimer.getTimer().getCurrentTime() - currentStats.getStart(queue12.get(sizeTot-4))) + "            :R");
-					    					displayLine7Label.setText(queue12.get(sizeTot-5).getBib() + " " + chronotimer.getTimer().convertTime(chronotimer.getTimer().getCurrentTime() - currentStats.getStart(queue12.get(sizeTot-5))) + "            :R");
-					    				}
-					    			}else if((queue12.size() > 0) && (queue34.size() > 0) && (queue56.isEmpty() == true) && (queue78.isEmpty() == true)){
-					    				displayLine2Label.setText("Lane 1                                        Lane 2");
-					    				String line3 = "";
-					    				String line4 = "";
-					    				String line5 = "";
-					    				String line6 = "";
-					    				String line7 = "";
-					    				if(queue12.size() < 6){
-					    					if(queue12.size() == 0){
-					    						line3 += "No Current Racer     ";
-					    					}else if(queue12.size() == 1){
-					    						line3 += (queue12.get(0).getBib() + " " + chronotimer.getTimer().convertTime(chronotimer.getTimer().getCurrentTime() - currentStats.getStart(queue12.get(0)))+ "    ");
-					    						line4 += "               ";
-					    						line5 += "               ";
-					    						line6 += "               ";
-					    						line7 += "               ";
-					    					}else if(queue12.size() == 2){
-					    						line3 += (queue12.get(0).getBib() + " " + chronotimer.getTimer().convertTime(chronotimer.getTimer().getCurrentTime() - currentStats.getStart(queue12.get(0)))+ "    ");
-						    					line4 += (queue12.get(1).getBib() + " " + chronotimer.getTimer().convertTime(chronotimer.getTimer().getCurrentTime() - currentStats.getStart(queue12.get(1)))+ "    ");
-						    					line5 += "               ";
-					    						line6 += "               ";
-					    						line7 += "               ";
-					    					}else if(queue12.size() == 3){
-					    						line3 += (queue12.get(0).getBib() + " " + chronotimer.getTimer().convertTime(chronotimer.getTimer().getCurrentTime() - currentStats.getStart(queue12.get(0)))+ "    ");
-					    						line4 += (queue12.get(1).getBib() + " " + chronotimer.getTimer().convertTime(chronotimer.getTimer().getCurrentTime() - currentStats.getStart(queue12.get(1)))+ "    ");
-					    						line5 += (queue12.get(2).getBib() + " " + chronotimer.getTimer().convertTime(chronotimer.getTimer().getCurrentTime() - currentStats.getStart(queue12.get(2)))+ "    ");
-					    						line6 += "               ";
-					    						line7 += "               ";
-					    					}else if(queue12.size() == 4){
-					    						line3 += (queue12.get(0).getBib() + " " + chronotimer.getTimer().convertTime(chronotimer.getTimer().getCurrentTime() - currentStats.getStart(queue12.get(0)))+ "    ");
-					    						line4 += (queue12.get(1).getBib() + " " + chronotimer.getTimer().convertTime(chronotimer.getTimer().getCurrentTime() - currentStats.getStart(queue12.get(1)))+ "    ");
-					    						line5 += (queue12.get(2).getBib() + " " + chronotimer.getTimer().convertTime(chronotimer.getTimer().getCurrentTime() - currentStats.getStart(queue12.get(2)))+ "    ");
-					    						line6 += (queue12.get(3).getBib() + " " + chronotimer.getTimer().convertTime(chronotimer.getTimer().getCurrentTime() - currentStats.getStart(queue12.get(3)))+ "    ");
-					    						line7 += "               ";
-					    					}else if(queue12.size() == 5){
-					    						line3 += (queue12.get(0).getBib() + " " + chronotimer.getTimer().convertTime(chronotimer.getTimer().getCurrentTime() - currentStats.getStart(queue12.get(0)))+ "    ");
-					    						line4 += (queue12.get(1).getBib() + " " + chronotimer.getTimer().convertTime(chronotimer.getTimer().getCurrentTime() - currentStats.getStart(queue12.get(1)))+ "    ");
-					    						line5 += (queue12.get(2).getBib() + " " + chronotimer.getTimer().convertTime(chronotimer.getTimer().getCurrentTime() - currentStats.getStart(queue12.get(2)))+ "    ");
-					    						line6 += (queue12.get(3).getBib() + " " + chronotimer.getTimer().convertTime(chronotimer.getTimer().getCurrentTime() - currentStats.getStart(queue12.get(3)))+ "    ");
-					    						line7 += (queue12.get(4).getBib() + " " + chronotimer.getTimer().convertTime(chronotimer.getTimer().getCurrentTime() - currentStats.getStart(queue12.get(4)))+ "    ");
-					    					}
-					    				}else{
-					    					int sizeTot = queue12.size();
-					    					line3 += (queue12.get(sizeTot-1).getBib() + " " + chronotimer.getTimer().convertTime(chronotimer.getTimer().getCurrentTime() - currentStats.getStart(queue12.get(sizeTot-1)))+ "    ");
-					    					line4 += (queue12.get(sizeTot-2).getBib() + " " + chronotimer.getTimer().convertTime(chronotimer.getTimer().getCurrentTime() - currentStats.getStart(queue12.get(sizeTot-2)))+ "    ");
-					    					line5 += (queue12.get(sizeTot-3).getBib() + " " + chronotimer.getTimer().convertTime(chronotimer.getTimer().getCurrentTime() - currentStats.getStart(queue12.get(sizeTot-3)))+ "    ");
-					    					line6 += (queue12.get(sizeTot-4).getBib() + " " + chronotimer.getTimer().convertTime(chronotimer.getTimer().getCurrentTime() - currentStats.getStart(queue12.get(sizeTot-4)))+ "    ");
-					    					line7 += (queue12.get(sizeTot-5).getBib() + " " + chronotimer.getTimer().convertTime(chronotimer.getTimer().getCurrentTime() - currentStats.getStart(queue12.get(sizeTot-5)))+ "    ");
-					    				}
-					    				
-					    				if(queue34.size() < 6){
-					    					if(queue34.size() == 0){
-					    						line3 += "No Current Racer :R";
-					    					}else if(queue34.size() == 1){
-					    						line3 += (queue34.get(0).getBib() + " " + chronotimer.getTimer().convertTime(chronotimer.getTimer().getCurrentTime() - currentStats.getStart(queue34.get(0))) + " :R");
-					    					}else if(queue34.size() == 2){
-					    						line3 += (queue34.get(0).getBib() + " " + chronotimer.getTimer().convertTime(chronotimer.getTimer().getCurrentTime() - currentStats.getStart(queue34.get(0))) + " :R");
-					    						line4 += (queue34.get(1).getBib() + " " + chronotimer.getTimer().convertTime(chronotimer.getTimer().getCurrentTime() - currentStats.getStart(queue34.get(1))) + " :R");
-					    					}else if(queue34.size() == 3){
-					    						line3 += (queue34.get(0).getBib() + " " + chronotimer.getTimer().convertTime(chronotimer.getTimer().getCurrentTime() - currentStats.getStart(queue34.get(0))) + " :R");
-					    						line4 += (queue34.get(1).getBib() + " " + chronotimer.getTimer().convertTime(chronotimer.getTimer().getCurrentTime() - currentStats.getStart(queue34.get(1))) + " :R");
-					    						line5 += (queue34.get(2).getBib() + " " + chronotimer.getTimer().convertTime(chronotimer.getTimer().getCurrentTime() - currentStats.getStart(queue34.get(2))) + " :R");
-					    					}else if(queue34.size() == 4){
-					    						line3 += (queue34.get(0).getBib() + " " + chronotimer.getTimer().convertTime(chronotimer.getTimer().getCurrentTime() - currentStats.getStart(queue34.get(0))) + " :R");
-					    						line4 += (queue34.get(1).getBib() + " " + chronotimer.getTimer().convertTime(chronotimer.getTimer().getCurrentTime() - currentStats.getStart(queue34.get(1))) + " :R");
-					    						line5 += (queue34.get(2).getBib() + " " + chronotimer.getTimer().convertTime(chronotimer.getTimer().getCurrentTime() - currentStats.getStart(queue34.get(2))) + " :R");
-					    						line6 += (queue34.get(3).getBib() + " " + chronotimer.getTimer().convertTime(chronotimer.getTimer().getCurrentTime() - currentStats.getStart(queue34.get(3))) + " :R");
-					    					}else if(queue34.size() == 5){
-					    						line3 += (queue34.get(0).getBib() + " " + chronotimer.getTimer().convertTime(chronotimer.getTimer().getCurrentTime() - currentStats.getStart(queue34.get(0))) + " :R");
-					    						line4 += (queue34.get(1).getBib() + " " + chronotimer.getTimer().convertTime(chronotimer.getTimer().getCurrentTime() - currentStats.getStart(queue34.get(1))) + " :R");
-					    						line5 += (queue34.get(2).getBib() + " " + chronotimer.getTimer().convertTime(chronotimer.getTimer().getCurrentTime() - currentStats.getStart(queue34.get(2))) + " :R");
-					    						line6 += (queue34.get(3).getBib() + " " + chronotimer.getTimer().convertTime(chronotimer.getTimer().getCurrentTime() - currentStats.getStart(queue34.get(3))) + " :R");
-					    						line7 += (queue34.get(4).getBib() + " " + chronotimer.getTimer().convertTime(chronotimer.getTimer().getCurrentTime() - currentStats.getStart(queue34.get(4))) + " :R");
-					    					}
-					    				}else{
-					    					int sizeTot = queue34.size();
-					    					line3 += (queue34.get(sizeTot-1).getBib() + " " + chronotimer.getTimer().convertTime(chronotimer.getTimer().getCurrentTime() - currentStats.getStart(queue34.get(sizeTot-1))) + " :R");
-					    					line4 += (queue34.get(sizeTot-2).getBib() + " " + chronotimer.getTimer().convertTime(chronotimer.getTimer().getCurrentTime() - currentStats.getStart(queue34.get(sizeTot-2))) + " :R");
-					    					line5 += (queue34.get(sizeTot-3).getBib() + " " + chronotimer.getTimer().convertTime(chronotimer.getTimer().getCurrentTime() - currentStats.getStart(queue34.get(sizeTot-3))) + " :R");
-					    					line6 += (queue34.get(sizeTot-4).getBib() + " " + chronotimer.getTimer().convertTime(chronotimer.getTimer().getCurrentTime() - currentStats.getStart(queue34.get(sizeTot-4))) + " :R");
-					    					line7 += (queue34.get(sizeTot-5).getBib() + " " + chronotimer.getTimer().convertTime(chronotimer.getTimer().getCurrentTime() - currentStats.getStart(queue34.get(sizeTot-5))) + " :R");
-					    				}
-					    				
-					    				displayLine2Label.setText("Lane 1                                        Lane 2");
-						    			displayLine3Label.setText(line3);
-							    		displayLine4Label.setText(line4);
-							    		displayLine5Label.setText(line5);
-							    		displayLine6Label.setText(line6);
-							    		displayLine7Label.setText(line7);
-					    			}else if((queue12.size() > 0) && (queue34.isEmpty() == true) && (queue56.size() > 0) && (queue78.isEmpty() == true)){
-					    				
-					    			}else if((queue12.size() > 0) && (queue34.isEmpty() == true) && (queue56.isEmpty() == true) && (queue78.size() > 0)){
-					    				
-					    			}else if((queue12.isEmpty() == true) && (queue34.size() > 0) && (queue56.size() > 0) && (queue78.isEmpty() == true)){
-					    				
-					    			}else if((queue12.isEmpty() == true) && (queue34.size() > 0) && (queue56.isEmpty() == true) && (queue78.size() > 0)){
-					    				
-					    			}else if((queue12.isEmpty() == true) && (queue34.size() > 0) && (queue56.isEmpty() == true) && (queue78.isEmpty() == true)){
-					    				
-					    			}else if((queue12.isEmpty() == true) && (queue34.isEmpty() == true) && (queue56.size() > 0) && (queue78.isEmpty() == true)){
-					    				
-					    			}else if((queue12.isEmpty() == true) && (queue34.isEmpty() == true) && (queue56.size() > 0) && (queue78.size() > 0)){
-					    				
-					    			}else if((queue12.isEmpty() == true) && (queue34.isEmpty() == true) && (queue56.isEmpty() == true) && (queue78.size() > 0)){
-					    				displayLine2Label.setText("Lane 1                                        Lane 2");
-					    				if(queue78.size() < 6){
-					    					if(queue78.size() == 0){
-					    						displayLine3Label.setText("No Current Racer                   No Current Racer :R");
-						    					displayLine4Label.setText("");
-						    					displayLine5Label.setText("");
-						    					displayLine6Label.setText("");
-						    					displayLine7Label.setText("");
-					    					}else if(queue78.size() == 1){
-					    						displayLine3Label.setText("No Current Racer     " + queue78.get(0).getBib() + " " + chronotimer.getTimer().convertTime(chronotimer.getTimer().getCurrentTime() - currentStats.getStart(queue78.get(0))) + " :R");
-						    					displayLine4Label.setText("");
-						    					displayLine5Label.setText("");
-						    					displayLine6Label.setText("");
-						    					displayLine7Label.setText("");
-					    					}else if(queue78.size() == 2){
-					    						displayLine3Label.setText("No Current Racer     " + queue78.get(0).getBib() + " " + chronotimer.getTimer().convertTime(chronotimer.getTimer().getCurrentTime() - currentStats.getStart(queue78.get(0))) + " :R");
-						    					displayLine4Label.setText("No Current Racer     " + queue78.get(1).getBib() + " " + chronotimer.getTimer().convertTime(chronotimer.getTimer().getCurrentTime() - currentStats.getStart(queue78.get(1))) + " :R");
-						    					displayLine5Label.setText("");
-						    					displayLine6Label.setText("");
-						    					displayLine7Label.setText("");
-					    					}else if(queue78.size() == 3){
-					    						displayLine3Label.setText("No Current Racer     " + queue78.get(0).getBib() + " " + chronotimer.getTimer().convertTime(chronotimer.getTimer().getCurrentTime() - currentStats.getStart(queue78.get(0))) + " :R");
-						    					displayLine4Label.setText("No Current Racer     " + queue78.get(1).getBib() + " " + chronotimer.getTimer().convertTime(chronotimer.getTimer().getCurrentTime() - currentStats.getStart(queue78.get(1))) + " :R");
-						    					displayLine5Label.setText("No Current Racer     " + queue78.get(2).getBib() + " " + chronotimer.getTimer().convertTime(chronotimer.getTimer().getCurrentTime() - currentStats.getStart(queue78.get(2))) + " :R");
-						    					displayLine6Label.setText("");
-						    					displayLine7Label.setText("");
-					    					}else if(queue78.size() == 4){
-					    						displayLine3Label.setText("No Current Racer     " + queue78.get(0).getBib() + " " + chronotimer.getTimer().convertTime(chronotimer.getTimer().getCurrentTime() - currentStats.getStart(queue78.get(0))) + " :R");
-						    					displayLine4Label.setText("No Current Racer     " + queue78.get(1).getBib() + " " + chronotimer.getTimer().convertTime(chronotimer.getTimer().getCurrentTime() - currentStats.getStart(queue78.get(1))) + " :R");
-						    					displayLine5Label.setText("No Current Racer     " + queue78.get(2).getBib() + " " + chronotimer.getTimer().convertTime(chronotimer.getTimer().getCurrentTime() - currentStats.getStart(queue78.get(2))) + " :R");
-						    					displayLine6Label.setText("No Current Racer     " + queue78.get(3).getBib() + " " + chronotimer.getTimer().convertTime(chronotimer.getTimer().getCurrentTime() - currentStats.getStart(queue78.get(3))) + " :R");
-						    					displayLine7Label.setText("");
-					    					}else if(queue78.size() == 5){
-					    						displayLine3Label.setText("No Current Racer     " + queue78.get(0).getBib() + " " + chronotimer.getTimer().convertTime(chronotimer.getTimer().getCurrentTime() - currentStats.getStart(queue78.get(0))) + " :R");
-						    					displayLine4Label.setText("No Current Racer     " + queue78.get(1).getBib() + " " + chronotimer.getTimer().convertTime(chronotimer.getTimer().getCurrentTime() - currentStats.getStart(queue78.get(1))) + " :R");
-						    					displayLine5Label.setText("No Current Racer     " + queue78.get(2).getBib() + " " + chronotimer.getTimer().convertTime(chronotimer.getTimer().getCurrentTime() - currentStats.getStart(queue78.get(2))) + " :R");
-						    					displayLine6Label.setText("No Current Racer     " + queue78.get(3).getBib() + " " + chronotimer.getTimer().convertTime(chronotimer.getTimer().getCurrentTime() - currentStats.getStart(queue78.get(3))) + " :R");
-						    					displayLine7Label.setText("No Current Racer     " + queue78.get(4).getBib() + " " + chronotimer.getTimer().convertTime(chronotimer.getTimer().getCurrentTime() - currentStats.getStart(queue78.get(4))) + " :R");
-					    					}
-					    				}else{
-					    					int sizeTot = queue78.size();
-					    					displayLine3Label.setText("No Current Racer     " + queue78.get(sizeTot-1).getBib() + " " + chronotimer.getTimer().convertTime(chronotimer.getTimer().getCurrentTime() - currentStats.getStart(queue78.get(sizeTot-1))) + " :R");
-					    					displayLine4Label.setText("No Current Racer     " + queue78.get(sizeTot-2).getBib() + " " + chronotimer.getTimer().convertTime(chronotimer.getTimer().getCurrentTime() - currentStats.getStart(queue78.get(sizeTot-2))) + " :R");
-					    					displayLine5Label.setText("No Current Racer     " + queue78.get(sizeTot-3).getBib() + " " + chronotimer.getTimer().convertTime(chronotimer.getTimer().getCurrentTime() - currentStats.getStart(queue78.get(sizeTot-3))) + " :R");
-					    					displayLine6Label.setText("No Current Racer     " + queue78.get(sizeTot-4).getBib() + " " + chronotimer.getTimer().convertTime(chronotimer.getTimer().getCurrentTime() - currentStats.getStart(queue78.get(sizeTot-4))) + " :R");
-					    					displayLine7Label.setText("No Current Racer     " + queue78.get(sizeTot-5).getBib() + " " + chronotimer.getTimer().convertTime(chronotimer.getTimer().getCurrentTime() - currentStats.getStart(queue78.get(sizeTot-5))) + " :R");
-					    				}
-					    				
-					    			}
-					    		}else{	// No racers running
-					    			displayLine2Label.setText("Lane 1                                        Lane 2");
-					    			displayLine3Label.setText("No Current Racer                   No Current Racer :R");
-						    		displayLine4Label.setText("");
-						    		displayLine5Label.setText("");
-						    		displayLine6Label.setText("");
-						    		displayLine7Label.setText("");
-					    		}
-					    		
-					    		// last pair of racers to finish in each lane
-			    			}
-			    			//Pair of racers to start and current racer pair
-			    			else{
-			    				if(racerStartQueue.isEmpty()){
-			    					displayLine1Label.setText("No Queued Racer  /  No Queued Racer :>");
-			    				}else if(racerStartQueue.size() == 1){
-			    					displayLine1Label.setText(racerStartQueue.get(0).getBib() + "  /  No Queued Racer :>");
-			    				}else if(racerStartQueue.size() > 1){
-			    					displayLine1Label.setText(racerStartQueue.get(0).getBib() + "  /  " + racerStartQueue.get(1).getBib() + " :>");
-			    				}
-			    				
-			    				
-			    				// Current Racers Running
-					    		if(racerEndQueue.isEmpty() == false){	// if not empty will have racer in progress
-					    			if((queue12.size() > 0) && (queue34.isEmpty() == true) && (queue56.isEmpty() == true) && (queue78.isEmpty() == true)){
-					    				displayLine2Label.setText("Lane 1                                        Lane 2");
-					    				if(queue12.size() < 6){
-					    					if(queue12.size() == 0){
-					    						displayLine3Label.setText("No Current Racer                   No Current Racer :R");
-						    					displayLine4Label.setText("");
-						    					displayLine5Label.setText("");
-						    					displayLine6Label.setText("");
-						    					displayLine7Label.setText("");
-					    					}else if(queue12.size() == 1){
-					    						displayLine3Label.setText(queue12.get(0).getBib() + " " + chronotimer.getTimer().convertTime(chronotimer.getTimer().getCurrentTime() - currentStats.getStart(queue12.get(0))) + "            :R");
-						    					displayLine4Label.setText("");
-						    					displayLine5Label.setText("");
-						    					displayLine6Label.setText("");
-						    					displayLine7Label.setText("");
-					    					}else if(queue12.size() == 2){
-					    						displayLine3Label.setText(queue12.get(0).getBib() + " " + chronotimer.getTimer().convertTime(chronotimer.getTimer().getCurrentTime() - currentStats.getStart(queue12.get(0))) + "            :R");
-						    					displayLine4Label.setText(queue12.get(1).getBib() + " " + chronotimer.getTimer().convertTime(chronotimer.getTimer().getCurrentTime() - currentStats.getStart(queue12.get(1))) + "            :R");
-						    					displayLine5Label.setText("");
-						    					displayLine6Label.setText("");
-						    					displayLine7Label.setText("");
-					    					}else if(queue12.size() == 3){
-					    						displayLine3Label.setText(queue12.get(0).getBib() + " " + chronotimer.getTimer().convertTime(chronotimer.getTimer().getCurrentTime() - currentStats.getStart(queue12.get(0))) + "            :R");
-						    					displayLine4Label.setText(queue12.get(1).getBib() + " " + chronotimer.getTimer().convertTime(chronotimer.getTimer().getCurrentTime() - currentStats.getStart(queue12.get(1))) + "            :R");
-						    					displayLine5Label.setText(queue12.get(2).getBib() + " " + chronotimer.getTimer().convertTime(chronotimer.getTimer().getCurrentTime() - currentStats.getStart(queue12.get(2))) + "            :R");
-						    					displayLine6Label.setText("");
-						    					displayLine7Label.setText("");
-					    					}else if(queue12.size() == 4){
-					    						displayLine3Label.setText(queue12.get(0).getBib() + " " + chronotimer.getTimer().convertTime(chronotimer.getTimer().getCurrentTime() - currentStats.getStart(queue12.get(0))) + "            :R");
-						    					displayLine4Label.setText(queue12.get(1).getBib() + " " + chronotimer.getTimer().convertTime(chronotimer.getTimer().getCurrentTime() - currentStats.getStart(queue12.get(1))) + "            :R");
-						    					displayLine5Label.setText(queue12.get(2).getBib() + " " + chronotimer.getTimer().convertTime(chronotimer.getTimer().getCurrentTime() - currentStats.getStart(queue12.get(2))) + "            :R");
-						    					displayLine6Label.setText(queue12.get(3).getBib() + " " + chronotimer.getTimer().convertTime(chronotimer.getTimer().getCurrentTime() - currentStats.getStart(queue12.get(3))) + "            :R");
-						    					displayLine7Label.setText("");
-					    					}else if(queue12.size() == 5){
-					    						displayLine3Label.setText(queue12.get(0).getBib() + " " + chronotimer.getTimer().convertTime(chronotimer.getTimer().getCurrentTime() - currentStats.getStart(queue12.get(0))) + "            :R");
-						    					displayLine4Label.setText(queue12.get(1).getBib() + " " + chronotimer.getTimer().convertTime(chronotimer.getTimer().getCurrentTime() - currentStats.getStart(queue12.get(1))) + "            :R");
-						    					displayLine5Label.setText(queue12.get(2).getBib() + " " + chronotimer.getTimer().convertTime(chronotimer.getTimer().getCurrentTime() - currentStats.getStart(queue12.get(2))) + "            :R");
-						    					displayLine6Label.setText(queue12.get(3).getBib() + " " + chronotimer.getTimer().convertTime(chronotimer.getTimer().getCurrentTime() - currentStats.getStart(queue12.get(3))) + "            :R");
-						    					displayLine7Label.setText(queue12.get(4).getBib() + " " + chronotimer.getTimer().convertTime(chronotimer.getTimer().getCurrentTime() - currentStats.getStart(queue12.get(4))) + "            :R");
-					    					}
-					    				}else{
-					    					int sizeTot = queue12.size();
-					    					displayLine3Label.setText(queue12.get(sizeTot-1).getBib() + " " + chronotimer.getTimer().convertTime(chronotimer.getTimer().getCurrentTime() - currentStats.getStart(queue12.get(sizeTot-1))) + "            :R");
-					    					displayLine4Label.setText(queue12.get(sizeTot-2).getBib() + " " + chronotimer.getTimer().convertTime(chronotimer.getTimer().getCurrentTime() - currentStats.getStart(queue12.get(sizeTot-2))) + "            :R");
-					    					displayLine5Label.setText(queue12.get(sizeTot-3).getBib() + " " + chronotimer.getTimer().convertTime(chronotimer.getTimer().getCurrentTime() - currentStats.getStart(queue12.get(sizeTot-3))) + "            :R");
-					    					displayLine6Label.setText(queue12.get(sizeTot-4).getBib() + " " + chronotimer.getTimer().convertTime(chronotimer.getTimer().getCurrentTime() - currentStats.getStart(queue12.get(sizeTot-4))) + "            :R");
-					    					displayLine7Label.setText(queue12.get(sizeTot-5).getBib() + " " + chronotimer.getTimer().convertTime(chronotimer.getTimer().getCurrentTime() - currentStats.getStart(queue12.get(sizeTot-5))) + "            :R");
-					    				}
-					    			}else if((queue12.size() > 0) && (queue34.size() > 0) && (queue56.isEmpty() == true) && (queue78.isEmpty() == true)){
-					    				displayLine2Label.setText("Lane 1                                        Lane 2");
-					    				String line3 = "";
-					    				String line4 = "";
-					    				String line5 = "";
-					    				String line6 = "";
-					    				String line7 = "";
-					    				if(queue12.size() < 6){
-					    					if(queue12.size() == 0){
-					    						line3 += "No Current Racer     ";
-					    					}else if(queue12.size() == 1){
-					    						line3 += (queue12.get(0).getBib() + " " + chronotimer.getTimer().convertTime(chronotimer.getTimer().getCurrentTime() - currentStats.getStart(queue12.get(0)))+ "    ");
-					    						line4 += "               ";
-					    						line5 += "               ";
-					    						line6 += "               ";
-					    						line7 += "               ";
-					    					}else if(queue12.size() == 2){
-					    						line3 += (queue12.get(0).getBib() + " " + chronotimer.getTimer().convertTime(chronotimer.getTimer().getCurrentTime() - currentStats.getStart(queue12.get(0)))+ "    ");
-						    					line4 += (queue12.get(1).getBib() + " " + chronotimer.getTimer().convertTime(chronotimer.getTimer().getCurrentTime() - currentStats.getStart(queue12.get(1)))+ "    ");
-						    					line5 += "               ";
-					    						line6 += "               ";
-					    						line7 += "               ";
-					    					}else if(queue12.size() == 3){
-					    						line3 += (queue12.get(0).getBib() + " " + chronotimer.getTimer().convertTime(chronotimer.getTimer().getCurrentTime() - currentStats.getStart(queue12.get(0)))+ "    ");
-					    						line4 += (queue12.get(1).getBib() + " " + chronotimer.getTimer().convertTime(chronotimer.getTimer().getCurrentTime() - currentStats.getStart(queue12.get(1)))+ "    ");
-					    						line5 += (queue12.get(2).getBib() + " " + chronotimer.getTimer().convertTime(chronotimer.getTimer().getCurrentTime() - currentStats.getStart(queue12.get(2)))+ "    ");
-					    						line6 += "               ";
-					    						line7 += "               ";
-					    					}else if(queue12.size() == 4){
-					    						line3 += (queue12.get(0).getBib() + " " + chronotimer.getTimer().convertTime(chronotimer.getTimer().getCurrentTime() - currentStats.getStart(queue12.get(0)))+ "    ");
-					    						line4 += (queue12.get(1).getBib() + " " + chronotimer.getTimer().convertTime(chronotimer.getTimer().getCurrentTime() - currentStats.getStart(queue12.get(1)))+ "    ");
-					    						line5 += (queue12.get(2).getBib() + " " + chronotimer.getTimer().convertTime(chronotimer.getTimer().getCurrentTime() - currentStats.getStart(queue12.get(2)))+ "    ");
-					    						line6 += (queue12.get(3).getBib() + " " + chronotimer.getTimer().convertTime(chronotimer.getTimer().getCurrentTime() - currentStats.getStart(queue12.get(3)))+ "    ");
-					    						line7 += "               ";
-					    					}else if(queue12.size() == 5){
-					    						line3 += (queue12.get(0).getBib() + " " + chronotimer.getTimer().convertTime(chronotimer.getTimer().getCurrentTime() - currentStats.getStart(queue12.get(0)))+ "    ");
-					    						line4 += (queue12.get(1).getBib() + " " + chronotimer.getTimer().convertTime(chronotimer.getTimer().getCurrentTime() - currentStats.getStart(queue12.get(1)))+ "    ");
-					    						line5 += (queue12.get(2).getBib() + " " + chronotimer.getTimer().convertTime(chronotimer.getTimer().getCurrentTime() - currentStats.getStart(queue12.get(2)))+ "    ");
-					    						line6 += (queue12.get(3).getBib() + " " + chronotimer.getTimer().convertTime(chronotimer.getTimer().getCurrentTime() - currentStats.getStart(queue12.get(3)))+ "    ");
-					    						line7 += (queue12.get(4).getBib() + " " + chronotimer.getTimer().convertTime(chronotimer.getTimer().getCurrentTime() - currentStats.getStart(queue12.get(4)))+ "    ");
-					    					}
-					    				}else{
-					    					int sizeTot = queue12.size();
-					    					line3 += (queue12.get(sizeTot-1).getBib() + " " + chronotimer.getTimer().convertTime(chronotimer.getTimer().getCurrentTime() - currentStats.getStart(queue12.get(sizeTot-1)))+ "    ");
-					    					line4 += (queue12.get(sizeTot-2).getBib() + " " + chronotimer.getTimer().convertTime(chronotimer.getTimer().getCurrentTime() - currentStats.getStart(queue12.get(sizeTot-2)))+ "    ");
-					    					line5 += (queue12.get(sizeTot-3).getBib() + " " + chronotimer.getTimer().convertTime(chronotimer.getTimer().getCurrentTime() - currentStats.getStart(queue12.get(sizeTot-3)))+ "    ");
-					    					line6 += (queue12.get(sizeTot-4).getBib() + " " + chronotimer.getTimer().convertTime(chronotimer.getTimer().getCurrentTime() - currentStats.getStart(queue12.get(sizeTot-4)))+ "    ");
-					    					line7 += (queue12.get(sizeTot-5).getBib() + " " + chronotimer.getTimer().convertTime(chronotimer.getTimer().getCurrentTime() - currentStats.getStart(queue12.get(sizeTot-5)))+ "    ");
-					    				}
-					    				
-					    				if(queue34.size() < 6){
-					    					if(queue34.size() == 0){
-					    						line3 += "No Current Racer :R";
-					    					}else if(queue34.size() == 1){
-					    						line3 += (queue34.get(0).getBib() + " " + chronotimer.getTimer().convertTime(chronotimer.getTimer().getCurrentTime() - currentStats.getStart(queue34.get(0))) + " :R");
-					    					}else if(queue34.size() == 2){
-					    						line3 += (queue34.get(0).getBib() + " " + chronotimer.getTimer().convertTime(chronotimer.getTimer().getCurrentTime() - currentStats.getStart(queue34.get(0))) + " :R");
-					    						line4 += (queue34.get(1).getBib() + " " + chronotimer.getTimer().convertTime(chronotimer.getTimer().getCurrentTime() - currentStats.getStart(queue34.get(1))) + " :R");
-					    					}else if(queue34.size() == 3){
-					    						line3 += (queue34.get(0).getBib() + " " + chronotimer.getTimer().convertTime(chronotimer.getTimer().getCurrentTime() - currentStats.getStart(queue34.get(0))) + " :R");
-					    						line4 += (queue34.get(1).getBib() + " " + chronotimer.getTimer().convertTime(chronotimer.getTimer().getCurrentTime() - currentStats.getStart(queue34.get(1))) + " :R");
-					    						line5 += (queue34.get(2).getBib() + " " + chronotimer.getTimer().convertTime(chronotimer.getTimer().getCurrentTime() - currentStats.getStart(queue34.get(2))) + " :R");
-					    					}else if(queue34.size() == 4){
-					    						line3 += (queue34.get(0).getBib() + " " + chronotimer.getTimer().convertTime(chronotimer.getTimer().getCurrentTime() - currentStats.getStart(queue34.get(0))) + " :R");
-					    						line4 += (queue34.get(1).getBib() + " " + chronotimer.getTimer().convertTime(chronotimer.getTimer().getCurrentTime() - currentStats.getStart(queue34.get(1))) + " :R");
-					    						line5 += (queue34.get(2).getBib() + " " + chronotimer.getTimer().convertTime(chronotimer.getTimer().getCurrentTime() - currentStats.getStart(queue34.get(2))) + " :R");
-					    						line6 += (queue34.get(3).getBib() + " " + chronotimer.getTimer().convertTime(chronotimer.getTimer().getCurrentTime() - currentStats.getStart(queue34.get(3))) + " :R");
-					    					}else if(queue34.size() == 5){
-					    						line3 += (queue34.get(0).getBib() + " " + chronotimer.getTimer().convertTime(chronotimer.getTimer().getCurrentTime() - currentStats.getStart(queue34.get(0))) + " :R");
-					    						line4 += (queue34.get(1).getBib() + " " + chronotimer.getTimer().convertTime(chronotimer.getTimer().getCurrentTime() - currentStats.getStart(queue34.get(1))) + " :R");
-					    						line5 += (queue34.get(2).getBib() + " " + chronotimer.getTimer().convertTime(chronotimer.getTimer().getCurrentTime() - currentStats.getStart(queue34.get(2))) + " :R");
-					    						line6 += (queue34.get(3).getBib() + " " + chronotimer.getTimer().convertTime(chronotimer.getTimer().getCurrentTime() - currentStats.getStart(queue34.get(3))) + " :R");
-					    						line7 += (queue34.get(4).getBib() + " " + chronotimer.getTimer().convertTime(chronotimer.getTimer().getCurrentTime() - currentStats.getStart(queue34.get(4))) + " :R");
-					    					}
-					    				}else{
-					    					int sizeTot = queue34.size();
-					    					line3 += (queue34.get(sizeTot-1).getBib() + " " + chronotimer.getTimer().convertTime(chronotimer.getTimer().getCurrentTime() - currentStats.getStart(queue34.get(sizeTot-1))) + " :R");
-					    					line4 += (queue34.get(sizeTot-2).getBib() + " " + chronotimer.getTimer().convertTime(chronotimer.getTimer().getCurrentTime() - currentStats.getStart(queue34.get(sizeTot-2))) + " :R");
-					    					line5 += (queue34.get(sizeTot-3).getBib() + " " + chronotimer.getTimer().convertTime(chronotimer.getTimer().getCurrentTime() - currentStats.getStart(queue34.get(sizeTot-3))) + " :R");
-					    					line6 += (queue34.get(sizeTot-4).getBib() + " " + chronotimer.getTimer().convertTime(chronotimer.getTimer().getCurrentTime() - currentStats.getStart(queue34.get(sizeTot-4))) + " :R");
-					    					line7 += (queue34.get(sizeTot-5).getBib() + " " + chronotimer.getTimer().convertTime(chronotimer.getTimer().getCurrentTime() - currentStats.getStart(queue34.get(sizeTot-5))) + " :R");
-					    				}
-					    				
-					    				displayLine2Label.setText("Lane 1                                        Lane 2");
-						    			displayLine3Label.setText(line3);
-							    		displayLine4Label.setText(line4);
-							    		displayLine5Label.setText(line5);
-							    		displayLine6Label.setText(line6);
-							    		displayLine7Label.setText(line7);
-					    			}else if((queue12.size() > 0) && (queue34.isEmpty() == true) && (queue56.size() > 0) && (queue78.isEmpty() == true)){
-					    				
-					    			}else if((queue12.size() > 0) && (queue34.isEmpty() == true) && (queue56.isEmpty() == true) && (queue78.size() > 0)){
-					    				
-					    			}else if((queue12.isEmpty() == true) && (queue34.size() > 0) && (queue56.size() > 0) && (queue78.isEmpty() == true)){
-					    				
-					    			}else if((queue12.isEmpty() == true) && (queue34.size() > 0) && (queue56.isEmpty() == true) && (queue78.size() > 0)){
-					    				
-					    			}else if((queue12.isEmpty() == true) && (queue34.size() > 0) && (queue56.isEmpty() == true) && (queue78.isEmpty() == true)){
-					    				
-					    			}else if((queue12.isEmpty() == true) && (queue34.isEmpty() == true) && (queue56.size() > 0) && (queue78.isEmpty() == true)){
-					    				
-					    			}else if((queue12.isEmpty() == true) && (queue34.isEmpty() == true) && (queue56.size() > 0) && (queue78.size() > 0)){
-					    				
-					    			}else if((queue12.isEmpty() == true) && (queue34.isEmpty() == true) && (queue56.isEmpty() == true) && (queue78.size() > 0)){
-					    				displayLine2Label.setText("Lane 1                                        Lane 2");
-					    				if(queue78.size() < 6){
-					    					if(queue78.size() == 0){
-					    						displayLine3Label.setText("No Current Racer                   No Current Racer :R");
-						    					displayLine4Label.setText("");
-						    					displayLine5Label.setText("");
-						    					displayLine6Label.setText("");
-						    					displayLine7Label.setText("");
-					    					}else if(queue78.size() == 1){
-					    						displayLine3Label.setText("No Current Racer     " + queue78.get(0).getBib() + " " + chronotimer.getTimer().convertTime(chronotimer.getTimer().getCurrentTime() - currentStats.getStart(queue78.get(0))) + " :R");
-						    					displayLine4Label.setText("");
-						    					displayLine5Label.setText("");
-						    					displayLine6Label.setText("");
-						    					displayLine7Label.setText("");
-					    					}else if(queue78.size() == 2){
-					    						displayLine3Label.setText("No Current Racer     " + queue78.get(0).getBib() + " " + chronotimer.getTimer().convertTime(chronotimer.getTimer().getCurrentTime() - currentStats.getStart(queue78.get(0))) + " :R");
-						    					displayLine4Label.setText("No Current Racer     " + queue78.get(1).getBib() + " " + chronotimer.getTimer().convertTime(chronotimer.getTimer().getCurrentTime() - currentStats.getStart(queue78.get(1))) + " :R");
-						    					displayLine5Label.setText("");
-						    					displayLine6Label.setText("");
-						    					displayLine7Label.setText("");
-					    					}else if(queue78.size() == 3){
-					    						displayLine3Label.setText("No Current Racer     " + queue78.get(0).getBib() + " " + chronotimer.getTimer().convertTime(chronotimer.getTimer().getCurrentTime() - currentStats.getStart(queue78.get(0))) + " :R");
-						    					displayLine4Label.setText("No Current Racer     " + queue78.get(1).getBib() + " " + chronotimer.getTimer().convertTime(chronotimer.getTimer().getCurrentTime() - currentStats.getStart(queue78.get(1))) + " :R");
-						    					displayLine5Label.setText("No Current Racer     " + queue78.get(2).getBib() + " " + chronotimer.getTimer().convertTime(chronotimer.getTimer().getCurrentTime() - currentStats.getStart(queue78.get(2))) + " :R");
-						    					displayLine6Label.setText("");
-						    					displayLine7Label.setText("");
-					    					}else if(queue78.size() == 4){
-					    						displayLine3Label.setText("No Current Racer     " + queue78.get(0).getBib() + " " + chronotimer.getTimer().convertTime(chronotimer.getTimer().getCurrentTime() - currentStats.getStart(queue78.get(0))) + " :R");
-						    					displayLine4Label.setText("No Current Racer     " + queue78.get(1).getBib() + " " + chronotimer.getTimer().convertTime(chronotimer.getTimer().getCurrentTime() - currentStats.getStart(queue78.get(1))) + " :R");
-						    					displayLine5Label.setText("No Current Racer     " + queue78.get(2).getBib() + " " + chronotimer.getTimer().convertTime(chronotimer.getTimer().getCurrentTime() - currentStats.getStart(queue78.get(2))) + " :R");
-						    					displayLine6Label.setText("No Current Racer     " + queue78.get(3).getBib() + " " + chronotimer.getTimer().convertTime(chronotimer.getTimer().getCurrentTime() - currentStats.getStart(queue78.get(3))) + " :R");
-						    					displayLine7Label.setText("");
-					    					}else if(queue78.size() == 5){
-					    						displayLine3Label.setText("No Current Racer     " + queue78.get(0).getBib() + " " + chronotimer.getTimer().convertTime(chronotimer.getTimer().getCurrentTime() - currentStats.getStart(queue78.get(0))) + " :R");
-						    					displayLine4Label.setText("No Current Racer     " + queue78.get(1).getBib() + " " + chronotimer.getTimer().convertTime(chronotimer.getTimer().getCurrentTime() - currentStats.getStart(queue78.get(1))) + " :R");
-						    					displayLine5Label.setText("No Current Racer     " + queue78.get(2).getBib() + " " + chronotimer.getTimer().convertTime(chronotimer.getTimer().getCurrentTime() - currentStats.getStart(queue78.get(2))) + " :R");
-						    					displayLine6Label.setText("No Current Racer     " + queue78.get(3).getBib() + " " + chronotimer.getTimer().convertTime(chronotimer.getTimer().getCurrentTime() - currentStats.getStart(queue78.get(3))) + " :R");
-						    					displayLine7Label.setText("No Current Racer     " + queue78.get(4).getBib() + " " + chronotimer.getTimer().convertTime(chronotimer.getTimer().getCurrentTime() - currentStats.getStart(queue78.get(4))) + " :R");
-					    					}
-					    				}else{
-					    					int sizeTot = queue78.size();
-					    					displayLine3Label.setText("No Current Racer     " + queue78.get(sizeTot-1).getBib() + " " + chronotimer.getTimer().convertTime(chronotimer.getTimer().getCurrentTime() - currentStats.getStart(queue78.get(sizeTot-1))) + " :R");
-					    					displayLine4Label.setText("No Current Racer     " + queue78.get(sizeTot-2).getBib() + " " + chronotimer.getTimer().convertTime(chronotimer.getTimer().getCurrentTime() - currentStats.getStart(queue78.get(sizeTot-2))) + " :R");
-					    					displayLine5Label.setText("No Current Racer     " + queue78.get(sizeTot-3).getBib() + " " + chronotimer.getTimer().convertTime(chronotimer.getTimer().getCurrentTime() - currentStats.getStart(queue78.get(sizeTot-3))) + " :R");
-					    					displayLine6Label.setText("No Current Racer     " + queue78.get(sizeTot-4).getBib() + " " + chronotimer.getTimer().convertTime(chronotimer.getTimer().getCurrentTime() - currentStats.getStart(queue78.get(sizeTot-4))) + " :R");
-					    					displayLine7Label.setText("No Current Racer     " + queue78.get(sizeTot-5).getBib() + " " + chronotimer.getTimer().convertTime(chronotimer.getTimer().getCurrentTime() - currentStats.getStart(queue78.get(sizeTot-5))) + " :R");
-					    				}
-					    				
-					    			}
-					    		}else{	// No racers running
-					    			displayLine2Label.setText("Lane 1                                        Lane 2");
-					    			displayLine3Label.setText("No Current Racer                   No Current Racer :R");
-						    		displayLine4Label.setText("");
-						    		displayLine5Label.setText("");
-						    		displayLine6Label.setText("");
-						    		displayLine7Label.setText("");
-					    		}
-					    		
-					    		// last pair of racers to finish in each lane
-			    			}
+			    			pairIndDisplay();
 			    		}
-						else if(selectedEvent == 2){
-							//GRP TODO Finish GRP.
-							//Since there are no starters only running time and last finish needs to be displayed.
-				    		displayLine1Label.setText("");
-				    		displayLine2Label.setText("");
-				    		displayLine3Label.setText("");
-				    		displayLine4Label.setText("");
-				    		displayLine5Label.setText("");
-				    		displayLine6Label.setText("");
-				    		displayLine7Label.setText("");
-				    		displayLine8Label.setText("");
-				    		
-				    		// have already tested if the run is null so can . extend currentRun
-				    		if(chronotimer.getCurrentRun().getGroupStartTime() == -1){
-				    			displayLine2Label.setText("The Group Run Has Not Started Yet :T");
-				    			displayLine5Label.setText("No Racers Have Finished :F");
-				    		}else{
-				    			long currentRunTime = chronotimer.getTimer().getCurrentTime() - chronotimer.getCurrentRun().getGroupStartTime();	// calculate the current run time
-				    			displayLine2Label.setText(chronotimer.getTimer().convertTime(currentRunTime) + " :T");	// Print the current run time to the screen
-				    			
-				    			// Test if any racer has finished yet from the group by using a function to test
-				    			String lastRetValue = chronotimer.getLastToFinish();
-				    			if(lastRetValue == null){	// no racer finsihed yet
-				    				displayLine5Label.setText("No Racers Have Finished :F");
-				    			}else{	// racer finished so display the most recent racer to finish with their bib # and race time
-				    				displayLine5Label.setText(lastRetValue);
-				    			}
-				    		}
-						}
 						else if(selectedEvent == 3){
 							//PARGRP For Next Sprint
 						}
