@@ -946,53 +946,111 @@ public class Driver_GUI extends JFrame{
 			   		displayLine6Label.setText(line6);
 			   		displayLine7Label.setText(line7);
 	    		}else if((queue12.isEmpty() == true) && (queue34.size() > 0) && (queue56.isEmpty() == true) && (queue78.isEmpty() == true)){
-	    			displayLine2Label.setText("Lane 3/4                                        Lane N/A");
-	    			if(queue34.size() < 6){
-	    				if(queue34.size() == 0){
-	    					displayLine3Label.setText("No Current Racer                   No Current Racer :R");
-		    				displayLine4Label.setText("");
-		    				displayLine5Label.setText("");
-		    				displayLine6Label.setText("");
-		   					displayLine7Label.setText("");
-	    				}else if(queue34.size() == 1){
-	    					displayLine3Label.setText(queue34.get(0).getBib() + " " + chronotimer.getTimer().convertTime(chronotimer.getTimer().getCurrentTime() - currentStats.getStart(queue34.get(0))) + "                   No Current Racer :R");
-		    				displayLine4Label.setText("");
-		    				displayLine5Label.setText("");
-		    				displayLine6Label.setText("");
-		   					displayLine7Label.setText("");
-	    				}else if(queue34.size() == 2){
-	    					displayLine3Label.setText(queue34.get(0).getBib() + " " + chronotimer.getTimer().convertTime(chronotimer.getTimer().getCurrentTime() - currentStats.getStart(queue34.get(0))) + "                   No Current Racer :R");
-		    				displayLine4Label.setText(queue34.get(1).getBib() + " " + chronotimer.getTimer().convertTime(chronotimer.getTimer().getCurrentTime() - currentStats.getStart(queue34.get(1))) + "                   No Current Racer :R");
-		   					displayLine5Label.setText("");
-		   					displayLine6Label.setText("");
-		   					displayLine7Label.setText("");
-	   					}else if(queue34.size() == 3){
-	   						displayLine3Label.setText(queue34.get(0).getBib() + " " + chronotimer.getTimer().convertTime(chronotimer.getTimer().getCurrentTime() - currentStats.getStart(queue34.get(0))) + "                   No Current Racer :R");
-		    				displayLine4Label.setText(queue34.get(1).getBib() + " " + chronotimer.getTimer().convertTime(chronotimer.getTimer().getCurrentTime() - currentStats.getStart(queue34.get(1))) + "                   No Current Racer :R");
-		    				displayLine5Label.setText(queue34.get(2).getBib() + " " + chronotimer.getTimer().convertTime(chronotimer.getTimer().getCurrentTime() - currentStats.getStart(queue34.get(2))) + "                   No Current Racer :R");
-		    				displayLine6Label.setText("");
-		    				displayLine7Label.setText("");
-	    				}else if(queue34.size() == 4){
-	    					displayLine3Label.setText(queue34.get(0).getBib() + " " + chronotimer.getTimer().convertTime(chronotimer.getTimer().getCurrentTime() - currentStats.getStart(queue34.get(0))) + "                   No Current Racer :R");
-		    				displayLine4Label.setText(queue34.get(1).getBib() + " " + chronotimer.getTimer().convertTime(chronotimer.getTimer().getCurrentTime() - currentStats.getStart(queue34.get(1))) + "                   No Current Racer :R");
-		    				displayLine5Label.setText(queue34.get(2).getBib() + " " + chronotimer.getTimer().convertTime(chronotimer.getTimer().getCurrentTime() - currentStats.getStart(queue34.get(2))) + "                   No Current Racer :R");
-		    				displayLine6Label.setText(queue34.get(3).getBib() + " " + chronotimer.getTimer().convertTime(chronotimer.getTimer().getCurrentTime() - currentStats.getStart(queue34.get(3))) + "                   No Current Racer :R");
-		    				displayLine7Label.setText("");
-	    				}else if(queue34.size() == 5){
-	   						displayLine3Label.setText(queue34.get(0).getBib() + " " + chronotimer.getTimer().convertTime(chronotimer.getTimer().getCurrentTime() - currentStats.getStart(queue34.get(0))) + "                   No Current Racer :R");
-	    					displayLine4Label.setText(queue34.get(1).getBib() + " " + chronotimer.getTimer().convertTime(chronotimer.getTimer().getCurrentTime() - currentStats.getStart(queue34.get(1))) + "                   No Current Racer :R");
-	    					displayLine5Label.setText(queue34.get(2).getBib() + " " + chronotimer.getTimer().convertTime(chronotimer.getTimer().getCurrentTime() - currentStats.getStart(queue34.get(2))) + "                   No Current Racer :R");
-		    				displayLine6Label.setText(queue34.get(3).getBib() + " " + chronotimer.getTimer().convertTime(chronotimer.getTimer().getCurrentTime() - currentStats.getStart(queue34.get(3))) + "                   No Current Racer :R");
-		    				displayLine7Label.setText(queue34.get(4).getBib() + " " + chronotimer.getTimer().convertTime(chronotimer.getTimer().getCurrentTime() - currentStats.getStart(queue34.get(4))) + "                   No Current Racer :R");
+	    			int result = chronotimer.getCurrentRun().getOtherLane(1);
+	    			if(result == -1 || result == 2 || result == 3){
+	    				if(result == 2){
+	    					displayLine2Label.setText("Lane 3/4                                        Lane 5/6");
+	    				}else if(result == 3){
+	    					displayLine2Label.setText("Lane 3/4                                        Lane 7/8");
+	    				}else{
+	    					displayLine2Label.setText("Lane 3/4                                        Lane N/A");
+	    				}
+	    				
+	    				if(queue34.size() < 6){
+	    					if(queue34.size() == 0){
+	    						displayLine3Label.setText("No Current Racer                   No Current Racer :R");
+	    						displayLine4Label.setText("");
+	    						displayLine5Label.setText("");
+	    						displayLine6Label.setText("");
+	    						displayLine7Label.setText("");
+	    					}else if(queue34.size() == 1){
+	    						displayLine3Label.setText(queue34.get(0).getBib() + " " + chronotimer.getTimer().convertTime(chronotimer.getTimer().getCurrentTime() - currentStats.getStart(queue34.get(0))) + "                   No Current Racer :R");
+	    						displayLine4Label.setText("");
+	    						displayLine5Label.setText("");
+	    						displayLine6Label.setText("");
+	    						displayLine7Label.setText("");
+	    					}else if(queue34.size() == 2){
+	    						displayLine3Label.setText(queue34.get(0).getBib() + " " + chronotimer.getTimer().convertTime(chronotimer.getTimer().getCurrentTime() - currentStats.getStart(queue34.get(0))) + "                   No Current Racer :R");
+	    						displayLine4Label.setText(queue34.get(1).getBib() + " " + chronotimer.getTimer().convertTime(chronotimer.getTimer().getCurrentTime() - currentStats.getStart(queue34.get(1))) + "                   No Current Racer :R");
+	    						displayLine5Label.setText("");
+	    						displayLine6Label.setText("");
+	    						displayLine7Label.setText("");
+	    					}else if(queue34.size() == 3){
+	    						displayLine3Label.setText(queue34.get(0).getBib() + " " + chronotimer.getTimer().convertTime(chronotimer.getTimer().getCurrentTime() - currentStats.getStart(queue34.get(0))) + "                   No Current Racer :R");
+	    						displayLine4Label.setText(queue34.get(1).getBib() + " " + chronotimer.getTimer().convertTime(chronotimer.getTimer().getCurrentTime() - currentStats.getStart(queue34.get(1))) + "                   No Current Racer :R");
+	    						displayLine5Label.setText(queue34.get(2).getBib() + " " + chronotimer.getTimer().convertTime(chronotimer.getTimer().getCurrentTime() - currentStats.getStart(queue34.get(2))) + "                   No Current Racer :R");
+	    						displayLine6Label.setText("");
+	    						displayLine7Label.setText("");
+	    					}else if(queue34.size() == 4){
+	    						displayLine3Label.setText(queue34.get(0).getBib() + " " + chronotimer.getTimer().convertTime(chronotimer.getTimer().getCurrentTime() - currentStats.getStart(queue34.get(0))) + "                   No Current Racer :R");
+	    						displayLine4Label.setText(queue34.get(1).getBib() + " " + chronotimer.getTimer().convertTime(chronotimer.getTimer().getCurrentTime() - currentStats.getStart(queue34.get(1))) + "                   No Current Racer :R");
+	    						displayLine5Label.setText(queue34.get(2).getBib() + " " + chronotimer.getTimer().convertTime(chronotimer.getTimer().getCurrentTime() - currentStats.getStart(queue34.get(2))) + "                   No Current Racer :R");
+	    						displayLine6Label.setText(queue34.get(3).getBib() + " " + chronotimer.getTimer().convertTime(chronotimer.getTimer().getCurrentTime() - currentStats.getStart(queue34.get(3))) + "                   No Current Racer :R");
+	    						displayLine7Label.setText("");
+	    					}else if(queue34.size() == 5){
+	    						displayLine3Label.setText(queue34.get(0).getBib() + " " + chronotimer.getTimer().convertTime(chronotimer.getTimer().getCurrentTime() - currentStats.getStart(queue34.get(0))) + "                   No Current Racer :R");
+	    						displayLine4Label.setText(queue34.get(1).getBib() + " " + chronotimer.getTimer().convertTime(chronotimer.getTimer().getCurrentTime() - currentStats.getStart(queue34.get(1))) + "                   No Current Racer :R");
+	    						displayLine5Label.setText(queue34.get(2).getBib() + " " + chronotimer.getTimer().convertTime(chronotimer.getTimer().getCurrentTime() - currentStats.getStart(queue34.get(2))) + "                   No Current Racer :R");
+	    						displayLine6Label.setText(queue34.get(3).getBib() + " " + chronotimer.getTimer().convertTime(chronotimer.getTimer().getCurrentTime() - currentStats.getStart(queue34.get(3))) + "                   No Current Racer :R");
+	    						displayLine7Label.setText(queue34.get(4).getBib() + " " + chronotimer.getTimer().convertTime(chronotimer.getTimer().getCurrentTime() - currentStats.getStart(queue34.get(4))) + "                   No Current Racer :R");
+	    					}
+	    				}else{
+	    					int sizeTot = queue34.size();
+	    					displayLine3Label.setText(queue34.get(sizeTot-1).getBib() + " " + chronotimer.getTimer().convertTime(chronotimer.getTimer().getCurrentTime() - currentStats.getStart(queue34.get(sizeTot-1))) + "                   No Current Racer :R");
+	    					displayLine4Label.setText(queue34.get(sizeTot-2).getBib() + " " + chronotimer.getTimer().convertTime(chronotimer.getTimer().getCurrentTime() - currentStats.getStart(queue34.get(sizeTot-2))) + "                   No Current Racer :R");
+	    					displayLine5Label.setText(queue34.get(sizeTot-3).getBib() + " " + chronotimer.getTimer().convertTime(chronotimer.getTimer().getCurrentTime() - currentStats.getStart(queue34.get(sizeTot-3))) + "                   No Current Racer :R");
+	    					displayLine6Label.setText(queue34.get(sizeTot-4).getBib() + " " + chronotimer.getTimer().convertTime(chronotimer.getTimer().getCurrentTime() - currentStats.getStart(queue34.get(sizeTot-4))) + "                   No Current Racer :R");
+	    					displayLine7Label.setText(queue34.get(sizeTot-5).getBib() + " " + chronotimer.getTimer().convertTime(chronotimer.getTimer().getCurrentTime() - currentStats.getStart(queue34.get(sizeTot-5))) + "                   No Current Racer :R");
 	    				}
 	    			}else{
-	    				int sizeTot = queue34.size();
-	    				displayLine3Label.setText(queue34.get(sizeTot-1).getBib() + " " + chronotimer.getTimer().convertTime(chronotimer.getTimer().getCurrentTime() - currentStats.getStart(queue34.get(sizeTot-1))) + "                   No Current Racer :R");
-	    				displayLine4Label.setText(queue34.get(sizeTot-2).getBib() + " " + chronotimer.getTimer().convertTime(chronotimer.getTimer().getCurrentTime() - currentStats.getStart(queue34.get(sizeTot-2))) + "                   No Current Racer :R");
-	    				displayLine5Label.setText(queue34.get(sizeTot-3).getBib() + " " + chronotimer.getTimer().convertTime(chronotimer.getTimer().getCurrentTime() - currentStats.getStart(queue34.get(sizeTot-3))) + "                   No Current Racer :R");
-	    				displayLine6Label.setText(queue34.get(sizeTot-4).getBib() + " " + chronotimer.getTimer().convertTime(chronotimer.getTimer().getCurrentTime() - currentStats.getStart(queue34.get(sizeTot-4))) + "                   No Current Racer :R");
-	   					displayLine7Label.setText(queue34.get(sizeTot-5).getBib() + " " + chronotimer.getTimer().convertTime(chronotimer.getTimer().getCurrentTime() - currentStats.getStart(queue34.get(sizeTot-5))) + "                   No Current Racer :R");
-	   				}
+	    				displayLine2Label.setText("Lane 1/2                                        Lane 3/4");
+	    				if(queue34.size() < 6){
+	    					if(queue34.size() == 0){
+	    						displayLine3Label.setText("No Current Racer                   No Current Racer :R");
+	    						displayLine4Label.setText("");
+	    						displayLine5Label.setText("");
+	    						displayLine6Label.setText("");
+	    						displayLine7Label.setText("");
+	    					}else if(queue34.size() == 1){
+	    						displayLine3Label.setText("No Current Racer                   " + queue34.get(0).getBib() + " " + chronotimer.getTimer().convertTime(chronotimer.getTimer().getCurrentTime() - currentStats.getStart(queue34.get(0))) + " :R");
+	    						displayLine4Label.setText("");
+	    						displayLine5Label.setText("");
+	    						displayLine6Label.setText("");
+	    						displayLine7Label.setText("");
+	    					}else if(queue34.size() == 2){
+	    						displayLine3Label.setText("No Current Racer                   " + queue34.get(0).getBib() + " " + chronotimer.getTimer().convertTime(chronotimer.getTimer().getCurrentTime() - currentStats.getStart(queue34.get(0))) + " :R");
+	    						displayLine4Label.setText("No Current Racer                   " + queue34.get(1).getBib() + " " + chronotimer.getTimer().convertTime(chronotimer.getTimer().getCurrentTime() - currentStats.getStart(queue34.get(1))) + " :R");
+	    						displayLine5Label.setText("");
+	    						displayLine6Label.setText("");
+	    						displayLine7Label.setText("");
+	    					}else if(queue34.size() == 3){
+	    						displayLine3Label.setText("No Current Racer                   " + queue34.get(0).getBib() + " " + chronotimer.getTimer().convertTime(chronotimer.getTimer().getCurrentTime() - currentStats.getStart(queue34.get(0))) + " :R");
+	    						displayLine4Label.setText("No Current Racer                   " + queue34.get(1).getBib() + " " + chronotimer.getTimer().convertTime(chronotimer.getTimer().getCurrentTime() - currentStats.getStart(queue34.get(1))) + " :R");
+	    						displayLine5Label.setText("No Current Racer                   " + queue34.get(2).getBib() + " " + chronotimer.getTimer().convertTime(chronotimer.getTimer().getCurrentTime() - currentStats.getStart(queue34.get(2))) + " :R");
+	    						displayLine6Label.setText("");
+	    						displayLine7Label.setText("");
+	    					}else if(queue34.size() == 4){
+	    						displayLine3Label.setText("No Current Racer                   " + queue34.get(0).getBib() + " " + chronotimer.getTimer().convertTime(chronotimer.getTimer().getCurrentTime() - currentStats.getStart(queue34.get(0))) + " :R");
+	    						displayLine4Label.setText("No Current Racer                   " + queue34.get(1).getBib() + " " + chronotimer.getTimer().convertTime(chronotimer.getTimer().getCurrentTime() - currentStats.getStart(queue34.get(1))) + " :R");
+	    						displayLine5Label.setText("No Current Racer                   " + queue34.get(2).getBib() + " " + chronotimer.getTimer().convertTime(chronotimer.getTimer().getCurrentTime() - currentStats.getStart(queue34.get(2))) + " :R");
+	    						displayLine6Label.setText("No Current Racer                   " + queue34.get(3).getBib() + " " + chronotimer.getTimer().convertTime(chronotimer.getTimer().getCurrentTime() - currentStats.getStart(queue34.get(3))) + " :R");
+	    						displayLine7Label.setText("");
+	    					}else if(queue34.size() == 5){
+	    						displayLine3Label.setText("No Current Racer                   " + queue34.get(0).getBib() + " " + chronotimer.getTimer().convertTime(chronotimer.getTimer().getCurrentTime() - currentStats.getStart(queue34.get(0))) + " :R");
+	    						displayLine4Label.setText("No Current Racer                   " + queue34.get(1).getBib() + " " + chronotimer.getTimer().convertTime(chronotimer.getTimer().getCurrentTime() - currentStats.getStart(queue34.get(1))) + " :R");
+	    						displayLine5Label.setText("No Current Racer                   " + queue34.get(2).getBib() + " " + chronotimer.getTimer().convertTime(chronotimer.getTimer().getCurrentTime() - currentStats.getStart(queue34.get(2))) + " :R");
+	    						displayLine6Label.setText("No Current Racer                   " + queue34.get(3).getBib() + " " + chronotimer.getTimer().convertTime(chronotimer.getTimer().getCurrentTime() - currentStats.getStart(queue34.get(3))) + " :R");
+	    						displayLine7Label.setText("No Current Racer                   " + queue34.get(4).getBib() + " " + chronotimer.getTimer().convertTime(chronotimer.getTimer().getCurrentTime() - currentStats.getStart(queue34.get(4))) + " :R");
+	    					}
+	    				}else{
+	    					int sizeTot = queue34.size();
+	    					displayLine3Label.setText("No Current Racer                   " + queue34.get(sizeTot-1).getBib() + " " + chronotimer.getTimer().convertTime(chronotimer.getTimer().getCurrentTime() - currentStats.getStart(queue34.get(sizeTot-1))) + " :R");
+	    					displayLine4Label.setText("No Current Racer                   " + queue34.get(sizeTot-2).getBib() + " " + chronotimer.getTimer().convertTime(chronotimer.getTimer().getCurrentTime() - currentStats.getStart(queue34.get(sizeTot-2))) + " :R");
+	    					displayLine5Label.setText("No Current Racer                   " + queue34.get(sizeTot-3).getBib() + " " + chronotimer.getTimer().convertTime(chronotimer.getTimer().getCurrentTime() - currentStats.getStart(queue34.get(sizeTot-3))) + " :R");
+	    					displayLine6Label.setText("No Current Racer                   " + queue34.get(sizeTot-4).getBib() + " " + chronotimer.getTimer().convertTime(chronotimer.getTimer().getCurrentTime() - currentStats.getStart(queue34.get(sizeTot-4))) + " :R");
+	    					displayLine7Label.setText("No Current Racer                   " + queue34.get(sizeTot-5).getBib() + " " + chronotimer.getTimer().convertTime(chronotimer.getTimer().getCurrentTime() - currentStats.getStart(queue34.get(sizeTot-5))) + " :R");
+	    				}
+	    			}
 	    		}else if((queue12.isEmpty() == true) && (queue34.isEmpty() == true) && (queue56.size() > 0) && (queue78.isEmpty() == true)){
 	    			displayLine2Label.setText("Lane 5/6                                        Lane N/A");
 	    			if(queue56.size() < 6){
