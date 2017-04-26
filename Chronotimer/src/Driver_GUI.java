@@ -2545,7 +2545,7 @@ public class Driver_GUI extends JFrame{
 										displayLine7Label.setText("L7: " + racerStartQueue.get(6).getBib() + Time.convertTime(currentStats.getEnd(racerStartQueue.get(6)) - chronotimer.getCurrentRun().getGroupStartTime()) + " :F");
 									}
 									displayLine8Label.setText("L8: No Current Racer :R");
-								}else if(racerStartQueue.size() == 8){
+								}else{
 									if(currentStats.getEnd(racerStartQueue.get(0)) == -1){
 										displayLine1Label.setText("L1: " + racerStartQueue.get(0).getBib() + Time.convertTime(chronotimer.getTimer().getCurrentTime() - chronotimer.getCurrentRun().getGroupStartTime()) + " :R");
 									}else{
