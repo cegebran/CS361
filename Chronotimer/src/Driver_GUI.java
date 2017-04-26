@@ -2287,6 +2287,122 @@ public class Driver_GUI extends JFrame{
 			    		}
 						else if(selectedEvent == 3){
 							//PARGRP For Next Sprint
+							if(chronotimer.getCurrentRun().getGroupStartTime() == -1){
+								if(racerStartQueue.size() == 0){
+									displayLine1Label.setText("L1: No Current Racer :R");
+									displayLine2Label.setText("L2: No Current Racer :R");
+									displayLine3Label.setText("L3: No Current Racer :R");
+									displayLine4Label.setText("L4: No Current Racer :R");
+									displayLine5Label.setText("L5: No Current Racer :R");
+									displayLine6Label.setText("L6: No Current Racer :R");
+									displayLine7Label.setText("L7: No Current Racer :R");
+									displayLine8Label.setText("L8: No Current Racer :R");
+								}else if(racerStartQueue.size() == 1){
+									displayLine1Label.setText("L1: " + racerStartQueue.get(0).getBib() + " :R");
+									displayLine2Label.setText("L2: No Current Racer :R");
+									displayLine3Label.setText("L3: No Current Racer :R");
+									displayLine4Label.setText("L4: No Current Racer :R");
+									displayLine5Label.setText("L5: No Current Racer :R");
+									displayLine6Label.setText("L6: No Current Racer :R");
+									displayLine7Label.setText("L7: No Current Racer :R");
+									displayLine8Label.setText("L8: No Current Racer :R");
+								}else if(racerStartQueue.size() == 2){
+									displayLine1Label.setText("L1: " + racerStartQueue.get(0).getBib() + " :R");
+									displayLine2Label.setText("L2: " + racerStartQueue.get(1).getBib() + " :R");
+									displayLine3Label.setText("L3: No Current Racer :R");
+									displayLine4Label.setText("L4: No Current Racer :R");
+									displayLine5Label.setText("L5: No Current Racer :R");
+									displayLine6Label.setText("L6: No Current Racer :R");
+									displayLine7Label.setText("L7: No Current Racer :R");
+									displayLine8Label.setText("L8: No Current Racer :R");
+								}else if(racerStartQueue.size() == 3){
+									displayLine1Label.setText("L1: " + racerStartQueue.get(0).getBib() + " :R");
+									displayLine2Label.setText("L2: " + racerStartQueue.get(1).getBib() + " :R");
+									displayLine3Label.setText("L3: " + racerStartQueue.get(2).getBib() + " :R");
+									displayLine4Label.setText("L4: No Current Racer :R");
+									displayLine5Label.setText("L5: No Current Racer :R");
+									displayLine6Label.setText("L6: No Current Racer :R");
+									displayLine7Label.setText("L7: No Current Racer :R");
+									displayLine8Label.setText("L8: No Current Racer :R");
+								}else if(racerStartQueue.size() == 4){
+									displayLine1Label.setText("L1: " + racerStartQueue.get(0).getBib() + " :R");
+									displayLine2Label.setText("L2: " + racerStartQueue.get(1).getBib() + " :R");
+									displayLine3Label.setText("L3: " + racerStartQueue.get(2).getBib() + " :R");
+									displayLine4Label.setText("L4: " + racerStartQueue.get(3).getBib() + " :R");
+									displayLine5Label.setText("L5: No Current Racer :R");
+									displayLine6Label.setText("L6: No Current Racer :R");
+									displayLine7Label.setText("L7: No Current Racer :R");
+									displayLine8Label.setText("L8: No Current Racer :R");
+								}else if(racerStartQueue.size() == 5){
+									displayLine1Label.setText("L1: " + racerStartQueue.get(0).getBib() + " :R");
+									displayLine2Label.setText("L2: " + racerStartQueue.get(1).getBib() + " :R");
+									displayLine3Label.setText("L3: " + racerStartQueue.get(2).getBib() + " :R");
+									displayLine4Label.setText("L4: " + racerStartQueue.get(3).getBib() + " :R");
+									displayLine5Label.setText("L5: " + racerStartQueue.get(4).getBib() + " :R");
+									displayLine6Label.setText("L6: No Current Racer :R");
+									displayLine7Label.setText("L7: No Current Racer :R");
+									displayLine8Label.setText("L8: No Current Racer :R");
+								}else if(racerStartQueue.size() == 6){
+									displayLine1Label.setText("L1: " + racerStartQueue.get(0).getBib() + " :R");
+									displayLine2Label.setText("L2: " + racerStartQueue.get(1).getBib() + " :R");
+									displayLine3Label.setText("L3: " + racerStartQueue.get(2).getBib() + " :R");
+									displayLine4Label.setText("L4: " + racerStartQueue.get(3).getBib() + " :R");
+									displayLine5Label.setText("L5: " + racerStartQueue.get(4).getBib() + " :R");
+									displayLine6Label.setText("L6: " + racerStartQueue.get(5).getBib() + " :R");
+									displayLine7Label.setText("L7: No Current Racer :R");
+									displayLine8Label.setText("L8: No Current Racer :R");
+								}else if(racerStartQueue.size() == 7){
+									displayLine1Label.setText("L1: " + racerStartQueue.get(0).getBib() + " :R");
+									displayLine2Label.setText("L2: " + racerStartQueue.get(1).getBib() + " :R");
+									displayLine3Label.setText("L3: " + racerStartQueue.get(2).getBib() + " :R");
+									displayLine4Label.setText("L4: " + racerStartQueue.get(3).getBib() + " :R");
+									displayLine5Label.setText("L5: " + racerStartQueue.get(4).getBib() + " :R");
+									displayLine6Label.setText("L6: " + racerStartQueue.get(5).getBib() + " :R");
+									displayLine7Label.setText("L7: " + racerStartQueue.get(6).getBib() + " :R");
+									displayLine8Label.setText("L8: No Current Racer :R");
+								}else{
+									displayLine1Label.setText("L1: " + racerStartQueue.get(0).getBib() + " :R");
+									displayLine2Label.setText("L2: " + racerStartQueue.get(1).getBib() + " :R");
+									displayLine3Label.setText("L3: " + racerStartQueue.get(2).getBib() + " :R");
+									displayLine4Label.setText("L4: " + racerStartQueue.get(3).getBib() + " :R");
+									displayLine5Label.setText("L5: " + racerStartQueue.get(4).getBib() + " :R");
+									displayLine6Label.setText("L6: " + racerStartQueue.get(5).getBib() + " :R");
+									displayLine7Label.setText("L7: " + racerStartQueue.get(6).getBib() + " :R");
+									displayLine8Label.setText("L8: " + racerStartQueue.get(7).getBib() + " :R");
+								}
+							}else{
+								if(racerStartQueue.size() == 1){
+									if(currentStats.getEnd(racerStartQueue.get(0)) == -1){
+										displayLine1Label.setText("L1: " + racerStartQueue.get(0).getBib() + Time.convertTime(chronotimer.getTimer().getCurrentTime() - chronotimer.getCurrentRun().getGroupStartTime()) + " :R");
+									}else{
+										displayLine1Label.setText("L1: " + racerStartQueue.get(0).getBib() + Time.convertTime(currentStats.getEnd(racerStartQueue.get(0)) - chronotimer.getCurrentRun().getGroupStartTime()) + " :F");
+									}
+									displayLine2Label.setText("L2: No Current Racer :R");
+									displayLine3Label.setText("L3: No Current Racer :R");
+									displayLine4Label.setText("L4: No Current Racer :R");
+									displayLine5Label.setText("L5: No Current Racer :R");
+									displayLine6Label.setText("L6: No Current Racer :R");
+									displayLine7Label.setText("L7: No Current Racer :R");
+									displayLine8Label.setText("L8: No Current Racer :R");
+								}else if(racerStartQueue.size() == 2){
+									if(currentStats.getEnd(racerStartQueue.get(0)) == -1){
+										displayLine1Label.setText("L1: " + racerStartQueue.get(0).getBib() + Time.convertTime(chronotimer.getTimer().getCurrentTime() - chronotimer.getCurrentRun().getGroupStartTime()) + " :R");
+									}else{
+										displayLine1Label.setText("L1: " + racerStartQueue.get(0).getBib() + Time.convertTime(currentStats.getEnd(racerStartQueue.get(0)) - chronotimer.getCurrentRun().getGroupStartTime()) + " :F");
+									}
+									if(currentStats.getEnd(racerStartQueue.get(1)) == -1){
+										displayLine1Label.setText("L2: " + racerStartQueue.get(1).getBib() + Time.convertTime(chronotimer.getTimer().getCurrentTime() - chronotimer.getCurrentRun().getGroupStartTime()) + " :R");
+									}else{
+										displayLine1Label.setText("L2: " + racerStartQueue.get(1).getBib() + Time.convertTime(currentStats.getEnd(racerStartQueue.get(1)) - chronotimer.getCurrentRun().getGroupStartTime()) + " :F");
+									}
+									displayLine3Label.setText("L3: No Current Racer :R");
+									displayLine4Label.setText("L4: No Current Racer :R");
+									displayLine5Label.setText("L5: No Current Racer :R");
+									displayLine6Label.setText("L6: No Current Racer :R");
+									displayLine7Label.setText("L7: No Current Racer :R");
+									displayLine8Label.setText("L8: No Current Racer :R");
+								}
+							}
 						}
 		    		}
 				}

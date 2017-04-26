@@ -89,6 +89,14 @@ public class Run {
 	
 	/**
 	 * 
+	 * @return the number of racers currently in the run
+	 */
+	public int getNumberRacers(){
+		return beginQueue.size();
+	}
+	
+	/**
+	 * 
 	 * @return the run Number associated with the run
 	 */
 	public Racer getQueue12Finish(){
@@ -233,6 +241,8 @@ public class Run {
 			return "PARIND";
 		}else if(!individual && !parallel){
 			return "GRP";
+		}else if(!individual && parallel){
+			return "PARGRP";
 		}else{
 			return null;
 		}
@@ -255,6 +265,12 @@ public class Run {
 	public void addRacer(Racer racer){
 		beginQueue.addLast(racer);
 	}
+	
+	/**
+	 * Swap next two racers to finish in IND events
+	 * 
+	 * @return true if swapped and false if not swapped
+	 */
 	public boolean swap(){
 		if(endQueue.size() < 2){
 			return false;
@@ -379,6 +395,17 @@ public class Run {
 		if(groupStartTime != -1){
 			return false;
 		}
+		
+		if(!individual && parallel){
+			int i = 0;
+			int totalRacers = beginQueue.size();
+			while(i < totalRacers){
+				Racer tmp = beginQueue.get(i);
+				stats.setStart(tmp, startTime);
+				i++;
+			}
+		}
+		
 		groupStartTime = startTime;
 		return true;
 	}
@@ -471,6 +498,22 @@ public class Run {
 		}else{
 			return null;
 		}
+	}
+	
+	/**
+	 * 
+	 * @Return 0 if no racers in begin queue, -1 if racer not in specified lane #, bib number if ended
+	 */
+	public int endParGrpRacer(int laneNumber){
+		if(beginQueue.isEmpty()){
+			return 0;	// no racer has been cancelled
+		}
+		Racer tmp = beginQueue.get(laneNumber - 1);
+		if(tmp == null){
+			return -1;
+		}
+		stats.setEnd(tmp, Time.getCurrentTime());
+		return tmp.getBib();
 	}
 	
 	/**

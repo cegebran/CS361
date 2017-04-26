@@ -236,11 +236,30 @@ public class Chronotimer {
 				}
 			}
 			else{
-				Boolean returnValue = currentRun.startGroup(timer.getCurrentTime());
-				if(returnValue == true){
-					return 11111;
+				if(parallel == true){
+					if(currentRun.getGroupStartTime() == -1){
+						// start the entire group for every lane that has a racer in it
+						Boolean returnValue = currentRun.startGroup(timer.getCurrentTime());
+						if(returnValue == true){
+							return 11111;
+						}else{
+							return 0;
+						}
+					}else{
+						int result = currentRun.endParGrpRacer(1);
+						if(result > 0){
+							return result;
+						}else{
+							return 0;
+						}
+					}
 				}else{
-					return 0;
+					Boolean returnValue = currentRun.startGroup(timer.getCurrentTime());
+					if(returnValue == true){
+						return 11111;
+					}else{
+						return 0;
+					}
 				}
 			}
 		}
@@ -830,14 +849,34 @@ public class Chronotimer {
 			return -4;
 		}
 		else if(!individual){
-			if(currentRun != null){
-				int result = currentRun.setRacerNum(Integer.parseInt(number));
-				if(result == 0){
-					return 0;
-				}else if(result == -1){
-					return -3;
-				}else if(result == 1){
+			if(parallel == true){	// for PARGRP: individual == false && parallel == true
+				if(currentRun == null){
+					return -2;
+				}
+				// check if run is full
+				int numRacers = currentRun.getNumberRacers();
+				if(numRacers >= 8){
+					return 0;	// need to change to a different return value to state run is full
+				}else{
+					boolean checkBibNumValue = currentRun.numExistsInRun(number);
+					if(checkBibNumValue == false){
+						return -3;
+					}
+					int racerBibNumber = Integer.parseInt(number);
+					Racer toAdd = new Racer(racerBibNumber);
+					currentRun.addRacer(toAdd);
 					return 1;
+				}
+			}else{
+				if(currentRun != null){
+					int result = currentRun.setRacerNum(Integer.parseInt(number));
+					if(result == 0){
+						return 0;
+					}else if(result == -1){
+						return -3;
+					}else if(result == 1){
+						return 1;
+					}
 				}
 			}
 			return -2;
