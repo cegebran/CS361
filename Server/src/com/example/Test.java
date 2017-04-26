@@ -1,6 +1,8 @@
 package com.example;
 
 import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
 import java.io.InputStream;
@@ -22,17 +24,55 @@ import com.sun.net.httpserver.HttpServer;
 public class Test {
 
     // a shared area where we get the POST data and then use it in the other handler
-    static String sharedResponse = "";
+    static boolean valid = true;
+	static int parseFirstLength = 0;
+	static int i = 0;
+	static String myLine = "";
+	static FileReader fileInput = null;
+	static BufferedReader buffRead = null;
+	static String[] userInputParse = null;
+	static String sharedResponse = "";
     static boolean gotMessageFlag = false;
     static ArrayList<Racer> racers = new ArrayList<Racer>();
     static TreeMap<String, String> map = new TreeMap<String, String>();
 
     public static void main(String[] args) throws Exception {
-    	map.put("1","Soderling, T");
-    	map.put("2","Kim,M");
-    	map.put("3","Cegelski,B");
-    	map.put("4","Wenslaff,N");
-    	map.put("5","Hopkins,J");
+    	
+    	File file = new File("racers.txt");						//Declare file for input
+		
+		try {
+			
+			fileInput = new FileReader(file);					//Initialize the FileReader and Buffered Reader for input
+			buffRead = new BufferedReader(fileInput);
+			
+		} catch (FileNotFoundException f) {
+			
+			System.out.print("\nError! File not found!");
+			System.exit(0);
+			
+		}
+		
+		while (valid) {
+			
+			try {
+				
+				if ((myLine = buffRead.readLine()) != null) {				//Loop while there is still a next line
+					
+					userInputParse = myLine.split(",");						//Parse the input line	
+					map.put(userInputParse[0], userInputParse[1] + " " + userInputParse[2]);
+				
+				} else {
+					
+					valid = false;
+					
+				}
+				
+			} catch (IOException e) {
+				
+				e.printStackTrace();
+				
+			}
+		}
     	
         // set up a simple HTTP server on our local host
         HttpServer server = HttpServer.create(new InetSocketAddress(8000), 0);
@@ -138,7 +178,7 @@ public class Test {
         }
         
     }
-    //
+    
     static class HtmlHandler implements HttpHandler {
     	
         public void handle(HttpExchange transmission) throws IOException {
@@ -150,21 +190,23 @@ public class Test {
             StringBuilder result = new StringBuilder();
 			result.append("<!DOCTYPE html>").append("<html>").append("<head>");
 			result.append("<link href=\"http://localhost:8000/displayresults/style.css\" rel=\"stylesheet\" type=\"text/css\" />");
-			result.append("<title> Company Directory </title>");
+			result.append("<title>Race Results</title>");
 			result.append("</head>");
 			result.append("<body>");
-			result.append("<table width=\"100%\">"); // style=\"width:100%\"
+			result.append("<table width=\"100%\">");
 			result.append("<h1 align=\"center\">Race Results</h1>");
-			result.append("<tr><th>").append("Bib Number").append("</td><th>").append("Last Name").append("</td><th>").append("First Initial").append("</td><th>").append("Time").append("</th></tr>");
+			result.append("<tr><th>").append("Place").append("</td><th>").append("Bib Number").append("</td><th>").append("Name").append("</td><th>").append("Time").append("</th></tr>");
 			int counter = 1;
 			for (Racer r : racers) {
-				String names[] = map.get(r.getBibNumber()).split(",");
+				String name = map.get(r.getBibNumber());
+				// replace "null" in table for unmatched bib number to <empty> name
+				if (name == null) {
+					name = "";
+				}
 				if (counter % 2 == 1) {
-					//result.append("<tr class=\"odd\"><td>").append(e.getTitle()).append("</td><td>").append(e.getFirstName()).append("</td><td>").append(e.getLastName()).append("</td><td>").append(e.getDepartment()).append("</td><td>").append(e.getPhoneNumber()).append("</td><td>").append(e.getGender()).append("</td></tr>");
-					result.append("<tr class=\"odd\"><td>").append(r.getBibNumber()).append("</td><td>").append(names[0]).append("</td><td>").append(names[1]).append("</td><td>").append(r.getTime()).append("</td></tr>");
+					result.append("<tr class=\"odd\"><td>").append(counter).append("</td><td>").append(r.getBibNumber()).append("</td><td>").append(name).append("</td><td>").append(r.getTime()).append("</td></tr>");
 				} else {
-					//result.append("<tr class=\"even\"><td>").append(e.getTitle()).append("</td><td>").append(e.getFirstName()).append("</td><td>").append(e.getLastName()).append("</td><td>").append(e.getDepartment()).append("</td><td>").append(e.getPhoneNumber()).append("</td><td>").append(e.getGender()).append("</td></tr>");
-					result.append("<tr class=\"even\"><td>").append(r.getBibNumber()).append("</td><td>").append(names[0]).append("</td><td>").append(names[1]).append("</td><td>").append(r.getTime());
+					result.append("<tr class=\"even\"><td>").append(counter).append("</td><td>").append(r.getBibNumber()).append("</td><td>").append(name).append("</td><td>").append(r.getTime()).append("</td></tr>");
 				}
 				counter += 1;
 			}
@@ -196,25 +238,12 @@ public class Test {
             //hard code CSS
             StringBuilder stringBuilder = new StringBuilder();
 
- 		    stringBuilder.append("table, tr, td{");
- 		    stringBuilder.append("text-align: center;");
-		    stringBuilder.append("}");
-		    stringBuilder.append("th {");
-		    stringBuilder.append("font-size: 25px;");
-		    stringBuilder.append("}");
-		    stringBuilder.append("tr.odd{");
-		    stringBuilder.append("background-color: white;");
-		    stringBuilder.append("font-size: 20px;");
-		    stringBuilder.append("}");
-		    stringBuilder.append("tr.even{");
-		    stringBuilder.append("background-color: lightblue;");
-		    stringBuilder.append("font-size: 20px;");
-		    stringBuilder.append("}");
-		    stringBuilder.append("p {");
-		    stringBuilder.append("text-align: center;");
-		    stringBuilder.append("font-family: verdana;");
-		    stringBuilder.append("font-size: 20px;");
-		    stringBuilder.append("}");
+            stringBuilder.append("table { border-collapse: collapse; }/n");
+            stringBuilder.append("table, tr, td, th { border: 1px solid black; text-align: center; }/n");
+		    stringBuilder.append("th { font-size: 25px; color: red; }/n");
+		    stringBuilder.append("tr.odd { background-color: white; font-size: 20px; }/n");
+		    stringBuilder.append("tr.even { background-color: lightblue; font-size: 20px; }/n");
+		    stringBuilder.append("p { text-align: center; font-family: verdana; font-size: 20px; }/n");
 
 			// convert to String
 			String htmlString = stringBuilder.toString();
