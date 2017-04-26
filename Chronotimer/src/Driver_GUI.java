@@ -2286,7 +2286,6 @@ public class Driver_GUI extends JFrame{
 			    			}
 			    		}
 						else if(selectedEvent == 3){
-							//PARGRP For Next Sprint
 							if(chronotimer.getCurrentRun().getGroupStartTime() == -1){
 								if(racerStartQueue.size() == 0){
 									displayLine1Label.setText("L1: No Current Racer :R");
