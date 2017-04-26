@@ -1,3 +1,7 @@
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+
 public class Time {
 	private static long startTime;
 	private static long setTime;
@@ -48,8 +52,7 @@ public class Time {
 	 * @param time	Time in milliseconds
 	 * @return	String of style "HH:MM:SS.LL", where H = Hours, M = Minutes, S = Seconds, L = Hundredths of a second
 	 */
-	public static String convertTime(long time){
-		int[] out = new int[]{0, 0, 0, 0};
+	public static String convertRealTime(long time){
 		// If given time is noted as -1, this indicates a 'Did not finish'
 		if (time == -1) {
 			return "DNF";
@@ -59,24 +62,36 @@ public class Time {
 			return "Still in progress";
 		}
 		else {
-			// Divvy up milliseconds into each respective time span, from hours to hundredths of a second
-			out[0] = (int)(time / 3600000);
-			out[1] = (int)(time / 60000) % 60;
-			out[2] = (int)(time / 1000) % 60;
-			out[3] = (int)(time) % 1000;
-			String out3 = Integer.toString(out[3]);
-			char one = out3.charAt(0);
-			char two;
-			try{
-				two = out3.charAt(1);
-			}catch(StringIndexOutOfBoundsException e){
-				two = '0';
-			}
-			out3 = Character.toString(one) + Character.toString(two);
-
-			// Outputs string in specific HH:MM:SS.LL format
-			String value = String.format("%02d:%02d:%02d", out[0], out[1], out[2]) + "." + out3;
+			String value;
+			DateFormat formatter = new SimpleDateFormat("hh:mm:ss.SSS");
+			Calendar calendar = Calendar.getInstance();
+			calendar.setTimeInMillis(time - 6 * 3600000);
+			value = formatter.format(calendar.getTime());
+			value = value.substring(0, value.length()-1);
+			
 			return value;
 		}
+	}
+	
+	public static String convertTime(long time){
+		// If given time is noted as -1, this indicates a 'Did not finish'
+				if (time == -1) {
+					return "DNF";
+				}
+				// If given time is noted as 0, this indicates a 'Still in progress'
+				else if (time == 0){
+					return "Still in progress";
+				}
+				else {
+					String value;
+					DateFormat formatter = new SimpleDateFormat("hh:mm:ss.SSS");
+					Calendar calendar = Calendar.getInstance();
+					calendar.setTimeInMillis(time - 6 * 3600000);
+					value = formatter.format(calendar.getTime());
+					value = value.substring(0, value.length()-1);
+					value = value.substring(3, value.length());
+
+					return value;
+				}
 	}
 }

@@ -1111,8 +1111,8 @@ public class Chronotimer {
 				while(it2.hasNext()){
 					Racer racer = it2.next();
 					System.out.println("Racer BIB number: " + racer.getBib());
-					System.out.println("Start: " + Time.convertTime(stats.getStart(racer)) + "	End: " + Time.convertTime(stats.getEnd(racer)));
-					stringToReturn += racer.getBib() + " Start: " + Time.convertTime(stats.getStart(racer)) + "	End: " + Time.convertTime(stats.getEnd(racer)) + "/";
+					System.out.println("Start: " + Time.convertRealTime(stats.getStart(racer)) + "	End: " + Time.convertRealTime(stats.getEnd(racer)));
+					stringToReturn += racer.getBib() + " Start: " + Time.convertRealTime(stats.getStart(racer)) + "	End: " + Time.convertRealTime(stats.getEnd(racer)) + "/";
 					if(stats.getEnd(racer) == -1){
 						System.out.println("Total time: Did not finish");
 						stringToReturn += "Total time: Did not finish" + "/";
