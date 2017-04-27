@@ -3269,10 +3269,18 @@ public class Driver_GUI extends JFrame{
 				        		printerAddLine("Group has started");
 		        			}
 		        		}else{
-		        			boolean printerPower = chronotimer.getPrinterPower();
-		        			if(printerPower == true){
-		        				String toPrint = "BIB# " + bibNum + " start";
-				        		printerAddLine(toPrint);
+		        			if(chronotimer.getIndividual() == false && chronotimer.getParallel() == true){
+		        				boolean printerPower = chronotimer.getPrinterPower();
+		        				if(printerPower == true){
+		        					String toPrint = "BIB# " + bibNum + " finish";
+		        					printerAddLine(toPrint);
+		        				}
+		        			}else{
+		        				boolean printerPower = chronotimer.getPrinterPower();
+		        				if(printerPower == true){
+		        					String toPrint = "BIB# " + bibNum + " start";
+		        					printerAddLine(toPrint);
+		        				}
 		        			}
 		        		}
 		    		} catch (Exception e2) {
@@ -3296,10 +3304,18 @@ public class Driver_GUI extends JFrame{
 				        		printerAddLine("Group has started");
 		        			}
 		        		}else{
-		        			boolean printerPower = chronotimer.getPrinterPower();
-		        			if(printerPower == true){
-		        				String toPrint = "BIB# " + bibNum + " start";
-				        		printerAddLine(toPrint);
+		        			if(chronotimer.getIndividual() == false && chronotimer.getParallel() == true){
+		        				boolean printerPower = chronotimer.getPrinterPower();
+		        				if(printerPower == true){
+		        					String toPrint = "BIB# " + bibNum + " finish";
+		        					printerAddLine(toPrint);
+		        				}
+		        			}else{
+		        				boolean printerPower = chronotimer.getPrinterPower();
+		        				if(printerPower == true){
+		        					String toPrint = "BIB# " + bibNum + " start";
+		        					printerAddLine(toPrint);
+		        				}
 		        			}
 		        		}
 		    		} catch (Exception e2) {
@@ -3323,10 +3339,18 @@ public class Driver_GUI extends JFrame{
 				        		printerAddLine("Group has started");
 		        			}
 		        		}else{
-		        			boolean printerPower = chronotimer.getPrinterPower();
-		        			if(printerPower == true){
-		        				String toPrint = "BIB# " + bibNum + " start";
-				        		printerAddLine(toPrint);
+		        			if(chronotimer.getIndividual() == false && chronotimer.getParallel() == true){
+		        				boolean printerPower = chronotimer.getPrinterPower();
+		        				if(printerPower == true){
+		        					String toPrint = "BIB# " + bibNum + " finish";
+		        					printerAddLine(toPrint);
+		        				}
+		        			}else{
+		        				boolean printerPower = chronotimer.getPrinterPower();
+		        				if(printerPower == true){
+		        					String toPrint = "BIB# " + bibNum + " start";
+		        					printerAddLine(toPrint);
+		        				}
 		        			}
 		        		}
 		    		} catch (Exception e2) {
@@ -3350,10 +3374,18 @@ public class Driver_GUI extends JFrame{
 				        		printerAddLine("Group has started");
 		        			}
 		        		}else{
-		        			boolean printerPower = chronotimer.getPrinterPower();
-		        			if(printerPower == true){
-		        				String toPrint = "BIB# " + bibNum + " start";
-				        		printerAddLine(toPrint);
+		        			if(chronotimer.getIndividual() == false && chronotimer.getParallel() == true){
+		        				boolean printerPower = chronotimer.getPrinterPower();
+		        				if(printerPower == true){
+		        					String toPrint = "BIB# " + bibNum + " finish";
+		        					printerAddLine(toPrint);
+		        				}
+		        			}else{
+		        				boolean printerPower = chronotimer.getPrinterPower();
+		        				if(printerPower == true){
+		        					String toPrint = "BIB# " + bibNum + " start";
+		        					printerAddLine(toPrint);
+		        				}
 		        			}
 		        		}
 		    		} catch (Exception e2) {
