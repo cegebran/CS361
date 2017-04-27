@@ -236,6 +236,9 @@ public class Chronotimer {
 				}
 			}else{
 				if(parallel == true){
+					if(currentRun.getBeginQueue().isEmpty() == true){
+						return 0;
+					}
 					if(currentRun.getGroupStartTime() == -1){
 						// start the entire group for every lane that has a racer in it
 						Boolean returnValue = currentRun.startGroup(timer.getCurrentTime());
@@ -938,6 +941,11 @@ public class Chronotimer {
 			if(parallel == true){	// for PARGRP: individual == false && parallel == true
 				if(currentRun == null){
 					return -2;
+				}
+				// Check if run has started yet
+				long startTime = currentRun.getGroupStartTime();
+				if(startTime != -1){
+					return 0;
 				}
 				// check if run is full
 				int numRacers = currentRun.getNumberRacers();
