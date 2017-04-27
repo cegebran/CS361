@@ -20,7 +20,7 @@ public class Driver_GUI extends JFrame{
 	
 	public static void main(String[] args){
 		Driver_GUI myGUI = new Driver_GUI();
-		myGUI.setLocationRelativeTo(null);
+		myGUI.setLocation(700,150);
 		myGUI.setVisible(true);
 		myGUI.setResizable(false);
 		myGUI.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -3500,6 +3500,81 @@ public class Driver_GUI extends JFrame{
 		    			e2.printStackTrace();
 		    		}
 		        }
+		});
+		
+		JFrame sensors = new JFrame("Sensors");
+		sensors.setResizable(false);
+		sensors.setLocation(100, 150);
+		sensors.setSize(500, 750);
+		sensors.setVisible(true);
+		sensors.setDefaultCloseOperation(EXIT_ON_CLOSE);
+		
+		JButton sensor1Button = new JButton("Sensor 1");
+		JButton sensor2Button = new JButton("Sensor 2");
+		JButton sensor3Button = new JButton("Sensor 3");
+		JButton sensor4Button = new JButton("Sensor 4");
+		JButton sensor5Button = new JButton("Sensor 5");
+		JButton sensor6Button = new JButton("Sensor 6");
+		JButton sensor7Button = new JButton("Sensor 7");
+		JButton sensor8Button = new JButton("Sensor 8");
+
+		Thread sensor1 = new Thread(new Sensor(1, chronotimer));
+		Thread sensor2 = new Thread(new Sensor(2, chronotimer));
+		Thread sensor3 = new Thread(new Sensor(3, chronotimer));
+		Thread sensor4 = new Thread(new Sensor(4, chronotimer));
+		Thread sensor5 = new Thread(new Sensor(5, chronotimer));
+		Thread sensor6 = new Thread(new Sensor(6, chronotimer));
+		Thread sensor7 = new Thread(new Sensor(7, chronotimer));
+		Thread sensor8 = new Thread(new Sensor(8, chronotimer));
+		
+		sensor1.start();
+		sensor2.start();
+		sensor3.start();
+		sensor4.start();
+		sensor5.start();
+		sensor6.start();
+		sensor7.start();
+		sensor8.start();
+		
+		sensor1Button.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e){
+		        	sensor1.interrupt();
+		    }
+		});
+		sensor2Button.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e){
+		        	sensor2.interrupt();
+		    }
+		});
+		sensor3Button.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e){
+		        	sensor3.interrupt();
+		    }
+		});
+		sensor4Button.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e){
+		        	sensor4.interrupt();
+		    }
+		});
+		sensor5Button.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e){
+		        	sensor5.interrupt();
+		    }
+		});
+		sensor6Button.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e){
+		        	sensor6.interrupt();
+		    }
+		});
+		sensor7Button.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e){
+		        	sensor7.interrupt();
+		    }
+		});
+		sensor8Button.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e){
+		        	sensor8.interrupt();
+		    }
 		});
 	}
 }
