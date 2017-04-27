@@ -2373,219 +2373,219 @@ public class Driver_GUI extends JFrame{
 							}else{
 								if(racerStartQueue.size() == 1){
 									if(currentStats.getEnd(racerStartQueue.get(0)) == -1){
-										displayLine1Label.setText("L1: " + racerStartQueue.get(0).getBib() + Time.convertTime(chronotimer.getTimer().getCurrentTime() - chronotimer.getCurrentRun().getGroupStartTime()) + " :R");
+										displayLine1Label.setText("L1: " + racerStartQueue.get(0).getBib() + "                                    " + Time.convertTime(chronotimer.getTimer().getCurrentTime() - chronotimer.getCurrentRun().getGroupStartTime()) + " :R");
 									}else{
-										displayLine1Label.setText("L1: " + racerStartQueue.get(0).getBib() + Time.convertTime(currentStats.getEnd(racerStartQueue.get(0)) - chronotimer.getCurrentRun().getGroupStartTime()) + " :F");
+										displayLine1Label.setText("L1: " + racerStartQueue.get(0).getBib() + "                                    " + Time.convertTime(currentStats.getEnd(racerStartQueue.get(0)) - chronotimer.getCurrentRun().getGroupStartTime()) + " :F");
 									}
-									displayLine2Label.setText("L2: No Current Racer :R");
-									displayLine3Label.setText("L3: No Current Racer :R");
-									displayLine4Label.setText("L4: No Current Racer :R");
-									displayLine5Label.setText("L5: No Current Racer :R");
-									displayLine6Label.setText("L6: No Current Racer :R");
-									displayLine7Label.setText("L7: No Current Racer :R");
-									displayLine8Label.setText("L8: No Current Racer :R");
+									displayLine2Label.setText("L2: No Current Racer          Run Has Not Started :>");
+									displayLine3Label.setText("L3: No Current Racer          Run Has Not Started :>");
+									displayLine4Label.setText("L4: No Current Racer          Run Has Not Started :>");
+									displayLine5Label.setText("L5: No Current Racer          Run Has Not Started :>");
+									displayLine6Label.setText("L6: No Current Racer          Run Has Not Started :>");
+									displayLine7Label.setText("L7: No Current Racer          Run Has Not Started :>");
+									displayLine8Label.setText("L8: No Current Racer          Run Has Not Started :>");
 								}else if(racerStartQueue.size() == 2){
 									if(currentStats.getEnd(racerStartQueue.get(0)) == -1){
-										displayLine1Label.setText("L1: " + racerStartQueue.get(0).getBib() + Time.convertTime(chronotimer.getTimer().getCurrentTime() - chronotimer.getCurrentRun().getGroupStartTime()) + " :R");
+										displayLine1Label.setText("L1: " + racerStartQueue.get(0).getBib() + "                                    " + Time.convertTime(chronotimer.getTimer().getCurrentTime() - chronotimer.getCurrentRun().getGroupStartTime()) + " :R");
 									}else{
-										displayLine1Label.setText("L1: " + racerStartQueue.get(0).getBib() + Time.convertTime(currentStats.getEnd(racerStartQueue.get(0)) - chronotimer.getCurrentRun().getGroupStartTime()) + " :F");
+										displayLine1Label.setText("L1: " + racerStartQueue.get(0).getBib() + "                                    " + Time.convertTime(currentStats.getEnd(racerStartQueue.get(0)) - chronotimer.getCurrentRun().getGroupStartTime()) + " :F");
 									}
 									if(currentStats.getEnd(racerStartQueue.get(1)) == -1){
-										displayLine2Label.setText("L2: " + racerStartQueue.get(1).getBib() + Time.convertTime(chronotimer.getTimer().getCurrentTime() - chronotimer.getCurrentRun().getGroupStartTime()) + " :R");
+										displayLine2Label.setText("L2: " + racerStartQueue.get(1).getBib() + "                                    " + Time.convertTime(chronotimer.getTimer().getCurrentTime() - chronotimer.getCurrentRun().getGroupStartTime()) + " :R");
 									}else{
-										displayLine2Label.setText("L2: " + racerStartQueue.get(1).getBib() + Time.convertTime(currentStats.getEnd(racerStartQueue.get(1)) - chronotimer.getCurrentRun().getGroupStartTime()) + " :F");
+										displayLine2Label.setText("L2: " + racerStartQueue.get(1).getBib() + "                                    " + Time.convertTime(currentStats.getEnd(racerStartQueue.get(1)) - chronotimer.getCurrentRun().getGroupStartTime()) + " :F");
 									}
-									displayLine3Label.setText("L3: No Current Racer :R");
-									displayLine4Label.setText("L4: No Current Racer :R");
-									displayLine5Label.setText("L5: No Current Racer :R");
-									displayLine6Label.setText("L6: No Current Racer :R");
-									displayLine7Label.setText("L7: No Current Racer :R");
-									displayLine8Label.setText("L8: No Current Racer :R");
+									displayLine3Label.setText("L3: No Current Racer          Run Has Not Started :>");
+									displayLine4Label.setText("L4: No Current Racer          Run Has Not Started :>");
+									displayLine5Label.setText("L5: No Current Racer          Run Has Not Started :>");
+									displayLine6Label.setText("L6: No Current Racer          Run Has Not Started :>");
+									displayLine7Label.setText("L7: No Current Racer          Run Has Not Started :>");
+									displayLine8Label.setText("L8: No Current Racer          Run Has Not Started :>");
 								}else if(racerStartQueue.size() == 3){
 									if(currentStats.getEnd(racerStartQueue.get(0)) == -1){
-										displayLine1Label.setText("L1: " + racerStartQueue.get(0).getBib() + Time.convertTime(chronotimer.getTimer().getCurrentTime() - chronotimer.getCurrentRun().getGroupStartTime()) + " :R");
+										displayLine1Label.setText("L1: " + racerStartQueue.get(0).getBib() + "                                    " + Time.convertTime(chronotimer.getTimer().getCurrentTime() - chronotimer.getCurrentRun().getGroupStartTime()) + " :R");
 									}else{
-										displayLine1Label.setText("L1: " + racerStartQueue.get(0).getBib() + Time.convertTime(currentStats.getEnd(racerStartQueue.get(0)) - chronotimer.getCurrentRun().getGroupStartTime()) + " :F");
+										displayLine1Label.setText("L1: " + racerStartQueue.get(0).getBib() + "                                    " + Time.convertTime(currentStats.getEnd(racerStartQueue.get(0)) - chronotimer.getCurrentRun().getGroupStartTime()) + " :F");
 									}
 									if(currentStats.getEnd(racerStartQueue.get(1)) == -1){
-										displayLine2Label.setText("L2: " + racerStartQueue.get(1).getBib() + Time.convertTime(chronotimer.getTimer().getCurrentTime() - chronotimer.getCurrentRun().getGroupStartTime()) + " :R");
+										displayLine2Label.setText("L2: " + racerStartQueue.get(1).getBib() + "                                    " + Time.convertTime(chronotimer.getTimer().getCurrentTime() - chronotimer.getCurrentRun().getGroupStartTime()) + " :R");
 									}else{
-										displayLine2Label.setText("L2: " + racerStartQueue.get(1).getBib() + Time.convertTime(currentStats.getEnd(racerStartQueue.get(1)) - chronotimer.getCurrentRun().getGroupStartTime()) + " :F");
+										displayLine2Label.setText("L2: " + racerStartQueue.get(1).getBib() + "                                    " + Time.convertTime(currentStats.getEnd(racerStartQueue.get(1)) - chronotimer.getCurrentRun().getGroupStartTime()) + " :F");
 									}
 									if(currentStats.getEnd(racerStartQueue.get(2)) == -1){
-										displayLine3Label.setText("L3: " + racerStartQueue.get(2).getBib() + Time.convertTime(chronotimer.getTimer().getCurrentTime() - chronotimer.getCurrentRun().getGroupStartTime()) + " :R");
+										displayLine3Label.setText("L3: " + racerStartQueue.get(2).getBib() + "                                    " + Time.convertTime(chronotimer.getTimer().getCurrentTime() - chronotimer.getCurrentRun().getGroupStartTime()) + " :R");
 									}else{
-										displayLine3Label.setText("L3: " + racerStartQueue.get(2).getBib() + Time.convertTime(currentStats.getEnd(racerStartQueue.get(2)) - chronotimer.getCurrentRun().getGroupStartTime()) + " :F");
+										displayLine3Label.setText("L3: " + racerStartQueue.get(2).getBib() + "                                    " + Time.convertTime(currentStats.getEnd(racerStartQueue.get(2)) - chronotimer.getCurrentRun().getGroupStartTime()) + " :F");
 									}
-									displayLine4Label.setText("L4: No Current Racer :R");
-									displayLine5Label.setText("L5: No Current Racer :R");
-									displayLine6Label.setText("L6: No Current Racer :R");
-									displayLine7Label.setText("L7: No Current Racer :R");
-									displayLine8Label.setText("L8: No Current Racer :R");
+									displayLine4Label.setText("L4: No Current Racer          Run Has Not Started :>");
+									displayLine5Label.setText("L5: No Current Racer          Run Has Not Started :>");
+									displayLine6Label.setText("L6: No Current Racer          Run Has Not Started :>");
+									displayLine7Label.setText("L7: No Current Racer          Run Has Not Started :>");
+									displayLine8Label.setText("L8: No Current Racer          Run Has Not Started :>");
 								}else if(racerStartQueue.size() == 4){
 									if(currentStats.getEnd(racerStartQueue.get(0)) == -1){
-										displayLine1Label.setText("L1: " + racerStartQueue.get(0).getBib() + Time.convertTime(chronotimer.getTimer().getCurrentTime() - chronotimer.getCurrentRun().getGroupStartTime()) + " :R");
+										displayLine1Label.setText("L1: " + racerStartQueue.get(0).getBib() + "                                    " + Time.convertTime(chronotimer.getTimer().getCurrentTime() - chronotimer.getCurrentRun().getGroupStartTime()) + " :R");
 									}else{
-										displayLine1Label.setText("L1: " + racerStartQueue.get(0).getBib() + Time.convertTime(currentStats.getEnd(racerStartQueue.get(0)) - chronotimer.getCurrentRun().getGroupStartTime()) + " :F");
+										displayLine1Label.setText("L1: " + racerStartQueue.get(0).getBib() + "                                    " + Time.convertTime(currentStats.getEnd(racerStartQueue.get(0)) - chronotimer.getCurrentRun().getGroupStartTime()) + " :F");
 									}
 									if(currentStats.getEnd(racerStartQueue.get(1)) == -1){
-										displayLine2Label.setText("L2: " + racerStartQueue.get(1).getBib() + Time.convertTime(chronotimer.getTimer().getCurrentTime() - chronotimer.getCurrentRun().getGroupStartTime()) + " :R");
+										displayLine2Label.setText("L2: " + racerStartQueue.get(1).getBib() + "                                    " + Time.convertTime(chronotimer.getTimer().getCurrentTime() - chronotimer.getCurrentRun().getGroupStartTime()) + " :R");
 									}else{
-										displayLine2Label.setText("L2: " + racerStartQueue.get(1).getBib() + Time.convertTime(currentStats.getEnd(racerStartQueue.get(1)) - chronotimer.getCurrentRun().getGroupStartTime()) + " :F");
+										displayLine2Label.setText("L2: " + racerStartQueue.get(1).getBib() + "                                    " + Time.convertTime(currentStats.getEnd(racerStartQueue.get(1)) - chronotimer.getCurrentRun().getGroupStartTime()) + " :F");
 									}
 									if(currentStats.getEnd(racerStartQueue.get(2)) == -1){
-										displayLine3Label.setText("L3: " + racerStartQueue.get(2).getBib() + Time.convertTime(chronotimer.getTimer().getCurrentTime() - chronotimer.getCurrentRun().getGroupStartTime()) + " :R");
+										displayLine3Label.setText("L3: " + racerStartQueue.get(2).getBib() + "                                    " + Time.convertTime(chronotimer.getTimer().getCurrentTime() - chronotimer.getCurrentRun().getGroupStartTime()) + " :R");
 									}else{
-										displayLine3Label.setText("L3: " + racerStartQueue.get(2).getBib() + Time.convertTime(currentStats.getEnd(racerStartQueue.get(2)) - chronotimer.getCurrentRun().getGroupStartTime()) + " :F");
+										displayLine3Label.setText("L3: " + racerStartQueue.get(2).getBib() + "                                    " + Time.convertTime(currentStats.getEnd(racerStartQueue.get(2)) - chronotimer.getCurrentRun().getGroupStartTime()) + " :F");
 									}
 									if(currentStats.getEnd(racerStartQueue.get(3)) == -1){
-										displayLine4Label.setText("L4: " + racerStartQueue.get(3).getBib() + Time.convertTime(chronotimer.getTimer().getCurrentTime() - chronotimer.getCurrentRun().getGroupStartTime()) + " :R");
+										displayLine4Label.setText("L4: " + racerStartQueue.get(3).getBib() + "                                    " + Time.convertTime(chronotimer.getTimer().getCurrentTime() - chronotimer.getCurrentRun().getGroupStartTime()) + " :R");
 									}else{
-										displayLine4Label.setText("L4: " + racerStartQueue.get(3).getBib() + Time.convertTime(currentStats.getEnd(racerStartQueue.get(3)) - chronotimer.getCurrentRun().getGroupStartTime()) + " :F");
+										displayLine4Label.setText("L4: " + racerStartQueue.get(3).getBib() + "                                    " + Time.convertTime(currentStats.getEnd(racerStartQueue.get(3)) - chronotimer.getCurrentRun().getGroupStartTime()) + " :F");
 									}
-									displayLine5Label.setText("L5: No Current Racer :R");
-									displayLine6Label.setText("L6: No Current Racer :R");
-									displayLine7Label.setText("L7: No Current Racer :R");
-									displayLine8Label.setText("L8: No Current Racer :R");
+									displayLine5Label.setText("L5: No Current Racer          Run Has Not Started :>");
+									displayLine6Label.setText("L6: No Current Racer          Run Has Not Started :>");
+									displayLine7Label.setText("L7: No Current Racer          Run Has Not Started :>");
+									displayLine8Label.setText("L8: No Current Racer          Run Has Not Started :>");
 								}else if(racerStartQueue.size() == 5){
 									if(currentStats.getEnd(racerStartQueue.get(0)) == -1){
-										displayLine1Label.setText("L1: " + racerStartQueue.get(0).getBib() + Time.convertTime(chronotimer.getTimer().getCurrentTime() - chronotimer.getCurrentRun().getGroupStartTime()) + " :R");
+										displayLine1Label.setText("L1: " + racerStartQueue.get(0).getBib() + "                                    " + Time.convertTime(chronotimer.getTimer().getCurrentTime() - chronotimer.getCurrentRun().getGroupStartTime()) + " :R");
 									}else{
-										displayLine1Label.setText("L1: " + racerStartQueue.get(0).getBib() + Time.convertTime(currentStats.getEnd(racerStartQueue.get(0)) - chronotimer.getCurrentRun().getGroupStartTime()) + " :F");
+										displayLine1Label.setText("L1: " + racerStartQueue.get(0).getBib() + "                                    " + Time.convertTime(currentStats.getEnd(racerStartQueue.get(0)) - chronotimer.getCurrentRun().getGroupStartTime()) + " :F");
 									}
 									if(currentStats.getEnd(racerStartQueue.get(1)) == -1){
-										displayLine2Label.setText("L2: " + racerStartQueue.get(1).getBib() + Time.convertTime(chronotimer.getTimer().getCurrentTime() - chronotimer.getCurrentRun().getGroupStartTime()) + " :R");
+										displayLine2Label.setText("L2: " + racerStartQueue.get(1).getBib() + "                                    " + Time.convertTime(chronotimer.getTimer().getCurrentTime() - chronotimer.getCurrentRun().getGroupStartTime()) + " :R");
 									}else{
-										displayLine2Label.setText("L2: " + racerStartQueue.get(1).getBib() + Time.convertTime(currentStats.getEnd(racerStartQueue.get(1)) - chronotimer.getCurrentRun().getGroupStartTime()) + " :F");
+										displayLine2Label.setText("L2: " + racerStartQueue.get(1).getBib() + "                                    " + Time.convertTime(currentStats.getEnd(racerStartQueue.get(1)) - chronotimer.getCurrentRun().getGroupStartTime()) + " :F");
 									}
 									if(currentStats.getEnd(racerStartQueue.get(2)) == -1){
-										displayLine3Label.setText("L3: " + racerStartQueue.get(2).getBib() + Time.convertTime(chronotimer.getTimer().getCurrentTime() - chronotimer.getCurrentRun().getGroupStartTime()) + " :R");
+										displayLine3Label.setText("L3: " + racerStartQueue.get(2).getBib() + "                                    " + Time.convertTime(chronotimer.getTimer().getCurrentTime() - chronotimer.getCurrentRun().getGroupStartTime()) + " :R");
 									}else{
-										displayLine3Label.setText("L3: " + racerStartQueue.get(2).getBib() + Time.convertTime(currentStats.getEnd(racerStartQueue.get(2)) - chronotimer.getCurrentRun().getGroupStartTime()) + " :F");
+										displayLine3Label.setText("L3: " + racerStartQueue.get(2).getBib() + "                                    " + Time.convertTime(currentStats.getEnd(racerStartQueue.get(2)) - chronotimer.getCurrentRun().getGroupStartTime()) + " :F");
 									}
 									if(currentStats.getEnd(racerStartQueue.get(3)) == -1){
-										displayLine4Label.setText("L4: " + racerStartQueue.get(3).getBib() + Time.convertTime(chronotimer.getTimer().getCurrentTime() - chronotimer.getCurrentRun().getGroupStartTime()) + " :R");
+										displayLine4Label.setText("L4: " + racerStartQueue.get(3).getBib() + "                                    " + Time.convertTime(chronotimer.getTimer().getCurrentTime() - chronotimer.getCurrentRun().getGroupStartTime()) + " :R");
 									}else{
-										displayLine4Label.setText("L4: " + racerStartQueue.get(3).getBib() + Time.convertTime(currentStats.getEnd(racerStartQueue.get(3)) - chronotimer.getCurrentRun().getGroupStartTime()) + " :F");
+										displayLine4Label.setText("L4: " + racerStartQueue.get(3).getBib() + "                                    " + Time.convertTime(currentStats.getEnd(racerStartQueue.get(3)) - chronotimer.getCurrentRun().getGroupStartTime()) + " :F");
 									}
 									if(currentStats.getEnd(racerStartQueue.get(4)) == -1){
-										displayLine5Label.setText("L5: " + racerStartQueue.get(4).getBib() + Time.convertTime(chronotimer.getTimer().getCurrentTime() - chronotimer.getCurrentRun().getGroupStartTime()) + " :R");
+										displayLine5Label.setText("L5: " + racerStartQueue.get(4).getBib() + "                                    " + Time.convertTime(chronotimer.getTimer().getCurrentTime() - chronotimer.getCurrentRun().getGroupStartTime()) + " :R");
 									}else{
-										displayLine5Label.setText("L5: " + racerStartQueue.get(4).getBib() + Time.convertTime(currentStats.getEnd(racerStartQueue.get(4)) - chronotimer.getCurrentRun().getGroupStartTime()) + " :F");
+										displayLine5Label.setText("L5: " + racerStartQueue.get(4).getBib() + "                                    " + Time.convertTime(currentStats.getEnd(racerStartQueue.get(4)) - chronotimer.getCurrentRun().getGroupStartTime()) + " :F");
 									}
-									displayLine6Label.setText("L6: No Current Racer :R");
-									displayLine7Label.setText("L7: No Current Racer :R");
-									displayLine8Label.setText("L8: No Current Racer :R");
+									displayLine6Label.setText("L6: No Current Racer          Run Has Not Started :>");
+									displayLine7Label.setText("L7: No Current Racer          Run Has Not Started :>");
+									displayLine8Label.setText("L8: No Current Racer          Run Has Not Started :>");
 								}else if(racerStartQueue.size() == 6){
 									if(currentStats.getEnd(racerStartQueue.get(0)) == -1){
-										displayLine1Label.setText("L1: " + racerStartQueue.get(0).getBib() + Time.convertTime(chronotimer.getTimer().getCurrentTime() - chronotimer.getCurrentRun().getGroupStartTime()) + " :R");
+										displayLine1Label.setText("L1: " + racerStartQueue.get(0).getBib() + "                                    " + Time.convertTime(chronotimer.getTimer().getCurrentTime() - chronotimer.getCurrentRun().getGroupStartTime()) + " :R");
 									}else{
-										displayLine1Label.setText("L1: " + racerStartQueue.get(0).getBib() + Time.convertTime(currentStats.getEnd(racerStartQueue.get(0)) - chronotimer.getCurrentRun().getGroupStartTime()) + " :F");
+										displayLine1Label.setText("L1: " + racerStartQueue.get(0).getBib() + "                                    " + Time.convertTime(currentStats.getEnd(racerStartQueue.get(0)) - chronotimer.getCurrentRun().getGroupStartTime()) + " :F");
 									}
 									if(currentStats.getEnd(racerStartQueue.get(1)) == -1){
-										displayLine2Label.setText("L2: " + racerStartQueue.get(1).getBib() + Time.convertTime(chronotimer.getTimer().getCurrentTime() - chronotimer.getCurrentRun().getGroupStartTime()) + " :R");
+										displayLine2Label.setText("L2: " + racerStartQueue.get(1).getBib() + "                                    " + Time.convertTime(chronotimer.getTimer().getCurrentTime() - chronotimer.getCurrentRun().getGroupStartTime()) + " :R");
 									}else{
-										displayLine2Label.setText("L2: " + racerStartQueue.get(1).getBib() + Time.convertTime(currentStats.getEnd(racerStartQueue.get(1)) - chronotimer.getCurrentRun().getGroupStartTime()) + " :F");
+										displayLine2Label.setText("L2: " + racerStartQueue.get(1).getBib() + "                                    " + Time.convertTime(currentStats.getEnd(racerStartQueue.get(1)) - chronotimer.getCurrentRun().getGroupStartTime()) + " :F");
 									}
 									if(currentStats.getEnd(racerStartQueue.get(2)) == -1){
-										displayLine3Label.setText("L3: " + racerStartQueue.get(2).getBib() + Time.convertTime(chronotimer.getTimer().getCurrentTime() - chronotimer.getCurrentRun().getGroupStartTime()) + " :R");
+										displayLine3Label.setText("L3: " + racerStartQueue.get(2).getBib() + "                                    " + Time.convertTime(chronotimer.getTimer().getCurrentTime() - chronotimer.getCurrentRun().getGroupStartTime()) + " :R");
 									}else{
-										displayLine3Label.setText("L3: " + racerStartQueue.get(2).getBib() + Time.convertTime(currentStats.getEnd(racerStartQueue.get(2)) - chronotimer.getCurrentRun().getGroupStartTime()) + " :F");
+										displayLine3Label.setText("L3: " + racerStartQueue.get(2).getBib() + "                                    " + Time.convertTime(currentStats.getEnd(racerStartQueue.get(2)) - chronotimer.getCurrentRun().getGroupStartTime()) + " :F");
 									}
 									if(currentStats.getEnd(racerStartQueue.get(3)) == -1){
-										displayLine4Label.setText("L4: " + racerStartQueue.get(3).getBib() + Time.convertTime(chronotimer.getTimer().getCurrentTime() - chronotimer.getCurrentRun().getGroupStartTime()) + " :R");
+										displayLine4Label.setText("L4: " + racerStartQueue.get(3).getBib() + "                                    " + Time.convertTime(chronotimer.getTimer().getCurrentTime() - chronotimer.getCurrentRun().getGroupStartTime()) + " :R");
 									}else{
-										displayLine4Label.setText("L4: " + racerStartQueue.get(3).getBib() + Time.convertTime(currentStats.getEnd(racerStartQueue.get(3)) - chronotimer.getCurrentRun().getGroupStartTime()) + " :F");
+										displayLine4Label.setText("L4: " + racerStartQueue.get(3).getBib() + "                                    " + Time.convertTime(currentStats.getEnd(racerStartQueue.get(3)) - chronotimer.getCurrentRun().getGroupStartTime()) + " :F");
 									}
 									if(currentStats.getEnd(racerStartQueue.get(4)) == -1){
-										displayLine5Label.setText("L5: " + racerStartQueue.get(4).getBib() + Time.convertTime(chronotimer.getTimer().getCurrentTime() - chronotimer.getCurrentRun().getGroupStartTime()) + " :R");
+										displayLine5Label.setText("L5: " + racerStartQueue.get(4).getBib() + "                                    " + Time.convertTime(chronotimer.getTimer().getCurrentTime() - chronotimer.getCurrentRun().getGroupStartTime()) + " :R");
 									}else{
-										displayLine5Label.setText("L5: " + racerStartQueue.get(4).getBib() + Time.convertTime(currentStats.getEnd(racerStartQueue.get(4)) - chronotimer.getCurrentRun().getGroupStartTime()) + " :F");
+										displayLine5Label.setText("L5: " + racerStartQueue.get(4).getBib() + "                                    " + Time.convertTime(currentStats.getEnd(racerStartQueue.get(4)) - chronotimer.getCurrentRun().getGroupStartTime()) + " :F");
 									}
 									if(currentStats.getEnd(racerStartQueue.get(5)) == -1){
-										displayLine6Label.setText("L6: " + racerStartQueue.get(5).getBib() + Time.convertTime(chronotimer.getTimer().getCurrentTime() - chronotimer.getCurrentRun().getGroupStartTime()) + " :R");
+										displayLine6Label.setText("L6: " + racerStartQueue.get(5).getBib() + "                                    " + Time.convertTime(chronotimer.getTimer().getCurrentTime() - chronotimer.getCurrentRun().getGroupStartTime()) + " :R");
 									}else{
-										displayLine6Label.setText("L6: " + racerStartQueue.get(5).getBib() + Time.convertTime(currentStats.getEnd(racerStartQueue.get(5)) - chronotimer.getCurrentRun().getGroupStartTime()) + " :F");
+										displayLine6Label.setText("L6: " + racerStartQueue.get(5).getBib() + "                                    " + Time.convertTime(currentStats.getEnd(racerStartQueue.get(5)) - chronotimer.getCurrentRun().getGroupStartTime()) + " :F");
 									}
-									displayLine7Label.setText("L7: No Current Racer :R");
-									displayLine8Label.setText("L8: No Current Racer :R");
+									displayLine7Label.setText("L7: No Current Racer          Run Has Not Started :>");
+									displayLine8Label.setText("L8: No Current Racer          Run Has Not Started :>");
 								}else if(racerStartQueue.size() == 7){
 									if(currentStats.getEnd(racerStartQueue.get(0)) == -1){
-										displayLine1Label.setText("L1: " + racerStartQueue.get(0).getBib() + Time.convertTime(chronotimer.getTimer().getCurrentTime() - chronotimer.getCurrentRun().getGroupStartTime()) + " :R");
+										displayLine1Label.setText("L1: " + racerStartQueue.get(0).getBib() + "                                    " + Time.convertTime(chronotimer.getTimer().getCurrentTime() - chronotimer.getCurrentRun().getGroupStartTime()) + " :R");
 									}else{
-										displayLine1Label.setText("L1: " + racerStartQueue.get(0).getBib() + Time.convertTime(currentStats.getEnd(racerStartQueue.get(0)) - chronotimer.getCurrentRun().getGroupStartTime()) + " :F");
+										displayLine1Label.setText("L1: " + racerStartQueue.get(0).getBib() + "                                    " + Time.convertTime(currentStats.getEnd(racerStartQueue.get(0)) - chronotimer.getCurrentRun().getGroupStartTime()) + " :F");
 									}
 									if(currentStats.getEnd(racerStartQueue.get(1)) == -1){
-										displayLine2Label.setText("L2: " + racerStartQueue.get(1).getBib() + Time.convertTime(chronotimer.getTimer().getCurrentTime() - chronotimer.getCurrentRun().getGroupStartTime()) + " :R");
+										displayLine2Label.setText("L2: " + racerStartQueue.get(1).getBib() + "                                    " + Time.convertTime(chronotimer.getTimer().getCurrentTime() - chronotimer.getCurrentRun().getGroupStartTime()) + " :R");
 									}else{
-										displayLine2Label.setText("L2: " + racerStartQueue.get(1).getBib() + Time.convertTime(currentStats.getEnd(racerStartQueue.get(1)) - chronotimer.getCurrentRun().getGroupStartTime()) + " :F");
+										displayLine2Label.setText("L2: " + racerStartQueue.get(1).getBib() + "                                    " + Time.convertTime(currentStats.getEnd(racerStartQueue.get(1)) - chronotimer.getCurrentRun().getGroupStartTime()) + " :F");
 									}
 									if(currentStats.getEnd(racerStartQueue.get(2)) == -1){
-										displayLine3Label.setText("L3: " + racerStartQueue.get(2).getBib() + Time.convertTime(chronotimer.getTimer().getCurrentTime() - chronotimer.getCurrentRun().getGroupStartTime()) + " :R");
+										displayLine3Label.setText("L3: " + racerStartQueue.get(2).getBib() + "                                    " + Time.convertTime(chronotimer.getTimer().getCurrentTime() - chronotimer.getCurrentRun().getGroupStartTime()) + " :R");
 									}else{
-										displayLine3Label.setText("L3: " + racerStartQueue.get(2).getBib() + Time.convertTime(currentStats.getEnd(racerStartQueue.get(2)) - chronotimer.getCurrentRun().getGroupStartTime()) + " :F");
+										displayLine3Label.setText("L3: " + racerStartQueue.get(2).getBib() + "                                    " + Time.convertTime(currentStats.getEnd(racerStartQueue.get(2)) - chronotimer.getCurrentRun().getGroupStartTime()) + " :F");
 									}
 									if(currentStats.getEnd(racerStartQueue.get(3)) == -1){
-										displayLine4Label.setText("L4: " + racerStartQueue.get(3).getBib() + Time.convertTime(chronotimer.getTimer().getCurrentTime() - chronotimer.getCurrentRun().getGroupStartTime()) + " :R");
+										displayLine4Label.setText("L4: " + racerStartQueue.get(3).getBib() + "                                    " + Time.convertTime(chronotimer.getTimer().getCurrentTime() - chronotimer.getCurrentRun().getGroupStartTime()) + " :R");
 									}else{
-										displayLine4Label.setText("L4: " + racerStartQueue.get(3).getBib() + Time.convertTime(currentStats.getEnd(racerStartQueue.get(3)) - chronotimer.getCurrentRun().getGroupStartTime()) + " :F");
+										displayLine4Label.setText("L4: " + racerStartQueue.get(3).getBib() + "                                    " + Time.convertTime(currentStats.getEnd(racerStartQueue.get(3)) - chronotimer.getCurrentRun().getGroupStartTime()) + " :F");
 									}
 									if(currentStats.getEnd(racerStartQueue.get(4)) == -1){
-										displayLine5Label.setText("L5: " + racerStartQueue.get(4).getBib() + Time.convertTime(chronotimer.getTimer().getCurrentTime() - chronotimer.getCurrentRun().getGroupStartTime()) + " :R");
+										displayLine5Label.setText("L5: " + racerStartQueue.get(4).getBib() + "                                    " + Time.convertTime(chronotimer.getTimer().getCurrentTime() - chronotimer.getCurrentRun().getGroupStartTime()) + " :R");
 									}else{
-										displayLine5Label.setText("L5: " + racerStartQueue.get(4).getBib() + Time.convertTime(currentStats.getEnd(racerStartQueue.get(4)) - chronotimer.getCurrentRun().getGroupStartTime()) + " :F");
+										displayLine5Label.setText("L5: " + racerStartQueue.get(4).getBib() + "                                    " + Time.convertTime(currentStats.getEnd(racerStartQueue.get(4)) - chronotimer.getCurrentRun().getGroupStartTime()) + " :F");
 									}
 									if(currentStats.getEnd(racerStartQueue.get(5)) == -1){
-										displayLine6Label.setText("L6: " + racerStartQueue.get(5).getBib() + Time.convertTime(chronotimer.getTimer().getCurrentTime() - chronotimer.getCurrentRun().getGroupStartTime()) + " :R");
+										displayLine6Label.setText("L6: " + racerStartQueue.get(5).getBib() + "                                    " + Time.convertTime(chronotimer.getTimer().getCurrentTime() - chronotimer.getCurrentRun().getGroupStartTime()) + " :R");
 									}else{
-										displayLine6Label.setText("L6: " + racerStartQueue.get(5).getBib() + Time.convertTime(currentStats.getEnd(racerStartQueue.get(5)) - chronotimer.getCurrentRun().getGroupStartTime()) + " :F");
+										displayLine6Label.setText("L6: " + racerStartQueue.get(5).getBib() + "                                    " + Time.convertTime(currentStats.getEnd(racerStartQueue.get(5)) - chronotimer.getCurrentRun().getGroupStartTime()) + " :F");
 									}
 									if(currentStats.getEnd(racerStartQueue.get(6)) == -1){
-										displayLine7Label.setText("L7: " + racerStartQueue.get(6).getBib() + Time.convertTime(chronotimer.getTimer().getCurrentTime() - chronotimer.getCurrentRun().getGroupStartTime()) + " :R");
+										displayLine7Label.setText("L7: " + racerStartQueue.get(6).getBib() + "                                    " + Time.convertTime(chronotimer.getTimer().getCurrentTime() - chronotimer.getCurrentRun().getGroupStartTime()) + " :R");
 									}else{
-										displayLine7Label.setText("L7: " + racerStartQueue.get(6).getBib() + Time.convertTime(currentStats.getEnd(racerStartQueue.get(6)) - chronotimer.getCurrentRun().getGroupStartTime()) + " :F");
+										displayLine7Label.setText("L7: " + racerStartQueue.get(6).getBib() + "                                    " + Time.convertTime(currentStats.getEnd(racerStartQueue.get(6)) - chronotimer.getCurrentRun().getGroupStartTime()) + " :F");
 									}
-									displayLine8Label.setText("L8: No Current Racer :R");
+									displayLine8Label.setText("L8: No Current Racer          Run Has Not Started :>");
 								}else{
 									if(currentStats.getEnd(racerStartQueue.get(0)) == -1){
-										displayLine1Label.setText("L1: " + racerStartQueue.get(0).getBib() + Time.convertTime(chronotimer.getTimer().getCurrentTime() - chronotimer.getCurrentRun().getGroupStartTime()) + " :R");
+										displayLine1Label.setText("L1: " + racerStartQueue.get(0).getBib() + "                                    " + Time.convertTime(chronotimer.getTimer().getCurrentTime() - chronotimer.getCurrentRun().getGroupStartTime()) + " :R");
 									}else{
-										displayLine1Label.setText("L1: " + racerStartQueue.get(0).getBib() + Time.convertTime(currentStats.getEnd(racerStartQueue.get(0)) - chronotimer.getCurrentRun().getGroupStartTime()) + " :F");
+										displayLine1Label.setText("L1: " + racerStartQueue.get(0).getBib() + "                                    " + Time.convertTime(currentStats.getEnd(racerStartQueue.get(0)) - chronotimer.getCurrentRun().getGroupStartTime()) + " :F");
 									}
 									if(currentStats.getEnd(racerStartQueue.get(1)) == -1){
-										displayLine2Label.setText("L2: " + racerStartQueue.get(1).getBib() + Time.convertTime(chronotimer.getTimer().getCurrentTime() - chronotimer.getCurrentRun().getGroupStartTime()) + " :R");
+										displayLine2Label.setText("L2: " + racerStartQueue.get(1).getBib() + "                                    " + Time.convertTime(chronotimer.getTimer().getCurrentTime() - chronotimer.getCurrentRun().getGroupStartTime()) + " :R");
 									}else{
-										displayLine2Label.setText("L2: " + racerStartQueue.get(1).getBib() + Time.convertTime(currentStats.getEnd(racerStartQueue.get(1)) - chronotimer.getCurrentRun().getGroupStartTime()) + " :F");
+										displayLine2Label.setText("L2: " + racerStartQueue.get(1).getBib() + "                                    " + Time.convertTime(currentStats.getEnd(racerStartQueue.get(1)) - chronotimer.getCurrentRun().getGroupStartTime()) + " :F");
 									}
 									if(currentStats.getEnd(racerStartQueue.get(2)) == -1){
-										displayLine3Label.setText("L3: " + racerStartQueue.get(2).getBib() + Time.convertTime(chronotimer.getTimer().getCurrentTime() - chronotimer.getCurrentRun().getGroupStartTime()) + " :R");
+										displayLine3Label.setText("L3: " + racerStartQueue.get(2).getBib() + "                                    " + Time.convertTime(chronotimer.getTimer().getCurrentTime() - chronotimer.getCurrentRun().getGroupStartTime()) + " :R");
 									}else{
-										displayLine3Label.setText("L3: " + racerStartQueue.get(2).getBib() + Time.convertTime(currentStats.getEnd(racerStartQueue.get(2)) - chronotimer.getCurrentRun().getGroupStartTime()) + " :F");
+										displayLine3Label.setText("L3: " + racerStartQueue.get(2).getBib() + "                                    " + Time.convertTime(currentStats.getEnd(racerStartQueue.get(2)) - chronotimer.getCurrentRun().getGroupStartTime()) + " :F");
 									}
 									if(currentStats.getEnd(racerStartQueue.get(3)) == -1){
-										displayLine4Label.setText("L4: " + racerStartQueue.get(3).getBib() + Time.convertTime(chronotimer.getTimer().getCurrentTime() - chronotimer.getCurrentRun().getGroupStartTime()) + " :R");
+										displayLine4Label.setText("L4: " + racerStartQueue.get(3).getBib() + "                                    " + Time.convertTime(chronotimer.getTimer().getCurrentTime() - chronotimer.getCurrentRun().getGroupStartTime()) + " :R");
 									}else{
-										displayLine4Label.setText("L4: " + racerStartQueue.get(3).getBib() + Time.convertTime(currentStats.getEnd(racerStartQueue.get(3)) - chronotimer.getCurrentRun().getGroupStartTime()) + " :F");
+										displayLine4Label.setText("L4: " + racerStartQueue.get(3).getBib() + "                                    " + Time.convertTime(currentStats.getEnd(racerStartQueue.get(3)) - chronotimer.getCurrentRun().getGroupStartTime()) + " :F");
 									}
 									if(currentStats.getEnd(racerStartQueue.get(4)) == -1){
-										displayLine5Label.setText("L5: " + racerStartQueue.get(4).getBib() + Time.convertTime(chronotimer.getTimer().getCurrentTime() - chronotimer.getCurrentRun().getGroupStartTime()) + " :R");
+										displayLine5Label.setText("L5: " + racerStartQueue.get(4).getBib() + "                                    " + Time.convertTime(chronotimer.getTimer().getCurrentTime() - chronotimer.getCurrentRun().getGroupStartTime()) + " :R");
 									}else{
-										displayLine5Label.setText("L5: " + racerStartQueue.get(4).getBib() + Time.convertTime(currentStats.getEnd(racerStartQueue.get(4)) - chronotimer.getCurrentRun().getGroupStartTime()) + " :F");
+										displayLine5Label.setText("L5: " + racerStartQueue.get(4).getBib() + "                                    " + Time.convertTime(currentStats.getEnd(racerStartQueue.get(4)) - chronotimer.getCurrentRun().getGroupStartTime()) + " :F");
 									}
 									if(currentStats.getEnd(racerStartQueue.get(5)) == -1){
-										displayLine6Label.setText("L6: " + racerStartQueue.get(5).getBib() + Time.convertTime(chronotimer.getTimer().getCurrentTime() - chronotimer.getCurrentRun().getGroupStartTime()) + " :R");
+										displayLine6Label.setText("L6: " + racerStartQueue.get(5).getBib() + "                                    " + Time.convertTime(chronotimer.getTimer().getCurrentTime() - chronotimer.getCurrentRun().getGroupStartTime()) + " :R");
 									}else{
-										displayLine6Label.setText("L6: " + racerStartQueue.get(5).getBib() + Time.convertTime(currentStats.getEnd(racerStartQueue.get(5)) - chronotimer.getCurrentRun().getGroupStartTime()) + " :F");
+										displayLine6Label.setText("L6: " + racerStartQueue.get(5).getBib() + "                                    " + Time.convertTime(currentStats.getEnd(racerStartQueue.get(5)) - chronotimer.getCurrentRun().getGroupStartTime()) + " :F");
 									}
 									if(currentStats.getEnd(racerStartQueue.get(6)) == -1){
-										displayLine7Label.setText("L7: " + racerStartQueue.get(6).getBib() + Time.convertTime(chronotimer.getTimer().getCurrentTime() - chronotimer.getCurrentRun().getGroupStartTime()) + " :R");
+										displayLine7Label.setText("L7: " + racerStartQueue.get(6).getBib() + "                                    " + Time.convertTime(chronotimer.getTimer().getCurrentTime() - chronotimer.getCurrentRun().getGroupStartTime()) + " :R");
 									}else{
-										displayLine7Label.setText("L7: " + racerStartQueue.get(6).getBib() + Time.convertTime(currentStats.getEnd(racerStartQueue.get(6)) - chronotimer.getCurrentRun().getGroupStartTime()) + " :F");
+										displayLine7Label.setText("L7: " + racerStartQueue.get(6).getBib() + "                                    " + Time.convertTime(currentStats.getEnd(racerStartQueue.get(6)) - chronotimer.getCurrentRun().getGroupStartTime()) + " :F");
 									}
 									if(currentStats.getEnd(racerStartQueue.get(7)) == -1){
-										displayLine8Label.setText("L8: " + racerStartQueue.get(7).getBib() + Time.convertTime(chronotimer.getTimer().getCurrentTime() - chronotimer.getCurrentRun().getGroupStartTime()) + " :R");
+										displayLine8Label.setText("L8: " + racerStartQueue.get(7).getBib() + "                                    " + Time.convertTime(chronotimer.getTimer().getCurrentTime() - chronotimer.getCurrentRun().getGroupStartTime()) + " :R");
 									}else{
-										displayLine8Label.setText("L8: " + racerStartQueue.get(7).getBib() + Time.convertTime(currentStats.getEnd(racerStartQueue.get(7)) - chronotimer.getCurrentRun().getGroupStartTime()) + " :F");
+										displayLine8Label.setText("L8: " + racerStartQueue.get(7).getBib() + "                                    " + Time.convertTime(currentStats.getEnd(racerStartQueue.get(7)) - chronotimer.getCurrentRun().getGroupStartTime()) + " :F");
 									}
 									
 								}
