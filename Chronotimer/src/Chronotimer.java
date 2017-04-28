@@ -293,7 +293,7 @@ public class Chronotimer {
 						}
 					}
 				}else{
-					Boolean returnValue = currentRun.startGroup(timer.getCurrentTime());
+					Boolean returnValue = currentRun.endGroup(timer.getCurrentTime());
 					if(returnValue == true){
 						return 11111;
 					}else{
@@ -357,7 +357,7 @@ public class Chronotimer {
 						}
 					}
 				}else{
-					Boolean returnValue = currentRun.startGroup(timer.getCurrentTime());
+					Boolean returnValue = currentRun.endGroup(timer.getCurrentTime());
 					if(returnValue == true){
 						return 11111;
 					}else{
@@ -421,7 +421,7 @@ public class Chronotimer {
 						}
 					}
 				}else{
-					Boolean returnValue = currentRun.startGroup(timer.getCurrentTime());
+					Boolean returnValue = currentRun.endGroup(timer.getCurrentTime());
 					if(returnValue == true){
 						return 11111;
 					}else{
@@ -485,7 +485,7 @@ public class Chronotimer {
 						}
 					}
 				}else{
-					Boolean returnValue = currentRun.startGroup(timer.getCurrentTime());
+					Boolean returnValue = currentRun.endGroup(timer.getCurrentTime());
 					if(returnValue == true){
 						return 11111;
 					}else{
