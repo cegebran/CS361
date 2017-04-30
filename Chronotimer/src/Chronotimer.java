@@ -535,13 +535,39 @@ public class Chronotimer {
 				}else{
 					return racer.getBib();
 				}
-			}
-			else{
-				Boolean returnValue = currentRun.startGroup(currentTime);
-				if(returnValue == true){
-					return 11111;
+			}else{
+				if(parallel == true){
+					if(currentRun.getBeginQueue().isEmpty() == true){
+						return 0;
+					}
+					if(currentRun.getGroupStartTime() == -1){
+						// start the entire group for every lane that has a racer in it
+						Boolean returnValue = currentRun.startGroup(currentTime);
+						if(returnValue == true){
+							return 11111;
+						}else{
+							return 0;
+						}
+					}else{
+						if(currentRun.getBeginQueue().size() >= 1){
+							long timeReturn =  currentRun.getStats().getEnd(currentRun.getBeginQueue().get(0));
+							if(timeReturn == -1){
+								int result = currentRun.endParGrpRacerSimulation(1, currentTime);
+								if(result > 0){
+									return result;
+								}else{
+									return 0;
+								}
+							}
+						}
+					}
 				}else{
-					return 0;
+					Boolean returnValue = currentRun.startGroup(currentTime);
+					if(returnValue == true){
+						return 11111;
+					}else{
+						return 0;
+					}
 				}
 			}
 		}
@@ -555,11 +581,25 @@ public class Chronotimer {
 				}
 			}
 			else{
-				Boolean returnValue = currentRun.endGroup(currentTime);
-				if(returnValue == true){
-					return 11111;
+				if(parallel == true){
+					if(currentRun.getBeginQueue().size() >= 2){
+						long timeReturn =  currentRun.getStats().getEnd(currentRun.getBeginQueue().get(1));
+						if(timeReturn == -1){
+							int result = currentRun.endParGrpRacerSimulation(2, currentTime);
+							if(result > 0){
+								return result;
+						}else{
+								return 0;
+							}
+						}
+					}
 				}else{
-					return 0;
+					Boolean returnValue = currentRun.endGroup(currentTime);
+					if(returnValue == true){
+						return 11111;
+					}else{
+						return 0;
+					}
 				}
 			}
 		}
@@ -573,11 +613,25 @@ public class Chronotimer {
 				}
 			}
 			else{
-				Boolean returnValue = currentRun.startGroup(currentTime);
-				if(returnValue == true){
-					return 11111;
+				if(parallel == true){
+					if(currentRun.getBeginQueue().size() >= 3){
+						long timeReturn =  currentRun.getStats().getEnd(currentRun.getBeginQueue().get(2));
+						if(timeReturn == -1){
+							int result = currentRun.endParGrpRacerSimulation(3, currentTime);
+							if(result > 0){
+								return result;
+							}else{
+								return 0;
+							}
+						}
+					}
 				}else{
-					return 0;
+					Boolean returnValue = currentRun.startGroup(currentTime);
+					if(returnValue == true){
+						return 11111;
+					}else{
+						return 0;
+					}
 				}
 			}
 		}
@@ -591,11 +645,25 @@ public class Chronotimer {
 				}
 			}
 			else{
-				Boolean returnValue = currentRun.endGroup(currentTime);
-				if(returnValue == true){
-					return 11111;
+				if(parallel == true){
+					if(currentRun.getBeginQueue().size() >= 4){
+						long timeReturn =  currentRun.getStats().getEnd(currentRun.getBeginQueue().get(3));
+						if(timeReturn == -1){
+							int result = currentRun.endParGrpRacerSimulation(4, currentTime);
+							if(result > 0){
+								return result;
+							}else{
+								return 0;
+							}
+						}
+					}
 				}else{
-					return 0;
+					Boolean returnValue = currentRun.endGroup(currentTime);
+					if(returnValue == true){
+						return 11111;
+					}else{
+						return 0;
+					}
 				}
 			}
 		}
@@ -609,11 +677,25 @@ public class Chronotimer {
 				}
 			}
 			else{
-				Boolean returnValue = currentRun.startGroup(currentTime);
-				if(returnValue == true){
-					return 11111;
+				if(parallel == true){
+					if(currentRun.getBeginQueue().size() >= 5){
+						long timeReturn =  currentRun.getStats().getEnd(currentRun.getBeginQueue().get(4));
+						if(timeReturn == -1){
+							int result = currentRun.endParGrpRacerSimulation(5, currentTime);
+							if(result > 0){
+								return result;
+							}else{
+								return 0;
+							}
+						}
+					}
 				}else{
-					return 0;
+					Boolean returnValue = currentRun.startGroup(currentTime);
+					if(returnValue == true){
+						return 11111;
+					}else{
+						return 0;
+					}
 				}
 			}
 		}
@@ -627,11 +709,25 @@ public class Chronotimer {
 				}
 			}
 			else{
-				Boolean returnValue = currentRun.endGroup(currentTime);
-				if(returnValue == true){
-					return 11111;
+				if(parallel == true){
+					if(currentRun.getBeginQueue().size() >= 6){
+						long timeReturn =  currentRun.getStats().getEnd(currentRun.getBeginQueue().get(5));
+						if(timeReturn == -1){
+							int result = currentRun.endParGrpRacerSimulation(6, currentTime);
+							if(result > 0){
+								return result;
+							}else{
+								return 0;
+							}
+						}
+					}
 				}else{
-					return 0;
+					Boolean returnValue = currentRun.endGroup(currentTime);
+					if(returnValue == true){
+						return 11111;
+					}else{
+						return 0;
+					}
 				}
 			}
 		}
@@ -645,11 +741,25 @@ public class Chronotimer {
 				}
 			}
 			else{
-				Boolean returnValue = currentRun.startGroup(currentTime);
-				if(returnValue == true){
-					return 11111;
+				if(parallel == true){
+					if(currentRun.getBeginQueue().size() >= 7){
+						long timeReturn =  currentRun.getStats().getEnd(currentRun.getBeginQueue().get(6));
+						if(timeReturn == -1){
+							int result = currentRun.endParGrpRacerSimulation(7, currentTime);
+							if(result > 0){
+								return result;
+							}else{
+								return 0;
+							}
+						}
+					}
 				}else{
-					return 0;
+					Boolean returnValue = currentRun.startGroup(currentTime);
+					if(returnValue == true){
+						return 11111;
+					}else{
+						return 0;
+					}
 				}
 			}
 		}
@@ -663,11 +773,25 @@ public class Chronotimer {
 				}
 			}
 			else{
-				Boolean returnValue = currentRun.endGroup(currentTime);
-				if(returnValue == true){
-					return 11111;
+				if(parallel == true){
+					if(currentRun.getBeginQueue().size() >= 8){
+						long timeReturn =  currentRun.getStats().getEnd(currentRun.getBeginQueue().get(7));
+						if(timeReturn == -1){
+							int result = currentRun.endParGrpRacerSimulation(8, currentTime);
+							if(result > 0){
+								return result;
+							}else{
+								return 0;
+							}
+						}
+					}
 				}else{
-					return 0;
+					Boolean returnValue = currentRun.endGroup(currentTime);
+					if(returnValue == true){
+						return 11111;
+					}else{
+						return 0;
+					}
 				}
 			}
 		}

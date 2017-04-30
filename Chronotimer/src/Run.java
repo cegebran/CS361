@@ -516,6 +516,18 @@ public class Run {
 		return tmp.getBib();
 	}
 	
+	public int endParGrpRacerSimulation(int laneNumber, long currentTime){
+		if(beginQueue.isEmpty()){
+			return 0;	// no racer has been cancelled
+		}
+		Racer tmp = beginQueue.get(laneNumber - 1);
+		if(tmp == null){
+			return -1;
+		}
+		stats.setEnd(tmp, currentTime);
+		return tmp.getBib();
+	}
+	
 	/**
 	 * Cancels the current racer's attempt (due to fault, mis-queue, etc.) and puts him or her back in line to start.
 	 * 
