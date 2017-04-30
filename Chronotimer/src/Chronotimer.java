@@ -497,6 +497,287 @@ public class Chronotimer {
 		return 0;
 	}
 	
+	public int triggerSensor(String inputChannel){
+		// If there is not race underway, return false (invalid input - ignore)
+		if(currentRun == null){
+			return 0;
+		}
+		
+		// Parse the number from the input channel, check to see if it's a 'Start' or 'Finish' one
+		int number = Integer.parseInt(inputChannel);
+		
+		// If the channel is # and is 'On'... if 'Start' channel: start racer. else: end current race
+		if(number == 1){
+			if(individual){
+				Racer racer = currentRun.startRacer(timer.getCurrentTime(),1);
+				if(racer == null){
+					return 0;
+				}else{
+					return racer.getBib();
+				}
+			}else{
+				if(parallel == true){
+					if(currentRun.getBeginQueue().isEmpty() == true){
+						return 0;
+					}
+					if(currentRun.getGroupStartTime() == -1){
+						// start the entire group for every lane that has a racer in it
+						Boolean returnValue = currentRun.startGroup(timer.getCurrentTime());
+						if(returnValue == true){
+							return 11111;
+						}else{
+							return 0;
+						}
+					}else{
+						if(currentRun.getBeginQueue().size() >= 1){
+							long time =  currentRun.getStats().getEnd(currentRun.getBeginQueue().get(0));
+							if(time == -1){
+								int result = currentRun.endParGrpRacer(1);
+								if(result > 0){
+									return result;
+								}else{
+									return 0;
+								}
+							}
+						}
+					}
+				}else{
+					Boolean returnValue = currentRun.startGroup(timer.getCurrentTime());
+					if(returnValue == true){
+						return 11111;
+					}else{
+						return 0;
+					}
+				}
+			}
+		}
+		else if(number == 2){
+			if(individual){
+				Racer racer = currentRun.endRacer(timer.getCurrentTime(),2);
+				if(racer == null){
+					return 0;
+				}else{
+					return racer.getBib();
+				}
+			}
+			else{
+				if(parallel == true){
+					if(currentRun.getBeginQueue().size() >= 2){
+						long time =  currentRun.getStats().getEnd(currentRun.getBeginQueue().get(1));
+						if(time == -1){
+							int result = currentRun.endParGrpRacer(2);
+							if(result > 0){
+								return result;
+						}else{
+								return 0;
+							}
+						}
+					}
+				}else{
+					Boolean returnValue = currentRun.endGroup(timer.getCurrentTime());
+					if(returnValue == true){
+						return 11111;
+					}else{
+						return 0;
+					}
+				}
+			}
+		}
+		else if(number == 3){
+			if(individual){
+				Racer racer = currentRun.startRacer(timer.getCurrentTime(),3);
+				if(racer == null){
+					return 0;
+				}else{
+					return racer.getBib();
+				}
+			}
+			else{
+				if(parallel == true){
+					if(currentRun.getBeginQueue().size() >= 3){
+						long time =  currentRun.getStats().getEnd(currentRun.getBeginQueue().get(2));
+						if(time == -1){
+							int result = currentRun.endParGrpRacer(3);
+							if(result > 0){
+								return result;
+							}else{
+								return 0;
+							}
+						}
+					}
+				}else{
+					Boolean returnValue = currentRun.startGroup(timer.getCurrentTime());
+					if(returnValue == true){
+						return 11111;
+					}else{
+						return 0;
+					}
+				}
+			}
+		}
+		else if(number == 4){
+			if(individual){
+				Racer racer = currentRun.endRacer(timer.getCurrentTime(),4);
+				if(racer == null){
+					return 0;
+				}else{
+					return racer.getBib();
+				}
+			}
+			else{
+				if(parallel == true){
+					if(currentRun.getBeginQueue().size() >= 4){
+						long time =  currentRun.getStats().getEnd(currentRun.getBeginQueue().get(3));
+						if(time == -1){
+							int result = currentRun.endParGrpRacer(4);
+							if(result > 0){
+								return result;
+							}else{
+								return 0;
+							}
+						}
+					}
+				}else{
+					Boolean returnValue = currentRun.endGroup(timer.getCurrentTime());
+					if(returnValue == true){
+						return 11111;
+					}else{
+						return 0;
+					}
+				}
+			}
+		}
+		else if(number == 5){
+			if(individual){
+				Racer racer = currentRun.startRacer(timer.getCurrentTime(),5);
+				if(racer == null){
+					return 0;
+				}else{
+					return racer.getBib();
+				}
+			}
+			else{
+				if(parallel == true){
+					if(currentRun.getBeginQueue().size() >= 5){
+						long time =  currentRun.getStats().getEnd(currentRun.getBeginQueue().get(4));
+						if(time == -1){
+							int result = currentRun.endParGrpRacer(5);
+							if(result > 0){
+								return result;
+							}else{
+								return 0;
+							}
+						}
+					}
+				}else{
+					Boolean returnValue = currentRun.startGroup(timer.getCurrentTime());
+					if(returnValue == true){
+						return 11111;
+					}else{
+						return 0;
+					}
+				}
+			}
+		}
+		else if(number == 6){
+			if(individual){
+				Racer racer = currentRun.endRacer(timer.getCurrentTime(),6);
+				if(racer == null){
+					return 0;
+				}else{
+					return racer.getBib();
+				}
+			}
+			else{
+				if(parallel == true){
+					if(currentRun.getBeginQueue().size() >= 6){
+						long time =  currentRun.getStats().getEnd(currentRun.getBeginQueue().get(5));
+						if(time == -1){
+							int result = currentRun.endParGrpRacer(6);
+							if(result > 0){
+								return result;
+							}else{
+								return 0;
+							}
+						}
+					}
+				}else{
+					Boolean returnValue = currentRun.endGroup(timer.getCurrentTime());
+					if(returnValue == true){
+						return 11111;
+					}else{
+						return 0;
+					}
+				}
+			}
+		}
+		else if(number == 7){
+			if(individual){
+				Racer racer = currentRun.startRacer(timer.getCurrentTime(),7);
+				if(racer == null){
+					return 0;
+				}else{
+					return racer.getBib();
+				}
+			}
+			else{
+				if(parallel == true){
+					if(currentRun.getBeginQueue().size() >= 7){
+						long time =  currentRun.getStats().getEnd(currentRun.getBeginQueue().get(6));
+						if(time == -1){
+							int result = currentRun.endParGrpRacer(7);
+							if(result > 0){
+								return result;
+							}else{
+								return 0;
+							}
+						}
+					}
+				}else{
+					Boolean returnValue = currentRun.startGroup(timer.getCurrentTime());
+					if(returnValue == true){
+						return 11111;
+					}else{
+						return 0;
+					}
+				}
+			}
+		}
+		else if(number == 8){
+			if(individual){
+				Racer racer = currentRun.endRacer(timer.getCurrentTime(),8);
+				if(racer == null){
+					return 0;
+				}else{
+					return racer.getBib();
+				}
+			}
+			else{
+				if(parallel == true){
+					if(currentRun.getBeginQueue().size() >= 8){
+						long time =  currentRun.getStats().getEnd(currentRun.getBeginQueue().get(7));
+						if(time == -1){
+							int result = currentRun.endParGrpRacer(8);
+							if(result > 0){
+								return result;
+							}else{
+								return 0;
+							}
+						}
+					}
+				}else{
+					Boolean returnValue = currentRun.endGroup(timer.getCurrentTime());
+					if(returnValue == true){
+						return 11111;
+					}else{
+						return 0;
+					}
+				}
+			}
+		}
+		return 0;
+	}
+	
 	/**
 	 * If reading from a string, trigger according to indicated input for specific channel and given time.
 	 * 

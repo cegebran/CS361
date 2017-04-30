@@ -150,41 +150,65 @@ public class Driver_GUI extends JFrame{
 		sensor1Button.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e){
 		        	sensor1.interrupt();
+		        	if(chronotimer.getPrinterPower()){
+			        	printerAddLine("Sensor 1 Interrupted");
+		        	}
 		    }
 		});
 		sensor2Button.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e){
 		        	sensor2.interrupt();
+		        	if(chronotimer.getPrinterPower()){
+			        	printerAddLine("Sensor 2 Interrupted");
+		        	}		    
 		    }
 		});
 		sensor3Button.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e){
 		        	sensor3.interrupt();
+		        	if(chronotimer.getPrinterPower()){
+			        	printerAddLine("Sensor 3 Interrupted");
+		        	}
 		    }
 		});
 		sensor4Button.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e){
 		        	sensor4.interrupt();
+		        	if(chronotimer.getPrinterPower()){
+			        	printerAddLine("Sensor 4 Interrupted");
+		        	}
 		    }
 		});
 		sensor5Button.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e){
 		        	sensor5.interrupt();
+		        	if(chronotimer.getPrinterPower()){
+			        	printerAddLine("Sensor 5 Interrupted");
+		        	}
 		    }
 		});
 		sensor6Button.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e){
 		        	sensor6.interrupt();
+		        	if(chronotimer.getPrinterPower()){
+			        	printerAddLine("Sensor 6 Interrupted");
+		        	}
 		    }
 		});
 		sensor7Button.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e){
 		        	sensor7.interrupt();
+		        	if(chronotimer.getPrinterPower()){
+			        	printerAddLine("Sensor 7 Interrupted");
+		        	}
 		    }
 		});
 		sensor8Button.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e){
 		        	sensor8.interrupt();
+		        	if(chronotimer.getPrinterPower()){
+			        	printerAddLine("Sensor 8 Interrupted");
+		        	}
 		    }
 		});
 		

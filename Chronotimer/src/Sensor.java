@@ -15,7 +15,7 @@ public class Sensor implements Runnable{
 				Thread.sleep(50000);
 			} catch (InterruptedException e) {
 				System.out.println("Sensor for Channel " + id + " triggered");
-				c.trigger(Integer.toString(id));
+				c.triggerSensor(Integer.toString(id));
 			}
 		}
 	}
