@@ -785,6 +785,16 @@ public class ChronoTester {
 	}
 	
 	@Test
+	public void test_Reset_after_Event(){
+		Chronotimer c = new Chronotimer();
+		c.power();
+		c.setEvent("PARGRP");
+		c.reset();
+		assertTrue(c.getIndividual());
+		assertFalse(c.getParallel());
+	}
+	
+	@Test
 	public void test_Reset(){
 		Chronotimer c = new Chronotimer();
 		c.power();
@@ -800,6 +810,23 @@ public class ChronoTester {
 		c.newRun();
 		assertNotNull(c.getCurrentRun());
 		c.reset();
+		assertFalse(c.getChannelOne().getOn());
+		assertFalse(c.getChannelTwo().getOn());
+		assertFalse(c.getChannelThree().getOn());
+		assertFalse(c.getChannelFour().getOn());
+		assertFalse(c.getChannelFour().getOn());
+		assertFalse(c.getChannelFour().getOn());
+		assertFalse(c.getChannelFour().getOn());
+		assertFalse(c.getChannelFour().getOn());
+		assertNull(c.getCurrentRun());
+	}
+	
+	@Test
+	public void reset_Reset(){
+		Chronotimer c = new Chronotimer();
+		assertTrue(c.power());
+		assertTrue(c.reset());
+		assertTrue(c.reset());
 		assertFalse(c.getChannelOne().getOn());
 		assertFalse(c.getChannelTwo().getOn());
 		assertFalse(c.getChannelThree().getOn());
@@ -975,5 +1002,48 @@ public class ChronoTester {
 		assertEquals(2, c2.trigger("1"));
 		assertEquals(1, c2.trigger("2"));
 		assertEquals(2, c2.trigger("2"));
+	}
+	
+	@Test
+	public void endRun_Power_Off(){
+		Chronotimer c = new Chronotimer();
+		assertFalse(c.endRun(false));
+	}
+	
+	@Test
+	public void endRun_Turned_On(){
+		Chronotimer c = new Chronotimer();
+		assertTrue(c.power());
+		assertFalse(c.endRun(false));
+	}
+	
+	@Test
+	public void endRun_All_Events(){
+		Chronotimer c = new Chronotimer();
+		assertTrue(c.power());
+		c.newRun();
+		c.endRun(false);
+		assertEquals(1, c.getRuns().size());
+		c.setEvent("PARIND");
+		c.newRun();
+		c.endRun(false);
+		assertEquals(2, c.getRuns().size());
+		c.setEvent("GRP");
+		c.newRun();
+		c.endRun(false);
+		assertEquals(3, c.getRuns().size());
+		c.setEvent("PARGRP");
+		c.newRun();
+		c.endRun(false);
+		assertEquals(4, c.getRuns().size());
+	}
+	
+	@Test
+	public void endRun_Twice(){
+		Chronotimer c = new Chronotimer();
+		c.power();
+		c.newRun();
+		assertTrue(c.endRun(false));
+		assertFalse(c.endRun(false));
 	}
 }
