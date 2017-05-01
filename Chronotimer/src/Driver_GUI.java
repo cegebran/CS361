@@ -19,6 +19,7 @@ import javax.swing.event.ListSelectionListener;
 public class Driver_GUI extends JFrame{
 	
 	public static void main(String[] args){
+		setDefaultLookAndFeelDecorated(true);
 		Driver_GUI myGUI = new Driver_GUI();
 		myGUI.setLocation(700,150);
 		myGUI.setVisible(true);
