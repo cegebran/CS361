@@ -166,14 +166,16 @@ public class Chronotimer {
 	/**
 	 * Switches the power for the simulated Chronotimer machine (off->on, on->off).
 	 */
-	public void power(){
+	public boolean power(){
 		if(power == false){
 			power = true;
+			return true;
 		}
 		else{
 			reset();
 			power = false;
 			printerPower = false;
+			return false;
 		}
 	}
 	
@@ -1173,9 +1175,9 @@ public class Chronotimer {
 	 * 	Any current runs are wiped
 	 * 	Default race type is IND (individual, non-parallel)
 	 */
-	public void reset(){
+	public boolean reset(){
 		if(power == false){
-			return;
+			return false;
 		}
 		if(currentRun != null){
 			endRun(false);
@@ -1194,6 +1196,7 @@ public class Chronotimer {
 		bibNumberString = "";
 		this.individual = true;
 		this.parallel = false;
+		return true;
 	}
 	
 	/**
@@ -1232,6 +1235,9 @@ public class Chronotimer {
 	}
 	
 	public boolean setTime(String time){
+		if(!power){
+			return false;
+		}
 		if(currentRun != null){
 			return false;
 		}

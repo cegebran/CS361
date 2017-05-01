@@ -789,12 +789,117 @@ public class ChronoTester {
 		Chronotimer c = new Chronotimer();
 		c.power();
 		assertTrue(c.toggleChannel("1"));
+		assertTrue(c.toggleChannel("2"));
+		assertTrue(c.toggleChannel("3"));
+		assertTrue(c.toggleChannel("4"));
+		assertTrue(c.toggleChannel("5"));
+		assertTrue(c.toggleChannel("6"));
+		assertTrue(c.toggleChannel("7"));
+		assertTrue(c.toggleChannel("8"));
 		assertNull(c.getCurrentRun());
 		c.newRun();
 		assertNotNull(c.getCurrentRun());
 		c.reset();
 		assertFalse(c.getChannelOne().getOn());
+		assertFalse(c.getChannelTwo().getOn());
+		assertFalse(c.getChannelThree().getOn());
+		assertFalse(c.getChannelFour().getOn());
+		assertFalse(c.getChannelFour().getOn());
+		assertFalse(c.getChannelFour().getOn());
+		assertFalse(c.getChannelFour().getOn());
+		assertFalse(c.getChannelFour().getOn());
 		assertNull(c.getCurrentRun());
+	}
+	
+	@Test
+	public void reset_After_Race(){
+		Chronotimer c = new Chronotimer();
+		c.power();
+		assertTrue(c.toggleChannel("1"));
+		assertTrue(c.toggleChannel("2"));
+		assertTrue(c.toggleChannel("3"));
+		assertTrue(c.toggleChannel("4"));
+		assertTrue(c.toggleChannel("5"));
+		assertTrue(c.toggleChannel("6"));
+		assertTrue(c.toggleChannel("7"));
+		assertTrue(c.toggleChannel("8"));
+		assertNull(c.getCurrentRun());
+		c.newRun();
+		c.num("1");
+		c.num("2");
+		assertEquals(1, c.trigger("1"));
+		assertEquals(2, c.trigger("1"));
+		assertEquals(1, c.trigger("2"));
+		assertEquals(2, c.trigger("2"));
+		c.endRun(false);
+		c.reset();
+		assertFalse(c.getChannelOne().getOn());
+		assertFalse(c.getChannelTwo().getOn());
+		assertFalse(c.getChannelThree().getOn());
+		assertFalse(c.getChannelFour().getOn());
+		assertFalse(c.getChannelFour().getOn());
+		assertFalse(c.getChannelFour().getOn());
+		assertFalse(c.getChannelFour().getOn());
+		assertFalse(c.getChannelFour().getOn());
+		assertNull(c.getCurrentRun());
+	}
+	
+	@Test
+	public void test_Reset_Time(){
+		Chronotimer c = new Chronotimer();
+		c.power();
+		assertTrue(c.setTime("2:30:02"));
+		assertEquals("02:30:02.00" , Time.convertRealTime(c.getTimer().getCurrentTime()));
+		assertTrue(c.reset());
+		try {
+			Thread.sleep(1000);
+		} catch (InterruptedException e) {
+			e.printStackTrace();
+		}
+		assertEquals("12:00:01.00" , Time.convertRealTime(c.getTimer().getCurrentTime()));
+	}
+	
+	@Test
+	public void test_Reset_On(){
+		Chronotimer c = new Chronotimer();
+		assertTrue(c.power());
+		c.reset();
+		assertFalse(c.getChannelOne().getOn());
+		assertFalse(c.getChannelTwo().getOn());
+		assertFalse(c.getChannelThree().getOn());
+		assertFalse(c.getChannelFour().getOn());
+		assertFalse(c.getChannelFour().getOn());
+		assertFalse(c.getChannelFour().getOn());
+		assertFalse(c.getChannelFour().getOn());
+		assertFalse(c.getChannelFour().getOn());
+		assertNull(c.getCurrentRun());
+	}
+	
+	@Test
+	public void reset_During_Race(){
+		Chronotimer c = new Chronotimer();
+		assertTrue(c.power());
+		assertTrue(c.setEvent("GRP"));
+		assertEquals(3, c.newRun());
+		assertTrue(c.toggleChannel("1"));
+		assertTrue(c.toggleChannel("2"));
+		assertEquals(11111, c.trigger("1"));
+		assertTrue(c.reset());
+		assertFalse(c.getChannelOne().getOn());
+		assertFalse(c.getChannelTwo().getOn());
+		assertFalse(c.getChannelThree().getOn());
+		assertFalse(c.getChannelFour().getOn());
+		assertFalse(c.getChannelFour().getOn());
+		assertFalse(c.getChannelFour().getOn());
+		assertFalse(c.getChannelFour().getOn());
+		assertFalse(c.getChannelFour().getOn());
+		assertNull(c.getCurrentRun());
+	}
+	
+	@Test
+	public void test_Reset_Off(){
+		Chronotimer c = new Chronotimer();
+		assertFalse(c.reset());
 	}
 	
 	@Test
