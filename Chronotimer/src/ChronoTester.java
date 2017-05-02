@@ -1046,4 +1046,48 @@ public class ChronoTester {
 		assertTrue(c.endRun(false));
 		assertFalse(c.endRun(false));
 	}
+	
+	// Test Plans 7, 8, 9
+	// Brandon Cegelski
+	// Test Plan 7
+	@Test
+	public void power_on_from_off_test(){
+		Chronotimer c = new Chronotimer();
+		assertFalse(c.getPower());
+		assertTrue(c.power());
+		assertTrue(c.getPower());
+	}
+	
+	@Test
+	public void power_on_from_on_test(){
+		Chronotimer c = new Chronotimer();
+		assertFalse(c.getPower());
+		assertTrue(c.power());
+		assertTrue(c.getPower());
+		assertFalse(c.power());
+		assertFalse(c.getPower());
+	}
+	
+	@Test
+	public void power_off_from_on_test(){
+		Chronotimer c = new Chronotimer();
+		assertFalse(c.getPower());
+		assertTrue(c.power());
+		assertTrue(c.getPower());
+		assertFalse(c.power());
+		assertFalse(c.getPower());
+	}
+	
+	@Test
+	public void power_off_from_off_test(){
+		Chronotimer c = new Chronotimer();
+		assertFalse(c.getPower());
+		assertTrue(c.power());
+		assertTrue(c.getPower());
+		assertFalse(c.power());
+		assertFalse(c.getPower());
+	}
+	
+	// Test Plan 8
+	
 }
