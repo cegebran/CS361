@@ -672,6 +672,119 @@ public class ChronoTester {
 		assertEquals(123, c0.cancel());	// racer bib number returned when currently making a run
 	}
 	
+	@Test
+	public void cancel_Off(){
+		Chronotimer c = new Chronotimer();
+		assertEquals(-2, c.cancel());
+	}
+	
+	@Test
+	public void cancel_On(){
+		Chronotimer c = new Chronotimer();
+		c.power();
+		assertEquals(0, c.cancel());
+	}
+	
+	@Test
+	public void cancel_Before_Adding_Racer(){
+		Chronotimer c = new Chronotimer();
+		c.power();
+		c.newRun();
+		assertEquals(-1, c.cancel());
+	}
+	
+	@Test
+	public void cancel_After_Adding_Racer(){
+		Chronotimer c = new Chronotimer();
+		c.power();
+		c.newRun();
+		c.num("1");
+		assertEquals(-1, c.cancel());
+	}
+	
+	@Test
+	public void cancel_After_Start(){
+		Chronotimer c = new Chronotimer();
+		c.power();
+		c.newRun();
+		c.num("5");
+		c.toggleChannel("1");
+		c.toggleChannel("2");
+		c.trigger("1");
+		assertEquals(5,  c.cancel());
+	}
+	
+	@Test
+	public void test_PARIND(){
+		Chronotimer c = new Chronotimer();
+		c.power();
+		c.setEvent("PARIND");
+		c.newRun();
+		c.num("5");
+		c.toggleChannel("1");
+		c.toggleChannel("2");
+		c.trigger("1");
+		assertEquals(-3,  c.cancel());
+	}
+	
+	@Test
+	public void test_GRP(){
+		Chronotimer c = new Chronotimer();
+		c.power();
+		c.setEvent("GRP");
+		c.newRun();
+		c.toggleChannel("1");
+		c.toggleChannel("2");
+		c.trigger("1");
+		assertEquals(-3,  c.cancel());
+	}
+	
+	@Test
+	public void test_PARGRP(){
+		Chronotimer c = new Chronotimer();
+		c.power();
+		c.setEvent("PARIND");
+		c.newRun();
+		c.num("5");
+		c.toggleChannel("1");
+		c.trigger("1");
+		assertEquals(-3,  c.cancel());
+	}
+	
+	@Test
+	public void cancel_First(){
+		Chronotimer c = new Chronotimer();
+		c.power();
+		c.newRun();
+		c.toggleChannel("1");
+		c.toggleChannel("2");
+		c.num("5");
+		c.num("6");
+		assertEquals(5, c.trigger("1"));
+		assertEquals(5, c.cancel());
+		assertEquals(5, c.trigger("1"));
+		assertEquals(6, c.trigger("1"));
+		assertEquals(5, c.trigger("2"));
+		assertEquals(6, c.trigger("2"));
+	}
+	
+	@Test
+	public void cancel_Second(){
+		Chronotimer c = new Chronotimer();
+		c.power();
+		c.newRun();
+		c.toggleChannel("1");
+		c.toggleChannel("2");
+		c.num("5");
+		c.num("6");
+		assertEquals(5, c.trigger("1"));
+		assertEquals(6, c.trigger("1"));
+		assertEquals(6, c.cancel());
+		assertEquals(6, c.trigger("1"));
+		assertEquals(5, c.trigger("2"));
+		assertEquals(6, c.trigger("2"));
+	}
+	
 	// Newly added Group Functionality Tests
 	@Test
 	public void test_Group(){
