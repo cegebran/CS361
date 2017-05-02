@@ -1051,7 +1051,7 @@ public class ChronoTester {
 	// Brandon Cegelski
 	// Test Plan 7
 	@Test
-	public void power_on_from_off_test(){
+	public void TC7_1(){
 		Chronotimer c = new Chronotimer();
 		assertFalse(c.getPower());
 		assertTrue(c.power());
@@ -1059,17 +1059,7 @@ public class ChronoTester {
 	}
 	
 	@Test
-	public void power_on_from_on_test(){
-		Chronotimer c = new Chronotimer();
-		assertFalse(c.getPower());
-		assertTrue(c.power());
-		assertTrue(c.getPower());
-		assertFalse(c.power());
-		assertFalse(c.getPower());
-	}
-	
-	@Test
-	public void power_off_from_on_test(){
+	public void TC7_2(){
 		Chronotimer c = new Chronotimer();
 		assertFalse(c.getPower());
 		assertTrue(c.power());
@@ -1079,7 +1069,17 @@ public class ChronoTester {
 	}
 	
 	@Test
-	public void power_off_from_off_test(){
+	public void TC7_3(){
+		Chronotimer c = new Chronotimer();
+		assertFalse(c.getPower());
+		assertTrue(c.power());
+		assertTrue(c.getPower());
+		assertFalse(c.power());
+		assertFalse(c.getPower());
+	}
+	
+	@Test
+	public void TC7_4(){
 		Chronotimer c = new Chronotimer();
 		assertFalse(c.getPower());
 		assertTrue(c.power());
@@ -1089,5 +1089,109 @@ public class ChronoTester {
 	}
 	
 	// Test Plan 8
+	@Test
+	public void TC8_1(){
+		Chronotimer c = new Chronotimer();
+		assertEquals(-1, c.num("111"));
+	}
 	
+	@Test
+	public void TC8_2(){
+		Chronotimer c = new Chronotimer();
+		assertTrue(c.power());
+		assertEquals(-2, c.num("111"));
+	}
+	
+	@Test
+	public void TC8_3(){
+		Chronotimer c = new Chronotimer();
+		assertTrue(c.power());
+		assertEquals(1,c.newRun());
+		assertEquals(1, c.num("111"));
+	}
+	
+	@Test
+	public void TC8_4(){
+		Chronotimer c = new Chronotimer();
+		assertTrue(c.power());
+		assertEquals(1,c.newRun());
+		assertEquals(1, c.num("111"));
+		assertTrue(c.toggleChannel("1"));
+		assertEquals(111,c.trigger("1"));
+		assertEquals(1, c.num("222"));
+	}
+	
+	@Test
+	public void TC8_5(){
+		Chronotimer c = new Chronotimer();
+		assertTrue(c.power());
+		assertEquals(1,c.newRun());
+		assertTrue(c.toggleChannel("1"));
+		assertTrue(c.toggleChannel("2"));
+		assertEquals(1, c.num("111"));
+		assertEquals(111, c.trigger("1"));
+		assertEquals(111, c.trigger("2"));
+		assertEquals(1, c.num("222"));
+	}
+	
+	@Test
+	public void TC8_6(){
+		Chronotimer c = new Chronotimer();
+		assertTrue(c.power());
+		assertEquals(1,c.newRun());
+		assertTrue(c.toggleChannel("1"));
+		assertTrue(c.toggleChannel("2"));
+		assertEquals(1, c.num("111"));
+		assertEquals(1, c.num("222"));
+		assertEquals(111, c.trigger("1"));
+		assertEquals(111, c.trigger("2"));
+		assertEquals(222, c.trigger("1"));
+		assertEquals(1, c.num("333"));
+	}
+	
+	@Test
+	public void TC8_7(){
+		Chronotimer c = new Chronotimer();
+		assertTrue(c.power());
+		assertEquals(1,c.newRun());
+		assertEquals(1, c.num("111"));
+		assertEquals(1, c.num("222"));
+	}
+	
+	@Test
+	public void TC8_8(){
+		Chronotimer c = new Chronotimer();
+		assertTrue(c.power());
+		assertEquals(1,c.newRun());
+		assertTrue(c.toggleChannel("1"));
+		assertTrue(c.toggleChannel("2"));
+		assertEquals(1, c.num("111"));
+		assertEquals(111, c.trigger("1"));
+		assertEquals(1, c.num("222"));
+		assertEquals(1, c.num("333"));
+	}
+	
+	@Test
+	public void TC8_9(){
+		Chronotimer c = new Chronotimer();
+		assertTrue(c.power());
+		assertEquals(1,c.newRun());
+		assertTrue(c.toggleChannel("1"));
+		assertTrue(c.toggleChannel("2"));
+		assertEquals(1, c.num("111"));
+		assertEquals(111, c.trigger("1"));
+		assertEquals(111, c.trigger("2"));
+		assertEquals(1, c.num("222"));
+		assertEquals(222, c.trigger("1"));
+		assertEquals(1, c.num("333"));
+		assertEquals(1, c.num("444"));
+	}
+	
+	@Test
+	public void TC8_10(){
+		Chronotimer c = new Chronotimer();
+		assertTrue(c.power());
+		assertTrue(c.setEvent("PARIND"));
+		assertEquals(-2, c.num("111"));
+	}
 }
