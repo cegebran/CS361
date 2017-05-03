@@ -2,10 +2,10 @@ package com.example;
 
 public class Racer implements Comparable<Object>{
 	
-	private String bibNumber;
+	private int bibNumber;
 	private String time;
 	
-	public Racer(String bibNumber, String time) {
+	public Racer(int bibNumber, String time) {
 		this.bibNumber = bibNumber;
 		this.time = time;
 	}
@@ -51,11 +51,11 @@ public class Racer implements Comparable<Object>{
 		return 0;
 	}
 
-	public String getBibNumber(){
-		return bibNumber;
+	public String getBibNumber() {
+		return Integer.toString(bibNumber);
 	}
 	
-	public String getTime(){
+	public String getTime() {
 		return time;
 	}
 }

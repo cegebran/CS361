@@ -411,7 +411,7 @@ public class Run {
 	}
 	
 	public boolean endGroup(long endTime){
-		Racer tmp = new Racer(racerNum + 1);
+		Racer tmp = new Racer(racerNum + 1, "");
 		stats.setStart(tmp, groupStartTime);
 		racerNum++;
 		stats.setEnd(tmp, endTime);

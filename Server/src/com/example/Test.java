@@ -96,7 +96,10 @@ public class Test {
     	
         public void handle(HttpExchange transmission) throws IOException {
 
-            //  shared data that is used with other handlers
+        	// clear results from previous run
+            racers.clear();
+        	
+        	//  shared data that is used with other handlers
             sharedResponse = "";
 
             // set up a stream to read the body of the request
@@ -238,12 +241,12 @@ public class Test {
             //hard code CSS
             StringBuilder stringBuilder = new StringBuilder();
 
-            stringBuilder.append("table { border-collapse: collapse; }/n");
-            stringBuilder.append("table, tr, td, th { border: 1px solid black; text-align: center; }/n");
-		    stringBuilder.append("th { font-size: 25px; color: red; }/n");
-		    stringBuilder.append("tr.odd { background-color: white; font-size: 20px; }/n");
-		    stringBuilder.append("tr.even { background-color: lightblue; font-size: 20px; }/n");
-		    stringBuilder.append("p { text-align: center; font-family: verdana; font-size: 20px; }/n");
+            stringBuilder.append("table { border-collapse: collapse; }");
+            stringBuilder.append("table, tr, td, th { border: 1px solid black; text-align: center; }");
+		    stringBuilder.append("th { font-size: 25px; color: red; }");
+		    stringBuilder.append("tr.odd { background-color: white; font-size: 20px; }");
+		    stringBuilder.append("tr.even { background-color: lightblue; font-size: 20px; }");
+		    stringBuilder.append("p { text-align: center; font-family: verdana; font-size: 20px; }");
 
 			// convert to String
 			String htmlString = stringBuilder.toString();

@@ -1,8 +1,11 @@
 public class Racer {
-	private int bib;
 	
-	public Racer(int bib){
-		this.bib = bib;
+	private int bibNumber;
+	private String time;
+	
+	public Racer(int bibNumber, String time) {
+		this.bibNumber = bibNumber;
+		this.time = time;
 	}
 	
 	/**
@@ -10,11 +13,20 @@ public class Racer {
 	 * 
 	 * @return	Racer's unique bib number.
 	 */
-	public int getBib(){
-		return this.bib;
+	public int getBib() {
+		return this.bibNumber;
 	}
 	
-	public void setBib(int bib){
-		this.bib = bib;
+	public void setBib(int bibNumber) {
+		this.bibNumber = bibNumber;
 	}
+	
+	public String getTime() {
+		return this.time;
+	}
+	
+	public void setTime(String time) {
+		this.time = time;
+	}
+	
 }

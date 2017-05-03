@@ -1,5 +1,10 @@
+import java.io.DataOutputStream;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.io.InputStreamReader;
+import java.net.HttpURLConnection;
+import java.net.ProtocolException;
+import java.net.URL;
 import java.util.ArrayList;
 import java.util.Iterator;
 
@@ -21,7 +26,8 @@ public class Chronotimer {
 	private boolean individual;
 	private boolean parallel;
 	
-	public Chronotimer(){
+	public Chronotimer() {
+		
 		// Set the default states of the sensors; odd-numbered channels detect 'Start' times, even-number detect 'End' times.
 		// Additionally, all channels are, by default, turned off.
 		this.one = new Channel(true, false);
@@ -1159,11 +1165,62 @@ public class Chronotimer {
 		int runNumber = currentRun.getRunNumber();
 		String runNumberString = Integer.toString(runNumber);
 		String exportInput = "RUN" + runNumberString + ".txt";
+		
+		// now create a POST request
+		try {
+			// Client will connect to this location
+			URL site = new URL("http://localhost:8000/sendresults");
+			HttpURLConnection conn = (HttpURLConnection) site.openConnection();
+						
+			// build a string that contains JSON from console
+			conn.setRequestMethod("POST");
+			conn.setDoOutput(true);
+			conn.setDoInput(true);
+			DataOutputStream out = new DataOutputStream(conn.getOutputStream());
+
+			Stats currentStats = currentRun.getStats();
+			String content = "";
+			content = "ADD;" + getJSON(currentStats);
+
+			// write out string to output buffer for message
+			out.writeBytes(content);
+			out.flush();
+			out.close();
+			InputStreamReader inputStr = new InputStreamReader(conn.getInputStream());
+
+			// string to hold the result of reading in the response
+			StringBuilder sb = new StringBuilder();
+
+			// read the characters from the request byte by byte and build up the response
+			int nextChar;
+			while ((nextChar = inputStr.read()) > -1) {
+				sb = sb.append((char) nextChar);
+			}
+			System.out.println("Return String: " + sb);
+			
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
 		if(export){
 			export(exportInput);
 		}
 		currentRun = null;
 		return true;
+	}
+	
+	private static String getJSON(Stats currentStats) {
+
+		ArrayList<Racer> racers = new ArrayList<>();
+		for (Racer r : currentStats.getRacers()) {
+			Racer tmp = new Racer(r.getBib(), Time.convertTime(currentStats.getRaceTime(r)));
+			racers.add(tmp);
+		}
+		Gson g = new Gson();
+		String json = g.toJson(racers);
+		return json;
+		
 	}
 	
 	/**
@@ -1384,7 +1441,7 @@ public class Chronotimer {
 						return -3;
 					}
 					int racerBibNumber = Integer.parseInt(number);
-					Racer toAdd = new Racer(racerBibNumber);
+					Racer toAdd = new Racer(racerBibNumber, "");
 					currentRun.addRacer(toAdd);
 					return 1;
 				}
@@ -1418,7 +1475,7 @@ public class Chronotimer {
 					}
 					// Parse the bib number, then add the racer with their number
 					int racerBibNumber = Integer.parseInt(number);
-					Racer toAdd = new Racer(racerBibNumber);
+					Racer toAdd = new Racer(racerBibNumber, "");
 					currentRun.addRacer(toAdd);
 					return 1;
 				}
@@ -1450,7 +1507,7 @@ public class Chronotimer {
 					}
 					// Parse the bib number, then add the racer with their number
 					int racerBibNumber = Integer.parseInt(bibNumberString);
-					Racer toAdd = new Racer(racerBibNumber);
+					Racer toAdd = new Racer(racerBibNumber, "");
 					currentRun.addRacer(toAdd);
 					bibNumberString = "";
 					return racerBibNumber;
