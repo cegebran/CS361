@@ -344,7 +344,7 @@ public class Driver {
 					} else {
 						boolean returnValue = chronotimer.setEvent(userInputParse[2]);
 						if (returnValue == true) {
-							System.out.println("The event type has been changed");
+							System.out.println("The event type has been changed to: " + userInputParse[2]);
 						} else {
 							System.out.println("The event type has NOT been changed");
 						}
