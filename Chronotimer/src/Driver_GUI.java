@@ -1,5 +1,6 @@
 // imports
 import javax.swing.*;
+
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -17,9 +18,22 @@ import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
 
 public class Driver_GUI extends JFrame{
-	
 	public static void main(String[] args){
-		setDefaultLookAndFeelDecorated(true);
+		try {
+			UIManager.setLookAndFeel(UIManager.getCrossPlatformLookAndFeelClassName());
+		} catch (ClassNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (InstantiationException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (IllegalAccessException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (UnsupportedLookAndFeelException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		Driver_GUI myGUI = new Driver_GUI();
 		myGUI.setLocation(700,150);
 		myGUI.setVisible(true);
@@ -299,7 +313,7 @@ public class Driver_GUI extends JFrame{
 		channelInputMenu.add("Pad");
 		
 		setTitle("ChronoTimer 1009");
-		setSize(950, 750);
+		setSize(1150, 750);
 		
 		setLayout(new GridLayout(3, 3));
 		
@@ -316,7 +330,7 @@ public class Driver_GUI extends JFrame{
 		JLabel chronoLabel = new JLabel("       CHRONOTIMER 1009");
 		chronoLabel.setFont(new Font("Serif", Font.BOLD, 23));
 		startPanel.add(chronoLabel);
-		JLabel label1357 = new JLabel("                                      1        3       5       7");
+		JLabel label1357 = new JLabel("                                            1        3       5       7");
 		label1357.setFont(new Font("Serif", Font.PLAIN, 17));
 		startPanel.add(label1357);
 		JPanel startButtonOddPanel = new JPanel(new FlowLayout());
@@ -337,7 +351,7 @@ public class Driver_GUI extends JFrame{
 		enaDisOddPanel.add(enaDis5Btn);
 		enaDisOddPanel.add(enaDis7Btn);
 		startPanel.add(enaDisOddPanel);
-		JLabel label2468 = new JLabel("                                    2        4        6        8");
+		JLabel label2468 = new JLabel("                                            2        4        6        8");
 		label2468.setFont(new Font("Serif", Font.PLAIN, 17)); 
 		startPanel.add(label2468);
 		JPanel finishButtonEvenPanel = new JPanel(new FlowLayout());
@@ -487,7 +501,7 @@ public class Driver_GUI extends JFrame{
 		chanLabelPanel.add(chanLabel);
 		channelPanel.add(chanLabelPanel, BorderLayout.LINE_START);
 		JPanel channelButtonPanel = new JPanel(new GridLayout(5,1));
-		JLabel channel1357Label = new JLabel("                1        3        5        7");
+		JLabel channel1357Label = new JLabel("                       1        3        5        7");
 		channel1357Label.setFont(new Font("Serif", Font.PLAIN, 17));
 		channelButtonPanel.add(channel1357Label);
 		JPanel channel1357ButtonPanel = new JPanel(new FlowLayout());
@@ -496,7 +510,7 @@ public class Driver_GUI extends JFrame{
 		channel1357ButtonPanel.add(channel5Button);
 		channel1357ButtonPanel.add(channel7Button);
 		channelButtonPanel.add(channel1357ButtonPanel);
-		JLabel channel2468Label = new JLabel("                2        4        6        8");
+		JLabel channel2468Label = new JLabel("                       2        4        6        8");
 		channel2468Label.setFont(new Font("Serif", Font.PLAIN, 17));
 		channelButtonPanel.add(channel2468Label);
 		JPanel channel2468ButtonPanel = new JPanel(new FlowLayout());
