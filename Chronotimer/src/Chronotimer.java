@@ -179,6 +179,11 @@ public class Chronotimer {
 		}
 	}
 	
+	/**
+	 * For an individual run the next racer to finish and the 2nd to next racer will be swapped
+	 * 
+	 * @return true when the racers are swapped and false otherwise
+	 */
 	public boolean swap(){
 		if(currentRun == null){
 			return false;
@@ -499,6 +504,9 @@ public class Chronotimer {
 		return 0;
 	}
 	
+	/**
+	 * @return the racer bib number when the sensor is triggered successfully, and return 0 otherwise
+	 */
 	public int triggerSensor(String inputChannel){
 		// If there is not race underway, return false (invalid input - ignore)
 		if(currentRun == null){
