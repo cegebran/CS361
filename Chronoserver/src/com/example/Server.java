@@ -206,11 +206,7 @@ public class Server {
 				if (name == null) {
 					name = "";
 				}
-				if (counter % 2 == 1) {
-					result.append("<tr class=\"odd\"><td>").append(counter).append("</td><td>").append(r.getBibNumber()).append("</td><td>").append(name).append("</td><td>").append(r.getTime()).append("</td></tr>");
-				} else {
-					result.append("<tr class=\"even\"><td>").append(counter).append("</td><td>").append(r.getBibNumber()).append("</td><td>").append(name).append("</td><td>").append(r.getTime()).append("</td></tr>");
-				}
+				result.append("<tr><td>").append(counter).append("</td><td>").append(r.getBibNumber()).append("</td><td>").append(name).append("</td><td>").append(r.getTime()).append("</td></tr>");
 				counter += 1;
 			}
 			result.append("</table>");
@@ -244,8 +240,7 @@ public class Server {
             stringBuilder.append("table { border-collapse: collapse; }");
             stringBuilder.append("table, tr, td, th { border: 1px solid black; text-align: center; }");
 		    stringBuilder.append("th { font-size: 25px; color: red; }");
-		    stringBuilder.append("tr.odd { background-color: white; font-size: 20px; }");
-		    stringBuilder.append("tr.even { background-color: lightblue; font-size: 20px; }");
+		    stringBuilder.append("tr { background-color: white; font-size: 20px; }");
 		    stringBuilder.append("p { text-align: center; font-family: verdana; font-size: 20px; }");
 
 			// convert to String
