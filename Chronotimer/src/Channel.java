@@ -1,4 +1,5 @@
 public class Channel {//testing
+	// boolean values to determine if a sensor is a start/finish and on/off
 	private boolean start;
 	private boolean on;
 	
@@ -10,6 +11,11 @@ public class Channel {//testing
 		this.connectedSensor = false;
 	}
 	
+	/**
+	 * Returns whether the sensor is connected or not as a boolean T/F value
+	 * 
+	 * @return	True if the sensor is a connected sensor and False otherwise
+	 */
 	public boolean getConnectedSensor(){
 		if(connectedSensor == false){
 			return false;
@@ -18,6 +24,11 @@ public class Channel {//testing
 		}
 	}
 	
+	/**
+	 * Changes the status of the sensor to connected/disconnected depending on the state the sensor was in previously
+	 * 
+	 * @return	True if successful connection of the sensor made and false otherwise
+	 */
 	public boolean connectSensor(){
 		if(connectedSensor == false){
 			connectedSensor = true;

@@ -17,6 +17,11 @@ public class Racer {
 		return this.bibNumber;
 	}
 	
+	/**
+	 * Updates the racer getting their bib number changed with the bib number the user entered (passed in as a parameter)
+	 * 
+	 * @param bib		The bib number entered by the user to set as the racer's bib number
+	 */
 	public void setBib(int bibNumber) {
 		this.bibNumber = bibNumber;
 	}

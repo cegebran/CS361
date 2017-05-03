@@ -73,6 +73,12 @@ public class Time {
 		}
 	}
 	
+	/**
+	 * Outputs the given time into a formatted string of a standard clock reading.
+	 * 
+	 * @param time	Time in milliseconds
+	 * @return	String of style "HH:MM:SS.LL", where H = Hours, M = Minutes, S = Seconds, L = Hundredths of a second
+	 */
 	public static String convertTime(long time){
 		// If given time is noted as -1, this indicates a 'Did not finish'
 				if (time == -1) {
