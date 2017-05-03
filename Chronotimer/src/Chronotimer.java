@@ -1242,6 +1242,12 @@ public class Chronotimer {
 		}
 	}
 	
+	/**
+	 * Changes the current time as long as there is no current run occuring
+	 * 
+	 * @param time		The current time
+	 * @return	True if successful, otherwise False
+	 */
 	public boolean setTime(String time){
 		if(!power){
 			return false;
@@ -1708,6 +1714,13 @@ public class Chronotimer {
 		return stringToReturn;
 	}
 	
+	/**
+	 * Get the last racer to finish in any type of run. 1 racer returned for IND, GRP and 2 racers returned for PARIND
+	 * Only return bib numbers when there is a current race in progress and there is at least 1 racer that has finished thier run
+	 * 
+	 * @return	a string with either 1 racer's bib number, 2 racer's bib numbers (only for parallel events),
+	 * or null if no racers have finished yet
+	 */
 	public String getLastToFinish(){
 		if(power != false){
 			if(currentRun != null){
