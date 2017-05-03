@@ -4,9 +4,11 @@ import java.util.LinkedList;
 import javax.xml.soap.Node;
 
 public class Run {
-	private LinkedList<Racer> beginQueue;
-	private LinkedList<Racer> endQueue;
-	private Stats stats;
+	private LinkedList<Racer> beginQueue;	// racers queued up and have yet to make their runs
+	private LinkedList<Racer> endQueue;	// racers currently making their run and have not yet completed their run or recieved a DNF
+	private Stats stats;	// current stats associated with the run
+	
+	// True/False values determining what type of run this run currently is
 	private boolean individual;
 	private boolean parallel;
 	
@@ -391,6 +393,12 @@ public class Run {
 		}
 	}
 	
+	/**
+	 * Starts the GRP race and sets the start time by the startTime parameter for every racer currently in the race
+	 * 
+	 * @param startTime		The current time set in the Chronotimer when the run started
+	 * @return	True if successful, otherwise False
+	 */
 	public boolean startGroup(long startTime){
 		if(groupStartTime != -1){
 			return false;
@@ -410,6 +418,13 @@ public class Run {
 		return true;
 	}
 	
+	/**
+	 * Sets the time at which the next racer in the group finishes their run. This end time will only be
+	 * assigned to one racer in the group who finishes and triggers this method
+	 * 
+	 * @param endTime		The current time set in the Chronotimer when the run ended
+	 * @return	True if successful, otherwise False
+	 */
 	public boolean endGroup(long endTime){
 		Racer tmp = new Racer(racerNum + 1);
 		stats.setStart(tmp, groupStartTime);
@@ -419,6 +434,11 @@ public class Run {
 		return true;
 	}
 	
+	/**
+	 * Returns the last racer to finish in the GRP event so that their bib number and time may be retrieved and printed on the display screen
+	 * 
+	 * @return	The racer that has most recently completed their run in a GRP race, lastGroupFinish set to null if no racers have finished yet previously
+	 */
 	public long getLastGroupFinish(){
 		return lastGroupFinish;
 	}
@@ -501,8 +521,10 @@ public class Run {
 	}
 	
 	/**
+	 * End a racer in the PARGRP event and end the specific lane that is passed in as a parameter
 	 * 
 	 * @Return 0 if no racers in begin queue, -1 if racer not in specified lane #, bib number if ended
+	 * @param laneNumber		The lane number at which the racer is in to end their time
 	 */
 	public int endParGrpRacer(int laneNumber){
 		if(beginQueue.isEmpty()){
@@ -516,6 +538,14 @@ public class Run {
 		return tmp.getBib();
 	}
 	
+	/**
+	 * End a racer in the PARGRP event and end the specific lane that is passed in as a parameter
+	 * Method created so that the sensors may work correctly and give the racers an accurate endTime for their stats
+	 * 
+	 * @Return 0 if no racers in begin queue, -1 if racer not in specified lane #, bib number if ended
+	 * @param laneNumber		The lane number at which the racer is in to end their time
+	 * @param currentTime		The current time set in the Chronotimer so that the racer may be givin an end time
+	 */
 	public int endParGrpRacerSimulation(int laneNumber, long currentTime){
 		if(beginQueue.isEmpty()){
 			return 0;	// no racer has been cancelled
@@ -602,7 +632,9 @@ public class Run {
 	}
 	
 	/**
-	 * *
+	 * Check to ensure that the bib number entered for a racer does not already exist in the current run
+	 * No two racers in the same run should have the same bib number to avoid confusion
+	 * 
 	 * @param testNum
 	 * @return True if bib number not already in the run or false if otherwise
 	 */
