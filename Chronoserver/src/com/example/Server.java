@@ -21,7 +21,7 @@ import com.sun.net.httpserver.HttpExchange;
 import com.sun.net.httpserver.HttpHandler;
 import com.sun.net.httpserver.HttpServer;
 
-public class Test {
+public class Server {
 
     // a shared area where we get the POST data and then use it in the other handler
     static boolean valid = true;
