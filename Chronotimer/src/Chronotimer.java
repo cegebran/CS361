@@ -1207,7 +1207,7 @@ public class Chronotimer {
 			
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
-			e.printStackTrace();
+			System.out.println("Unable to connect to server");
 		}
 		
 		if(export){
