@@ -66,6 +66,7 @@ public class Driver {
 			System.out.println("num <NUM>: Add a racer to the current run at the end of the queue");
 			System.out.println("print: Print the data to the screen");
 			System.out.println("event <Event Type>: Determine the event that the runs will consist of until changed");
+			System.out.println("swap: Swaps the next to racers in the run (IND run types only)");
 			System.out.println(" ");
 			
 		}
@@ -319,6 +320,20 @@ public class Driver {
 						System.out.println("The chronotimer is off");
 					} else {
 						chronotimer.print();
+					}
+				}
+				
+				// swap command
+				if(userInputParse[1].equals("SWAP")){
+					if (chronotimer.getPower() == false) {
+						System.out.println("The chronotimer is off");
+					} else {
+						boolean result = chronotimer.swap();
+						if(result == true){
+							System.out.println("The Next 2 Racers Have Been Swapped");
+						}else{
+							System.out.println("No Swap Action Occured");
+						}
 					}
 				}
 				
