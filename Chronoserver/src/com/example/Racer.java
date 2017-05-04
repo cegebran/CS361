@@ -43,7 +43,9 @@ public class Racer implements Comparable<Object>{
 			otherarray[1] = othertmp;
 			long othertotaltime = (60000 * otherarray[0]) + (1000 * otherarray[1]);
 			return (int) (thistotaltime - othertotaltime);
+			
 			/*
+			Previous Sort Code Block
 			String[] thisstringTimeArray = time.split(":");
 			long[] thisarray = new long[3];
 			thisarray[0] = Long.parseLong(thisstringTimeArray[0]);
