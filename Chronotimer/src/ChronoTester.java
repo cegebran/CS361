@@ -1827,7 +1827,7 @@ public class ChronoTester {
 //		assertFalse(c.getPower());
 //		File testFile =  new File("testfile.txt");
 //		assertFalse(c.export("testfile.txt"));
-	}
+//	}
 	
 	//TODO
 	public void TC11_02(){
