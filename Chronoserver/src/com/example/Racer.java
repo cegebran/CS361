@@ -28,6 +28,23 @@ public class Racer implements Comparable<Object>{
 			}
 			
 			String[] thisstringTimeArray = time.split(":");
+			long[] thisarray = new long[2];
+			thisarray[0] = Long.parseLong(thisstringTimeArray[0]);
+			double thisd = Double.parseDouble(thisstringTimeArray[1]);
+			long thistmp = (long) thisd;
+			thisarray[1] = thistmp;
+			long thistotaltime = (thisarray[0] * 60000) + (thisarray[1] * 1000);
+			
+			String[] otherstringTimeArray = ((Racer) o).getTime().split(":");
+			long[] otherarray = new long[2];
+			otherarray[0] = Long.parseLong(otherstringTimeArray[0]);
+			double otherd = Double.parseDouble(otherstringTimeArray[1]);
+			long othertmp = (long) otherd;
+			otherarray[1] = othertmp;
+			long othertotaltime = (60000 * otherarray[0]) + (1000 * otherarray[1]);
+			return (int) (thistotaltime - othertotaltime);
+			/*
+			String[] thisstringTimeArray = time.split(":");
 			long[] thisarray = new long[3];
 			thisarray[0] = Long.parseLong(thisstringTimeArray[0]);
 			thisarray[1] = Long.parseLong(thisstringTimeArray[1]);
@@ -38,15 +55,15 @@ public class Racer implements Comparable<Object>{
 			
 			String[] otherstringTimeArray = ((Racer) o).getTime().split(":");
 			long[] otherarray = new long[3];
+			
 			otherarray[0] = Long.parseLong(otherstringTimeArray[0]);
 			otherarray[1] = Long.parseLong(otherstringTimeArray[1]);
 			double otherd = Double.parseDouble(otherstringTimeArray[2]);
 			long othertmp = (long) otherd;
 			otherarray[2] = othertmp;
 			long othertotaltime = 3600000 * otherarray[0] + 60000 * otherarray[1] + 1000 * otherarray[2];
-
 			return (int) (thistotaltime - othertotaltime);
-			
+			*/
 		}
 		return 0;
 	}

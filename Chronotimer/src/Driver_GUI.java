@@ -2747,14 +2747,17 @@ public class Driver_GUI extends JFrame{
 	    });
 		swapBtn.addActionListener(new ActionListener() {
 	        public void actionPerformed(ActionEvent e){
-	        	if(chronotimer.getPrinterPower() == true){
-	        		if(chronotimer.swap()){
-						printerAddLine("First Two Racers Have Been Swapped");
+	        	
+	        	if(chronotimer.getPower() == true){
+	        		boolean swapResult = chronotimer.swap();
+	        		if(chronotimer.getPrinterPower() == true){
+	        			if(swapResult == true){
+	        				printerAddLine("First Two Racers Have Been Swapped");
+	        			}else{
+	        				printerAddLine("Unable To Swap");
+	        			}
 	        		}
-	        		else{
-						printerAddLine("Unable To Swap");
-	        		}
-				}
+	        	}
 	        }
 	    });
 		functionBtn.addActionListener(new ActionListener(){
