@@ -1,4 +1,7 @@
 import static org.junit.Assert.*;
+
+import java.io.File;
+
 import org.junit.Test;
 
 public class ChronoTester {
@@ -1735,4 +1738,127 @@ public class ChronoTester {
 	}
 	
 	// END OF TEST CASES 7, 8, 9
+	
+	//START OF TEST CASES 10, 11, 12
+	
+	@Test
+	public void TC10_01(){
+		Chronotimer c = new Chronotimer();
+		assertTrue(c.power());
+		c.newRun();
+		c.getCurrentRun().setEvent(true, false);
+		assertEquals("IND", c.getCurrentRun().getEventType());
+	}
+	
+	@Test
+	public void TC10_02(){
+		Chronotimer c = new Chronotimer();
+		assertTrue(c.power());
+		c.newRun();
+		c.getCurrentRun().setEvent(true, true);
+		assertEquals("PARIND", c.getCurrentRun().getEventType());
+	}
+	
+	@Test
+	public void TC10_03(){
+		Chronotimer c = new Chronotimer();
+		assertTrue(c.power());
+		c.newRun();
+		c.getCurrentRun().setEvent(false, false);
+		assertEquals("GRP", c.getCurrentRun().getEventType());
+	}
+	
+	@Test
+	public void TC10_04(){
+		Chronotimer c = new Chronotimer();
+		assertTrue(c.power());
+		c.newRun();
+		c.getCurrentRun().setEvent(false, true);
+		assertEquals("PARGRP", c.getCurrentRun().getEventType());
+	}
+	
+	@Test
+	public void TC10_05(){
+		Chronotimer c = new Chronotimer();
+		assertTrue(c.power());
+		c.newRun();
+		c.getCurrentRun().setEvent(true, true);
+		assertEquals("PARIND", c.getCurrentRun().getEventType());
+		c.reset();
+		assertEquals("IND", c.getCurrentRun().getEventType());
+	}
+	
+	@Test
+	public void TC10_06(){
+		Chronotimer c = new Chronotimer();
+		assertTrue(c.power());
+		c.newRun();
+		c.getCurrentRun().setEvent(true, true);
+		assertEquals("PARIND", c.getCurrentRun().getEventType());
+		c.reset();
+		assertEquals("IND", c.getCurrentRun().getEventType());
+	}
+	
+	public void TC10_07(){
+		Chronotimer c = new Chronotimer();
+		assertTrue(c.power());
+		c.newRun();
+		c.getCurrentRun().setEvent(false, false);
+		assertEquals("GRP", c.getCurrentRun().getEventType());
+		c.reset();
+		assertEquals("IND", c.getCurrentRun().getEventType());
+	}
+	
+	public void TC10_08(){
+		Chronotimer c = new Chronotimer();
+		assertTrue(c.power());
+		c.newRun();
+		c.getCurrentRun().setEvent(false, true);
+		assertEquals("PARGRP", c.getCurrentRun().getEventType());
+		c.reset();
+		assertEquals("IND", c.getCurrentRun().getEventType());
+	}
+	
+	public void TC11_01(){
+		Chronotimer c = new Chronotimer();
+		assertTrue(c.power());
+		assertTrue(c.getPower());
+		assertTrue(c.power());
+		assertFalse(c.getPower());
+		File testFile =  new File("testfile.txt");
+		assertFalse(c.export("testfile.txt"));
+	}
+	
+	//TODO
+	public void TC11_02(){
+
+	}
+	
+	public void TC11_03(){
+
+	}
+	
+	public void TC12_01(){
+
+	}
+	
+	public void TC12_02(){
+
+	}
+	
+	public void TC12_03(){
+
+	}
+	
+	public void TC12_04(){
+
+	}
+	
+	public void TC12_05(){
+
+	}
+	
+	public void TC12_06(){
+
+	}
 }
