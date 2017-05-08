@@ -1185,6 +1185,591 @@ public class ChronoTester {
 		assertEquals(6, c.trigger("2"));
 	}
 	
+	// Test Plans 4, 5, 6
+	// Taylor Soderling
+	// Test Plan 4 (TIME)
+	@Test
+	public void TC4_1() {
+		Chronotimer c = new Chronotimer();
+		assertFalse(c.getPower());
+		assertFalse(c.setTime("11:10:10"));
+	}
+	
+	@Test
+	public void TC4_2() {
+		Chronotimer c = new Chronotimer();
+		c.power();
+		c.setTime("10:00:00");
+		long previousTime = c.getTimer().getCurrentTime();
+		c.setTime("14:15:30");
+		assertTrue(c.getTimer().getCurrentTime() > previousTime);
+	}
+	
+	@Test
+	public void TC4_3() {
+		Chronotimer c = new Chronotimer();
+		c.power();
+		c.setTime("10:00:00");
+		long previousTime = c.getTimer().getCurrentTime();
+		c.setTime("7:30:45");
+		assertTrue(c.getTimer().getCurrentTime() < previousTime);
+	}
+	
+	@Test
+	public void TC4_4() {
+		Chronotimer c = new Chronotimer();
+		c.power();
+		c.setTime("10:00:00");
+		assertTrue(c.setTime("7:30:45"));
+	}
+	
+	@Test
+	public void TC4_5() {
+		Chronotimer c = new Chronotimer();
+		c.getPower();
+		assertFalse(c.setTime("25:12:13"));
+	}
+	
+	@Test
+	public void TC4_6() {
+		Chronotimer c = new Chronotimer();
+		c.getPower();
+		assertFalse(c.setTime("05:70:01"));
+	}
+	
+	@Test
+	public void TC4_7() {
+		Chronotimer c = new Chronotimer();
+		c.getPower();
+		assertFalse(c.setTime("20:59:99"));
+	}
+	
+	// Test Plan 5 (PRINT)
+	@Test
+	public void TC5_1() {
+		Chronotimer c = new Chronotimer();
+		assertEquals(c.print(), "");
+	}
+	
+	@Test
+	public void TC5_2() {
+		Chronotimer c = new Chronotimer();
+		c.power();
+		c.setEvent("IND");
+		assertEquals(c.print(), "");
+	}
+	
+	@Test
+	public void TC5_3() {
+		Chronotimer c = new Chronotimer();
+		c.power();
+		c.setEvent("PARIND");
+		assertEquals(c.print(), "");
+	}
+	
+	@Test
+	public void TC5_4() {
+		Chronotimer c = new Chronotimer();
+		c.power();
+		c.setEvent("GRP");
+		assertEquals(c.print(), "");
+	}
+	
+	@Test
+	public void TC5_5() {
+		Chronotimer c = new Chronotimer();
+		c.power();
+		c.setEvent("PARGRP");
+		assertEquals(c.print(), "");
+	}
+	
+	@Test
+	public void TC5_6() {
+		Chronotimer c = new Chronotimer();
+		Racer r = new Racer(14, "");
+		c.power();
+		c.setEvent("IND");
+		c.newRun();
+		c.getCurrentRun().addRacer(r);
+		c.toggleChannel("1");
+		c.toggleChannel("2");
+		c.start();
+		assertEquals(c.print(), "Run number: 1 Event Type: IND/14 Start: Still in progress	End: Still in progress/Total time: Still in progress/");
+	}
+	
+	@Test
+	public void TC5_7() {
+		Chronotimer c = new Chronotimer();
+		Racer r = new Racer(10, "");
+		c.power();
+		c.setEvent("PARIND");
+		c.newRun();
+		c.getCurrentRun().addRacer(r);
+		c.toggleChannel("1");
+		c.toggleChannel("2");
+		c.start();
+		assertEquals(c.print(), "Run number: 1 Event Type: PARIND/10 Start: Still in progress	End: Still in progress/Total time: Still in progress/");
+	}
+	
+	@Test
+	public void TC5_8() {
+		Chronotimer c = new Chronotimer();
+		c.power();
+		c.setEvent("GRP");
+		c.newRun();
+		c.toggleChannel("1");
+		c.toggleChannel("2");
+		c.start();
+		assertEquals(c.print(), "Run number: 1 Event Type: GRP/");
+	}
+	
+	@Test
+	public void TC5_9() {
+		Chronotimer c = new Chronotimer();
+		c.power();
+		c.setEvent("PARGRP");
+		c.newRun();
+		c.toggleChannel("1");
+		c.toggleChannel("2");
+		c.start();
+		assertEquals(c.print(), "Run number: 1 Event Type: PARGRP/");
+	}
+	
+	@Test
+	public void TC5_10() {
+		Chronotimer c = new Chronotimer();
+		Racer r = new Racer(14, "");
+		c.power();
+		c.setEvent("IND");
+		c.newRun();
+		c.getCurrentRun().addRacer(r);
+		c.toggleChannel("1");
+		c.toggleChannel("2");
+		c.start();
+		c.finish();
+		assertEquals(c.print(), "Run number: 1 Event Type: IND/14 Start: Still in progress	End: Still in progress/Total time: Still in progress/");
+	}
+	
+	@Test
+	public void TC5_11() {
+		Chronotimer c = new Chronotimer();
+		Racer r = new Racer(10, "");
+		c.power();
+		c.setEvent("PARIND");
+		c.newRun();
+		c.getCurrentRun().addRacer(r);
+		c.toggleChannel("1");
+		c.toggleChannel("2");
+		c.start();
+		c.finish();
+		assertEquals(c.print(), "Run number: 1 Event Type: PARIND/10 Start: Still in progress	End: Still in progress/Total time: Still in progress/");
+	}
+	
+	@Test
+	public void TC5_12() {
+		Chronotimer c = new Chronotimer();
+		c.power();
+		c.setEvent("GRP");
+		c.newRun();
+		c.toggleChannel("1");
+		c.toggleChannel("2");
+		c.start();
+		c.finish();
+		assertEquals(c.print(), "Run number: 1 Event Type: GRP/1 Start: Still in progress	End: Still in progress/Total time: Still in progress/");
+	}
+	
+	// Check for comprehensive print job here (similar to 5_12)
+	@Test
+	public void TC5_13() {
+		Chronotimer c = new Chronotimer();
+		c.power();
+		c.setEvent("PARGRP");
+		c.newRun();
+		c.toggleChannel("1");
+		c.toggleChannel("2");
+		c.start();
+		c.finish();
+		assertEquals(c.print(), "Run number: 1 Event Type: PARGRP/");
+	}
+	
+	@Test
+	public void TC5_14() {
+		Chronotimer c = new Chronotimer();
+		Racer r = new Racer(14, "");
+		Racer r2 = new Racer(28, "");
+		c.power();
+		c.setEvent("IND");
+		c.newRun();
+		c.getCurrentRun().addRacer(r);
+		c.getCurrentRun().addRacer(r2);
+		c.toggleChannel("1");
+		c.toggleChannel("2");
+		c.start();
+		c.start();
+		c.finish();
+		c.finish();
+		assertEquals(c.print(), "Run number: 1 Event Type: IND/14 Start: Still in progress	End: Still in progress/Total time: Still in progress/28 Start: Still in progress	End: Still in progress/Total time: Still in progress/");
+	}
+	
+	@Test
+	public void TC5_15() {
+		Chronotimer c = new Chronotimer();
+		Racer r = new Racer(10, "");
+		Racer r2 = new Racer(28, "");
+		c.power();
+		c.setEvent("PARIND");
+		c.newRun();
+		c.getCurrentRun().addRacer(r);
+		c.getCurrentRun().addRacer(r2);
+		c.toggleChannel("1");
+		c.toggleChannel("2");
+		c.start();
+		c.start();
+		c.finish();
+		c.finish();
+		assertEquals(c.print(), "Run number: 1 Event Type: PARIND/10 Start: Still in progress	End: Still in progress/Total time: Still in progress/28 Start: Still in progress	End: Still in progress/Total time: Still in progress/");
+	}
+	
+	@Test
+	public void TC5_16() {
+		Chronotimer c = new Chronotimer();
+		c.power();
+		c.setEvent("GRP");
+		c.newRun();
+		c.toggleChannel("1");
+		c.toggleChannel("2");
+		c.start();
+		c.finish();
+		c.finish();
+		assertEquals(c.print(), "Run number: 1 Event Type: GRP/1 Start: Still in progress	End: Still in progress/Total time: Still in progress/2 Start: Still in progress	End: Still in progress/Total time: Still in progress/");
+	}
+	
+	// Check for comprehensive print job here (similar to 5_16)
+	@Test
+	public void TC5_17() {
+		Chronotimer c = new Chronotimer();
+		c.power();
+		c.setEvent("PARGRP");
+		c.newRun();
+		c.toggleChannel("1");
+		c.toggleChannel("2");
+		c.start();
+		c.finish();
+		c.finish();
+		assertEquals(c.print(), "Run number: 1 Event Type: PARGRP/");
+	}
+	
+	// does print need to detail this?
+	@Test
+	public void TC5_18() {
+		Chronotimer c = new Chronotimer();
+		Racer r1 = new Racer(44, "");
+		Racer r2 = new Racer(19, "");
+		c.power();
+		c.setEvent("GRP");
+		c.newRun();
+		c.toggleChannel("1");
+		c.toggleChannel("2");
+		c.start();
+		c.finish();
+		c.finish();
+		c.getCurrentRun().addRacer(r1);
+		c.getCurrentRun().addRacer(r2);
+		assertEquals(c.print(), "Run number: 1 Event Type: GRP/1 Start: Still in progress	End: Still in progress/Total time: Still in progress/2 Start: Still in progress	End: Still in progress/Total time: Still in progress/");
+	}
+	
+	// does print need to detail this?
+	@Test
+	public void TC5_19() {
+		Chronotimer c = new Chronotimer();
+		Racer r1 = new Racer(48, "");
+		Racer r2 = new Racer(33, "");
+		c.power();
+		c.setEvent("PARGRP");
+		c.newRun();
+		c.toggleChannel("1");
+		c.toggleChannel("2");
+		c.start();
+		c.finish();
+		c.finish();
+		c.getCurrentRun().addRacer(r1);
+		c.getCurrentRun().addRacer(r2);
+		assertEquals(c.print(), "Run number: 1 Event Type: PARGRP/");
+	}
+	
+	// Test Plan 6 (DNF)
+	@Test
+	public void TC6_1() {
+		Chronotimer c = new Chronotimer();
+		assertEquals(-1, c.dnf());
+	}
+	
+	@Test
+	public void TC6_2() {
+		Chronotimer c = new Chronotimer();
+		c.power();
+		assertEquals(-2, c.dnf());
+	}
+	
+	@Test
+	public void TC6_3() {
+		Chronotimer c = new Chronotimer();
+		c.power();
+		c.setEvent("IND");
+		c.newRun();
+		assertEquals(0, c.dnf());
+	}
+	
+	@Test
+	public void TC6_4() {
+		Chronotimer c = new Chronotimer();
+		c.power();
+		c.setEvent("PARIND");
+		c.newRun();
+		assertEquals(0, c.dnf());
+	}
+	
+	@Test
+	public void TC6_5() {
+		Chronotimer c = new Chronotimer();
+		c.power();
+		c.setEvent("GRP");
+		c.newRun();
+		assertEquals(-3, c.dnf());
+	}
+	
+	@Test
+	public void TC6_6() {
+		Chronotimer c = new Chronotimer();
+		c.power();
+		c.setEvent("PARGRP");
+		c.newRun();
+		assertEquals(-3, c.dnf());
+	}
+	
+	@Test
+	public void TC6_7() {
+		Chronotimer c = new Chronotimer();
+		Racer r = new Racer(10, "");
+		c.power();
+		c.setEvent("IND");
+		c.newRun();
+		c.getCurrentRun().addRacer(r);
+		c.toggleChannel("1");
+		c.toggleChannel("2");
+		c.start();
+		assertEquals(10, c.dnf());
+	}
+	
+	@Test
+	public void TC6_8() {
+		Chronotimer c = new Chronotimer();
+		c.power();
+		c.setEvent("GRP");
+		c.newRun();
+		c.toggleChannel("1");
+		c.toggleChannel("2");
+		c.start();
+		assertEquals(-3, c.dnf());
+	}
+	
+	@Test
+	public void TC6_9() {
+		Chronotimer c = new Chronotimer();
+		Racer r = new Racer(21, "");
+		c.power();
+		c.setEvent("PARIND");
+		c.newRun();
+		c.getCurrentRun().addRacer(r);
+		c.toggleChannel("1");
+		c.toggleChannel("2");
+		c.start();
+		assertEquals(21, c.dnf());
+	}
+	
+	@Test
+	public void TC6_10() {
+		Chronotimer c = new Chronotimer();
+		c.power();
+		c.setEvent("PARGRP");
+		c.newRun();
+		c.toggleChannel("1");
+		c.toggleChannel("2");
+		c.start();
+		assertEquals(-3, c.dnf());
+	}
+	
+	@Test
+	public void TC6_11() {
+		Chronotimer c = new Chronotimer();
+		Racer r1 = new Racer(11, "");
+		Racer r2 = new Racer(39, "");
+		c.power();
+		c.setEvent("IND");
+		c.newRun();
+		c.getCurrentRun().addRacer(r1);
+		c.getCurrentRun().addRacer(r2);
+		c.toggleChannel("1");
+		c.toggleChannel("2");
+		c.start();
+		c.start();
+		assertEquals(11, c.dnf());
+	}
+	
+	@Test
+	public void TC6_12() {
+		Chronotimer c = new Chronotimer();
+		Racer r1 = new Racer(17, "");
+		Racer r2 = new Racer(37, "");
+		c.power();
+		c.setEvent("PARIND");
+		c.newRun();
+		c.getCurrentRun().addRacer(r1);
+		c.getCurrentRun().addRacer(r2);
+		c.toggleChannel("1");
+		c.toggleChannel("2");
+		c.start();
+		c.start();
+		assertEquals(17, c.dnf());
+	}
+	
+	@Test
+	public void TC6_13() {
+		Chronotimer c = new Chronotimer();
+		Racer r1 = new Racer(14, "");
+		c.power();
+		c.setEvent("IND");
+		c.newRun();
+		c.getCurrentRun().addRacer(r1);
+		c.toggleChannel("1");
+		c.toggleChannel("2");
+		c.start();
+		c.finish();
+		assertEquals(0, c.dnf());
+	}
+	
+	@Test
+	public void TC6_14() {
+		Chronotimer c = new Chronotimer();
+		Racer r1 = new Racer(31, "");
+		c.power();
+		c.setEvent("GRP");
+		c.newRun();
+		c.getCurrentRun().addRacer(r1);
+		c.toggleChannel("1");
+		c.toggleChannel("2");
+		c.start();
+		c.finish();
+		assertEquals(-3, c.dnf());
+	}
+	
+	@Test
+	public void TC6_15() {
+		Chronotimer c = new Chronotimer();
+		Racer r1 = new Racer(22, "");
+		c.power();
+		c.setEvent("PARIND");
+		c.newRun();
+		c.getCurrentRun().addRacer(r1);
+		c.toggleChannel("1");
+		c.toggleChannel("2");
+		c.start();
+		c.finish();
+		assertEquals(0, c.dnf());
+	}
+	
+	@Test
+	public void TC6_16() {
+		Chronotimer c = new Chronotimer();
+		Racer r1 = new Racer(31, "");
+		c.power();
+		c.setEvent("PARGRP");
+		c.newRun();
+		c.getCurrentRun().addRacer(r1);
+		c.toggleChannel("1");
+		c.toggleChannel("2");
+		c.start();
+		c.finish();
+		assertEquals(-3, c.dnf());
+	}
+	
+	@Test
+	public void TC6_17() {
+		Chronotimer c = new Chronotimer();
+		Racer r1 = new Racer(14, "");
+		Racer r2 = new Racer(41, "");
+		c.power();
+		c.setEvent("IND");
+		c.newRun();
+		c.getCurrentRun().addRacer(r1);
+		c.getCurrentRun().addRacer(r2);
+		c.toggleChannel("1");
+		c.toggleChannel("2");
+		c.start();
+		c.start();
+		assertEquals(14, c.dnf());
+		assertEquals(41, c.dnf());
+	}
+	
+	@Test
+	public void TC6_18() {
+		Chronotimer c = new Chronotimer();
+		Racer r = new Racer(34, "");
+		c.power();
+		c.setEvent("IND");
+		c.newRun();
+		c.getCurrentRun().addRacer(r);
+		c.start();
+		c.finish();
+		c.endRun(false);
+		assertEquals(-2, c.dnf());
+	}
+	
+	@Test
+	public void TC6_19() {
+		Chronotimer c = new Chronotimer();
+		c.power();
+		c.setEvent("GRP");
+		c.newRun();
+		c.start();
+		c.finish();
+		c.finish();
+		c.finish();
+		c.endRun(false);
+		assertEquals(-2, c.dnf());
+	}
+	
+	@Test
+	public void TC6_20() {
+		Chronotimer c = new Chronotimer();
+		Racer r = new Racer(34, "");
+		Racer rr = new Racer(50, "");
+		c.power();
+		c.setEvent("IND");
+		c.newRun();
+		c.getCurrentRun().addRacer(r);
+		c.getCurrentRun().addRacer(rr);
+		c.start();
+		c.start();
+		c.finish();
+		c.finish();
+		c.endRun(false);
+		assertEquals(-2, c.dnf());
+	}
+	
+	@Test
+	public void TC6_21() {
+		Chronotimer c = new Chronotimer();
+		c.power();
+		c.setEvent("PARGRP");
+		c.newRun();
+		c.start();
+		c.finish();
+		c.finish();
+		c.endRun(false);
+		assertEquals(-2, c.dnf());
+	}
+	
 	// Test Plans 7, 8, 9
 	// Brandon Cegelski
 	// Test Plan 7 (POWER)
