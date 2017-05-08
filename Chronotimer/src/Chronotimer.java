@@ -107,48 +107,54 @@ public class Chronotimer {
 	}
 	
 	/**
+	 * Gets the channel used for 'Start' detection on Gate 3.
 	 * 
-	 * @return	channel 3
+	 * @return	Channel corresponding to sensing the beginning of the race on Gate 3.
 	 */
 	public Channel getChannelThree(){
 		return this.three;
 	}
 	
 	/**
+	 * Gets the channel used for 'Finish' detection on Gate 4.
 	 * 
-	 * @return	channel 4
+	 * @return	Channel corresponding to sensing the end of the race on Gate 4.
 	 */
 	public Channel getChannelFour(){
 		return this.four;
 	}
 	
 	/**
+	 * Gets the channel used for 'Start' detection on Gate 5.
 	 * 
-	 * @return	channel 5
+	 * @return	Channel corresponding to sensing the beginning of the race on Gate 5.
 	 */
 	public Channel getChannelFive(){
 		return this.five;
 	}
 	
 	/**
+	 * Gets the channel used for 'Finish' detection on Gate 6.
 	 * 
-	 * @return	channel 6
+	 * @return	Channel corresponding to sensing the end of the race on Gate 6.
 	 */
 	public Channel getChannelSix(){
 		return this.six;
 	}
 	
 	/**
+	 * Gets the channel used for 'Start' detection on Gate 7.
 	 * 
-	 * @return	channel 7
+	 * @return	Channel corresponding to sensing the beginning of the race on Gate 7.
 	 */
 	public Channel getChannelSeven(){
 		return this.seven;
 	}
 	
 	/**
+	 * Gets the channel used for 'Finish' detection on Gate 8.
 	 * 
-	 * @return	channel 8
+	 * @return	Channel corresponding to sensing the end of the race on Gate 8.
 	 */
 	public Channel getChannelEight(){
 		return this.eight;
@@ -189,9 +195,9 @@ public class Chronotimer {
 	}
 	
 	/**
-	 * For an individual run the next racer to finish and the 2nd to next racer will be swapped
+	 * (For IND only) Switch the next racer in the queue to start with the racer next in line.
 	 * 
-	 * @return true when the racers are swapped and false otherwise
+	 * @return true when the racers are swapped, false otherwise
 	 */
 	public boolean swap(){
 		if(currentRun == null){
@@ -210,6 +216,8 @@ public class Chronotimer {
 	
 	/**
 	 * Switches the printer power for the simulated Chronotimer printer (off->on, on->off).
+	 * 
+	 * @return	true if power command switches status, false otherwise
 	 */
 	public boolean printerPower(){
 		if(power == true){
@@ -244,7 +252,7 @@ public class Chronotimer {
 		// If the channel is # and is 'On'... if 'Start' channel: start racer. else: end current race
 		if(number == 1 && one.getOn() == true){
 			if(individual){
-				Racer racer = currentRun.startRacer(timer.getCurrentTime(),1);
+				Racer racer = currentRun.startRacer(timer.getCurrentTime(), 1);
 				if(racer == null){
 					return 0;
 				}else{
@@ -514,7 +522,9 @@ public class Chronotimer {
 	}
 	
 	/**
-	 * @return the racer bib number when the sensor is triggered successfully, and return 0 otherwise
+	 * Triggers the sensor connected with the specific channel.
+	 * 
+	 * @return the racer bib number when the sensor is triggered successfully, otherwise '0'
 	 */
 	public int triggerSensor(String inputChannel){
 		// If there is not race underway, return false (invalid input - ignore)
@@ -1178,12 +1188,15 @@ public class Chronotimer {
 		String exportInput = "RUN" + runNumberString + ".txt";
 		FileReader fileInput = null;
 		BufferedReader buffRead = null;
-		File file = new File("configuration.txt");						//Declare file for input
+		
+		// Replace "configuration.txt" with whatever file contains desired IP address for posting race results
+		File file = new File("configuration.txt");
 		String server = "";
 		
 		try {
 			
-			fileInput = new FileReader(file);					//Initialize the FileReader and Buffered Reader for input
+			// Initialize the FileReader and Buffered Reader for reading the provided web address to post results online
+			fileInput = new FileReader(file);
 			buffRead = new BufferedReader(fileInput);
 			
 		} catch (FileNotFoundException f) {
@@ -1196,17 +1209,20 @@ public class Chronotimer {
 		try {
 			server = buffRead.readLine();
 		} catch (IOException e1) {
+			
 			// TODO Auto-generated catch block
 			e1.printStackTrace();
+			
 		}
 		
-		// now create a POST request
+		// Create a POST request
 		try {
+			
 			// Client will connect to this location
 			URL site = new URL(server);
 			HttpURLConnection conn = (HttpURLConnection) site.openConnection();
 						
-			// build a string that contains JSON from console
+			// Build a string that contains JSON from console
 			conn.setRequestMethod("POST");
 			conn.setDoOutput(true);
 			conn.setDoInput(true);
@@ -1216,34 +1232,46 @@ public class Chronotimer {
 			String content = "";
 			content = "ADD;" + getJSON(currentStats);
 
-			// write out string to output buffer for message
+			// Write out string to output buffer for message
 			out.writeBytes(content);
 			out.flush();
 			out.close();
 			InputStreamReader inputStr = new InputStreamReader(conn.getInputStream());
 
-			// string to hold the result of reading in the response
+			// String to hold the result of reading in the response
 			StringBuilder sb = new StringBuilder();
 
-			// read the characters from the request byte by byte and build up the response
+			// Read the characters from the request byte by byte and build up the response
 			int nextChar;
 			while ((nextChar = inputStr.read()) > -1) {
+				
 				sb = sb.append((char) nextChar);
+				
 			}
 			System.out.println("Return String: " + sb);
 			
 		} catch (IOException e) {
+			
 			// TODO Auto-generated catch block
 			System.out.println("Unable to connect to server");
+			
 		}
 		
 		if(export){
+			
 			export(exportInput);
+			
 		}
 		currentRun = null;
 		return true;
 	}
 	
+	/**
+	 * Generates a JSON String to send to Chronoserver.
+	 * 
+	 * @param	currentStats Stats for current run (for racer's times)
+	 * @return	String in JSON format to transport data in basic format
+	 */
 	private static String getJSON(Stats currentStats) {
 
 		ArrayList<Racer> racers = new ArrayList<>();
@@ -1265,16 +1293,24 @@ public class Chronotimer {
 	 * 	The list of runs is empty
 	 * 	Any current runs are wiped
 	 * 	Default race type is IND (individual, non-parallel)
+	 * 
+	 * @return	true if successfully reset, otherwise false
 	 */
 	public boolean reset(){
 		if(power == false){
+			
 			return false;
 		}
+		
 		if(currentRun != null){
+			
 			endRun(false);
+			
 		}
 		runs = new ArrayList<Run>();
-		this.one = new Channel(true, false);	//set default state of sensors
+		
+		// Set default states of channels
+		this.one = new Channel(true, false);
 		this.two = new Channel(false, false);
 		this.three = new Channel(true, false);	
 		this.four = new Channel(false, false);
@@ -1297,6 +1333,7 @@ public class Chronotimer {
 	 * @param parallel	Set True if race will be parallel, False if in series
 	 */
 	public boolean setEvent(String userInput){
+		
 		// As long as there is not a run underway, set details for a new one
 		if(power == false){
 			return false;
@@ -1500,9 +1537,12 @@ public class Chronotimer {
 			return -2;
 		}
 		else{
+			
 			// Ignore the command if the input is invalid
 			if(number == null){
+				
 				return 0;
+				
 			}else{
 				// Only add if there is a run underway
 				if(currentRun == null){
