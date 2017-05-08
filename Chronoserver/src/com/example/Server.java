@@ -23,7 +23,7 @@ import com.sun.net.httpserver.HttpServer;
 
 public class Server {
 
-    // a shared area where we get the POST data and then use it in the other handler
+    // Shared area where we get the POST data and then use it in the other handler
     static boolean valid = true;
 	static int parseFirstLength = 0;
 	static int i = 0;
@@ -38,27 +38,32 @@ public class Server {
 
     public static void main(String[] args) throws Exception {
     	
-    	File file = new File("racers.txt");						//Declare file for input
+    	// Declare file being read for racer information
+    	File file = new File("racers.txt");	
 		
 		try {
 			
-			fileInput = new FileReader(file);					//Initialize the FileReader and Buffered Reader for input
+			// Initialize the FileReader and Buffered Reader for input
+			fileInput = new FileReader(file);
 			buffRead = new BufferedReader(fileInput);
 			
 		} catch (FileNotFoundException f) {
 			
+			// Print error message and quit if file does not exist
 			System.out.print("\nError! File not found!");
 			System.exit(0);
 			
 		}
 		
+		// Initially valid, exit if no more lines contain content
 		while (valid) {
 			
 			try {
 				
-				if ((myLine = buffRead.readLine()) != null) {				//Loop while there is still a next line
+				if ((myLine = buffRead.readLine()) != null) {
 					
-					userInputParse = myLine.split(",");						//Parse the input line	
+					//Parse the input line; [0] contains bib number, [1] first name and [2] last name
+					userInputParse = myLine.split(",");	
 					map.put(userInputParse[0], userInputParse[1] + " " + userInputParse[2]);
 				
 				} else {
@@ -74,20 +79,20 @@ public class Server {
 			}
 		}
     	
-        // set up a simple HTTP server on our local host
+        // Set up a simple HTTP server on our local host
         HttpServer server = HttpServer.create(new InetSocketAddress(8000), 0);
         
-        // create a context to get the request for the POST
+        // Create a context to get the request for the POST
         server.createContext("/sendresults",new PostHandler());
         server.setExecutor(null); // creates a default executor
         
-        // create a context to get the request for the POST
+        // Create a context to get the request for the POST
         server.createContext("/displayresults",new HtmlHandler());
         
-        // create a context to create CSS
+        // Create a context to create CSS
         server.createContext("/displayresults/style.css",new CssHandler());
 
-        // get it going
+        // Initialize the server, with a print message to confirm it runs
         System.out.println("Starting Server...");
         server.start();
     }
@@ -96,57 +101,66 @@ public class Server {
     	
         public void handle(HttpExchange transmission) throws IOException {
 
-        	// clear results from previous run
+        	// Clear results from previous run
             racers.clear();
         	
-        	//  shared data that is used with other handlers
+        	// Shared data that is used with other handlers
             sharedResponse = "";
 
-            // set up a stream to read the body of the request
+            // Set up a stream to read the body of the request
             InputStream inputStr = transmission.getRequestBody();
 
-            // set up a stream to write out the body of the response
+            // Set up a stream to write out the body of the response
             OutputStream outputStream = transmission.getResponseBody();
 
-            // string to hold the result of reading in the request
+            // String to hold the result of reading in the request
             StringBuilder sb = new StringBuilder();
 
-            // read the characters from the request byte by byte and build up the sharedResponse
+            // Read the characters from the request byte by byte and build up the sharedResponse
             int nextChar = inputStr.read();
             while (nextChar > -1) {
-                sb=sb.append((char)nextChar);
-                nextChar=inputStr.read();
+                sb = sb.append((char)nextChar);
+                nextChar = inputStr.read();
             }
 
-            // create our response String to use in other handler
+            // Create our response String to use in other handler
             sharedResponse = sb.toString();
 
-            // respond to the POST with ROGER
+            // Respond to the POST with ROGER
             String postResponse = "ROGER JSON RECEIVED";
 
             System.out.println("Begin of response\n");
-            System.out.println("response: " + sharedResponse);
+            System.out.println("Response: " + sharedResponse);
 
-            // assume that stuff works all the time
+            // Assume that stuff works all the time
             transmission.sendResponseHeaders(300, postResponse.length());
 
-            // write it and return it
+            // Write it and return it
             outputStream.write(postResponse.getBytes());
-
+            
+            // Close output stream once message has been sent
             outputStream.close();
             
+            // Create GSON to send flexible format version of data
 			Gson g = new Gson();
-			// set up the header
 			String response = "";
+			
+			// Parse string by ";"
             String[] tokens = sharedResponse.split(";");
-            if(tokens[0].equals("ADD")) {
+            
+            // Assuming the command given from the client is "ADD"...
+            if (tokens[0].equals("ADD")) {
+            	
             	try {
+            		
+            		// As long as the next line is not empty, read the JSON data and create a new Racer
     				if (!sharedResponse.isEmpty()) {
     					ArrayList<Racer> fromJson = g.fromJson(tokens[1],
     							new TypeToken<Collection<Racer>>() {
     							}.getType());
     					racers.addAll(fromJson);
     					
+    					// Sort the racers
     					response += "Before sort\n";
     					for (Racer e : racers) {
     						response += e + "\n";
@@ -162,16 +176,7 @@ public class Server {
     			}
                 response += "\nEnd of response\n";
                 System.out.println(response);
-            } else if(tokens[0].equals("PRINT")) {
-            	Iterator<Racer> it = racers.iterator();
-            	while(it.hasNext()){
-            		System.out.println(it.next().toString());
-            	}
-            	System.out.println("\nEnd of response");
-            } else if(tokens[0].equals("CLEAR")) {
-            	racers.clear();
-            	System.out.println("\nEnd of response");
-            }
+            } 
 			
             // write out the response
             transmission.sendResponseHeaders(200, response.length());
@@ -186,12 +191,14 @@ public class Server {
     	
         public void handle(HttpExchange transmission) throws IOException {
 
-            // set up a stream to write out the body of the response
+            // Set up a stream to write out the HTML text of the response
             OutputStream outputStream = transmission.getResponseBody();
 
             String htmlString = "";
             StringBuilder result = new StringBuilder();
-			result.append("<!DOCTYPE html>").append("<html>").append("<head>");
+            
+			// Append broken up for readability
+            result.append("<!DOCTYPE html>").append("<html>").append("<head>");
 			result.append("<link href=\"http://localhost:8000/displayresults/style.css\" rel=\"stylesheet\" type=\"text/css\" />");
 			result.append("<title>Race Results</title>");
 			result.append("</head>");
@@ -199,28 +206,34 @@ public class Server {
 			result.append("<table width=\"100%\">");
 			result.append("<h1 align=\"center\">Race Results</h1>");
 			result.append("<tr><th>").append("Place").append("</td><th>").append("Bib Number").append("</td><th>").append("Name").append("</td><th>").append("Time").append("</th></tr>");
+			
+			// Add rows "<tr>" for each racer, use counter as "Place"
 			int counter = 1;
 			for (Racer r : racers) {
+				
 				String name = map.get(r.getBibNumber());
-				// replace "null" in table for unmatched bib number to <empty> name
+				
+				// Replace "null" in table for unmatched bib number to <empty> name
 				if (name == null) {
 					name = "";
 				}
 				result.append("<tr><td>").append(counter).append("</td><td>").append(r.getBibNumber()).append("</td><td>").append(name).append("</td><td>").append(r.getTime()).append("</td></tr>");
 				counter += 1;
 			}
+			
 			result.append("</table>");
 			result.append("</body>").append("</html>");
 
-			// convert to String
+			// Convert to String
 			htmlString = result.toString();
 			
-            // assume that stuff works all the time
+            // Assume that stuff works all the time
             transmission.sendResponseHeaders(300, htmlString.length());
 
-            // write it and return it
+            // Write it and return it
             outputStream.write(htmlString.getBytes());
 
+            // Close the output stream
             outputStream.close();
             
         }
@@ -231,10 +244,10 @@ public class Server {
     	
         public void handle(HttpExchange transmission) throws IOException {
 
-        	// set up a stream to write out the body of the response
+        	// Set up a stream to write out the body of the response
             OutputStream outputStream = transmission.getResponseBody();
 
-            //hard code CSS
+            // Hard code the CSS, again appended for readability
             StringBuilder stringBuilder = new StringBuilder();
 
             stringBuilder.append("table { border-collapse: collapse; }");
@@ -243,15 +256,16 @@ public class Server {
 		    stringBuilder.append("tr { background-color: white; font-size: 20px; }");
 		    stringBuilder.append("p { text-align: center; font-family: verdana; font-size: 20px; }");
 
-			// convert to String
+			// Convert to String
 			String htmlString = stringBuilder.toString();
 			
-            // assume that stuff works all the time
+            // Assume that stuff works all the time
             transmission.sendResponseHeaders(300, htmlString.length());
 
-            // write it and return it
+            // Write it and return it
             outputStream.write(htmlString.getBytes());
 
+            // Close the output stream when finished
             outputStream.close();
             
         }
