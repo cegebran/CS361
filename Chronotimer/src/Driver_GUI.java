@@ -1,24 +1,18 @@
-// imports
 import javax.swing.*;
 
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.awt.event.KeyAdapter;
-import java.awt.event.KeyEvent;
-import java.io.DataOutputStream;
-import java.io.InputStreamReader;
-import java.net.HttpURLConnection;
-import java.net.URL;
 import java.util.ArrayList;
-import java.util.Iterator;
 import java.util.LinkedList;
 
-import javax.swing.event.ListSelectionEvent;
-import javax.swing.event.ListSelectionListener;
-
 public class Driver_GUI extends JFrame{
+	
+	private static final long serialVersionUID = 1L;
+
 	public static void main(String[] args){
+		
+		// Apply consistent "box" style compatible for Windows and Macintosh
 		try {
 			UIManager.setLookAndFeel(UIManager.getCrossPlatformLookAndFeelClassName());
 		} catch (ClassNotFoundException e) {
@@ -34,13 +28,20 @@ public class Driver_GUI extends JFrame{
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+		
+		// Initialize GUI interface with preset style
 		Driver_GUI myGUI = new Driver_GUI();
-		myGUI.setLocation(700,150);
+		// Set in relative center
+		myGUI.setLocation(700, 150);
+		// Set visible
 		myGUI.setVisible(true);
+		// Eliminate resizing so components cannot go missing
 		myGUI.setResizable(false);
+		// Ensure closure on red 'X' button (EXIT command for GUI)
 		myGUI.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-	}	// end of main
+	}
 	
+	// Add main display lines to print live information and function menu
 	final JLabel displayLine1Label = new JLabel(" ");
 	final JLabel displayLine2Label = new JLabel(" ");
 	final JLabel displayLine3Label = new JLabel(" ");
@@ -50,6 +51,7 @@ public class Driver_GUI extends JFrame{
 	final JLabel displayLine7Label = new JLabel(" ");
 	final JLabel displayLine8Label = new JLabel(" ");
 	
+	// Add printer display to mimic most recent eight lines of tape printer output
 	final JLabel printerLine1Label = new JLabel(" ");
 	final JLabel printerLine2Label = new JLabel(" ");
 	final JLabel printerLine3Label = new JLabel(" ");
@@ -61,6 +63,11 @@ public class Driver_GUI extends JFrame{
 	final JLabel printerLine9Label = new JLabel(" ");
 	final JLabel printerLine10Label = new JLabel(" ");
 	
+	/**
+	 * Prints a new line of information to the printer tape, while shifting previous content up one line.
+	 * 
+	 * @param lineToPrint	String to be added to the printer
+	 */
 	public void printerAddLine(String lineToPrint){
 		lineToPrint = lineToPrint.toUpperCase();
 		System.out.println(lineToPrint);
@@ -93,22 +100,26 @@ public class Driver_GUI extends JFrame{
 		printerLine9Label.setText(lineArray[8]);
 		printerLine10Label.setText(lineArray[9]);
 	}
+	
+	// Display and keypad variables
 	boolean displayFunction = false;
-	int functionNum = 0;
-	int selectedFunction = 0;
-	String currentNumPad = "";
 	boolean enterNum = false;
 	boolean finishedEnteringNum = false;
 	boolean functionIsSelected = false;
 	boolean displayHours = false;
 	boolean displayMinutes = false;
 	boolean displaySeconds = false;
-	String enteredTime = "";
+	int functionNum = 0;
+	int selectedFunction = 0;
 	int selectedEvent = 0;
+	String enteredTime = "";
+	String currentNumPad = "";
 	
-	public Driver_GUI(){
+	public Driver_GUI() {
+		
 		Chronotimer chronotimer = new Chronotimer();
 		
+		// Create a window for threaded sensors (max 8)
 		final JFrame sensors = new JFrame("Sensors");
 		sensors.setLayout(new GridLayout(4,2));
 		sensors.setResizable(false);
@@ -117,6 +128,7 @@ public class Driver_GUI extends JFrame{
 		sensors.setVisible(true);
 		sensors.setDefaultCloseOperation(EXIT_ON_CLOSE);
 		
+		// Add sensors as buttons to trigger
 		final JButton sensor1Button = new JButton("Sensor 1");
 		final JButton sensor2Button = new JButton("Sensor 2");
 		final JButton sensor3Button = new JButton("Sensor 3");
@@ -162,6 +174,7 @@ public class Driver_GUI extends JFrame{
 		sensor7.start();
 		sensor8.start();
 		
+		// Add action listeners to buttons to trigger sensors (per Lab 11)
 		sensor1Button.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e){
 		        	sensor1.interrupt();
@@ -227,11 +240,13 @@ public class Driver_GUI extends JFrame{
 		    }
 		});
 		
+		// Add GUI buttons (left side)
 		final JButton powerBtn = new JButton("Power");
 	    powerBtn.setFont(new Font("Serif", Font.PLAIN, 15));
 		final JButton functionBtn = new JButton("Function");
 		functionBtn.setFont(new Font("Serif", Font.PLAIN, 15));
 		
+		// Add directional keys
 		final JButton leftArrowBtn = new JButton("L");
 		leftArrowBtn.setFont(new Font("Serif", Font.PLAIN, 15));
 		final JButton rightArrowBtn = new JButton("R");
@@ -244,6 +259,7 @@ public class Driver_GUI extends JFrame{
 		final JButton swapBtn = new JButton("Swap");
 		swapBtn.setFont(new Font("Serif", Font.PLAIN, 15));
 		
+		// Add start/finish buttons for manual sensors
 		final JButton start1Btn = new JButton(" ");
 		final JButton finish2Btn = new JButton(" ");
 		final JButton start3Btn = new JButton(" ");
@@ -253,6 +269,7 @@ public class Driver_GUI extends JFrame{
 		final JButton start7Btn = new JButton(" ");
 		final JButton finish8Btn = new JButton(" ");
 		
+		// Add correlating enable/disable buttons for manual sensors
 		final JButton enaDis1Btn = new JButton(" ");
 		final JButton enaDis2Btn = new JButton(" ");
 		final JButton enaDis3Btn = new JButton(" ");
@@ -262,9 +279,11 @@ public class Driver_GUI extends JFrame{
 		final JButton enaDis7Btn = new JButton(" ");
 		final JButton enaDis8Btn = new JButton(" ");
 		
+		// Add GUI buttons (right side)
 		final JButton printerPwrBtn = new JButton("Printer Pwr");
 		printerPwrBtn.setFont(new Font("Serif", Font.PLAIN, 15));
 		
+		// Add keypad
 		final JButton numPad0Btn = new JButton("0");
 		numPad0Btn.setFont(new Font("Serif", Font.PLAIN, 20));
 		final JButton numPad1Btn = new JButton("1");
@@ -290,6 +309,7 @@ public class Driver_GUI extends JFrame{
 		final JButton numPadPoundBtn = new JButton("#");
 		numPadPoundBtn.setFont(new Font("Serif", Font.PLAIN, 20));
 		
+		// Add GUI buttons (rear)
 		final JButton channel1Button = new JButton(" ");
 		channel1Button.setBackground(Color.RED);
 		final JButton channel2Button = new JButton(" ");
@@ -307,16 +327,21 @@ public class Driver_GUI extends JFrame{
 		final JButton channel8Button = new JButton(" ");
 		channel8Button.setBackground(Color.RED);
 		
+		// Add pop-up menu for GUI to display options of types of gates to connect to
 		final JPopupMenu channelInputMenu = new JPopupMenu("Menu");
 		channelInputMenu.add("Eye");
 		channelInputMenu.add("Gate");
 		channelInputMenu.add("Pad");
 		
+		// Name for window
 		setTitle("ChronoTimer 1009");
+		
+		// Minimum size for window to display all buttons and fields
 		setSize(1150, 750);
 		
 		setLayout(new GridLayout(3, 3));
 		
+		// Create panel with power button components
 		JPanel pwrPanel = new JPanel();
 		pwrPanel.setLayout(new BorderLayout());
 		JPanel pwrPanelCenter = new JPanel(new FlowLayout());
@@ -325,7 +350,7 @@ public class Driver_GUI extends JFrame{
 		pwrPanel.add(pwrPanelCenter, BorderLayout.CENTER);
 		pwrPanelCenter.add(powerBtn);
 
-		
+		// Create panel with gates and sensors components
 		JPanel startPanel = new JPanel(new GridLayout(7,1));
 		JLabel chronoLabel = new JLabel("       CHRONOTIMER 1009");
 		chronoLabel.setFont(new Font("Serif", Font.BOLD, 23));
@@ -373,7 +398,7 @@ public class Driver_GUI extends JFrame{
 		enaDisEvenPanel.add(enaDis8Btn);
 		startPanel.add(enaDisEvenPanel);
 		
-		
+		// Create panel with printer components
 		JPanel printerPanel = new JPanel(new BorderLayout());
 		JLabel printerBufferLeftLabel = new JLabel("      ");
 		JLabel printerBufferRightLabel = new JLabel("      ");
@@ -406,7 +431,7 @@ public class Driver_GUI extends JFrame{
 		printerTapePanel.add(printerLine10Label);
 		printerPanel.add(printerTapePanel, BorderLayout.CENTER);
 		
-		
+		// Create panel with function menu components
 		JPanel funcSwapPanel = new JPanel(new BorderLayout());
 		JLabel bufferLeftFuncLabel = new JLabel("                ");
 		JLabel bufferRightFuncLabel = new JLabel("                ");
@@ -435,6 +460,7 @@ public class Driver_GUI extends JFrame{
 		funcSwapCentPanel.add(swapPanel);
 		funcSwapPanel.add(funcSwapCentPanel, BorderLayout.CENTER);
 		
+		// Create panel for main display
 		JPanel displayPanel = new JPanel(new BorderLayout());
 		JLabel displayPanelBufferLabelLeft = new JLabel(" ");
 		JLabel displayPanelBufferLabelRight = new JLabel(" ");
@@ -459,9 +485,9 @@ public class Driver_GUI extends JFrame{
 		displayCenterPanel.add(displayLine6Label);
 		displayCenterPanel.add(displayLine7Label);
 		displayCenterPanel.add(displayLine8Label);
-		
 		displayPanel.add(displayCenterPanel, BorderLayout.CENTER);
 		
+		// Create panel for keypad components
 		JPanel numPadPanel = new JPanel(new BorderLayout());
 		JLabel bufferRight = new JLabel("                     ");
 		numPadPanel.add(bufferRight, BorderLayout.LINE_END);
@@ -489,6 +515,7 @@ public class Driver_GUI extends JFrame{
 		numPadCenterPanel.add(numPadPoundBtn);
 		numPadPanel.add(numPadCenterPanel, BorderLayout.CENTER);
 		
+		// Create panel for rear display with channel connections
 		JPanel channelPanel = new JPanel(new BorderLayout());
 		channelPanel.setBorder(BorderFactory.createMatteBorder(1, 0, 0, 0, Color.BLACK));
 		JLabel channelBufferTop = new JLabel(" ");
@@ -521,6 +548,7 @@ public class Driver_GUI extends JFrame{
 		channelButtonPanel.add(channel2468ButtonPanel);
 		channelPanel.add(channelButtonPanel, BorderLayout.CENTER);
 		
+		// Create panel for USB slot
 		JPanel usbPanel = new JPanel();
 		usbPanel.setBorder(BorderFactory.createMatteBorder(1, 0, 0, 0, Color.BLACK));
 		JLabel usbText = new JLabel("USB PORT");
@@ -544,10 +572,11 @@ public class Driver_GUI extends JFrame{
 		usbPanel.add(buffer5);
 		usbPanel.add(buffer6);
 		
+		// Create blank panel for formatting
 		JPanel blankPanel = new JPanel();
 		blankPanel.setBorder(BorderFactory.createMatteBorder(1, 0, 0, 0, Color.BLACK));
 		
-		// need the separate panels to be added in this order to be correct
+		// Need the separate panels to be added in this order to be correct
 		getContentPane().add(pwrPanel);
 		getContentPane().add(startPanel);
 		getContentPane().add(printerPanel);
@@ -558,14 +587,14 @@ public class Driver_GUI extends JFrame{
 		getContentPane().add(usbPanel);
 		getContentPane().add(blankPanel);
 		
-		Timer timer = new Timer(1000/60,new ActionListener() {
-		    public void actionPerformed(ActionEvent event) 
-		    {
+		Timer timer = new Timer(1000/60, new ActionListener() {
+		    
+			public void actionPerformed(ActionEvent event) {
 		      updateModel();
 		    }
 		    
-		    public void pairIndCurrentRacer(){
-		    	// Current Racers Running
+		    public void pairIndCurrentRacer() {
+		    	// Add logic for a parallel individual race
 		    	Stats currentStats = chronotimer.getCurrentRun().getStats();	
     			LinkedList<Racer> racerStartQueue = chronotimer.getCurrentRun().getBeginQueue();
     			LinkedList<Racer> racerEndQueue = chronotimer.getCurrentRun().getEndQueue();
@@ -1519,9 +1548,9 @@ public class Driver_GUI extends JFrame{
 	    		}
 		    }
 		    
-		    // display last finishing pair on line 8 of PARIND display screen
-		    public void parIndFinishPair(){
-		    	// Current Racers Running
+		    // Display last finishing pair on line 8 of PARIND display screen
+		    public void parIndFinishPair() {
+		    	
 		    	Stats currentStats = chronotimer.getCurrentRun().getStats();	
     			LinkedList<Racer> racerStartQueue = chronotimer.getCurrentRun().getBeginQueue();
     			LinkedList<Racer> racerEndQueue = chronotimer.getCurrentRun().getEndQueue();
@@ -1666,7 +1695,10 @@ public class Driver_GUI extends JFrame{
     			}
 		    }
 		    
-		    public void updateModel(){
+		    /**
+		     * Updated the main display after a key has been pressed.
+		     */
+		    public void updateModel() {
 		    	if(chronotimer.getPower() == false){
 		    		displayCenterPanel.setBackground(Color.DARK_GRAY);
 		    		displayLine1Label.setText("");
@@ -1915,8 +1947,8 @@ public class Driver_GUI extends JFrame{
 		    		displayLine7Label.setText("");
 		    		displayLine8Label.setText("");
 		    		
-		    		//TODO Figure out what to check for to prevent null reference exception.
-		    		//if(chronotimer.getCurrentRun() != null && (!chronotimer.getCurrentRun().getStats().getRacers().isEmpty())){
+		    		// TODO Figure out what to check for to prevent null reference exception.
+		    		// if(chronotimer.getCurrentRun() != null && (!chronotimer.getCurrentRun().getStats().getRacers().isEmpty())){
 		    		if(chronotimer.getCurrentRun() != null){
 		    			Stats currentStats = chronotimer.getCurrentRun().getStats();	
 		    			LinkedList<Racer> racerStartQueue = chronotimer.getCurrentRun().getBeginQueue();
@@ -1934,10 +1966,10 @@ public class Driver_GUI extends JFrame{
 		    			Long currentTime4 = 0L;
 		    			
 			    		if(selectedEvent == 0){
-			    			//IND //TODO May have to add logic for extra "current racers"
-			    			//Show the next three to start, and current running racers, and the last racer to finish
+			    			// IND //TODO May have to add logic for extra "current racers"
+			    			// Show the next three to start, and current running racers, and the last racer to finish
 			    			
-			    			//No Racers to start and no current racers
+			    			// No Racers to start and no current racers
 			    			if(racerStartQueue.size() == 0 && racerEndQueue.size() == 0){
 			    				displayLine1Label.setText("No Racer Queued");
 					    		displayLine2Label.setText("No Racer Queued");
@@ -1951,7 +1983,7 @@ public class Driver_GUI extends JFrame{
 					    			displayLine8Label.setText(lastRetValue);
 					    		}
 			    			}
-			    			//No racers to start
+			    			// No racers to start
 			    			else if(racerStartQueue.size() == 0){
 					    		displayLine1Label.setText("No Racer Queued");
 					    		displayLine2Label.setText("No Racer Queued");
@@ -2053,7 +2085,7 @@ public class Driver_GUI extends JFrame{
 					    			displayLine8Label.setText(lastRetValue);
 					    		}
 			    			}
-			    			//1 racer to start 
+			    			// 1 racer to start 
 			    			else if(racerStartQueue.size() == 1){
 					    		displayLine1Label.setText("No Racer Queued");
 					    		displayLine2Label.setText("No Racer Queued");
@@ -2156,7 +2188,7 @@ public class Driver_GUI extends JFrame{
 					    			displayLine8Label.setText(lastRetValue);
 					    		}
 					    	}
-			    			//2 racers to start
+			    			// 2 racers to start
 			    			else if(racerStartQueue.size() == 2){
 					    		displayLine1Label.setText("No Racer Queued");
 					    		displayLine2Label.setText(Integer.toString(racerStartQueue.get(1).getBib()));
@@ -2259,7 +2291,7 @@ public class Driver_GUI extends JFrame{
 					    			displayLine8Label.setText(lastRetValue);
 					    		}
 					    	}
-			    			//3 or more racers to start
+			    			// 3 or more racers to start
 			    			else{
 					    		displayLine1Label.setText(Integer.toString(racerStartQueue.get(2).getBib()));
 					    		displayLine2Label.setText(Integer.toString(racerStartQueue.get(1).getBib()));
@@ -2364,8 +2396,8 @@ public class Driver_GUI extends JFrame{
 					    	}
 			    		}
 			    		else if(selectedEvent == 1){
-			    			//PARIND //TODO Finish PARIND
-			    			//Show the next pair to run, running time of the racers, and finish times of the last pair to finish
+			    			// PARIND //TODO Finish PARIND
+			    			// Show the next pair to run, running time of the racers, and finish times of the last pair to finish
 					    	
 			    			if(racerStartQueue.size() == 0){
 					    		displayLine1Label.setText("No Queued Racer  /  No Queued Racer :>");
@@ -2376,7 +2408,7 @@ public class Driver_GUI extends JFrame{
 					    		// last pair of racers to finish in each lane
 					    		parIndFinishPair();
 			    			}
-			    			//Pair of racers to start and current racer pair
+			    			// Pair of racers to start and current racer pair
 			    			else{
 			    				if(racerStartQueue.isEmpty()){
 			    					displayLine1Label.setText("No Queued Racer  /  No Queued Racer :>");
@@ -2394,7 +2426,7 @@ public class Driver_GUI extends JFrame{
 			    			}
 			    		}
 			    		else if(selectedEvent == 2){
-			    			//PARGRP For Next Sprint
+			    			// PARGRP For Next Sprint
 			    			if(chronotimer.getCurrentRun().getGroupStartTime() == -1){
 			    				displayLine1Label.setText("Group Start Time:");
 			    				displayLine2Label.setText("N/A");
@@ -2429,7 +2461,7 @@ public class Driver_GUI extends JFrame{
 									displayLine7Label.setText("L7: No Current Racer          Run Has Not Started :>");
 									displayLine8Label.setText("L8: No Current Racer          Run Has Not Started :>");
 								}else if(racerStartQueue.size() == 1){
-									//displayLine1Label.setText(String.format("%1$-" + 43 + "s", "L1: " + racerStartQueue.get(0).getBib()) + "Run Has Not Started :>");
+									// displayLine1Label.setText(String.format("%1$-" + 43 + "s", "L1: " + racerStartQueue.get(0).getBib()) + "Run Has Not Started :>");
 									displayLine1Label.setText("L1: " + racerStartQueue.get(0).getBib() + "                                    Run Has Not Started :>");
 									displayLine2Label.setText("L2: No Current Racer          Run Has Not Started :>");
 									displayLine3Label.setText("L3: No Current Racer          Run Has Not Started :>");
@@ -2730,7 +2762,7 @@ public class Driver_GUI extends JFrame{
 		timer.setRepeats(true);
 		timer.start();
 		
-		// Action Listeners
+		// Connect POWER command to the Power button
 		powerBtn.addActionListener(new ActionListener() {
 	        public void actionPerformed(ActionEvent e){
 	        	if(!chronotimer.getPower()){
@@ -2745,6 +2777,8 @@ public class Driver_GUI extends JFrame{
 	        	selectedFunction = 0;
 	        }
 	    });
+		
+		// Connect the SWAP command to the Swap button
 		swapBtn.addActionListener(new ActionListener() {
 	        public void actionPerformed(ActionEvent e){
 	        	
@@ -2760,6 +2794,8 @@ public class Driver_GUI extends JFrame{
 	        	}
 	        }
 	    });
+		
+		// Connect selecting the functions to switching the main display
 		functionBtn.addActionListener(new ActionListener(){
 			public void actionPerformed(ActionEvent e){
 				boolean pwr = chronotimer.getPower();
@@ -2774,6 +2810,7 @@ public class Driver_GUI extends JFrame{
 			}
 		});
 		
+		// Connect up arrow to scrolling up in function menu
 		upArrowBtn.addActionListener(new ActionListener(){
 			public void actionPerformed(ActionEvent e){
 				if(functionIsSelected && (selectedFunction == 2 || selectedFunction == 3) && selectedEvent == 0){
@@ -2792,6 +2829,7 @@ public class Driver_GUI extends JFrame{
 			}
 		});
 		
+		// Connect down arrow to scroling down in function menu
 		downArrowBtn.addActionListener(new ActionListener(){
 			public void actionPerformed(ActionEvent e){
 				if(functionIsSelected && (selectedFunction == 2 || selectedFunction == 3) && selectedEvent == 3){
@@ -2810,6 +2848,7 @@ public class Driver_GUI extends JFrame{
 			}
 		});
 		
+		// Connect printer power button to enabling items to print on printer tape
 		printerPwrBtn.addActionListener(new ActionListener() {
 	        public void actionPerformed(ActionEvent e){
 	        	try {
@@ -2823,6 +2862,9 @@ public class Driver_GUI extends JFrame{
 	        }
 	    });
 		
+		//
+		// Attach enable/disable buttons to their respective TOG #
+		//
 		enaDis1Btn.addActionListener(new ActionListener() {
 	        public void actionPerformed(ActionEvent e){
 	        	try {
@@ -2999,6 +3041,9 @@ public class Driver_GUI extends JFrame{
 	        }
 	    });
 		
+		//
+		// Attach channel connectivity for respective CONN #
+		//
 		channel1Button.addActionListener(new ActionListener() {
 	        public void actionPerformed(ActionEvent e){
 	        	try {
@@ -3159,6 +3204,9 @@ public class Driver_GUI extends JFrame{
 	        }
 	    });
 		
+		//
+		// Attach numbers to their respective keypad input
+		//
 		numPad0Btn.addActionListener(new ActionListener() {
 	        public void actionPerformed(ActionEvent e){
 	        	if(enterNum){
@@ -3405,6 +3453,9 @@ public class Driver_GUI extends JFrame{
 		        }
 		});
 		
+		//
+		// Attach manual trigger for each channel's respective TRIG #
+		//
 		start1Btn.addActionListener(new ActionListener() {
 			 public void actionPerformed(ActionEvent e){
 		        	try {
