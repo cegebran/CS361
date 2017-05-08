@@ -48,11 +48,26 @@ public class Racer implements Comparable<Object>{
 		return 0;
 	}
 
+	/**
+	 * Returns the racer's bib number.
+	 * 
+	 * @return	Racer's bib number (as String)
+	 */
 	public String getBibNumber() {
+		
 		return Integer.toString(bibNumber);
+		
 	}
 	
+	/**
+	 * Returns the racer's total race time for most recent run.
+	 * 
+	 * @return	Racer's time (as formatted HH:MM:SS String)
+	 */
 	public String getTime() {
+		
 		return time;
+		
 	}
+	
 }

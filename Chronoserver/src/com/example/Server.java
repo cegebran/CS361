@@ -23,23 +23,22 @@ import com.sun.net.httpserver.HttpServer;
 public class Server {
 
     // Shared area where we get the POST data and then use it in the other handler
+	static boolean gotMessageFlag = false;
     static boolean valid = true;
 	static int parseFirstLength = 0;
 	static int i = 0;
 	static String myLine = "";
-	static FileReader fileInput = null;
-	static BufferedReader buffRead = null;
-	static String[] userInputParse = null;
 	static String sharedResponse = "";
-    static boolean gotMessageFlag = false;
-    static ArrayList<Racer> racers = new ArrayList<Racer>();
+	static String[] userInputParse = null;
+	static ArrayList<Racer> racers = new ArrayList<Racer>();
     static TreeMap<String, String> map = new TreeMap<String, String>();
-
+    static FileReader fileInput = null;
+	static BufferedReader buffRead = null;
+	
     public static void main(String[] args) throws Exception {
     	
     	// Declare file being read for racer information
     	File file = new File("racers.txt");	
-		
 		try {
 			
 			// Initialize the FileReader and Buffered Reader for input
@@ -51,7 +50,6 @@ public class Server {
 			// Print error message and quit if file does not exist
 			System.out.print("\nError! File not found!");
 			System.exit(0);
-			
 		}
 		
 		// Initially valid, exit if no more lines contain content
@@ -59,22 +57,24 @@ public class Server {
 			
 			try {
 				
+				// Check next line being read; if empty (null), file no longer valid for reading
 				if ((myLine = buffRead.readLine()) != null) {
 					
-					//Parse the input line; [0] contains bib number, [1] first name and [2] last name
+					// Parse the input line; [0] contains bib number, [1] first name and [2] last name
 					userInputParse = myLine.split(",");	
 					map.put(userInputParse[0], userInputParse[1] + " " + userInputParse[2]);
 				
 				} else {
 					
+					// Line is empty, abandon reading file
 					valid = false;
 					
 				}
 				
 			} catch (IOException e) {
 				
+				// Print trace regarding issues with buffered reader
 				e.printStackTrace();
-				
 			}
 		}
     	
@@ -96,6 +96,9 @@ public class Server {
         server.start();
     }
 
+    /**
+     * PostHandler contains ability for Chronoserver to take given JSON and convert into list of racers to print on HTML table.
+     */
     static class PostHandler implements HttpHandler {
     	
         public void handle(HttpExchange transmission) throws IOException {
@@ -186,6 +189,9 @@ public class Server {
         
     }
     
+    /**
+     * HTMLHandler contains means by which Chronoserver generates the race results table.
+     */
     static class HtmlHandler implements HttpHandler {
     	
         public void handle(HttpExchange transmission) throws IOException {
@@ -239,6 +245,9 @@ public class Server {
         
     }
     
+    /**
+     * CSSHandler contains means by which Chronoserver styles HTML table with race results.
+     */
     static class CssHandler implements HttpHandler {
     	
         public void handle(HttpExchange transmission) throws IOException {
