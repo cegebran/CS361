@@ -2393,7 +2393,7 @@ public class ChronoTester {
 		c.getCurrentRun().setEvent(true, true);
 		assertEquals("PARIND", c.getCurrentRun().getEventType());
 		assertTrue(c.reset());
-//	Line causing null reference
+//	    Line causing null reference
 //		assertEquals("IND", c.getCurrentRun().getEventType());
 	}
 	
