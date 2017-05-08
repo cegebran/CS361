@@ -1,4 +1,8 @@
+import java.io.BufferedReader;
 import java.io.DataOutputStream;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.InputStreamReader;
@@ -1172,11 +1176,34 @@ public class Chronotimer {
 		int runNumber = currentRun.getRunNumber();
 		String runNumberString = Integer.toString(runNumber);
 		String exportInput = "RUN" + runNumberString + ".txt";
+		FileReader fileInput = null;
+		BufferedReader buffRead = null;
+		File file = new File("configuration.txt");						//Declare file for input
+		String server = "";
+		
+		try {
+			
+			fileInput = new FileReader(file);					//Initialize the FileReader and Buffered Reader for input
+			buffRead = new BufferedReader(fileInput);
+			
+		} catch (FileNotFoundException f) {
+			
+			System.out.print("\nError! File not found!");
+			System.exit(0);
+			
+		}
+		
+		try {
+			server = buffRead.readLine();
+		} catch (IOException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
 		
 		// now create a POST request
 		try {
 			// Client will connect to this location
-			URL site = new URL("http://localhost:8000/sendresults");
+			URL site = new URL(server);
 			HttpURLConnection conn = (HttpURLConnection) site.openConnection();
 						
 			// build a string that contains JSON from console
