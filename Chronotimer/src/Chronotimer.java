@@ -306,14 +306,16 @@ public class Chronotimer {
 			}
 			else{
 				if(parallel == true){
-					if(currentRun.getBeginQueue().size() >= 2){
-						long time =  currentRun.getStats().getEnd(currentRun.getBeginQueue().get(1));
-						if(time == -1){
-							int result = currentRun.endParGrpRacer(2);
-							if(result > 0){
-								return result;
-						}else{
-								return 0;
+					if(currentRun.getGroupStartTime() != -1){
+						if(currentRun.getBeginQueue().size() >= 2){
+							long time =  currentRun.getStats().getEnd(currentRun.getBeginQueue().get(1));
+							if(time == -1){
+								int result = currentRun.endParGrpRacer(2);
+								if(result > 0){
+									return result;
+								}else{
+									return 0;
+								}
 							}
 						}
 					}
@@ -338,14 +340,16 @@ public class Chronotimer {
 			}
 			else{
 				if(parallel == true){
-					if(currentRun.getBeginQueue().size() >= 3){
-						long time =  currentRun.getStats().getEnd(currentRun.getBeginQueue().get(2));
-						if(time == -1){
-							int result = currentRun.endParGrpRacer(3);
-							if(result > 0){
-								return result;
-							}else{
-								return 0;
+					if(currentRun.getGroupStartTime() != -1){
+						if(currentRun.getBeginQueue().size() >= 3){
+							long time =  currentRun.getStats().getEnd(currentRun.getBeginQueue().get(2));
+							if(time == -1){
+								int result = currentRun.endParGrpRacer(3);
+								if(result > 0){
+									return result;
+								}else{
+									return 0;
+								}
 							}
 						}
 					}
@@ -370,14 +374,16 @@ public class Chronotimer {
 			}
 			else{
 				if(parallel == true){
-					if(currentRun.getBeginQueue().size() >= 4){
-						long time =  currentRun.getStats().getEnd(currentRun.getBeginQueue().get(3));
-						if(time == -1){
-							int result = currentRun.endParGrpRacer(4);
-							if(result > 0){
-								return result;
-							}else{
-								return 0;
+					if(currentRun.getGroupStartTime() != -1){
+						if(currentRun.getBeginQueue().size() >= 4){
+							long time =  currentRun.getStats().getEnd(currentRun.getBeginQueue().get(3));
+							if(time == -1){
+								int result = currentRun.endParGrpRacer(4);
+								if(result > 0){
+									return result;
+								}else{
+									return 0;
+								}
 							}
 						}
 					}
@@ -402,14 +408,16 @@ public class Chronotimer {
 			}
 			else{
 				if(parallel == true){
-					if(currentRun.getBeginQueue().size() >= 5){
-						long time =  currentRun.getStats().getEnd(currentRun.getBeginQueue().get(4));
-						if(time == -1){
-							int result = currentRun.endParGrpRacer(5);
-							if(result > 0){
-								return result;
-							}else{
-								return 0;
+					if(currentRun.getGroupStartTime() != -1){
+						if(currentRun.getBeginQueue().size() >= 5){
+							long time =  currentRun.getStats().getEnd(currentRun.getBeginQueue().get(4));
+							if(time == -1){
+								int result = currentRun.endParGrpRacer(5);
+								if(result > 0){
+									return result;
+								}else{
+									return 0;
+								}
 							}
 						}
 					}
@@ -434,14 +442,16 @@ public class Chronotimer {
 			}
 			else{
 				if(parallel == true){
-					if(currentRun.getBeginQueue().size() >= 6){
-						long time =  currentRun.getStats().getEnd(currentRun.getBeginQueue().get(5));
-						if(time == -1){
-							int result = currentRun.endParGrpRacer(6);
-							if(result > 0){
-								return result;
-							}else{
-								return 0;
+					if(currentRun.getGroupStartTime() != -1){
+						if(currentRun.getBeginQueue().size() >= 6){
+							long time =  currentRun.getStats().getEnd(currentRun.getBeginQueue().get(5));
+							if(time == -1){
+								int result = currentRun.endParGrpRacer(6);
+								if(result > 0){
+									return result;
+								}else{
+									return 0;
+								}
 							}
 						}
 					}
@@ -466,14 +476,16 @@ public class Chronotimer {
 			}
 			else{
 				if(parallel == true){
-					if(currentRun.getBeginQueue().size() >= 7){
-						long time =  currentRun.getStats().getEnd(currentRun.getBeginQueue().get(6));
-						if(time == -1){
-							int result = currentRun.endParGrpRacer(7);
-							if(result > 0){
-								return result;
-							}else{
-								return 0;
+					if(currentRun.getGroupStartTime() != -1){
+						if(currentRun.getBeginQueue().size() >= 7){
+							long time =  currentRun.getStats().getEnd(currentRun.getBeginQueue().get(6));
+							if(time == -1){
+								int result = currentRun.endParGrpRacer(7);
+								if(result > 0){
+									return result;
+								}else{
+									return 0;
+								}
 							}
 						}
 					}
@@ -498,14 +510,16 @@ public class Chronotimer {
 			}
 			else{
 				if(parallel == true){
-					if(currentRun.getBeginQueue().size() >= 8){
-						long time =  currentRun.getStats().getEnd(currentRun.getBeginQueue().get(7));
-						if(time == -1){
-							int result = currentRun.endParGrpRacer(8);
-							if(result > 0){
-								return result;
-							}else{
-								return 0;
+					if(currentRun.getGroupStartTime() != -1){
+						if(currentRun.getBeginQueue().size() >= 8){
+							long time =  currentRun.getStats().getEnd(currentRun.getBeginQueue().get(7));
+							if(time == -1){
+								int result = currentRun.endParGrpRacer(8);
+								if(result > 0){
+									return result;
+								}else{
+									return 0;
+								}
 							}
 						}
 					}
@@ -592,14 +606,16 @@ public class Chronotimer {
 			}
 			else{
 				if(parallel == true){
-					if(currentRun.getBeginQueue().size() >= 2){
-						long time =  currentRun.getStats().getEnd(currentRun.getBeginQueue().get(1));
-						if(time == -1){
-							int result = currentRun.endParGrpRacer(2);
-							if(result > 0){
-								return result;
-						}else{
-								return 0;
+					if(currentRun.getGroupStartTime() != -1){
+						if(currentRun.getBeginQueue().size() >= 2){
+							long time =  currentRun.getStats().getEnd(currentRun.getBeginQueue().get(1));
+							if(time == -1){
+								int result = currentRun.endParGrpRacer(2);
+								if(result > 0){
+									return result;
+								}else{
+									return 0;
+								}
 							}
 						}
 					}
@@ -624,14 +640,16 @@ public class Chronotimer {
 			}
 			else{
 				if(parallel == true){
-					if(currentRun.getBeginQueue().size() >= 3){
-						long time =  currentRun.getStats().getEnd(currentRun.getBeginQueue().get(2));
-						if(time == -1){
-							int result = currentRun.endParGrpRacer(3);
-							if(result > 0){
-								return result;
-							}else{
-								return 0;
+					if(currentRun.getGroupStartTime() != -1){
+						if(currentRun.getBeginQueue().size() >= 3){
+							long time =  currentRun.getStats().getEnd(currentRun.getBeginQueue().get(2));
+							if(time == -1){
+								int result = currentRun.endParGrpRacer(3);
+								if(result > 0){
+									return result;
+								}else{
+									return 0;
+								}
 							}
 						}
 					}
@@ -656,14 +674,16 @@ public class Chronotimer {
 			}
 			else{
 				if(parallel == true){
-					if(currentRun.getBeginQueue().size() >= 4){
-						long time =  currentRun.getStats().getEnd(currentRun.getBeginQueue().get(3));
-						if(time == -1){
-							int result = currentRun.endParGrpRacer(4);
-							if(result > 0){
-								return result;
-							}else{
-								return 0;
+					if(currentRun.getGroupStartTime() != -1){
+						if(currentRun.getBeginQueue().size() >= 4){
+							long time =  currentRun.getStats().getEnd(currentRun.getBeginQueue().get(3));
+							if(time == -1){
+								int result = currentRun.endParGrpRacer(4);
+								if(result > 0){
+									return result;
+								}else{
+									return 0;
+								}
 							}
 						}
 					}
@@ -688,14 +708,16 @@ public class Chronotimer {
 			}
 			else{
 				if(parallel == true){
-					if(currentRun.getBeginQueue().size() >= 5){
-						long time =  currentRun.getStats().getEnd(currentRun.getBeginQueue().get(4));
-						if(time == -1){
-							int result = currentRun.endParGrpRacer(5);
-							if(result > 0){
-								return result;
-							}else{
-								return 0;
+					if(currentRun.getGroupStartTime() != -1){
+						if(currentRun.getBeginQueue().size() >= 5){
+							long time =  currentRun.getStats().getEnd(currentRun.getBeginQueue().get(4));
+							if(time == -1){
+								int result = currentRun.endParGrpRacer(5);
+								if(result > 0){
+									return result;
+								}else{
+									return 0;
+								}
 							}
 						}
 					}
@@ -720,14 +742,16 @@ public class Chronotimer {
 			}
 			else{
 				if(parallel == true){
-					if(currentRun.getBeginQueue().size() >= 6){
-						long time =  currentRun.getStats().getEnd(currentRun.getBeginQueue().get(5));
-						if(time == -1){
-							int result = currentRun.endParGrpRacer(6);
-							if(result > 0){
-								return result;
-							}else{
-								return 0;
+					if(currentRun.getGroupStartTime() != -1){
+						if(currentRun.getBeginQueue().size() >= 6){
+							long time =  currentRun.getStats().getEnd(currentRun.getBeginQueue().get(5));
+							if(time == -1){
+								int result = currentRun.endParGrpRacer(6);
+								if(result > 0){
+									return result;
+								}else{
+									return 0;
+								}
 							}
 						}
 					}
@@ -752,14 +776,16 @@ public class Chronotimer {
 			}
 			else{
 				if(parallel == true){
-					if(currentRun.getBeginQueue().size() >= 7){
-						long time =  currentRun.getStats().getEnd(currentRun.getBeginQueue().get(6));
-						if(time == -1){
-							int result = currentRun.endParGrpRacer(7);
-							if(result > 0){
-								return result;
-							}else{
-								return 0;
+					if(currentRun.getGroupStartTime() != -1){
+						if(currentRun.getBeginQueue().size() >= 7){
+							long time =  currentRun.getStats().getEnd(currentRun.getBeginQueue().get(6));
+							if(time == -1){
+								int result = currentRun.endParGrpRacer(7);
+								if(result > 0){
+									return result;
+								}else{
+									return 0;
+								}
 							}
 						}
 					}
@@ -784,14 +810,16 @@ public class Chronotimer {
 			}
 			else{
 				if(parallel == true){
-					if(currentRun.getBeginQueue().size() >= 8){
-						long time =  currentRun.getStats().getEnd(currentRun.getBeginQueue().get(7));
-						if(time == -1){
-							int result = currentRun.endParGrpRacer(8);
-							if(result > 0){
-								return result;
-							}else{
-								return 0;
+					if(currentRun.getGroupStartTime() != -1){
+						if(currentRun.getBeginQueue().size() >= 8){
+							long time =  currentRun.getStats().getEnd(currentRun.getBeginQueue().get(7));
+							if(time == -1){
+								int result = currentRun.endParGrpRacer(8);
+								if(result > 0){
+									return result;
+								}else{
+									return 0;
+								}
 							}
 						}
 					}
