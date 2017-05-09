@@ -194,13 +194,22 @@ public class Stats {
 	 * @Return True if the swap was successful and False otherwise
 	 */
 	public boolean swapRacers(){
-		Racer first = racers.remove(0);
-		Racer second = racers.remove(0);
-		if(first == null || second == null){
+		
+		int i = 0;
+		while(i < racers.size()){
+			if(getEnd(racers.get(i)) == 0){
+				break;
+			}
+			i++;
+		}
+
+		if(i > (racers.size() - 1) || (i+1) > (racers.size() - 1)){
 			return false;
 		}else{
-			racers.add(0, first);
-			racers.add(0, second);
+			Racer first = racers.get(i);
+			Racer second = racers.get(i+1);
+			racers.set(i, second);
+			racers.set(i+1, first);
 			return true;
 		}
 	}
