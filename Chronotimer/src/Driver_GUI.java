@@ -3387,47 +3387,55 @@ public class Driver_GUI extends JFrame{
 		        	else if(functionIsSelected && selectedFunction == 2){
 		        		if(selectedEvent == 0){
 		        			boolean printerPower = chronotimer.getPrinterPower();
-		        			if(printerPower == true && chronotimer.setEvent("IND")){
-		        				printerAddLine("Event set to IND");		        			
-		        			}
-		        			else{
-		        				if(chronotimer.getPrinterPower() == true){
+		        			boolean setEventResult = chronotimer.setEvent("IND");
+		        			if(setEventResult == true){
+		        				if(printerPower == true){
+		        					printerAddLine("Event set to IND");		
+		        				}
+		        			}else{
+		        				if(printerPower == true){
 		        					printerAddLine("Only Set Event Before Starting a Run");
 		        				}
 		        			}
 		        		}
 		        		else if(selectedEvent == 1){
 		        			boolean printerPower = chronotimer.getPrinterPower();
-		        			if(printerPower == true && chronotimer.setEvent("PARIND")){
-		        				printerAddLine("Event set to PARIND");	        			
-		        			}
-			        		else{
-			        			if(chronotimer.getPrinterPower() == true){
+		        			boolean setEventResult = chronotimer.setEvent("PARIND");
+		        			if(setEventResult == true){
+		        				if(printerPower == true){
+		        					printerAddLine("Event set to PARIND");		
+		        				}
+		        			}else{
+		        				if(printerPower == true){
 		        					printerAddLine("Only Set Event Before Starting a Run");
-		        				}        			
-			        		}
+		        				}
+		        			}
 		        		}
 		        		else if(selectedEvent == 2){
 		        			boolean printerPower = chronotimer.getPrinterPower();
-		        			if(printerPower == true && chronotimer.setEvent("GRP")){
-		        				printerAddLine("Event set to GRP");	        			
-		        			}
-			        		else{
-		        				if(chronotimer.getPrinterPower() == true){
+		        			boolean setEventResult = chronotimer.setEvent("GRP");
+		        			if(setEventResult == true){
+		        				if(printerPower == true){
+		        					printerAddLine("Event set to GRP");		
+		        				}
+		        			}else{
+		        				if(printerPower == true){
 		        					printerAddLine("Only Set Event Before Starting a Run");
-		        				}	        			
-			        		}
+		        				}
+		        			}
 		        		}
 		        		else if(selectedEvent == 3){
 		        			boolean printerPower = chronotimer.getPrinterPower();
-		        			if(printerPower == true && chronotimer.setEvent("PARGRP")){
-		        				printerAddLine("Event set to PARGRP");	        			
-		        			}
-			        		else{
-			        			if(chronotimer.getPrinterPower() == true){
+		        			boolean setEventResult = chronotimer.setEvent("PARGRP");
+		        			if(setEventResult == true){
+		        				if(printerPower == true){
+		        					printerAddLine("Event set to PARGRP");		
+		        				}
+		        			}else{
+		        				if(printerPower == true){
 		        					printerAddLine("Only Set Event Before Starting a Run");
-		        				}	        			
-			        		}
+		        				}
+		        			}
 		        		}
 		        		functionIsSelected = false;
 		        	}

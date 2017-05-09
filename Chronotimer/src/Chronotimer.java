@@ -287,6 +287,7 @@ public class Chronotimer {
 				}else{
 					Boolean returnValue = currentRun.startGroup(timer.getCurrentTime());
 					if(returnValue == true){
+						System.out.println("START");
 						return 11111;
 					}else{
 						return 0;
