@@ -1404,11 +1404,11 @@ public class ChronoTester {
 		c.getCurrentRun().addRacer(r2);
 		c.toggleChannel("1");
 		c.toggleChannel("2");
-		c.start();
-		c.start();
-		c.finish();
-		c.finish();
-		assertEquals(c.print(), "Run number: 1 Event Type: IND/14 Start: Still in progress	End: Still in progress/Total time: Still in progress/28 Start: Still in progress	End: Still in progress/Total time: Still in progress/");
+		c.triggerTime("1", "12:00:00.00");
+		c.triggerTime("1", "12:00:00.00");
+		c.triggerTime("2", "12:00:30.00");
+		c.triggerTime("2", "12:00:31.00");
+		assertEquals(c.print(), "Run number: 1 Event Type: IND/14 Start: 12:00:00.00	End: 12:00:30.00/Total time: 00:30.00/28 Start: 12:00:00.00	End: 12:00:31.00/Total time: 00:31.00/");
 	}
 	
 	@Test
