@@ -2437,7 +2437,7 @@ public class Driver_GUI extends JFrame{
 			    			}
 			    			else{
 			    				displayLine1Label.setText("Group Start Time:");
-			    				displayLine2Label.setText(Time.convertTime(chronotimer.getCurrentRun().getGroupStartTime()));
+			    				displayLine2Label.setText(Time.convertRealTime(chronotimer.getCurrentRun().getGroupStartTime()));
 			    				displayLine4Label.setText("Current Running Time:");
 			    				displayLine5Label.setText(Time.convertTime(chronotimer.getTimer().getCurrentTime() - chronotimer.getCurrentRun().getGroupStartTime()));
 			    				displayLine7Label.setText("Last Finish:");
