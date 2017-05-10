@@ -247,13 +247,13 @@ public class Driver_GUI extends JFrame{
 		functionBtn.setFont(new Font("Serif", Font.PLAIN, 15));
 		
 		// Add directional keys
-		final JButton leftArrowBtn = new JButton("L");
+		final JButton leftArrowBtn = new JButton("<");
 		leftArrowBtn.setFont(new Font("Serif", Font.PLAIN, 15));
-		final JButton rightArrowBtn = new JButton("R");
+		final JButton rightArrowBtn = new JButton(">");
 		rightArrowBtn.setFont(new Font("Serif", Font.PLAIN, 15));
-		final JButton downArrowBtn = new JButton("D");
+		final JButton downArrowBtn = new JButton("v");
 		downArrowBtn.setFont(new Font("Serif", Font.PLAIN, 15));
-		final JButton upArrowBtn = new JButton("U");
+		final JButton upArrowBtn = new JButton("^");
 		upArrowBtn.setFont(new Font("Serif", Font.PLAIN, 15));
 		
 		final JButton swapBtn = new JButton("Swap");
