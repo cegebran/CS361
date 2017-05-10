@@ -2445,7 +2445,7 @@ public class Driver_GUI extends JFrame{
 			    					displayLine8Label.setText("N/A");
 			    				}
 			    				else{
-			    					displayLine8Label.setText(Time.convertTime(chronotimer.getCurrentRun().getLastGroupFinish()));
+			    					displayLine8Label.setText(Time.convertRealTime(chronotimer.getCurrentRun().getLastGroupFinish()));
 			    				}
 			    			}
 			    		}
